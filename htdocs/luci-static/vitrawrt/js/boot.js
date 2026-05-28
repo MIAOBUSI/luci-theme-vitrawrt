@@ -196,11 +196,6 @@
 			dummy.textContent = innerText;
 			bar.appendChild(dummy);
 			
-			var fill = document.createElement('div');
-			fill.className = 'vw-pb-fill';
-			fill.style.width = initialWidth;
-			bar.appendChild(fill);
-			
 			var header = document.createElement('div');
 			header.className = 'vw-pb-header';
 			var txt = document.createElement('span');
@@ -216,6 +211,11 @@
 			var track = document.createElement('div');
 			track.className = 'vw-pb-track';
 			bar.appendChild(track);
+			
+			var fill = document.createElement('div');
+			fill.className = 'vw-pb-fill';
+			fill.style.width = initialWidth;
+			track.appendChild(fill);
 			
 			var td = bar.closest('td');
 			var prevTd = td ? td.previousElementSibling : null;

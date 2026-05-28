@@ -6110,10 +6110,10 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 /* Container visual: track background + pill shape */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded {
-    background: color-mix(in srgb, var(--vw-text) 8%, transparent) !important;
+    background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    border-radius: var(--vw-radius-pill) !important;
+    border-radius: 0 !important;
 }
 /* Native pseudo-elements injected by LuCI cascade.css — make them invisible without display:none */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded::before,
@@ -6121,6 +6121,12 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     color: transparent !important;
     font-size: 0 !important;
     line-height: 0 !important;
+}
+
+/* Track styling */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
+    background: color-mix(in srgb, var(--vw-text) 8%, transparent) !important;
+    border-radius: 99px !important;
 }
 
 /* Colored fill bar: gradient colors */
@@ -6138,7 +6144,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 /* Text label: font style */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-text {
-    font-size: 12px !important;
+    font-size: 13px !important;
     font-weight: 500 !important;
     color: var(--vw-text-main) !important;
     line-height: 1 !important;
@@ -6146,10 +6152,18 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 /* Percentage badge: font style */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
-    font-size: 11px !important;
+    font-size: 12px !important;
     font-weight: 600 !important;
-    color: var(--vw-text-muted) !important;
+    color: var(--vw-primary) !important;
+    background: color-mix(in srgb, var(--vw-primary) 12%, transparent) !important;
+    padding: 3px 8px !important;
+    border-radius: 99px !important;
     line-height: 1 !important;
+}
+
+#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-badge {
+    color: var(--vw-success) !important;
+    background: color-mix(in srgb, var(--vw-success) 12%, transparent) !important;
 }
 
 /* Hide the badge for primary/success bars — moved to layout-exceptions.css */

@@ -617,13 +617,18 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section {
    Visual rules (colors, fonts) live in luci-components-visual.css
    ========================================================================== */
 
-/* Container: positioning context, pill shape, fixed height */
+/* Container: vertical flex layout */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded {
 	position: relative !important;
-	overflow: hidden !important;
-	min-height: 28px !important;
-	padding: 0 !important;
-	display: block !important;
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	padding: 4px 0 !important;
+	margin-bottom: 4px !important;
+	min-height: 44px !important;
+	overflow: visible !important;
+	border: none !important;
+	background: transparent !important;
 }
 
 /* Hidden dummy — LuCI core JS writes width/text here; we mirror it to .vw-pb-fill */
@@ -631,10 +636,40 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section {
 	display: none !important;
 	visibility: hidden !important;
 	position: absolute !important;
-	pointer-events: none !important;
 }
 
-/* The actual colored fill — stretches inside the container */
+/* Header row: text + badge above the track */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-header {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	width: 100% !important;
+	margin-bottom: 6px !important;
+}
+
+/* Text & Badge layout */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-text {
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	flex: 1 1 0 !important;
+	min-width: 0 !important;
+	
+}
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
+	flex-shrink: 0 !important;
+	margin-left: 8px !important;
+}
+
+/* The track (grey background) */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
+	position: relative !important;
+	width: 100% !important;
+	height: 10px !important;
+	display: block !important;
+	overflow: hidden !important;
+}
+
+/* The actual colored fill — inside the track */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-fill {
 	position: absolute !important;
 	top: 0 !important;
@@ -642,45 +677,6 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section {
 	bottom: 0 !important;
 	height: 100% !important;
 	max-width: 100% !important;
-}
-
-/* Header row: text + badge laid out side-by-side, floated above the fill */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-header {
-	position: relative !important;
-	z-index: 2 !important;
-	display: flex !important;
-	align-items: center !important;
-	justify-content: space-between !important;
-	width: 100% !important;
-	height: 28px !important;
-	padding: 0 10px !important;
-	box-sizing: border-box !important;
-	pointer-events: none !important;
-}
-
-/* Text: truncate long labels */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-text {
-	overflow: hidden !important;
-	text-overflow: ellipsis !important;
-	flex: 1 1 0 !important;
-	min-width: 0 !important;
-}
-
-/* Badge: don't shrink, keep right-aligned */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
-	flex-shrink: 0 !important;
-	margin-left: 6px !important;
-}
-
-/* Track overlay: hide it */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
-	display: none !important;
-}
-
-/* Hide the badge for primary/success bars */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-primary .vw-pb-badge,
-#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-badge {
-	display: none !important;
 }
 
 /* Fallback un-upgraded bars: give them a fixed height */
