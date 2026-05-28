@@ -608,18 +608,86 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section {
 	padding: 0 !important;
 	height: 0 !important;
 	border: none !important;
-	overflow: hidden !important;
 }
 
-#maincontent .cbi-tabcontainer[style*="display: none"],
-#maincontent .cbi-tabcontainer[style*="display:none"],
-#maincontent .cbi-section[style*="display: none"],
-#maincontent .cbi-section[style*="display:none"],
-#maincontent .cbi-section-node[style*="display: none"],
-#maincontent .cbi-section-node[style*="display:none"] {
-	margin: 0 !important;
-	padding: 0 !important;
-	height: 0 !important;
-	border: none !important;
+/* ==========================================================================
+   Pro Max UI: Progress Bar Layout
+   boot.js rewrites .cbi-progressbar into .vw-progressbar-upgraded with child
+   elements: .vw-pb-dummy, .vw-pb-fill, .vw-pb-header, .vw-pb-text, .vw-pb-badge
+   Visual rules (colors, fonts) live in luci-components-visual.css
+   ========================================================================== */
+
+/* Container: positioning context, pill shape, fixed height */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded {
+	position: relative !important;
 	overflow: hidden !important;
+	min-height: 28px !important;
+	padding: 0 !important;
+	display: block !important;
 }
+
+/* Hidden dummy — LuCI core JS writes width/text here; we mirror it to .vw-pb-fill */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-dummy {
+	display: none !important;
+	visibility: hidden !important;
+	position: absolute !important;
+	pointer-events: none !important;
+}
+
+/* The actual colored fill — stretches inside the container */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-fill {
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
+	bottom: 0 !important;
+	height: 100% !important;
+	max-width: 100% !important;
+}
+
+/* Header row: text + badge laid out side-by-side, floated above the fill */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-header {
+	position: relative !important;
+	z-index: 2 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	width: 100% !important;
+	height: 28px !important;
+	padding: 0 10px !important;
+	box-sizing: border-box !important;
+	pointer-events: none !important;
+}
+
+/* Text: truncate long labels */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-text {
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	flex: 1 1 0 !important;
+	min-width: 0 !important;
+}
+
+/* Badge: don't shrink, keep right-aligned */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
+	flex-shrink: 0 !important;
+	margin-left: 6px !important;
+}
+
+/* Track overlay: hide it */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
+	display: none !important;
+}
+
+/* Hide the badge for primary/success bars */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-primary .vw-pb-badge,
+#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-badge {
+	display: none !important;
+}
+
+/* Fallback un-upgraded bars: give them a fixed height */
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar,
+#maincontent .progress,
+#maincontent progress {
+	height: 16px !important;
+}
+

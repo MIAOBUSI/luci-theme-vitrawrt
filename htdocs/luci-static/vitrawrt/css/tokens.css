@@ -288,7 +288,7 @@
 	--vw-border-soft: color-mix(in srgb, var(--vw-border) 62%, transparent);
 	--vw-accent-vivid: var(--vw-accent);
 	--vw-cyan: color-mix(in srgb, var(--vw-accent) 42%, #7ed8d0);
-	--vw-aqua: color-mix(in srgb, var(--vw-success) 34%, #7ed8d0);
+	--vw-aqua: color-mix(in srgb, var(--vw-success) 24%, #7ed8d0);
 	--vw-violet: color-mix(in srgb, var(--vw-accent) 26%, #a99ae8);
 
 	--vwrt-font-sans: var(--vw-font-sans);
