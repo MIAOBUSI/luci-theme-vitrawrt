@@ -205,8 +205,10 @@
 			header.className = 'vw-pb-header';
 			var txt = document.createElement('span');
 			txt.className = 'vw-pb-text';
+			txt.style.whiteSpace = 'nowrap';
 			var badge = document.createElement('span');
 			badge.className = 'vw-pb-badge';
+			badge.style.whiteSpace = 'nowrap';
 			header.appendChild(txt);
 			header.appendChild(badge);
 			bar.appendChild(header);

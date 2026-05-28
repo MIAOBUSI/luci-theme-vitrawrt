@@ -708,11 +708,11 @@
 		color-mix(in srgb, var(--vw-cyan) 7%, var(--vw-surface-table-row));
 }
 
-/* Glass progress troughs. */
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+/* Glass progress:not(.vw-progressbar-upgraded) troughs. */
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
 	height: 20px;
 	border: 1px solid color-mix(in srgb, var(--vw-border) 78%, transparent);
 	border-radius: var(--vw-radius-pill);
@@ -727,9 +727,9 @@
 		0 10px 24px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent);
 }
 
-#maincontent .cbi-progressbar div,
-#maincontent .progressbar div,
-#maincontent .progress div,
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progress:not(.vw-progressbar-upgraded) div,
 #maincontent progress::-webkit-progress-value {
 	border-radius: var(--vw-radius-pill);
 	background:
@@ -1261,10 +1261,10 @@
 }
 
 /* 11. Progress bars */
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
 	height: 19px;
 	border-color: var(--vw-border-medium);
 	background:
@@ -1274,9 +1274,9 @@
 	box-shadow: var(--vw-highlight-inner), 0 10px 24px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent);
 }
 
-#maincontent .cbi-progressbar div,
-#maincontent .progressbar div,
-#maincontent .progress div,
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progress:not(.vw-progressbar-upgraded) div,
 #maincontent progress::-webkit-progress-value {
 	background:
 		linear-gradient(180deg, color-mix(in srgb, #ffffff 32%, transparent), transparent 52%),
@@ -1846,10 +1846,10 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 }
 
 /* Progress bars */
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
 	height: 21px;
 	border-color: var(--vw-border-medium);
 	border-radius: var(--vw-radius-pill);
@@ -1864,9 +1864,9 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 		0 10px 24px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent);
 }
 
-#maincontent .cbi-progressbar div,
-#maincontent .progressbar div,
-#maincontent .progress div,
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progress:not(.vw-progressbar-upgraded) div,
 #maincontent progress::-webkit-progress-value {
 	border-radius: var(--vw-radius-pill);
 	background:
@@ -2368,10 +2368,10 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 }
 
 /* Progress: luminous material troughs without touching LuCI width/value. */
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
 	height: 21px;
 	border-color: var(--vw-glass-border);
 	border-radius: var(--vw-radius-pill);
@@ -2385,9 +2385,9 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 		0 11px 26px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent);
 }
 
-#maincontent .cbi-progressbar div,
-#maincontent .progressbar div,
-#maincontent .progress div,
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progress:not(.vw-progressbar-upgraded) div,
 #maincontent progress::-webkit-progress-value {
 	border-radius: var(--vw-radius-pill);
 	background:
@@ -3029,10 +3029,10 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 		color-mix(in srgb, var(--vw-accent) 5%, var(--vw-table-row-bg));
 }
 
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
 	height: 18px;
 	border-color: color-mix(in srgb, var(--vw-glass-border) 62%, transparent);
 	border-radius: var(--vw-radius-pill);
@@ -3045,9 +3045,9 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 		0 -7px 14px color-mix(in srgb, var(--vitra-inner-dim) 62%, transparent) inset;
 }
 
-#maincontent .cbi-progressbar div,
-#maincontent .progressbar div,
-#maincontent .progress div,
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progress:not(.vw-progressbar-upgraded) div,
 #maincontent progress::-webkit-progress-value {
 	border-radius: var(--vw-radius-pill);
 	background:
@@ -3844,11 +3844,11 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 	padding: 9px 14px;
 }
 
-/* Apple-like progress material: lower border, real trough, luminous fill. */
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+/* Apple-like progress:not(.vw-progressbar-upgraded) material: lower border, real trough, luminous fill. */
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
 	height: 16px;
 	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 58%, transparent);
 	border-radius: var(--vw-radius-pill);
@@ -3863,9 +3863,9 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 		0 6px 15px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent);
 }
 
-#maincontent .cbi-progressbar div,
-#maincontent .progressbar div,
-#maincontent .progress div,
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progress:not(.vw-progressbar-upgraded) div,
 #maincontent progress::-webkit-progress-value {
 	border-radius: var(--vw-radius-pill);
 	background:
@@ -4665,10 +4665,10 @@ body.vwrt-page-plugin #maincontent .alert-message {
 	padding: 8px 13px;
 }
 
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
 	height: 18px;
 	border-color: color-mix(in srgb, var(--vw-border-soft) 52%, transparent);
 	border-radius: var(--vw-radius-pill);
@@ -4683,9 +4683,9 @@ body.vwrt-page-plugin #maincontent .alert-message {
 		0 5px 13px color-mix(in srgb, var(--vw-shadow-color) 4%, transparent);
 }
 
-#maincontent .cbi-progressbar div,
-#maincontent .progressbar div,
-#maincontent .progress div,
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
+#maincontent .progress:not(.vw-progressbar-upgraded) div,
 #maincontent progress::-webkit-progress-value {
 	border-radius: var(--vw-radius-pill);
 	background:
@@ -5424,10 +5424,10 @@ body.vwrt-page-plugin #maincontent textarea {
 	padding: 6px 11px;
 }
 
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
 	height: var(--vw-progress-height);
 	border-color: color-mix(in srgb, var(--vw-border-soft) 42%, transparent);
 	border-radius: var(--vw-radius-pill);
@@ -5441,9 +5441,9 @@ body.vwrt-page-plugin #maincontent textarea {
 		0 4px 10px color-mix(in srgb, var(--vw-shadow-color) 3%, transparent);
 }
 
-#maincontent .cbi-progressbar > div,
-#maincontent .progressbar > div,
-#maincontent .progress > div,
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) > div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) > div,
+#maincontent .progress:not(.vw-progressbar-upgraded) > div,
 #maincontent progress::-webkit-progress-value {
 	border-radius: var(--vw-radius-pill);
 	background:
@@ -5918,10 +5918,10 @@ body.vwrt-page-mosdns #maincontent .cbi-button-action {
 /* VitraWrt meter: previous selectors applied, but the geometry still read as
  * a native recolor. This keeps LuCI inline width/value intact.
  */
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
 	box-sizing: border-box;
 	height: var(--vw-progress-height);
 	padding: 4px;
@@ -5936,9 +5936,9 @@ body.vwrt-page-mosdns #maincontent .cbi-button-action {
 		0 8px 18px color-mix(in srgb, var(--vw-shadow-color) 4%, transparent);
 }
 
-#maincontent .cbi-progressbar > div,
-#maincontent .progressbar > div,
-#maincontent .progress > div,
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) > div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) > div,
+#maincontent .progress:not(.vw-progressbar-upgraded) > div,
 #maincontent progress::-webkit-progress-value {
 	min-height: var(--vw-progress-fill-height);
 	border-radius: var(--vw-radius-pill);
@@ -6154,21 +6154,20 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 /* Hide the badge for primary/success bars — moved to layout-exceptions.css */
 
-/* --- Fallback: Un-upgraded progress bars --- */
+/* --- Fallback: Un-upgraded progress:not(.vw-progressbar-upgraded) bars --- */
 #maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
     border-radius: 99px !important;
     background: color-mix(in srgb, var(--vw-text) 8%, transparent) !important;
     border: none !important;
     box-shadow: none !important;
 }
 #maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) > div,
-#maincontent .progressbar > div,
-#maincontent .progress > div,
-#maincontent progress::-webkit-progress-value {
+#maincontent .progressbar:not(.vw-progressbar-upgraded) > div,
+#maincontent .progress:not(.vw-progressbar-upgraded) > div,
+#maincontent progress:not(.vw-progressbar-upgraded)::-webkit-progress-value {
     border-radius: 99px !important;
     background: var(--vw-accent) !important;
     box-shadow: none !important;
