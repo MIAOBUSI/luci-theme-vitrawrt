@@ -687,3 +687,31 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section {
 	height: 16px !important;
 }
 
+
+/* Apple Dock Style Tab Menu: adaptive width */
+#maincontent .tabs,
+#maincontent .cbi-tabmenu,
+.modal .tabs,
+.modal .cbi-tabmenu,
+.cbi-modal .tabs,
+.cbi-modal .cbi-tabmenu,
+[role="dialog"] .tabs,
+[role="dialog"] .cbi-tabmenu {
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    width: auto !important;
+    max-width: 100% !important;
+}
+
+#maincontent .tabs > li > a,
+#maincontent .cbi-tabmenu > li > a,
+.modal .tabs > li > a,
+.modal .cbi-tabmenu > li > a,
+.cbi-modal .tabs > li > a,
+.cbi-modal .cbi-tabmenu > li > a,
+[role="dialog"] .tabs > li > a,
+[role="dialog"] .cbi-tabmenu > li > a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
