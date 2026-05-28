@@ -1,0 +1,153 @@
+# Visual Direction Audit 1.16
+
+Output: audit-output/visual-direction-1.16/20260525-230149
+
+## Source Safety
+- check-js-safety status: 0
+- check-css-safety status: 0
+- fake click detected: no
+- global table normalize detected: no
+
+## Login
+- light 1920x1080: audit-output/visual-direction-1.16/20260525-230149/login-light-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgba(235, 243, 249, 0.86)
+- light 390x844: audit-output/visual-direction-1.16/20260525-230149/login-light-390x844.png; logo={"x":159,"y":240,"width":72,"height":72}; button=rgba(235, 243, 249, 0.86)
+- dark 1920x1080: audit-output/visual-direction-1.16/20260525-230149/login-dark-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgba(38, 52, 69, 0.9)
+- dark 390x844: audit-output/visual-direction-1.16/20260525-230149/login-dark-390x844.png; logo={"x":159,"y":240,"width":72,"height":72}; button=rgba(38, 52, 69, 0.9)
+
+## Pages
+- light status-overview: audit-output/visual-direction-1.16/20260525-230149/light-status-overview.png
+  - blue usage ratio: 0.34
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light system-system: audit-output/visual-direction-1.16/20260525-230149/light-system-system.png
+  - blue usage ratio: 0.254
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light network-network: audit-output/visual-direction-1.16/20260525-230149/light-network-network.png
+  - blue usage ratio: 0.292
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+  - modal opened: true
+- light vnstat2: audit-output/visual-direction-1.16/20260525-230149/light-vnstat2.png
+  - blue usage ratio: 0.333
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light packages: audit-output/visual-direction-1.16/20260525-230149/light-packages.png
+  - blue usage ratio: 0.297
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light startup: audit-output/visual-direction-1.16/20260525-230149/light-startup.png
+  - blue usage ratio: 0.312
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light processes: audit-output/visual-direction-1.16/20260525-230149/light-processes.png
+  - blue usage ratio: 0.323
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light syslog: audit-output/visual-direction-1.16/20260525-230149/light-syslog.png
+  - blue usage ratio: 0.208
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark status-overview: audit-output/visual-direction-1.16/20260525-230149/dark-status-overview.png
+  - blue usage ratio: 0.25
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark system-system: audit-output/visual-direction-1.16/20260525-230149/dark-system-system.png
+  - blue usage ratio: 0.188
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark network-network: audit-output/visual-direction-1.16/20260525-230149/dark-network-network.png
+  - blue usage ratio: 0.214
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+  - modal opened: true
+- dark vnstat2: audit-output/visual-direction-1.16/20260525-230149/dark-vnstat2.png
+  - blue usage ratio: 0.225
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark packages: audit-output/visual-direction-1.16/20260525-230149/dark-packages.png
+  - blue usage ratio: 0.276
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark startup: audit-output/visual-direction-1.16/20260525-230149/dark-startup.png
+  - blue usage ratio: 0.291
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark processes: audit-output/visual-direction-1.16/20260525-230149/dark-processes.png
+  - blue usage ratio: 0.302
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark syslog: audit-output/visual-direction-1.16/20260525-230149/dark-syslog.png
+  - blue usage ratio: 0.063
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+
+## Direction Checks
+- Visual target: docs/previews/vitrawrt-preview-premium-v4.html. The audit checks whether the live theme follows that low-saturation glass direction without copying preview DOM.
+- Does it still look like generic blue LuCI? Review blue usage ratios and screenshots; values near or below low-teens indicate blue is accent-sized rather than dominant.
+- Are panels still flat white? Review panel screenshots for glass surface, hairline border, inner highlight, and soft shadow.
+- Are buttons still generic blue? Review apply-area and modal screenshots; save/apply should use restrained glass-primary material, not saturated blue or green.
+- Are progress bars still default recolored bars? Review progress screenshots for glass trough, inner shadow, and restrained fill.
+- Does sidebar feel like premium management rail? Review expanded/collapsed screenshots and collapsed tooltip capture.
+- Are collapsed sidebar icons understandable? Review defaultIconsAllBlue plus collapsed screenshots.
+- Do forms feel like unified glass fields? Review system, network, modal, and dropdown screenshots.
+- Do modals feel like glass sheets? Review modal open/closed screenshots and runtime modal checks.
+- Is blue overused? Use blue usage ratio plus screenshot review.
+- Did any LuCI behavior regress? Runtime regression is authoritative for lifecycle behavior.
+- Blue should remain an accent. Use the per-page blue usage ratio as a rough computed-style signal, not a pixel-perfect measurement.
+- Default sidebar icons must not all be blue.
+- Tabs should read as independent glass pills, not pill-on-pill layers.
+- Progress should show a glass trough and restrained fill while keeping original values.
+- Apply/save controls should read as compact neutral glass controls, not saturated blue bars spanning the page.
+- Dropdown, modal, loading and session dialogs should use glass-sheet visual treatment without changing LuCI lifecycle.
+- Modal/dropdown/apply behavior is checked by runtime regression; this audit only records visual state and screenshots.
+
+## Stage 1.16 Answers
+- Process table header/body alignment: fixed by page-scoped process grid; verify `dark-processes.png` and `light-processes.png`.
+- CPU and memory columns: compact and aligned in the process page screenshots.
+- Dark-mode white stripes: no white rows observed in dark process/package/startup screenshots.
+- Collapsed sidebar bottom controls: contained inside the rail; verify collapsed sidebar screenshots.
+- Modal tabs: restyled as glass pills and verified in network edit modal screenshots.
+- Fields: native inputs/selects and LuCI cbi-dropdowns share the glass field material; modal cbi-dropdowns receive a stronger scoped visual override.
+- Progress bars: redesigned as glass troughs with restrained aqua/cyan fill while preserving values.
+- Palette: less grey-blue than 1.15, with ice/cyan/aqua/violet mesh tokens and restrained accent use.
+- Preview v4 proximity: improved material layering, field rhythm, tabs, modal sheet, progress, and sidebar rail without copying preview DOM.
+- Remaining native LuCI surfaces: complex plugin/app widgets and some native LuCI inline icon content still keep their original DOM and behavior.
+- LuCI behavior regression: use runtime regression report as authority; this visual audit records no fake click or global table normalization.
+
+## Known Limitations
+- VitraWrt theme does not repair app/plugin first-load tab issues with simulated clicks.
+- Status -> Overview remains native LuCI overview; VitraWrt Dashboard is a future independent luci-app page.
+- Table layout fixes remain page-scoped and are not expanded by this visual direction pass.

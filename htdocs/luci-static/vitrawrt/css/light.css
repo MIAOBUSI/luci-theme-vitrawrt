@@ -1,0 +1,1833 @@
+:root,
+html[data-theme="light"] {
+	--vitra-bg: #f4f8fc;
+	--vitra-bg-elevated: #ffffff;
+	--vitra-bg-gradient-1: #edf5fb;
+	--vitra-bg-gradient-2: #ffffff;
+	--vitra-bg-wash: rgba(224, 238, 249, 0.72);
+	--vitra-top-sheen: rgba(255, 255, 255, 0.68);
+	--vitra-grid-line: rgba(80, 110, 138, 0.16);
+	--vitra-grid-opacity: 0.26;
+	--vitra-bg-art-opacity: 0.6;
+	--vitra-glow-a: rgba(145, 207, 246, 0.36);
+	--vitra-glow-b: rgba(191, 184, 255, 0.22);
+	--vitra-glow-c: rgba(255, 255, 255, 0.62);
+
+	--vitra-surface: rgba(255, 255, 255, 0.66);
+	--vitra-surface-strong: rgba(255, 255, 255, 0.9);
+	--vitra-surface-soft: rgba(247, 251, 255, 0.76);
+	--vitra-surface-subtle: rgba(239, 247, 253, 0.68);
+	--vitra-surface-elevated: rgba(255, 255, 255, 0.78);
+	--vitra-surface-hover: rgba(255, 255, 255, 0.94);
+	--vitra-sidebar-surface: rgba(255, 255, 255, 0.62);
+	--vitra-panel-highlight: rgba(255, 255, 255, 0.82);
+
+	--vitra-border: rgba(54, 77, 99, 0.15);
+	--vitra-border-strong: rgba(38, 63, 88, 0.28);
+	--vitra-accent-border: rgba(57, 139, 222, 0.58);
+	--vitra-line: rgba(48, 72, 96, 0.1);
+
+	--vitra-text: #142233;
+	--vitra-text-muted: #5b6b7d;
+	--vitra-text-soft: #718093;
+	--vitra-text-subtle: #8290a0;
+	--vitra-inverse-text: #f7fbff;
+
+	--vitra-accent: #2478d4;
+	--vitra-accent-strong: #1264bd;
+	--vitra-accent-soft: rgba(36, 120, 212, 0.14);
+	--vitra-accent-quiet: rgba(36, 120, 212, 0.08);
+	--vitra-icon-muted: rgba(78, 96, 116, 0.72);
+	--vitra-icon-active: #1d75cf;
+	--vitra-sidebar-rim: rgba(255, 255, 255, 0.72);
+	--vitra-sidebar-tint: rgba(239, 248, 255, 0.42);
+	--vitra-menu-active: rgba(48, 132, 222, 0.15);
+	--vitra-menu-band: rgba(80, 164, 238, 0.68);
+
+	--vitra-success: #16845d;
+	--vitra-warning: #a66715;
+	--vitra-warning-soft: rgba(255, 188, 73, 0.18);
+	--vitra-danger: #c0393b;
+	--vitra-info: #2e6f9f;
+	--vitra-table-row-hover: rgba(47, 125, 209, 0.07);
+
+	--vitra-shadow-color: rgba(36, 57, 80, 0.18);
+	--vitra-shadow-xs: 0 4px 12px rgba(38, 61, 84, 0.06);
+	--vitra-shadow-sm: 0 10px 28px rgba(36, 56, 76, 0.08);
+	--vitra-shadow-md: 0 16px 36px rgba(36, 58, 82, 0.1);
+	--vitra-shadow-panel: 0 18px 48px rgba(39, 61, 84, 0.12), 0 1px 0 rgba(255, 255, 255, 0.68) inset;
+	--vitra-shadow-sidebar: 0 30px 82px rgba(35, 55, 76, 0.18), 0 1px 0 rgba(255, 255, 255, 0.74) inset;
+	--vitra-shadow-floating: 0 24px 64px rgba(32, 53, 78, 0.18);
+	--vitra-shadow-menu: 0 10px 28px rgba(45, 83, 120, 0.13);
+	--vitra-selection: #2f7dd1;
+	--vitra-selection-text: #ffffff;
+	--vitra-selection-bg: #2f7dd1;
+
+	/* Stage 1.12B: restrained vitreous palette. Blue is an accent, not the theme. */
+	--vitra-bg: #f4f7fa;
+	--vitra-bg-elevated: #fbfdff;
+	--vitra-bg-gradient-1: #eef3f7;
+	--vitra-bg-gradient-2: #f8fbfd;
+	--vitra-bg-wash: rgba(230, 237, 244, 0.7);
+	--vitra-top-sheen: rgba(255, 255, 255, 0.72);
+	--vitra-glow-a: rgba(209, 229, 241, 0.46);
+	--vitra-glow-b: rgba(201, 194, 229, 0.22);
+	--vitra-glow-c: rgba(255, 255, 255, 0.58);
+	--vitra-surface: rgba(252, 254, 255, 0.66);
+	--vitra-surface-strong: rgba(255, 255, 255, 0.88);
+	--vitra-surface-soft: rgba(244, 248, 251, 0.78);
+	--vitra-surface-subtle: rgba(238, 244, 248, 0.64);
+	--vitra-surface-elevated: rgba(251, 253, 255, 0.78);
+	--vitra-surface-hover: rgba(255, 255, 255, 0.94);
+	--vitra-sidebar-surface: rgba(248, 252, 255, 0.66);
+	--vitra-panel-highlight: rgba(255, 255, 255, 0.78);
+	--vitra-border: rgba(52, 67, 84, 0.13);
+	--vitra-border-strong: rgba(45, 58, 76, 0.24);
+	--vitra-line: rgba(54, 68, 86, 0.1);
+	--vitra-text: #17202b;
+	--vitra-text-muted: #596575;
+	--vitra-text-soft: #748091;
+	--vitra-text-subtle: #8c96a4;
+	--vitra-accent: #4f8fc8;
+	--vitra-accent-strong: #2d6fa8;
+	--vitra-accent-ink: #245d8c;
+	--vitra-accent-soft: rgba(79, 143, 200, 0.12);
+	--vitra-accent-quiet: rgba(79, 143, 200, 0.055);
+	--vitra-accent-border: rgba(79, 143, 200, 0.34);
+	--vitra-icon-muted: rgba(61, 72, 86, 0.74);
+	--vitra-icon-active: #2d6fa8;
+	--vitra-sidebar-rim: rgba(255, 255, 255, 0.7);
+	--vitra-sidebar-tint: rgba(241, 247, 251, 0.46);
+	--vitra-menu-active: rgba(79, 143, 200, 0.1);
+	--vitra-menu-band: rgba(84, 151, 203, 0.42);
+	--vitra-table-row-hover: rgba(73, 91, 111, 0.045);
+	--vitra-success: #4f8a6a;
+	--vitra-success-soft: rgba(79, 138, 106, 0.12);
+	--vitra-warning: #9a7437;
+	--vitra-warning-soft: rgba(196, 152, 80, 0.16);
+	--vitra-danger: #bb555c;
+	--vitra-danger-soft: rgba(187, 85, 92, 0.11);
+	--vitra-info: #516f8a;
+	--vitra-violet-soft: rgba(157, 139, 205, 0.12);
+	--vitra-glass-bg: rgba(252, 254, 255, 0.7);
+	--vitra-glass-bg-strong: rgba(255, 255, 255, 0.88);
+	--vitra-glass-bg-subtle: rgba(243, 247, 250, 0.6);
+	--vitra-glass-border: rgba(58, 73, 92, 0.16);
+	--vitra-glass-highlight: rgba(255, 255, 255, 0.76);
+	--vitra-glass-shadow: 0 18px 48px rgba(38, 51, 68, 0.1);
+	--vitra-glass-inner-shadow: 0 1px 0 rgba(255, 255, 255, 0.72) inset, 0 -10px 22px rgba(71, 84, 101, 0.045) inset;
+	--vitra-glass-blur: 18px;
+	--vitra-neutral-control: rgba(244, 248, 251, 0.74);
+	--vitra-neutral-control-hover: rgba(255, 255, 255, 0.9);
+	--vitra-shadow-panel: 0 18px 48px rgba(39, 53, 70, 0.1), 0 1px 0 rgba(255, 255, 255, 0.68) inset;
+	--vitra-shadow-sidebar: 0 30px 82px rgba(35, 49, 66, 0.15), 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+	--vitra-shadow-floating: 0 24px 64px rgba(32, 45, 61, 0.16);
+}
+
+/* Stage 1.20R: lighter ice-glass parity palette. */
+html[data-theme="light"],
+:root:not([data-theme]) {
+	--vw-bg-base: #f7fcff;
+	--vw-bg-atmosphere:
+		radial-gradient(circle at 14% 5%, rgba(126, 229, 218, 0.2), transparent 34%),
+		radial-gradient(circle at 88% 0%, rgba(174, 159, 239, 0.16), transparent 32%),
+		linear-gradient(145deg, #f8fdff 0%, #eef8fb 50%, #f7f5ff 100%);
+
+	--vw-surface-glass-1: rgba(255, 255, 255, 0.56);
+	--vw-surface-glass-2: rgba(250, 255, 255, 0.48);
+	--vw-surface-glass-3: rgba(255, 255, 255, 0.7);
+	--vw-surface-raised: rgba(255, 255, 255, 0.74);
+	--vw-surface-floating: rgba(255, 255, 255, 0.72);
+	--vw-surface-sunken: rgba(236, 248, 250, 0.48);
+	--vw-surface-control: rgba(255, 255, 255, 0.5);
+	--vw-surface-control-hover: rgba(255, 255, 255, 0.68);
+	--vw-surface-control-active: rgba(219, 250, 246, 0.7);
+
+	--vw-border-hairline: rgba(36, 70, 88, 0.075);
+	--vw-border-soft: rgba(36, 70, 88, 0.105);
+	--vw-border-medium: rgba(32, 74, 90, 0.14);
+	--vw-border-strong: rgba(32, 74, 90, 0.2);
+	--vw-highlight-top: rgba(255, 255, 255, 0.84);
+
+	--vw-text-strong: #10202e;
+	--vw-text-main: #1b2c3a;
+	--vw-text-soft: #5d6c77;
+	--vw-text-muted: #73808a;
+	--vw-text-disabled: rgba(94, 108, 119, 0.46);
+	--vw-accent: #357f8d;
+	--vw-accent-vivid: #46b9bf;
+	--vw-accent-ink: #164d59;
+	--vw-cyan: #5bcbd2;
+	--vw-aqua: #7fe2cc;
+	--vw-violet: #afa5ec;
+	--vw-success: #6bbf91;
+	--vw-warning: #c79645;
+	--vw-danger: #d76f77;
+
+	--vw-field-bg: rgba(255, 255, 255, 0.52);
+	--vw-field-bg-hover: rgba(255, 255, 255, 0.72);
+	--vw-field-bg-focus: rgba(235, 254, 250, 0.78);
+	--vw-dropdown-bg: rgba(255, 255, 255, 0.82);
+	--vw-dynlist-bg: rgba(244, 253, 252, 0.56);
+	--vw-button-bg: rgba(255, 255, 255, 0.5);
+	--vw-button-bg-hover: rgba(255, 255, 255, 0.74);
+	--vw-button-primary-bg: linear-gradient(180deg, rgba(243, 255, 254, 0.88), rgba(205, 244, 238, 0.68));
+	--vw-button-primary-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(194, 242, 235, 0.78));
+	--vw-button-danger-bg: rgba(255, 236, 239, 0.7);
+	--vw-apply-dock-bg: rgba(255, 255, 255, 0.66);
+	--vw-modal-bg: rgba(255, 255, 255, 0.72);
+
+	--vw-progress-track: rgba(222, 239, 244, 0.72);
+	--vw-progress-fill-a: #c7f2ec;
+	--vw-progress-fill-b: #7fe1d1;
+	--vw-progress-fill-c: #74cfe0;
+
+	--vw-surface-table-head: rgba(243, 251, 252, 0.72);
+	--vw-surface-table-row: rgba(255, 255, 255, 0.4);
+	--vw-surface-table-row-alt: rgba(237, 249, 250, 0.34);
+
+	--vw-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.68) inset, 0 18px 54px rgba(41, 70, 86, 0.11);
+	--vw-shadow-floating: 0 1px 0 rgba(255, 255, 255, 0.72) inset, 0 22px 60px rgba(36, 62, 82, 0.16);
+	--vw-shadow-modal: 0 1px 0 rgba(255, 255, 255, 0.76) inset, 0 30px 90px rgba(34, 56, 74, 0.2);
+	--vw-highlight-inner: 0 1px 0 rgba(255, 255, 255, 0.68) inset, 0 -12px 24px rgba(108, 160, 180, 0.055) inset;
+
+	--vitra-bg: var(--vw-bg-base);
+	--vitra-surface: var(--vw-surface-glass-1);
+	--vitra-surface-strong: var(--vw-surface-glass-3);
+	--vitra-sidebar-surface: rgba(255, 255, 255, 0.48);
+	--vitra-border: var(--vw-border-soft);
+	--vitra-border-strong: var(--vw-border-medium);
+	--vitra-text: var(--vw-text-main);
+	--vitra-text-muted: var(--vw-text-muted);
+	--vitra-text-soft: var(--vw-text-soft);
+	--vitra-accent: var(--vw-accent);
+	--vitra-accent-ink: var(--vw-accent-ink);
+	--vitra-menu-active: rgba(201, 246, 240, 0.5);
+	--vitra-glass-bg: var(--vw-surface-glass-1);
+	--vitra-glass-bg-strong: var(--vw-surface-glass-3);
+	--vitra-glass-border: var(--vw-border-soft);
+	--vitra-glass-highlight: var(--vw-highlight-top);
+	--vitra-progress-track: var(--vw-progress-track);
+	--vitra-progress-fill-a: var(--vw-progress-fill-a);
+	--vitra-progress-fill-b: var(--vw-progress-fill-b);
+	--vitra-progress-fill-c: var(--vw-progress-fill-c);
+	--vitra-card-shadow: var(--vw-shadow-card);
+	--vitra-floating-shadow: var(--vw-shadow-floating);
+	--vitra-modal-shadow: var(--vw-shadow-modal);
+}
+
+/* Stage 1.17 legacy: premium ice/aqua/violet material palette.
+ * Blue is reserved for small active and focus accents; the dominant language is
+ * ice white, graphite text, mist surfaces, and restrained aqua light.
+ */
+:root,
+html[data-theme="light"] {
+	--vw-bg-base: #f7fbfd;
+	--vw-bg: var(--vw-bg-base);
+	--vw-bg-mesh-cyan: rgba(80, 211, 229, 0.34);
+	--vw-bg-mesh-aqua: rgba(101, 224, 198, 0.28);
+	--vw-bg-mesh-violet: rgba(187, 167, 250, 0.22);
+	--vw-bg-mesh-1: var(--vw-bg-mesh-cyan);
+	--vw-bg-mesh-2: var(--vw-bg-mesh-violet);
+	--vw-bg-mesh-a: var(--vw-bg-mesh-cyan);
+	--vw-bg-mesh-b: var(--vw-bg-mesh-violet);
+	--vw-bg-mesh-c: rgba(255, 255, 255, 0.74);
+	--vw-bg-noise-opacity: 0.028;
+
+	--vw-surface-glass-1: rgba(255, 255, 255, 0.58);
+	--vw-surface-glass-2: rgba(252, 255, 255, 0.72);
+	--vw-surface-glass-3: rgba(255, 255, 255, 0.88);
+	--vw-surface: var(--vw-surface-glass-1);
+	--vw-surface-soft: var(--vw-surface-glass-2);
+	--vw-surface-strong: var(--vw-surface-glass-3);
+	--vw-surface-raised: rgba(255, 255, 255, 0.94);
+	--vw-surface-sunken: rgba(235, 249, 250, 0.62);
+	--vw-surface-inner: var(--vw-surface-sunken);
+	--vw-surface-control: rgba(249, 254, 254, 0.82);
+	--vw-surface-control-hover: rgba(255, 255, 255, 0.94);
+	--vw-surface-control-active: rgba(224, 247, 247, 0.9);
+	--vw-surface-table-row: rgba(255, 255, 255, 0.5);
+	--vw-surface-table-row-alt: rgba(238, 249, 250, 0.44);
+	--vw-surface-table-head: rgba(229, 244, 247, 0.72);
+	--vw-surface-table-row-solid: #fbfefe;
+	--vw-surface-table-row-alt-solid: #eef9fa;
+	--vw-surface-table-head-solid: #e7f5f8;
+
+	--vw-border-hairline: rgba(72, 98, 122, 0.1);
+	--vw-border-soft: rgba(72, 98, 122, 0.14);
+	--vw-border: rgba(62, 88, 112, 0.18);
+	--vw-border-medium: rgba(54, 82, 105, 0.22);
+	--vw-border-strong: rgba(45, 68, 90, 0.3);
+	--vw-border-focus: rgba(70, 181, 202, 0.42);
+
+	--vw-highlight-top: rgba(255, 255, 255, 0.86);
+	--vw-highlight-inner: 0 1px 0 rgba(255, 255, 255, 0.72) inset, 0 -18px 36px rgba(128, 200, 216, 0.08) inset;
+	--vw-highlight-edge: rgba(255, 255, 255, 0.72);
+
+	--vw-text-strong: #132232;
+	--vw-text-main: #1f3140;
+	--vw-text: var(--vw-text-main);
+	--vw-text-soft: #617280;
+	--vw-text-muted: #7b8a96;
+	--vw-muted: var(--vw-text-muted);
+	--vw-text-disabled: rgba(91, 110, 124, 0.5);
+	--vw-text-inverse: #f8fcff;
+
+	--vw-accent: #347fa0;
+	--vw-accent-soft: rgba(52, 127, 160, 0.11);
+	--vw-accent-vivid: #1a9ab3;
+	--vw-accent-ink: #1e5364;
+	--vw-cyan: #55bfd1;
+	--vw-aqua: #6bd9c8;
+	--vw-violet: #b9a8f1;
+	--vw-success: #5fab82;
+	--vw-success-soft: rgba(95, 171, 130, 0.13);
+	--vw-warning: #b88d35;
+	--vw-warning-soft: rgba(184, 141, 53, 0.14);
+	--vw-danger: #c96a72;
+	--vw-danger-soft: rgba(201, 106, 114, 0.12);
+
+	--vw-progress-track: rgba(224, 242, 246, 0.82);
+	--vw-progress-fill-a: #79ddc9;
+	--vw-progress-fill-b: #55bdd2;
+	--vw-progress-fill-c: #7e9fbd;
+
+	--vw-shadow-soft: 0 8px 22px rgba(44, 70, 92, 0.08);
+	--vw-shadow-control: 0 1px 0 rgba(255, 255, 255, 0.68) inset, 0 10px 22px rgba(52, 85, 108, 0.08);
+	--vw-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.76) inset, 0 24px 70px rgba(45, 74, 96, 0.12), 0 8px 24px rgba(58, 94, 116, 0.08);
+	--vw-shadow-panel: var(--vw-shadow-card);
+	--vw-shadow-floating: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 30px 82px rgba(38, 62, 84, 0.18), 0 12px 32px rgba(56, 91, 111, 0.11);
+	--vw-shadow-modal: 0 1px 0 rgba(255, 255, 255, 0.82) inset, 0 44px 120px rgba(34, 54, 78, 0.26), 0 18px 44px rgba(45, 78, 106, 0.14);
+
+	--vw-material-panel: var(--vw-surface-glass-2);
+	--vw-material-panel-strong: var(--vw-surface-glass-3);
+	--vw-material-field: var(--vw-surface-control);
+	--vw-material-field-hover: var(--vw-surface-control-hover);
+	--vw-material-button: var(--vw-surface-control);
+	--vw-material-button-hover: var(--vw-surface-control-hover);
+	--vw-material-primary: var(--vw-surface-control-active);
+	--vw-material-primary-hover: color-mix(in srgb, var(--vw-aqua) 18%, var(--vw-surface-control-hover));
+	--vw-button-primary-solid: #243d4a;
+
+	--vitra-bg: var(--vw-bg-base);
+	--vitra-glow-a: var(--vw-bg-mesh-cyan);
+	--vitra-glow-b: var(--vw-bg-mesh-violet);
+	--vitra-glow-c: var(--vw-bg-mesh-aqua);
+	--vitra-surface: var(--vw-surface);
+	--vitra-surface-strong: var(--vw-surface-strong);
+	--vitra-surface-soft: var(--vw-surface-soft);
+	--vitra-surface-subtle: var(--vw-surface-table-row-alt);
+	--vitra-surface-elevated: var(--vw-surface-raised);
+	--vitra-surface-hover: var(--vw-surface-control-hover);
+	--vitra-sidebar-surface: rgba(252, 255, 255, 0.76);
+	--vitra-border: var(--vw-border);
+	--vitra-border-strong: var(--vw-border-strong);
+	--vitra-line: var(--vw-border-hairline);
+	--vitra-text: var(--vw-text-main);
+	--vitra-text-muted: var(--vw-text-muted);
+	--vitra-text-soft: var(--vw-text-soft);
+	--vitra-text-subtle: #8b99a3;
+	--vitra-accent: var(--vw-accent);
+	--vitra-accent-strong: var(--vw-accent-vivid);
+	--vitra-accent-ink: var(--vw-accent-ink);
+	--vitra-accent-soft: var(--vw-accent-soft);
+	--vitra-icon-muted: rgba(67, 82, 96, 0.72);
+	--vitra-icon-active: var(--vw-accent-ink);
+	--vitra-menu-active: rgba(103, 217, 200, 0.18);
+	--vitra-menu-band: rgba(63, 162, 184, 0.46);
+	--vitra-success: var(--vw-success);
+	--vitra-success-soft: var(--vw-success-soft);
+	--vitra-warning: var(--vw-warning);
+	--vitra-warning-soft: var(--vw-warning-soft);
+	--vitra-danger: var(--vw-danger);
+	--vitra-danger-soft: var(--vw-danger-soft);
+	--vitra-violet-soft: rgba(185, 168, 241, 0.16);
+	--vitra-glass-bg: var(--vw-surface);
+	--vitra-glass-bg-strong: var(--vw-surface-strong);
+	--vitra-glass-bg-subtle: var(--vw-surface-soft);
+	--vitra-glass-border: var(--vw-border);
+	--vitra-glass-highlight: var(--vw-highlight-top);
+	--vitra-glass-shadow: var(--vw-shadow-card);
+	--vitra-glass-inner-shadow: var(--vw-highlight-inner);
+	--vitra-material-panel: var(--vw-material-panel);
+	--vitra-material-panel-strong: var(--vw-material-panel-strong);
+	--vitra-material-inner: var(--vw-surface-inner);
+	--vitra-material-field: var(--vw-material-field);
+	--vitra-material-field-hover: var(--vw-material-field-hover);
+	--vitra-material-button: var(--vw-material-button);
+	--vitra-material-button-hover: var(--vw-material-button-hover);
+	--vitra-material-primary: var(--vw-material-primary);
+	--vitra-material-primary-hover: var(--vw-material-primary-hover);
+	--vitra-progress-track: var(--vw-progress-track);
+	--vitra-progress-fill-a: var(--vw-progress-fill-a);
+	--vitra-progress-fill-b: var(--vw-progress-fill-b);
+	--vitra-progress-fill-c: var(--vw-progress-fill-c);
+	--vitra-field-shadow: var(--vw-shadow-control);
+	--vitra-card-shadow: var(--vw-shadow-card);
+	--vitra-floating-shadow: var(--vw-shadow-floating);
+	--vitra-modal-shadow: var(--vw-shadow-modal);
+	--vitra-inner-highlight: rgba(255, 255, 255, 0.72);
+}
+
+/* Stage 1.18: Apple-reference luminous light palette.
+ * Freshness comes from ice/mist/aqua/violet atmosphere, while blue remains a
+ * small accent rather than the dominant surface color.
+ */
+:root,
+html[data-theme="light"] {
+	--vw-base-0: #f8fdff;
+	--vw-base-1: #edf8fc;
+	--vw-base-2: #e8f1fb;
+	--vw-bg-base: var(--vw-base-0);
+	--vw-bg: var(--vw-base-0);
+	--vw-bg-mesh-cyan: rgba(80, 207, 225, 0.38);
+	--vw-bg-mesh-aqua: rgba(116, 229, 205, 0.3);
+	--vw-bg-mesh-violet: rgba(190, 174, 252, 0.24);
+	--vw-bg-mesh-1: var(--vw-bg-mesh-cyan);
+	--vw-bg-mesh-2: var(--vw-bg-mesh-violet);
+	--vw-bg-mesh-a: var(--vw-bg-mesh-cyan);
+	--vw-bg-mesh-b: var(--vw-bg-mesh-violet);
+	--vw-bg-mesh-c: rgba(255, 255, 255, 0.82);
+
+	--vw-surface-glass-1: rgba(255, 255, 255, 0.56);
+	--vw-surface-glass-2: rgba(252, 255, 255, 0.74);
+	--vw-surface-glass-3: rgba(255, 255, 255, 0.92);
+	--vw-surface: var(--vw-surface-glass-1);
+	--vw-surface-soft: var(--vw-surface-glass-2);
+	--vw-surface-strong: var(--vw-surface-glass-3);
+	--vw-surface-raised: rgba(255, 255, 255, 0.96);
+	--vw-surface-sunken: rgba(225, 248, 247, 0.58);
+	--vw-surface-inner: var(--vw-surface-sunken);
+	--vw-surface-control: rgba(251, 255, 255, 0.84);
+	--vw-surface-control-hover: rgba(255, 255, 255, 0.96);
+	--vw-surface-control-active: rgba(222, 249, 247, 0.92);
+	--vw-surface-table-row: rgba(255, 255, 255, 0.58);
+	--vw-surface-table-row-alt: rgba(235, 249, 250, 0.48);
+	--vw-surface-table-head: rgba(224, 245, 249, 0.74);
+	--vw-surface-table-row-solid: #fbfefe;
+	--vw-surface-table-row-alt-solid: #edf9fa;
+	--vw-surface-table-head-solid: #e4f5f8;
+
+	--vw-glass-panel: rgba(252, 255, 255, 0.74);
+	--vw-glass-panel-strong: rgba(255, 255, 255, 0.92);
+	--vw-glass-inner: rgba(225, 248, 247, 0.58);
+	--vw-glass-highlight: rgba(255, 255, 255, 0.88);
+	--vw-glass-border: rgba(60, 88, 112, 0.16);
+	--vw-glass-border-strong: rgba(49, 75, 98, 0.28);
+
+	--vw-border-hairline: rgba(65, 95, 120, 0.1);
+	--vw-border-soft: rgba(65, 95, 120, 0.14);
+	--vw-border: rgba(58, 88, 114, 0.18);
+	--vw-border-medium: rgba(51, 81, 105, 0.23);
+	--vw-border-strong: rgba(43, 68, 92, 0.31);
+	--vw-border-focus: rgba(67, 194, 210, 0.45);
+
+	--vw-highlight-top: rgba(255, 255, 255, 0.9);
+	--vw-highlight-inner: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 -18px 38px rgba(92, 190, 209, 0.075) inset;
+	--vw-highlight-edge: rgba(255, 255, 255, 0.74);
+
+	--vw-text-strong: #102033;
+	--vw-text-main: #1d3041;
+	--vw-text: var(--vw-text-main);
+	--vw-text-soft: #5f7282;
+	--vw-text-muted: #778997;
+	--vw-muted: var(--vw-text-muted);
+	--vw-text-faint: rgba(88, 108, 124, 0.64);
+	--vw-text-disabled: rgba(92, 112, 126, 0.48);
+	--vw-text-inverse: #f8fdff;
+
+	--vw-accent: #2f9aac;
+	--vw-accent-soft: rgba(47, 154, 172, 0.12);
+	--vw-accent-strong: #127e91;
+	--vw-accent-vivid: #18adc0;
+	--vw-accent-ink: #174c5a;
+	--vw-cyan: #55c7db;
+	--vw-aqua: #77e0ca;
+	--vw-violet: #b9a9f4;
+	--vw-glow-aqua: rgba(116, 229, 205, 0.3);
+	--vw-glow-cyan: rgba(80, 207, 225, 0.38);
+	--vw-glow-violet: rgba(190, 174, 252, 0.24);
+	--vw-success: #58aa80;
+	--vw-success-soft: rgba(88, 170, 128, 0.13);
+	--vw-warning: #ba8a31;
+	--vw-warning-soft: rgba(186, 138, 49, 0.14);
+	--vw-danger: #c86673;
+	--vw-danger-soft: rgba(200, 102, 115, 0.12);
+
+	--vw-field-bg: rgba(251, 255, 255, 0.84);
+	--vw-field-bg-hover: rgba(255, 255, 255, 0.96);
+	--vw-field-bg-focus: rgba(238, 255, 253, 0.98);
+	--vw-field-border: rgba(54, 91, 114, 0.22);
+	--vw-button-bg: rgba(251, 255, 255, 0.78);
+	--vw-button-bg-hover: rgba(255, 255, 255, 0.94);
+	--vw-button-primary-bg: rgba(228, 250, 247, 0.94);
+	--vw-button-primary-hover: rgba(213, 246, 244, 0.98);
+	--vw-progress-track: rgba(221, 241, 246, 0.9);
+	--vw-progress-fill: #5bd2d7;
+	--vw-progress-fill-strong: #85e3ce;
+	--vw-progress-fill-a: #92ead6;
+	--vw-progress-fill-b: #5bd2d7;
+	--vw-progress-fill-c: #4ba0c5;
+	--vw-table-head-bg: var(--vw-surface-table-head);
+	--vw-table-row-bg: var(--vw-surface-table-row);
+	--vw-table-row-alt-bg: var(--vw-surface-table-row-alt);
+	--vw-modal-bg: rgba(255, 255, 255, 0.92);
+	--vw-sidebar-bg: rgba(248, 253, 255, 0.76);
+	--vw-sidebar-active-bg: rgba(209, 248, 245, 0.66);
+
+	--vw-shadow-soft: 0 9px 22px rgba(42, 72, 96, 0.075);
+	--vw-shadow-control: 0 1px 0 rgba(255, 255, 255, 0.76) inset, 0 10px 22px rgba(42, 82, 104, 0.07);
+	--vw-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.82) inset, 0 28px 78px rgba(38, 72, 96, 0.13), 0 9px 26px rgba(50, 98, 118, 0.08);
+	--vw-shadow-panel: var(--vw-shadow-card);
+	--vw-shadow-floating: 0 1px 0 rgba(255, 255, 255, 0.82) inset, 0 34px 86px rgba(35, 70, 96, 0.2), 0 12px 34px rgba(51, 103, 126, 0.12);
+	--vw-shadow-modal: 0 1px 0 rgba(255, 255, 255, 0.86) inset, 0 48px 128px rgba(33, 58, 82, 0.28), 0 18px 48px rgba(44, 92, 118, 0.16);
+
+	--vw-material-primary-hover: var(--vw-button-primary-hover);
+	--vw-button-primary-solid: #203a45;
+
+	--vitra-bg: var(--vw-bg-base);
+	--vitra-glow-a: var(--vw-glow-cyan);
+	--vitra-glow-b: var(--vw-glow-violet);
+	--vitra-glow-c: var(--vw-glow-aqua);
+	--vitra-surface: var(--vw-surface);
+	--vitra-surface-strong: var(--vw-surface-strong);
+	--vitra-surface-soft: var(--vw-surface-soft);
+	--vitra-surface-subtle: var(--vw-surface-table-row-alt);
+	--vitra-surface-elevated: var(--vw-surface-raised);
+	--vitra-surface-hover: var(--vw-surface-control-hover);
+	--vitra-sidebar-surface: var(--vw-sidebar-bg);
+	--vitra-border: var(--vw-border);
+	--vitra-border-strong: var(--vw-border-strong);
+	--vitra-line: var(--vw-border-hairline);
+	--vitra-text: var(--vw-text-main);
+	--vitra-text-muted: var(--vw-text-muted);
+	--vitra-text-soft: var(--vw-text-soft);
+	--vitra-text-subtle: var(--vw-text-faint);
+	--vitra-accent: var(--vw-accent);
+	--vitra-accent-strong: var(--vw-accent-strong);
+	--vitra-accent-ink: var(--vw-accent-ink);
+	--vitra-accent-soft: var(--vw-accent-soft);
+	--vitra-icon-muted: rgba(58, 79, 96, 0.74);
+	--vitra-icon-active: var(--vw-accent-ink);
+	--vitra-menu-active: var(--vw-sidebar-active-bg);
+	--vitra-menu-band: rgba(62, 198, 209, 0.42);
+	--vitra-success: var(--vw-success);
+	--vitra-success-soft: var(--vw-success-soft);
+	--vitra-warning: var(--vw-warning);
+	--vitra-warning-soft: var(--vw-warning-soft);
+	--vitra-danger: var(--vw-danger);
+	--vitra-danger-soft: var(--vw-danger-soft);
+	--vitra-glass-bg: var(--vw-glass-panel);
+	--vitra-glass-bg-strong: var(--vw-glass-panel-strong);
+	--vitra-glass-bg-subtle: var(--vw-surface-soft);
+	--vitra-glass-border: var(--vw-glass-border);
+	--vitra-glass-highlight: var(--vw-glass-highlight);
+	--vitra-glass-shadow: var(--vw-shadow-card);
+	--vitra-glass-inner-shadow: var(--vw-highlight-inner);
+	--vitra-progress-track: var(--vw-progress-track);
+	--vitra-progress-fill-a: var(--vw-progress-fill-a);
+	--vitra-progress-fill-b: var(--vw-progress-fill-b);
+	--vitra-progress-fill-c: var(--vw-progress-fill-c);
+	--vitra-shadow-color: rgba(35, 70, 96, 0.22);
+	--vitra-inner-dim: rgba(77, 148, 166, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		--vitra-bg: #0a121d;
+		--vitra-bg-elevated: #111b28;
+		--vitra-bg-gradient-1: #0c1421;
+		--vitra-bg-gradient-2: #151d2a;
+		--vitra-bg-wash: rgba(33, 50, 69, 0.32);
+		--vitra-top-sheen: rgba(219, 232, 244, 0.07);
+		--vitra-glow-a: rgba(72, 103, 128, 0.18);
+		--vitra-glow-b: rgba(142, 125, 197, 0.12);
+		--vitra-glow-c: rgba(94, 122, 149, 0.08);
+		--vitra-surface: rgba(18, 28, 42, 0.68);
+		--vitra-surface-strong: rgba(24, 36, 53, 0.86);
+		--vitra-surface-soft: rgba(25, 36, 52, 0.72);
+		--vitra-surface-subtle: rgba(22, 33, 49, 0.58);
+		--vitra-surface-elevated: rgba(26, 38, 55, 0.72);
+		--vitra-surface-hover: rgba(39, 52, 69, 0.82);
+		--vitra-sidebar-surface: rgba(15, 23, 35, 0.74);
+		--vitra-panel-highlight: rgba(255, 255, 255, 0.075);
+		--vitra-border: rgba(204, 220, 236, 0.12);
+		--vitra-border-strong: rgba(209, 224, 238, 0.21);
+		--vitra-line: rgba(219, 232, 244, 0.085);
+		--vitra-text: #eef5fb;
+		--vitra-text-muted: #c0c8d1;
+		--vitra-text-soft: #a5afbc;
+		--vitra-text-subtle: #8d98a6;
+		--vitra-inverse-text: #0e1722;
+		--vitra-accent: #88b9de;
+		--vitra-accent-strong: #a5cbe8;
+		--vitra-accent-ink: #d1e8f8;
+		--vitra-accent-soft: rgba(136, 185, 222, 0.12);
+		--vitra-accent-quiet: rgba(136, 185, 222, 0.06);
+		--vitra-accent-border: rgba(136, 185, 222, 0.28);
+		--vitra-icon-muted: rgba(190, 196, 203, 0.76);
+		--vitra-icon-active: #c4ddf0;
+		--vitra-sidebar-rim: rgba(255, 255, 255, 0.09);
+		--vitra-sidebar-tint: rgba(47, 63, 82, 0.25);
+		--vitra-menu-active: rgba(136, 185, 222, 0.105);
+		--vitra-menu-band: rgba(148, 191, 224, 0.38);
+		--vitra-table-row-hover: rgba(149, 171, 190, 0.055);
+		--vitra-success: #86c4a0;
+		--vitra-success-soft: rgba(134, 196, 160, 0.12);
+		--vitra-warning: #d4b16d;
+		--vitra-warning-soft: rgba(212, 177, 109, 0.14);
+		--vitra-danger: #ec8b93;
+		--vitra-danger-soft: rgba(236, 139, 147, 0.11);
+		--vitra-info: #9abed8;
+		--vitra-violet-soft: rgba(169, 154, 218, 0.12);
+		--vitra-glass-bg: rgba(18, 28, 42, 0.66);
+		--vitra-glass-bg-strong: rgba(24, 36, 53, 0.84);
+		--vitra-glass-bg-subtle: rgba(24, 35, 50, 0.56);
+		--vitra-glass-border: rgba(204, 220, 236, 0.13);
+		--vitra-glass-highlight: rgba(255, 255, 255, 0.08);
+		--vitra-glass-shadow: 0 22px 64px rgba(0, 0, 0, 0.34), 0 8px 24px rgba(0, 0, 0, 0.18);
+		--vitra-glass-inner-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 -12px 26px rgba(0, 0, 0, 0.16) inset;
+		--vitra-glass-blur: 16px;
+		--vitra-neutral-control: rgba(31, 43, 60, 0.66);
+		--vitra-neutral-control-hover: rgba(43, 56, 74, 0.82);
+		--vitra-material-panel: rgba(18, 28, 42, 0.68);
+		--vitra-material-panel-strong: rgba(24, 36, 53, 0.86);
+		--vitra-material-inner: rgba(35, 48, 65, 0.42);
+		--vitra-material-muted: rgba(23, 34, 49, 0.58);
+		--vitra-material-field: rgba(31, 43, 60, 0.68);
+		--vitra-material-field-hover: rgba(42, 55, 73, 0.82);
+		--vitra-material-button: rgba(31, 43, 60, 0.66);
+		--vitra-material-button-hover: rgba(43, 56, 74, 0.82);
+		--vitra-material-primary: rgba(38, 52, 69, 0.9);
+		--vitra-material-primary-hover: rgba(49, 65, 84, 0.96);
+		--vitra-progress-track: rgba(23, 34, 49, 0.82);
+		--vitra-progress-fill-a: #526a7d;
+		--vitra-progress-fill-b: #78a9cc;
+		--vitra-progress-fill-c: #9dc7e5;
+		--vitra-field-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 8px 18px rgba(0, 0, 0, 0.18);
+		--vitra-card-shadow: 0 22px 58px rgba(0, 0, 0, 0.32), 0 1px 0 rgba(255, 255, 255, 0.07) inset;
+		--vitra-floating-shadow: 0 28px 76px rgba(0, 0, 0, 0.44), 0 8px 24px rgba(0, 0, 0, 0.2);
+		--vitra-modal-shadow: 0 36px 100px rgba(0, 0, 0, 0.58), 0 10px 34px rgba(0, 0, 0, 0.26);
+		--vitra-inner-highlight: rgba(255, 255, 255, 0.08);
+		--vitra-inner-dim: rgba(0, 0, 0, 0.18);
+	}
+}
+
+/* Stage 1.21 final effective light overrides.
+ * This last block is the authoritative light palette after historical stage
+ * blocks. It deliberately removes mint as global UI paint.
+ */
+:root,
+:root:not([data-theme]),
+html[data-theme="light"] {
+	--vw-bg-base: #f6f9fc;
+	--vw-bg: var(--vw-bg-base);
+	--vw-bg-atmosphere:
+		radial-gradient(920px 620px at 10% -8%, rgba(116, 186, 218, 0.16), transparent 62%),
+		radial-gradient(860px 580px at 94% 0%, rgba(178, 164, 235, 0.14), transparent 60%),
+		radial-gradient(760px 520px at 52% 108%, rgba(182, 221, 221, 0.1), transparent 66%),
+		linear-gradient(145deg, #f9fcff 0%, #eef4f8 52%, #f7f6ff 100%);
+	--vw-bg-mesh-cyan: rgba(116, 186, 218, 0.16);
+	--vw-bg-mesh-aqua: rgba(182, 221, 221, 0.1);
+	--vw-bg-mesh-violet: rgba(178, 164, 235, 0.14);
+	--vw-bg-mesh-1: var(--vw-bg-mesh-cyan);
+	--vw-bg-mesh-2: var(--vw-bg-mesh-violet);
+	--vw-bg-mesh-a: var(--vw-bg-mesh-cyan);
+	--vw-bg-mesh-b: var(--vw-bg-mesh-violet);
+	--vw-bg-mesh-c: rgba(255, 255, 255, 0.7);
+	--vw-surface-glass-1: rgba(255, 255, 255, 0.58);
+	--vw-surface-glass-2: rgba(252, 254, 255, 0.72);
+	--vw-surface-glass-3: rgba(255, 255, 255, 0.86);
+	--vw-surface: var(--vw-surface-glass-1);
+	--vw-surface-soft: var(--vw-surface-glass-2);
+	--vw-surface-strong: var(--vw-surface-glass-3);
+	--vw-surface-raised: rgba(255, 255, 255, 0.9);
+	--vw-surface-floating: rgba(255, 255, 255, 0.82);
+	--vw-surface-sunken: rgba(238, 244, 248, 0.56);
+	--vw-surface-control: rgba(255, 255, 255, 0.68);
+	--vw-surface-control-hover: rgba(255, 255, 255, 0.86);
+	--vw-surface-control-active: rgba(239, 247, 251, 0.9);
+	--vw-surface-table-row: rgba(255, 255, 255, 0.48);
+	--vw-surface-table-row-alt: rgba(239, 246, 250, 0.42);
+	--vw-surface-table-head: rgba(236, 244, 249, 0.68);
+	--vw-border-hairline: rgba(58, 75, 92, 0.075);
+	--vw-border-soft: rgba(58, 75, 92, 0.105);
+	--vw-border: rgba(58, 75, 92, 0.14);
+	--vw-border-medium: rgba(54, 72, 88, 0.18);
+	--vw-border-strong: rgba(46, 64, 82, 0.26);
+	--vw-border-focus: rgba(79, 159, 190, 0.36);
+	--vw-highlight-top: rgba(255, 255, 255, 0.84);
+	--vw-highlight-inner: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 -10px 22px rgba(66, 86, 104, 0.035) inset;
+	--vw-text-strong: #101b27;
+	--vw-text-main: #1b2835;
+	--vw-text: var(--vw-text-main);
+	--vw-text-soft: #61707c;
+	--vw-text-muted: #778590;
+	--vw-muted: var(--vw-text-muted);
+	--vw-text-faint: rgba(91, 108, 122, 0.62);
+	--vw-text-disabled: rgba(91, 108, 122, 0.46);
+	--vw-accent: #4f86ae;
+	--vw-accent-soft: rgba(79, 134, 174, 0.095);
+	--vw-accent-strong: #366f96;
+	--vw-accent-vivid: #367fa6;
+	--vw-accent-ink: #264f68;
+	--vw-cyan: #69b6c9;
+	--vw-aqua: #86bfcc;
+	--vw-violet: #b4a7e8;
+	--vw-success: #5f9875;
+	--vw-success-soft: rgba(95, 152, 117, 0.12);
+	--vw-warning: #a98236;
+	--vw-warning-soft: rgba(169, 130, 54, 0.13);
+	--vw-danger: #bd646d;
+	--vw-danger-soft: rgba(189, 100, 109, 0.1);
+	--vw-field-bg: rgba(255, 255, 255, 0.66);
+	--vw-field-bg-hover: rgba(255, 255, 255, 0.84);
+	--vw-field-bg-focus: rgba(247, 252, 255, 0.92);
+	--vw-field-border: rgba(60, 82, 100, 0.18);
+	--vw-dropdown-bg: rgba(255, 255, 255, 0.88);
+	--vw-dynlist-bg: rgba(241, 247, 250, 0.58);
+	--vw-button-bg: rgba(255, 255, 255, 0.58);
+	--vw-button-bg-hover: rgba(255, 255, 255, 0.78);
+	--vw-button-primary-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(234, 243, 249, 0.82));
+	--vw-button-primary-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(226, 239, 247, 0.9));
+	--vw-button-primary-solid: #294253;
+	--vw-button-danger-bg: rgba(255, 239, 242, 0.72);
+	--vw-apply-dock-bg: rgba(255, 255, 255, 0.72);
+	--vw-modal-bg: rgba(255, 255, 255, 0.78);
+	--vw-sidebar-bg: rgba(250, 253, 255, 0.68);
+	--vw-sidebar-active-bg: rgba(236, 246, 250, 0.78);
+	--vw-sidebar-hover-bg: rgba(255, 255, 255, 0.62);
+	--vw-progress-track: rgba(225, 234, 240, 0.82);
+	--vw-progress-fill: #8fbccf;
+	--vw-progress-fill-strong: #5f9ab7;
+	--vw-progress-fill-a: #d9e8ef;
+	--vw-progress-fill-b: #8fbccf;
+	--vw-progress-fill-c: #5f9ab7;
+	--vw-table-head-bg: var(--vw-surface-table-head);
+	--vw-table-row-bg: var(--vw-surface-table-row);
+	--vw-table-row-alt-bg: var(--vw-surface-table-row-alt);
+	--vw-focus-ring: 0 0 0 3px rgba(80, 154, 190, 0.16);
+	--vw-shadow-soft: 0 7px 18px rgba(42, 61, 78, 0.055);
+	--vw-shadow-control: 0 1px 0 rgba(255, 255, 255, 0.76) inset, 0 7px 16px rgba(42, 65, 84, 0.05);
+	--vw-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 18px 52px rgba(42, 61, 78, 0.1), 0 7px 22px rgba(42, 61, 78, 0.055);
+	--vw-shadow-floating: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 24px 68px rgba(36, 55, 76, 0.16), 0 9px 26px rgba(36, 55, 76, 0.075);
+	--vw-shadow-modal: 0 1px 0 rgba(255, 255, 255, 0.82) inset, 0 36px 104px rgba(30, 48, 68, 0.24), 0 12px 36px rgba(30, 48, 68, 0.1);
+	--vw-action-primary-bg: var(--vw-button-primary-bg);
+	--vw-action-primary-hover: var(--vw-button-primary-hover);
+	--vw-action-primary-text: var(--vw-accent-ink);
+	--vw-action-primary-border: rgba(70, 106, 130, 0.18);
+	--vw-tab-active-bg: var(--vw-button-primary-bg);
+	--vw-tab-active-border: rgba(75, 130, 162, 0.22);
+	--vw-tab-active-shadow: 0 7px 18px rgba(78, 139, 170, 0.06);
+	--vw-dropdown-item-hover-bg: rgba(236, 246, 250, 0.76);
+	--vw-dynlist-item-bg: rgba(255, 255, 255, 0.64);
+	--vw-meter-track-bg: var(--vw-progress-track);
+	--vw-meter-fill-bg: linear-gradient(90deg, var(--vw-progress-fill-a), var(--vw-progress-fill-b), var(--vw-progress-fill-c));
+	--vw-meter-glow: rgba(86, 146, 178, 0.1);
+	--vitra-bg: var(--vw-bg-base);
+	--vitra-bg-elevated: #fbfdff;
+	--vitra-bg-gradient-1: #eef4f8;
+	--vitra-bg-gradient-2: #f7f6ff;
+	--vitra-bg-wash: rgba(232, 239, 246, 0.66);
+	--vitra-glow-a: var(--vw-bg-mesh-cyan);
+	--vitra-glow-b: var(--vw-bg-mesh-violet);
+	--vitra-glow-c: rgba(255, 255, 255, 0.58);
+	--vitra-surface: var(--vw-surface);
+	--vitra-surface-strong: var(--vw-surface-strong);
+	--vitra-surface-soft: var(--vw-surface-soft);
+	--vitra-sidebar-surface: var(--vw-sidebar-bg);
+	--vitra-border: var(--vw-border);
+	--vitra-border-strong: var(--vw-border-strong);
+	--vitra-text: var(--vw-text-main);
+	--vitra-text-muted: var(--vw-text-muted);
+	--vitra-text-soft: var(--vw-text-soft);
+	--vitra-accent: var(--vw-accent);
+	--vitra-accent-strong: var(--vw-accent-strong);
+	--vitra-accent-ink: var(--vw-accent-ink);
+	--vitra-accent-soft: var(--vw-accent-soft);
+	--vitra-menu-active: var(--vw-sidebar-active-bg);
+	--vitra-menu-band: rgba(79, 134, 174, 0.28);
+	--vitra-success: var(--vw-success);
+	--vitra-success-soft: var(--vw-success-soft);
+	--vitra-warning: var(--vw-warning);
+	--vitra-warning-soft: var(--vw-warning-soft);
+	--vitra-danger: var(--vw-danger);
+	--vitra-danger-soft: var(--vw-danger-soft);
+	--vitra-glass-bg: rgba(255, 255, 255, 0.62);
+	--vitra-glass-bg-strong: rgba(255, 255, 255, 0.84);
+	--vitra-glass-bg-subtle: var(--vw-surface-soft);
+	--vitra-glass-border: var(--vw-glass-border);
+	--vitra-glass-highlight: var(--vw-highlight-top);
+	--vitra-material-panel: var(--vw-glass-panel);
+	--vitra-material-panel-strong: var(--vw-glass-panel-strong);
+	--vitra-material-field: var(--vw-field-bg);
+	--vitra-material-field-hover: var(--vw-field-bg-hover);
+	--vitra-material-button: var(--vw-button-bg);
+	--vitra-material-button-hover: var(--vw-button-bg-hover);
+	--vitra-material-primary: var(--vw-button-primary-bg);
+	--vitra-material-primary-hover: var(--vw-button-primary-hover);
+	--vitra-progress-track: var(--vw-progress-track);
+	--vitra-progress-fill-a: var(--vw-progress-fill-a);
+	--vitra-progress-fill-b: var(--vw-progress-fill-b);
+	--vitra-progress-fill-c: var(--vw-progress-fill-c);
+	--vitra-card-shadow: var(--vw-shadow-card);
+	--vitra-floating-shadow: var(--vw-shadow-floating);
+	--vitra-modal-shadow: var(--vw-shadow-modal);
+}
+
+/* Stage 1.21 final effective light palette.
+ * Neutral ice/mist/silver carries the UI. Cyan and violet are atmosphere and
+ * focus details; green is reserved for status/success.
+ */
+:root,
+:root:not([data-theme]),
+html[data-theme="light"] {
+	--vw-bg-base: #f6f9fc;
+	--vw-bg: var(--vw-bg-base);
+	--vw-bg-atmosphere:
+		radial-gradient(920px 620px at 10% -8%, rgba(116, 186, 218, 0.16), transparent 62%),
+		radial-gradient(860px 580px at 94% 0%, rgba(178, 164, 235, 0.14), transparent 60%),
+		radial-gradient(760px 520px at 52% 108%, rgba(182, 221, 221, 0.1), transparent 66%),
+		linear-gradient(145deg, #f9fcff 0%, #eef4f8 52%, #f7f6ff 100%);
+	--vw-bg-mesh-cyan: rgba(116, 186, 218, 0.16);
+	--vw-bg-mesh-aqua: rgba(182, 221, 221, 0.1);
+	--vw-bg-mesh-violet: rgba(178, 164, 235, 0.14);
+	--vw-bg-mesh-1: var(--vw-bg-mesh-cyan);
+	--vw-bg-mesh-2: var(--vw-bg-mesh-violet);
+	--vw-bg-mesh-a: var(--vw-bg-mesh-cyan);
+	--vw-bg-mesh-b: var(--vw-bg-mesh-violet);
+	--vw-bg-mesh-c: rgba(255, 255, 255, 0.7);
+	--vw-bg-noise-opacity: 0.018;
+
+	--vw-surface-glass-1: rgba(255, 255, 255, 0.58);
+	--vw-surface-glass-2: rgba(252, 254, 255, 0.72);
+	--vw-surface-glass-3: rgba(255, 255, 255, 0.86);
+	--vw-surface: var(--vw-surface-glass-1);
+	--vw-surface-soft: var(--vw-surface-glass-2);
+	--vw-surface-strong: var(--vw-surface-glass-3);
+	--vw-surface-raised: rgba(255, 255, 255, 0.9);
+	--vw-surface-floating: rgba(255, 255, 255, 0.82);
+	--vw-surface-sunken: rgba(238, 244, 248, 0.56);
+	--vw-surface-inner: var(--vw-surface-sunken);
+	--vw-surface-control: rgba(255, 255, 255, 0.68);
+	--vw-surface-control-hover: rgba(255, 255, 255, 0.86);
+	--vw-surface-control-active: rgba(239, 247, 251, 0.9);
+	--vw-surface-table-row: rgba(255, 255, 255, 0.48);
+	--vw-surface-table-row-alt: rgba(239, 246, 250, 0.42);
+	--vw-surface-table-head: rgba(236, 244, 249, 0.68);
+	--vw-surface-table-row-solid: #fbfcfe;
+	--vw-surface-table-row-alt-solid: #f0f5f8;
+	--vw-surface-table-head-solid: #edf4f8;
+
+	--vw-glass-panel: rgba(255, 255, 255, 0.62);
+	--vw-glass-panel-strong: rgba(255, 255, 255, 0.84);
+	--vw-glass-inner: rgba(238, 244, 248, 0.52);
+	--vw-glass-highlight: rgba(255, 255, 255, 0.86);
+	--vw-glass-border: rgba(58, 75, 92, 0.13);
+	--vw-glass-border-strong: rgba(48, 65, 82, 0.22);
+
+	--vw-border-hairline: rgba(58, 75, 92, 0.075);
+	--vw-border-soft: rgba(58, 75, 92, 0.105);
+	--vw-border: rgba(58, 75, 92, 0.14);
+	--vw-border-medium: rgba(54, 72, 88, 0.18);
+	--vw-border-strong: rgba(46, 64, 82, 0.26);
+	--vw-border-focus: rgba(79, 159, 190, 0.36);
+	--vw-highlight-top: rgba(255, 255, 255, 0.84);
+	--vw-highlight-inner: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 -10px 22px rgba(66, 86, 104, 0.035) inset;
+	--vw-highlight-edge: rgba(145, 170, 194, 0.14);
+
+	--vw-text-strong: #101b27;
+	--vw-text-main: #1b2835;
+	--vw-text: var(--vw-text-main);
+	--vw-text-soft: #61707c;
+	--vw-text-muted: #778590;
+	--vw-muted: var(--vw-text-muted);
+	--vw-text-faint: rgba(91, 108, 122, 0.62);
+	--vw-text-disabled: rgba(91, 108, 122, 0.46);
+	--vw-text-inverse: #f8fbff;
+
+	--vw-accent: #4f86ae;
+	--vw-accent-soft: rgba(79, 134, 174, 0.095);
+	--vw-accent-strong: #366f96;
+	--vw-accent-vivid: #367fa6;
+	--vw-accent-ink: #264f68;
+	--vw-cyan: #69b6c9;
+	--vw-aqua: #8ac9bd;
+	--vw-violet: #b4a7e8;
+	--vw-glow-aqua: rgba(182, 221, 221, 0.1);
+	--vw-glow-cyan: rgba(116, 186, 218, 0.16);
+	--vw-glow-violet: rgba(178, 164, 235, 0.14);
+	--vw-success: #5f9875;
+	--vw-success-soft: rgba(95, 152, 117, 0.12);
+	--vw-warning: #a98236;
+	--vw-warning-soft: rgba(169, 130, 54, 0.13);
+	--vw-danger: #bd646d;
+	--vw-danger-soft: rgba(189, 100, 109, 0.1);
+
+	--vw-field-bg: rgba(255, 255, 255, 0.66);
+	--vw-field-bg-hover: rgba(255, 255, 255, 0.84);
+	--vw-field-bg-focus: rgba(247, 252, 255, 0.92);
+	--vw-field-border: rgba(60, 82, 100, 0.18);
+	--vw-dropdown-bg: rgba(255, 255, 255, 0.88);
+	--vw-dynlist-bg: rgba(241, 247, 250, 0.58);
+	--vw-button-bg: rgba(255, 255, 255, 0.58);
+	--vw-button-bg-hover: rgba(255, 255, 255, 0.78);
+	--vw-button-primary-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(234, 243, 249, 0.82));
+	--vw-button-primary-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(226, 239, 247, 0.9));
+	--vw-button-primary-solid: #294253;
+	--vw-button-danger-bg: rgba(255, 239, 242, 0.72);
+	--vw-apply-dock-bg: rgba(255, 255, 255, 0.72);
+	--vw-modal-bg: rgba(255, 255, 255, 0.78);
+	--vw-sidebar-bg: rgba(250, 253, 255, 0.68);
+	--vw-sidebar-active-bg: rgba(236, 246, 250, 0.78);
+	--vw-sidebar-hover-bg: rgba(255, 255, 255, 0.62);
+
+	--vw-progress-track: rgba(225, 234, 240, 0.82);
+	--vw-progress-fill: #8fbccf;
+	--vw-progress-fill-strong: #5f9ab7;
+	--vw-progress-fill-a: #d9e8ef;
+	--vw-progress-fill-b: #8fbccf;
+	--vw-progress-fill-c: #5f9ab7;
+
+	--vw-table-head-bg: var(--vw-surface-table-head);
+	--vw-table-row-bg: var(--vw-surface-table-row);
+	--vw-table-row-alt-bg: var(--vw-surface-table-row-alt);
+	--vw-separator: var(--vw-border-hairline);
+	--vw-focus-ring: 0 0 0 3px rgba(80, 154, 190, 0.16);
+
+	--vw-shadow-soft: 0 7px 18px rgba(42, 61, 78, 0.055);
+	--vw-shadow-control: 0 1px 0 rgba(255, 255, 255, 0.76) inset, 0 7px 16px rgba(42, 65, 84, 0.05);
+	--vw-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 18px 52px rgba(42, 61, 78, 0.1), 0 7px 22px rgba(42, 61, 78, 0.055);
+	--vw-shadow-panel: var(--vw-shadow-card);
+	--vw-shadow-floating: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 24px 68px rgba(36, 55, 76, 0.16), 0 9px 26px rgba(36, 55, 76, 0.075);
+	--vw-shadow-modal: 0 1px 0 rgba(255, 255, 255, 0.82) inset, 0 36px 104px rgba(30, 48, 68, 0.24), 0 12px 36px rgba(30, 48, 68, 0.1);
+
+	--vw-action-primary-bg: var(--vw-button-primary-bg);
+	--vw-action-primary-hover: var(--vw-button-primary-hover);
+	--vw-action-primary-text: var(--vw-accent-ink);
+	--vw-action-primary-border: rgba(70, 106, 130, 0.18);
+	--vw-tab-active-bg: var(--vw-button-primary-bg);
+	--vw-tab-active-border: rgba(75, 130, 162, 0.22);
+	--vw-tab-active-shadow: 0 7px 18px rgba(78, 139, 170, 0.06);
+	--vw-dropdown-item-hover-bg: rgba(236, 246, 250, 0.76);
+	--vw-dynlist-item-bg: rgba(255, 255, 255, 0.64);
+	--vw-meter-track-bg: var(--vw-progress-track);
+	--vw-meter-fill-bg: linear-gradient(90deg, var(--vw-progress-fill-a), var(--vw-progress-fill-b), var(--vw-progress-fill-c));
+	--vw-meter-glow: rgba(86, 146, 178, 0.1);
+
+	--vitra-bg: var(--vw-bg-base);
+	--vitra-bg-elevated: #fbfdff;
+	--vitra-bg-gradient-1: #eef4f8;
+	--vitra-bg-gradient-2: #f7f6ff;
+	--vitra-bg-wash: rgba(232, 239, 246, 0.66);
+	--vitra-top-sheen: rgba(255, 255, 255, 0.7);
+	--vitra-glow-a: var(--vw-bg-mesh-cyan);
+	--vitra-glow-b: var(--vw-bg-mesh-violet);
+	--vitra-glow-c: rgba(255, 255, 255, 0.58);
+	--vitra-surface: var(--vw-surface);
+	--vitra-surface-strong: var(--vw-surface-strong);
+	--vitra-surface-soft: var(--vw-surface-soft);
+	--vitra-surface-subtle: var(--vw-surface-table-row-alt);
+	--vitra-surface-elevated: var(--vw-surface-raised);
+	--vitra-surface-hover: var(--vw-surface-control-hover);
+	--vitra-sidebar-surface: var(--vw-sidebar-bg);
+	--vitra-panel-highlight: var(--vw-highlight-top);
+	--vitra-border: var(--vw-border);
+	--vitra-border-strong: var(--vw-border-strong);
+	--vitra-line: var(--vw-border-hairline);
+	--vitra-text: var(--vw-text-main);
+	--vitra-text-muted: var(--vw-text-muted);
+	--vitra-text-soft: var(--vw-text-soft);
+	--vitra-text-subtle: var(--vw-text-faint);
+	--vitra-inverse-text: var(--vw-text-inverse);
+	--vitra-accent: var(--vw-accent);
+	--vitra-accent-strong: var(--vw-accent-strong);
+	--vitra-accent-ink: var(--vw-accent-ink);
+	--vitra-accent-soft: var(--vw-accent-soft);
+	--vitra-accent-quiet: rgba(79, 134, 174, 0.05);
+	--vitra-icon-muted: rgba(76, 88, 100, 0.74);
+	--vitra-icon-active: var(--vw-accent-ink);
+	--vitra-menu-active: var(--vw-sidebar-active-bg);
+	--vitra-menu-band: rgba(79, 134, 174, 0.28);
+	--vitra-table-row-hover: rgba(79, 134, 174, 0.045);
+	--vitra-success: var(--vw-success);
+	--vitra-success-soft: var(--vw-success-soft);
+	--vitra-warning: var(--vw-warning);
+	--vitra-warning-soft: var(--vw-warning-soft);
+	--vitra-danger: var(--vw-danger);
+	--vitra-danger-soft: var(--vw-danger-soft);
+	--vitra-info: #58758b;
+	--vitra-violet-soft: rgba(180, 167, 232, 0.12);
+	--vitra-glass-bg: var(--vw-glass-panel);
+	--vitra-glass-bg-strong: var(--vw-glass-panel-strong);
+	--vitra-glass-bg-subtle: var(--vw-surface-soft);
+	--vitra-glass-border: var(--vw-glass-border);
+	--vitra-glass-highlight: var(--vw-glass-highlight);
+	--vitra-glass-shadow: var(--vw-shadow-card);
+	--vitra-glass-inner-shadow: var(--vw-highlight-inner);
+	--vitra-material-panel: var(--vw-glass-panel);
+	--vitra-material-panel-strong: var(--vw-glass-panel-strong);
+	--vitra-material-inner: var(--vw-glass-inner);
+	--vitra-material-field: var(--vw-field-bg);
+	--vitra-material-field-hover: var(--vw-field-bg-hover);
+	--vitra-material-button: var(--vw-button-bg);
+	--vitra-material-button-hover: var(--vw-button-bg-hover);
+	--vitra-material-primary: var(--vw-button-primary-bg);
+	--vitra-material-primary-hover: var(--vw-button-primary-hover);
+	--vitra-progress-track: var(--vw-progress-track);
+	--vitra-progress-fill-a: var(--vw-progress-fill-a);
+	--vitra-progress-fill-b: var(--vw-progress-fill-b);
+	--vitra-progress-fill-c: var(--vw-progress-fill-c);
+	--vitra-field-shadow: var(--vw-shadow-control);
+	--vitra-card-shadow: var(--vw-shadow-card);
+	--vitra-floating-shadow: var(--vw-shadow-floating);
+	--vitra-modal-shadow: var(--vw-shadow-modal);
+	--vitra-inner-highlight: rgba(255, 255, 255, 0.78);
+	--vitra-inner-dim: rgba(56, 74, 92, 0.045);
+}
+
+/* Stage 1.19V: Apple / VisionOS ice-glass light palette.
+ * Light mode is intentionally first-class, not a washed dark-mode inversion.
+ */
+:root,
+html[data-theme="light"] {
+	--vw-bg-base: #f8fcff;
+	--vw-bg: var(--vw-bg-base);
+	--vw-base-0: #fbfeff;
+	--vw-base-1: #eef8fb;
+	--vw-base-2: #f7f5ff;
+	--vw-bg-atmosphere:
+		radial-gradient(900px 620px at 8% -8%, rgba(105, 221, 226, 0.26), transparent 62%),
+		radial-gradient(820px 560px at 96% 0%, rgba(188, 165, 255, 0.18), transparent 58%),
+		radial-gradient(720px 500px at 52% 104%, rgba(132, 230, 199, 0.18), transparent 64%);
+	--vw-bg-mesh-cyan: rgba(100, 218, 229, 0.28);
+	--vw-bg-mesh-aqua: rgba(124, 229, 202, 0.22);
+	--vw-bg-mesh-violet: rgba(186, 166, 246, 0.18);
+	--vw-bg-mesh-a: var(--vw-bg-mesh-cyan);
+	--vw-bg-mesh-b: var(--vw-bg-mesh-violet);
+	--vw-bg-mesh-c: var(--vw-bg-mesh-aqua);
+	--vw-bg-noise-opacity: 0.018;
+
+	--vw-surface-glass-1: rgba(255, 255, 255, 0.48);
+	--vw-surface-glass-2: rgba(255, 255, 255, 0.62);
+	--vw-surface-glass-3: rgba(255, 255, 255, 0.76);
+	--vw-surface-floating: rgba(255, 255, 255, 0.82);
+	--vw-surface: var(--vw-surface-glass-1);
+	--vw-surface-soft: var(--vw-surface-glass-2);
+	--vw-surface-strong: var(--vw-surface-glass-3);
+	--vw-surface-raised: rgba(255, 255, 255, 0.78);
+	--vw-surface-sunken: rgba(236, 249, 250, 0.48);
+	--vw-surface-control: rgba(251, 255, 255, 0.66);
+	--vw-surface-control-hover: rgba(255, 255, 255, 0.84);
+	--vw-surface-control-active: rgba(225, 250, 247, 0.78);
+	--vw-surface-table-row: rgba(255, 255, 255, 0.36);
+	--vw-surface-table-row-alt: rgba(239, 250, 251, 0.34);
+	--vw-surface-table-head: rgba(237, 248, 250, 0.56);
+	--vw-surface-table-row-solid: #fbfeff;
+	--vw-surface-table-row-alt-solid: #f1fbfb;
+	--vw-surface-table-head-solid: #eef9fb;
+
+	--vw-border-hairline: rgba(61, 84, 102, 0.075);
+	--vw-border-soft: rgba(61, 84, 102, 0.105);
+	--vw-border: rgba(56, 82, 104, 0.13);
+	--vw-border-medium: rgba(50, 78, 101, 0.17);
+	--vw-border-strong: rgba(44, 70, 92, 0.23);
+	--vw-border-focus: rgba(76, 189, 200, 0.36);
+
+	--vw-highlight-top: rgba(255, 255, 255, 0.78);
+	--vw-highlight-inner: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 -12px 24px rgba(112, 203, 212, 0.045) inset;
+	--vw-highlight-edge: rgba(255, 255, 255, 0.74);
+
+	--vw-text-strong: #142432;
+	--vw-text-main: #213442;
+	--vw-text: var(--vw-text-main);
+	--vw-text-soft: #637582;
+	--vw-text-muted: #7d8d98;
+	--vw-muted: var(--vw-text-muted);
+	--vw-text-disabled: rgba(92, 111, 124, 0.46);
+	--vw-text-inverse: #f7fcff;
+
+	--vw-accent: #3f9aaa;
+	--vw-accent-soft: rgba(63, 154, 170, 0.095);
+	--vw-accent-vivid: #2eb8c5;
+	--vw-accent-ink: #225b64;
+	--vw-cyan: #63cbd8;
+	--vw-aqua: #7ee4cd;
+	--vw-violet: #b9a8f1;
+	--vw-success: #61ad82;
+	--vw-success-soft: rgba(97, 173, 130, 0.12);
+	--vw-warning: #b78b36;
+	--vw-warning-soft: rgba(183, 139, 54, 0.13);
+	--vw-danger: #c76a73;
+	--vw-danger-soft: rgba(199, 106, 115, 0.105);
+
+	--vw-progress-track: rgba(228, 243, 246, 0.7);
+	--vw-progress-fill-a: #8de8d2;
+	--vw-progress-fill-b: #61d2db;
+	--vw-progress-fill-c: #9be2c7;
+
+	--vw-shadow-soft: 0 8px 22px rgba(45, 70, 90, 0.055);
+	--vw-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.66) inset, 0 18px 46px rgba(44, 72, 95, 0.09), 0 5px 14px rgba(50, 87, 103, 0.055);
+	--vw-shadow-panel: var(--vw-shadow-card);
+	--vw-shadow-floating: 0 1px 0 rgba(255, 255, 255, 0.72) inset, 0 24px 66px rgba(38, 65, 89, 0.15), 0 8px 20px rgba(58, 94, 110, 0.08);
+	--vw-shadow-modal: 0 1px 0 rgba(255, 255, 255, 0.76) inset, 0 34px 92px rgba(35, 56, 79, 0.24), 0 12px 32px rgba(55, 90, 114, 0.12);
+	--vw-shadow-control: 0 1px 0 rgba(255, 255, 255, 0.66) inset, 0 7px 16px rgba(54, 84, 103, 0.055);
+
+	--vw-material-primary-hover: color-mix(in srgb, var(--vw-aqua) 16%, var(--vw-surface-control-hover));
+	--vw-button-primary-solid: #284b56;
+
+	--vitra-bg: var(--vw-bg-base);
+	--vitra-glow-a: var(--vw-bg-mesh-cyan);
+	--vitra-glow-b: var(--vw-bg-mesh-violet);
+	--vitra-glow-c: var(--vw-bg-mesh-aqua);
+	--vitra-surface: var(--vw-surface);
+	--vitra-surface-strong: var(--vw-surface-strong);
+	--vitra-surface-soft: var(--vw-surface-soft);
+	--vitra-surface-subtle: var(--vw-surface-table-row-alt);
+	--vitra-surface-elevated: var(--vw-surface-raised);
+	--vitra-surface-hover: var(--vw-surface-control-hover);
+	--vitra-sidebar-surface: rgba(255, 255, 255, 0.58);
+	--vitra-panel-highlight: var(--vw-highlight-top);
+	--vitra-border: var(--vw-border);
+	--vitra-border-strong: var(--vw-border-strong);
+	--vitra-line: var(--vw-border-hairline);
+	--vitra-text: var(--vw-text-main);
+	--vitra-text-muted: var(--vw-text-muted);
+	--vitra-text-soft: var(--vw-text-soft);
+	--vitra-text-subtle: #8b99a3;
+	--vitra-inverse-text: var(--vw-text-inverse);
+	--vitra-accent: var(--vw-accent);
+	--vitra-accent-strong: var(--vw-accent-vivid);
+	--vitra-accent-ink: var(--vw-accent-ink);
+	--vitra-accent-soft: var(--vw-accent-soft);
+	--vitra-accent-quiet: rgba(63, 154, 170, 0.055);
+	--vitra-icon-muted: rgba(69, 83, 96, 0.68);
+	--vitra-icon-active: var(--vw-accent-ink);
+	--vitra-menu-active: rgba(126, 228, 205, 0.14);
+	--vitra-menu-band: rgba(67, 176, 190, 0.34);
+	--vitra-success: var(--vw-success);
+	--vitra-success-soft: var(--vw-success-soft);
+	--vitra-warning: var(--vw-warning);
+	--vitra-warning-soft: var(--vw-warning-soft);
+	--vitra-danger: var(--vw-danger);
+	--vitra-danger-soft: var(--vw-danger-soft);
+	--vitra-violet-soft: rgba(185, 168, 241, 0.12);
+	--vitra-glass-bg: var(--vw-surface);
+	--vitra-glass-bg-strong: var(--vw-surface-strong);
+	--vitra-glass-bg-subtle: var(--vw-surface-soft);
+	--vitra-glass-border: var(--vw-border);
+	--vitra-glass-highlight: var(--vw-highlight-top);
+	--vitra-glass-shadow: var(--vw-shadow-card);
+	--vitra-glass-inner-shadow: var(--vw-highlight-inner);
+	--vitra-material-panel: var(--vw-surface-glass-2);
+	--vitra-material-panel-strong: var(--vw-surface-glass-3);
+	--vitra-material-inner: var(--vw-surface-sunken);
+	--vitra-material-field: var(--vw-surface-control);
+	--vitra-material-field-hover: var(--vw-surface-control-hover);
+	--vitra-material-button: var(--vw-surface-control);
+	--vitra-material-button-hover: var(--vw-surface-control-hover);
+	--vitra-material-primary: var(--vw-surface-control-active);
+	--vitra-material-primary-hover: var(--vw-material-primary-hover);
+	--vitra-progress-track: var(--vw-progress-track);
+	--vitra-progress-fill-a: var(--vw-progress-fill-a);
+	--vitra-progress-fill-b: var(--vw-progress-fill-b);
+	--vitra-progress-fill-c: var(--vw-progress-fill-c);
+	--vitra-field-shadow: var(--vw-shadow-control);
+	--vitra-card-shadow: var(--vw-shadow-card);
+	--vitra-floating-shadow: var(--vw-shadow-floating);
+	--vitra-modal-shadow: var(--vw-shadow-modal);
+	--vitra-inner-highlight: rgba(255, 255, 255, 0.66);
+	--vitra-inner-dim: rgba(91, 122, 139, 0.045);
+}
+
+/* Stage 1.15: premium vivid-but-restrained palette.
+ * Freshness comes from ice/aqua/violet material light, not blue flooding.
+ */
+html[data-theme="light"] {
+	--vw-bg: #f2f8fb;
+	--vw-bg-mesh-1: rgba(132, 222, 218, 0.26);
+	--vw-bg-mesh-2: rgba(178, 150, 232, 0.16);
+	--vw-bg-mesh-a: rgba(132, 222, 218, 0.26);
+	--vw-bg-mesh-b: rgba(178, 150, 232, 0.16);
+	--vw-bg-mesh-c: rgba(255, 255, 255, 0.68);
+	--vw-surface: rgba(252, 255, 255, 0.62);
+	--vw-surface-strong: rgba(255, 255, 255, 0.82);
+	--vw-surface-soft: rgba(239, 248, 251, 0.58);
+	--vw-surface-inner: rgba(255, 255, 255, 0.46);
+	--vw-surface-raised: rgba(255, 255, 255, 0.88);
+	--vw-surface-table-row: rgba(255, 255, 255, 0.44);
+	--vw-surface-table-row-alt: rgba(239, 248, 251, 0.34);
+	--vw-surface-table-head: rgba(237, 248, 250, 0.68);
+	--vw-surface-table-row-solid: #f8fcfe;
+	--vw-surface-table-row-alt-solid: #edf7fa;
+	--vw-surface-table-head-solid: #e8f4f8;
+	--vw-border: rgba(58, 72, 86, 0.14);
+	--vw-border-soft: rgba(58, 72, 86, 0.09);
+	--vw-border-strong: rgba(48, 63, 78, 0.24);
+	--vw-highlight: rgba(255, 255, 255, 0.86);
+	--vw-text: #101b27;
+	--vw-text-soft: #6a7480;
+	--vw-muted: #4c5965;
+	--vw-accent: #407fae;
+	--vw-accent-vivid: #287eae;
+	--vw-accent-soft: rgba(64, 127, 174, 0.1);
+	--vw-accent-ink: #25546f;
+	--vw-cyan: #62c8d2;
+	--vw-aqua: #77cdb9;
+	--vw-violet: #a999e2;
+	--vw-success: #5f9474;
+	--vw-success-soft: rgba(95, 148, 116, 0.12);
+	--vw-danger: #ba6269;
+	--vw-danger-soft: rgba(186, 98, 105, 0.1);
+	--vw-warning: #a47a35;
+	--vw-warning-soft: rgba(190, 145, 70, 0.15);
+	--vw-material-panel: rgba(252, 255, 255, 0.62);
+	--vw-material-panel-strong: rgba(255, 255, 255, 0.82);
+	--vw-material-field: rgba(255, 255, 255, 0.6);
+	--vw-material-field-hover: rgba(255, 255, 255, 0.82);
+	--vw-material-button: rgba(253, 255, 255, 0.58);
+	--vw-material-button-hover: rgba(255, 255, 255, 0.8);
+	--vw-material-primary: rgba(237, 248, 250, 0.9);
+	--vw-material-primary-hover: rgba(225, 242, 247, 0.96);
+	--vw-progress-track: rgba(226, 239, 244, 0.82);
+	--vw-progress-fill-a: #d7eef0;
+	--vw-progress-fill-b: #8ed5d0;
+	--vw-progress-fill-c: #5d97b4;
+	--vw-shadow-card: 0 18px 46px rgba(40, 63, 84, 0.09), 0 1px 0 rgba(255, 255, 255, 0.78) inset;
+	--vw-shadow-panel: 0 24px 68px rgba(39, 63, 84, 0.12), 0 8px 22px rgba(39, 63, 84, 0.055);
+	--vw-shadow-floating: 0 26px 72px rgba(35, 57, 78, 0.16), 0 10px 26px rgba(35, 57, 78, 0.07);
+	--vw-shadow-modal: 0 34px 100px rgba(34, 50, 70, 0.24), 0 10px 34px rgba(34, 50, 70, 0.1);
+	--vw-shadow-control: 0 1px 0 rgba(255, 255, 255, 0.82) inset, 0 8px 18px rgba(45, 75, 92, 0.055);
+	--vw-inner-highlight: 0 1px 0 rgba(255, 255, 255, 0.82) inset, 0 -12px 26px rgba(56, 82, 101, 0.04) inset;
+
+	--vitra-bg: var(--vw-bg);
+	--vitra-glow-a: var(--vw-bg-mesh-a);
+	--vitra-glow-b: var(--vw-bg-mesh-b);
+	--vitra-glow-c: var(--vw-bg-mesh-c);
+	--vitra-surface: var(--vw-surface);
+	--vitra-surface-strong: var(--vw-surface-strong);
+	--vitra-surface-soft: var(--vw-surface-soft);
+	--vitra-surface-subtle: var(--vw-surface-table-row-alt);
+	--vitra-surface-elevated: var(--vw-surface-raised);
+	--vitra-sidebar-surface: rgba(252, 255, 255, 0.64);
+	--vitra-panel-highlight: var(--vw-highlight);
+	--vitra-border: var(--vw-border);
+	--vitra-border-strong: var(--vw-border-strong);
+	--vitra-text: var(--vw-text);
+	--vitra-text-muted: var(--vw-muted);
+	--vitra-text-soft: var(--vw-text-soft);
+	--vitra-accent: var(--vw-accent);
+	--vitra-accent-strong: var(--vw-accent-vivid);
+	--vitra-accent-ink: var(--vw-accent-ink);
+	--vitra-accent-soft: var(--vw-accent-soft);
+	--vitra-icon-muted: rgba(70, 82, 94, 0.76);
+	--vitra-icon-active: var(--vw-accent-ink);
+	--vitra-menu-active: rgba(98, 200, 210, 0.11);
+	--vitra-menu-band: rgba(64, 127, 174, 0.34);
+	--vitra-table-row-hover: rgba(98, 200, 210, 0.06);
+	--vitra-success: var(--vw-success);
+	--vitra-success-soft: var(--vw-success-soft);
+	--vitra-warning: var(--vw-warning);
+	--vitra-warning-soft: var(--vw-warning-soft);
+	--vitra-danger: var(--vw-danger);
+	--vitra-danger-soft: var(--vw-danger-soft);
+	--vitra-violet-soft: rgba(169, 153, 226, 0.14);
+	--vitra-glass-bg: var(--vw-surface);
+	--vitra-glass-bg-strong: var(--vw-surface-strong);
+	--vitra-glass-bg-subtle: var(--vw-surface-soft);
+	--vitra-glass-border: var(--vw-border);
+	--vitra-glass-highlight: var(--vw-highlight);
+	--vitra-material-panel: var(--vw-material-panel);
+	--vitra-material-panel-strong: var(--vw-material-panel-strong);
+	--vitra-material-inner: var(--vw-surface-inner);
+	--vitra-material-field: var(--vw-material-field);
+	--vitra-material-field-hover: var(--vw-material-field-hover);
+	--vitra-material-button: var(--vw-material-button);
+	--vitra-material-button-hover: var(--vw-material-button-hover);
+	--vitra-material-primary: var(--vw-material-primary);
+	--vitra-material-primary-hover: var(--vw-material-primary-hover);
+	--vitra-progress-track: var(--vw-progress-track);
+	--vitra-progress-fill-a: var(--vw-progress-fill-a);
+	--vitra-progress-fill-b: var(--vw-progress-fill-b);
+	--vitra-progress-fill-c: var(--vw-progress-fill-c);
+	--vitra-card-shadow: var(--vw-shadow-card);
+	--vitra-floating-shadow: var(--vw-shadow-floating);
+	--vitra-modal-shadow: var(--vw-shadow-modal);
+	--vitra-inner-highlight: rgba(255, 255, 255, 0.82);
+	--vitra-inner-dim: rgba(55, 79, 98, 0.045);
+}
+
+/* Stage 1.16 canonical light tokens. */
+html[data-theme="light"] {
+	--vw-bg-base: #f4fbfd;
+	--vw-bg-mesh-cyan: rgba(95, 213, 226, 0.28);
+	--vw-bg-mesh-aqua: rgba(121, 218, 187, 0.2);
+	--vw-bg-mesh-violet: rgba(177, 151, 238, 0.16);
+	--vw-bg-noise-opacity: 0.03;
+
+	--vw-surface-glass-1: rgba(255, 255, 255, 0.58);
+	--vw-surface-glass-2: rgba(246, 253, 255, 0.68);
+	--vw-surface-glass-3: rgba(255, 255, 255, 0.84);
+	--vw-surface-raised: rgba(255, 255, 255, 0.9);
+	--vw-surface-sunken: rgba(232, 247, 250, 0.58);
+	--vw-surface-control: rgba(251, 255, 255, 0.68);
+	--vw-surface-control-hover: rgba(255, 255, 255, 0.88);
+	--vw-surface-control-active: rgba(226, 247, 250, 0.86);
+
+	--vw-text-strong: #0d1824;
+	--vw-text-main: #152334;
+	--vw-text-soft: #657583;
+	--vw-text-muted: #4b5b68;
+	--vw-text-disabled: rgba(101, 117, 131, 0.55);
+	--vw-text-inverse: #f7fcff;
+
+	--vw-border-hairline: rgba(62, 81, 96, 0.09);
+	--vw-border-soft: rgba(62, 81, 96, 0.12);
+	--vw-border-medium: rgba(55, 76, 93, 0.17);
+	--vw-border-strong: rgba(43, 66, 84, 0.28);
+	--vw-border-focus: rgba(68, 181, 205, 0.42);
+
+	--vw-highlight-top: rgba(255, 255, 255, 0.92);
+	--vw-highlight-inner: 0 1px 0 rgba(255, 255, 255, 0.88) inset, 0 -12px 28px rgba(61, 103, 122, 0.045) inset;
+	--vw-highlight-edge: rgba(119, 218, 187, 0.18);
+	--vw-shadow-soft: 0 8px 22px rgba(44, 77, 96, 0.055);
+	--vw-shadow-card: 0 20px 54px rgba(42, 72, 92, 0.1), 0 1px 0 rgba(255, 255, 255, 0.78) inset;
+	--vw-shadow-floating: 0 26px 72px rgba(34, 61, 83, 0.18), 0 10px 26px rgba(34, 61, 83, 0.08);
+	--vw-shadow-modal: 0 38px 110px rgba(28, 49, 69, 0.25), 0 12px 34px rgba(28, 49, 69, 0.11);
+
+	--vw-accent: #3d7fa7;
+	--vw-accent-soft: rgba(61, 127, 167, 0.1);
+	--vw-accent-vivid: #1f8db4;
+	--vw-accent-ink: #23556d;
+	--vw-cyan: #5ccddd;
+	--vw-aqua: #78d8bb;
+	--vw-violet: #ad9beb;
+	--vw-success: #5e9875;
+	--vw-warning: #a98236;
+	--vw-danger: #bd646d;
+
+	--vw-field-height: 46px;
+	--vw-button-height: 43px;
+	--vw-tab-height: 39px;
+}
+
+/* Stage 1.13: ImmortalWrt 25.12 visual baseline from preview v4.
+ * Ice/mist surfaces carry the UI; blue is a small operational accent.
+ */
+:root,
+html[data-theme="light"] {
+	--vw-bg: #eef6fb;
+	--vw-bg-mesh-1: rgba(183, 215, 235, 0.34);
+	--vw-bg-mesh-2: rgba(187, 180, 224, 0.18);
+	--vw-surface: rgba(255, 255, 255, 0.54);
+	--vw-surface-strong: rgba(255, 255, 255, 0.76);
+	--vw-surface-soft: rgba(239, 246, 250, 0.48);
+	--vw-surface-inner: rgba(255, 255, 255, 0.34);
+	--vw-border: rgba(71, 82, 96, 0.15);
+	--vw-border-strong: rgba(56, 67, 82, 0.25);
+	--vw-highlight: rgba(255, 255, 255, 0.84);
+	--vw-text: #111c2b;
+	--vw-text-soft: #6e767e;
+	--vw-muted: #525b66;
+	--vw-accent: #4f86ae;
+	--vw-accent-soft: rgba(79, 134, 174, 0.12);
+	--vw-accent-ink: #28546c;
+	--vw-success: #638b73;
+	--vw-success-soft: rgba(99, 139, 115, 0.12);
+	--vw-danger: #b95f65;
+	--vw-danger-soft: rgba(185, 95, 101, 0.1);
+	--vw-warning: #9d7738;
+	--vw-warning-soft: rgba(183, 139, 69, 0.15);
+	--vw-shadow-card: 0 20px 56px rgba(61, 77, 96, 0.1), 0 1px 0 rgba(255, 255, 255, 0.72) inset;
+	--vw-shadow-panel: 0 24px 72px rgba(61, 77, 96, 0.12), 0 8px 24px rgba(61, 77, 96, 0.06);
+	--vw-shadow-floating: 0 26px 74px rgba(47, 63, 82, 0.18), 0 10px 28px rgba(47, 63, 82, 0.08);
+	--vw-shadow-modal: 0 36px 108px rgba(36, 50, 68, 0.26), 0 12px 36px rgba(36, 50, 68, 0.12);
+	--vw-shadow-control: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 8px 18px rgba(61, 77, 96, 0.055);
+	--vw-inner-highlight: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 -12px 26px rgba(71, 84, 101, 0.045) inset;
+	--vw-material-panel: rgba(255, 255, 255, 0.56);
+	--vw-material-panel-strong: rgba(255, 255, 255, 0.74);
+	--vw-material-field: rgba(255, 255, 255, 0.5);
+	--vw-material-field-hover: rgba(255, 255, 255, 0.75);
+	--vw-material-button: rgba(255, 255, 255, 0.48);
+	--vw-material-button-hover: rgba(255, 255, 255, 0.72);
+	--vw-material-primary: rgba(235, 243, 249, 0.86);
+	--vw-material-primary-hover: rgba(224, 236, 245, 0.94);
+	--vw-progress-track: rgba(232, 240, 246, 0.78);
+	--vw-progress-fill-a: #e6edf2;
+	--vw-progress-fill-b: #8eafc4;
+	--vw-progress-fill-c: #567f99;
+
+	--vitra-bg: var(--vw-bg);
+	--vitra-bg-elevated: #f8fbff;
+	--vitra-bg-gradient-1: #edf4f8;
+	--vitra-bg-gradient-2: #f8fbff;
+	--vitra-bg-wash: rgba(231, 239, 247, 0.72);
+	--vitra-glow-a: var(--vw-bg-mesh-1);
+	--vitra-glow-b: var(--vw-bg-mesh-2);
+	--vitra-glow-c: rgba(255, 255, 255, 0.56);
+	--vitra-surface: var(--vw-surface);
+	--vitra-surface-strong: var(--vw-surface-strong);
+	--vitra-surface-soft: var(--vw-surface-soft);
+	--vitra-surface-subtle: var(--vw-surface-soft);
+	--vitra-surface-elevated: var(--vw-surface-strong);
+	--vitra-surface-hover: var(--vw-material-field-hover);
+	--vitra-sidebar-surface: rgba(255, 255, 255, 0.56);
+	--vitra-panel-highlight: var(--vw-highlight);
+	--vitra-border: var(--vw-border);
+	--vitra-border-strong: var(--vw-border-strong);
+	--vitra-line: rgba(71, 82, 96, 0.1);
+	--vitra-text: var(--vw-text);
+	--vitra-text-muted: var(--vw-muted);
+	--vitra-text-soft: var(--vw-text-soft);
+	--vitra-text-subtle: #8a939d;
+	--vitra-inverse-text: #f8fbff;
+	--vitra-accent: var(--vw-accent);
+	--vitra-accent-strong: #356f91;
+	--vitra-accent-ink: var(--vw-accent-ink);
+	--vitra-accent-soft: var(--vw-accent-soft);
+	--vitra-accent-quiet: rgba(79, 134, 174, 0.055);
+	--vitra-accent-border: rgba(79, 134, 174, 0.28);
+	--vitra-icon-muted: rgba(84, 92, 103, 0.78);
+	--vitra-icon-active: #356f91;
+	--vitra-menu-active: rgba(79, 134, 174, 0.09);
+	--vitra-menu-band: rgba(79, 134, 174, 0.34);
+	--vitra-success: var(--vw-success);
+	--vitra-success-soft: var(--vw-success-soft);
+	--vitra-warning: var(--vw-warning);
+	--vitra-warning-soft: var(--vw-warning-soft);
+	--vitra-danger: var(--vw-danger);
+	--vitra-danger-soft: var(--vw-danger-soft);
+	--vitra-violet-soft: rgba(185, 184, 255, 0.13);
+	--vitra-glass-bg: var(--vw-surface);
+	--vitra-glass-bg-strong: var(--vw-surface-strong);
+	--vitra-glass-bg-subtle: var(--vw-surface-soft);
+	--vitra-glass-border: var(--vw-border);
+	--vitra-glass-highlight: var(--vw-highlight);
+	--vitra-glass-shadow: var(--vw-shadow-panel);
+	--vitra-glass-inner-shadow: var(--vw-inner-highlight);
+	--vitra-material-panel: var(--vw-material-panel);
+	--vitra-material-panel-strong: var(--vw-material-panel-strong);
+	--vitra-material-inner: var(--vw-surface-inner);
+	--vitra-material-muted: rgba(238, 245, 249, 0.5);
+	--vitra-material-field: var(--vw-material-field);
+	--vitra-material-field-hover: var(--vw-material-field-hover);
+	--vitra-material-button: var(--vw-material-button);
+	--vitra-material-button-hover: var(--vw-material-button-hover);
+	--vitra-material-primary: var(--vw-material-primary);
+	--vitra-material-primary-hover: var(--vw-material-primary-hover);
+	--vitra-progress-track: var(--vw-progress-track);
+	--vitra-progress-fill-a: var(--vw-progress-fill-a);
+	--vitra-progress-fill-b: var(--vw-progress-fill-b);
+	--vitra-progress-fill-c: var(--vw-progress-fill-c);
+	--vitra-field-shadow: var(--vw-shadow-control);
+	--vitra-card-shadow: var(--vw-shadow-card);
+	--vitra-floating-shadow: var(--vw-shadow-floating);
+	--vitra-modal-shadow: var(--vw-shadow-modal);
+	--vitra-inner-highlight: rgba(255, 255, 255, 0.82);
+	--vitra-inner-dim: rgba(76, 94, 113, 0.05);
+}
+
+/* Stage 1.12C: preview v4 calibrated light palette.
+ * Ice grey and graphite carry the interface; blue remains a restrained accent.
+ */
+:root,
+html[data-theme="light"] {
+	--vitra-bg: #eef6fb;
+	--vitra-bg-elevated: #f8fbff;
+	--vitra-bg-gradient-1: #edf4f9;
+	--vitra-bg-gradient-2: #f8fbff;
+	--vitra-bg-wash: rgba(231, 239, 247, 0.72);
+	--vitra-top-sheen: rgba(255, 255, 255, 0.72);
+	--vitra-glow-a: rgba(188, 219, 238, 0.34);
+	--vitra-glow-b: rgba(186, 181, 226, 0.18);
+	--vitra-glow-c: rgba(255, 255, 255, 0.58);
+	--vitra-surface: rgba(255, 255, 255, 0.58);
+	--vitra-surface-strong: rgba(255, 255, 255, 0.76);
+	--vitra-surface-soft: rgba(244, 248, 251, 0.68);
+	--vitra-surface-subtle: rgba(237, 244, 249, 0.58);
+	--vitra-surface-elevated: rgba(255, 255, 255, 0.64);
+	--vitra-surface-hover: rgba(255, 255, 255, 0.84);
+	--vitra-sidebar-surface: rgba(255, 255, 255, 0.54);
+	--vitra-panel-highlight: rgba(255, 255, 255, 0.82);
+	--vitra-border: rgba(82, 90, 100, 0.14);
+	--vitra-border-strong: rgba(68, 75, 86, 0.24);
+	--vitra-line: rgba(82, 90, 100, 0.1);
+	--vitra-text: #111c2b;
+	--vitra-text-muted: #4e5660;
+	--vitra-text-soft: #6e767e;
+	--vitra-text-subtle: #89919a;
+	--vitra-inverse-text: #f8fbff;
+	--vitra-accent: #3f7fb8;
+	--vitra-accent-strong: #2f638f;
+	--vitra-accent-ink: #285a82;
+	--vitra-accent-soft: rgba(63, 127, 184, 0.12);
+	--vitra-accent-quiet: rgba(63, 127, 184, 0.055);
+	--vitra-accent-border: rgba(63, 127, 184, 0.28);
+	--vitra-icon-muted: rgba(78, 86, 96, 0.78);
+	--vitra-icon-active: #315f86;
+	--vitra-sidebar-rim: rgba(255, 255, 255, 0.78);
+	--vitra-sidebar-tint: rgba(237, 244, 249, 0.42);
+	--vitra-menu-active: rgba(63, 127, 184, 0.09);
+	--vitra-menu-band: rgba(63, 127, 184, 0.34);
+	--vitra-table-row-hover: rgba(78, 86, 96, 0.042);
+	--vitra-success: #638b73;
+	--vitra-success-soft: rgba(99, 139, 115, 0.12);
+	--vitra-warning: #9d7738;
+	--vitra-warning-soft: rgba(183, 139, 69, 0.15);
+	--vitra-danger: #b95f65;
+	--vitra-danger-soft: rgba(185, 95, 101, 0.1);
+	--vitra-info: #586f83;
+	--vitra-violet-soft: rgba(185, 184, 255, 0.13);
+	--vitra-glass-bg: rgba(255, 255, 255, 0.56);
+	--vitra-glass-bg-strong: rgba(255, 255, 255, 0.72);
+	--vitra-glass-bg-subtle: rgba(244, 248, 251, 0.48);
+	--vitra-glass-border: rgba(82, 90, 100, 0.16);
+	--vitra-glass-highlight: rgba(255, 255, 255, 0.84);
+	--vitra-glass-shadow: 0 24px 72px rgba(69, 91, 118, 0.12), 0 8px 24px rgba(69, 91, 118, 0.06);
+	--vitra-glass-inner-shadow: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 -12px 26px rgba(82, 99, 118, 0.045) inset;
+	--vitra-glass-blur: 16px;
+	--vitra-neutral-control: rgba(255, 255, 255, 0.46);
+	--vitra-neutral-control-hover: rgba(255, 255, 255, 0.68);
+	--vitra-material-panel: rgba(255, 255, 255, 0.54);
+	--vitra-material-panel-strong: rgba(255, 255, 255, 0.72);
+	--vitra-material-inner: rgba(255, 255, 255, 0.38);
+	--vitra-material-muted: rgba(237, 244, 249, 0.44);
+	--vitra-material-field: rgba(255, 255, 255, 0.52);
+	--vitra-material-field-hover: rgba(255, 255, 255, 0.76);
+	--vitra-material-button: rgba(255, 255, 255, 0.48);
+	--vitra-material-button-hover: rgba(255, 255, 255, 0.72);
+	--vitra-material-primary: rgba(236, 244, 250, 0.82);
+	--vitra-material-primary-hover: rgba(224, 236, 246, 0.92);
+	--vitra-progress-track: rgba(235, 242, 248, 0.76);
+	--vitra-progress-fill-a: #dfeaf2;
+	--vitra-progress-fill-b: #8eb8d6;
+	--vitra-progress-fill-c: #4f8fbd;
+	--vitra-field-shadow: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 7px 18px rgba(69, 91, 118, 0.055);
+	--vitra-card-shadow: 0 18px 44px rgba(69, 91, 118, 0.09), 0 1px 0 rgba(255, 255, 255, 0.72) inset;
+	--vitra-floating-shadow: 0 24px 70px rgba(55, 75, 101, 0.16), 0 8px 24px rgba(55, 75, 101, 0.08);
+	--vitra-modal-shadow: 0 34px 100px rgba(42, 57, 78, 0.24), 0 10px 34px rgba(42, 57, 78, 0.1);
+	--vitra-inner-highlight: rgba(255, 255, 255, 0.82);
+	--vitra-inner-dim: rgba(76, 94, 113, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		--vitra-material-panel: rgba(18, 28, 42, 0.68);
+		--vitra-material-panel-strong: rgba(24, 36, 53, 0.86);
+		--vitra-material-inner: rgba(35, 48, 65, 0.42);
+		--vitra-material-muted: rgba(23, 34, 49, 0.58);
+		--vitra-material-field: rgba(31, 43, 60, 0.68);
+		--vitra-material-field-hover: rgba(42, 55, 73, 0.82);
+		--vitra-material-button: rgba(31, 43, 60, 0.66);
+		--vitra-material-button-hover: rgba(43, 56, 74, 0.82);
+		--vitra-material-primary: rgba(38, 52, 69, 0.9);
+		--vitra-material-primary-hover: rgba(49, 65, 84, 0.96);
+		--vitra-progress-track: rgba(23, 34, 49, 0.82);
+		--vitra-progress-fill-a: #526a7d;
+		--vitra-progress-fill-b: #78a9cc;
+		--vitra-progress-fill-c: #9dc7e5;
+		--vitra-field-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 8px 18px rgba(0, 0, 0, 0.18);
+		--vitra-card-shadow: 0 22px 58px rgba(0, 0, 0, 0.32), 0 1px 0 rgba(255, 255, 255, 0.07) inset;
+		--vitra-floating-shadow: 0 28px 76px rgba(0, 0, 0, 0.44), 0 8px 24px rgba(0, 0, 0, 0.2);
+		--vitra-modal-shadow: 0 36px 100px rgba(0, 0, 0, 0.58), 0 10px 34px rgba(0, 0, 0, 0.26);
+		--vitra-inner-highlight: rgba(255, 255, 255, 0.08);
+		--vitra-inner-dim: rgba(0, 0, 0, 0.18);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		--vitra-bg: #07111f;
+		--vitra-bg-elevated: #101b2a;
+		--vitra-bg-gradient-1: #0b1220;
+		--vitra-bg-gradient-2: #111827;
+		--vitra-bg-wash: rgba(30, 65, 100, 0.3);
+		--vitra-top-sheen: rgba(116, 185, 255, 0.1);
+		--vitra-grid-line: rgba(174, 206, 232, 0.12);
+		--vitra-grid-opacity: 0.22;
+		--vitra-bg-art-opacity: 0.34;
+		--vitra-glow-a: rgba(46, 117, 174, 0.22);
+		--vitra-glow-b: rgba(118, 103, 205, 0.16);
+		--vitra-glow-c: rgba(116, 185, 255, 0.11);
+
+		--vitra-surface: rgba(14, 23, 36, 0.66);
+		--vitra-surface-strong: rgba(17, 27, 42, 0.9);
+		--vitra-surface-soft: rgba(20, 31, 46, 0.74);
+		--vitra-surface-subtle: rgba(18, 30, 46, 0.6);
+		--vitra-surface-elevated: rgba(20, 32, 48, 0.74);
+		--vitra-surface-hover: rgba(35, 49, 68, 0.82);
+		--vitra-sidebar-surface: rgba(12, 20, 32, 0.72);
+		--vitra-panel-highlight: rgba(255, 255, 255, 0.08);
+
+		--vitra-border: rgba(198, 218, 236, 0.13);
+		--vitra-border-strong: rgba(202, 222, 240, 0.24);
+		--vitra-accent-border: rgba(134, 202, 255, 0.62);
+		--vitra-line: rgba(214, 228, 242, 0.1);
+
+		--vitra-text: #edf5fb;
+		--vitra-text-muted: #aebdca;
+		--vitra-text-soft: #9aaab8;
+		--vitra-text-subtle: #8797a6;
+		--vitra-inverse-text: #101823;
+
+		--vitra-accent: #74b9ff;
+		--vitra-accent-strong: #9cccff;
+		--vitra-accent-soft: rgba(116, 185, 255, 0.16);
+		--vitra-accent-quiet: rgba(116, 185, 255, 0.09);
+		--vitra-icon-muted: rgba(174, 190, 206, 0.74);
+		--vitra-icon-active: #9cccff;
+		--vitra-sidebar-rim: rgba(255, 255, 255, 0.1);
+		--vitra-sidebar-tint: rgba(48, 78, 112, 0.28);
+		--vitra-menu-active: rgba(116, 185, 255, 0.18);
+		--vitra-menu-band: rgba(134, 202, 255, 0.62);
+
+		--vitra-success: #64d3a8;
+		--vitra-warning: #e6b363;
+		--vitra-warning-soft: rgba(230, 179, 99, 0.18);
+		--vitra-danger: #ff7676;
+		--vitra-info: #8fc9f3;
+		--vitra-table-row-hover: rgba(116, 185, 255, 0.08);
+
+		--vitra-shadow-color: rgba(0, 0, 0, 0.42);
+		--vitra-shadow-xs: 0 4px 14px rgba(0, 0, 0, 0.18);
+		--vitra-shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.22);
+		--vitra-shadow-md: 0 16px 40px rgba(0, 0, 0, 0.3);
+		--vitra-shadow-panel: 0 18px 48px rgba(0, 0, 0, 0.34), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+		--vitra-shadow-sidebar: 0 30px 88px rgba(0, 0, 0, 0.48), 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+		--vitra-shadow-floating: 0 28px 80px rgba(0, 0, 0, 0.48);
+		--vitra-shadow-menu: 0 12px 32px rgba(0, 0, 0, 0.28);
+		--vitra-selection: #8fc9ff;
+		--vitra-selection-text: #08111d;
+		--vitra-selection-bg: #8fc9ff;
+
+		--vitra-accent: #86bce7;
+		--vitra-accent-strong: #a4cdf0;
+		--vitra-accent-ink: #c3e2fb;
+		--vitra-accent-soft: rgba(134, 188, 231, 0.13);
+		--vitra-accent-quiet: rgba(134, 188, 231, 0.07);
+		--vitra-icon-muted: rgba(188, 190, 195, 0.74);
+		--vitra-icon-active: #bddcf4;
+		--vitra-glass-bg: rgba(18, 28, 42, 0.68);
+		--vitra-glass-bg-strong: rgba(24, 36, 53, 0.86);
+		--vitra-glass-bg-subtle: rgba(24, 35, 50, 0.58);
+		--vitra-glass-border: rgba(204, 220, 236, 0.14);
+		--vitra-glass-highlight: rgba(255, 255, 255, 0.08);
+		--vitra-glass-shadow: 0 20px 58px rgba(0, 0, 0, 0.34);
+		--vitra-glass-inner-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 -12px 26px rgba(0, 0, 0, 0.16) inset;
+		--vitra-glass-blur: 18px;
+		--vitra-neutral-control: rgba(31, 43, 60, 0.68);
+		--vitra-neutral-control-hover: rgba(42, 55, 73, 0.82);
+		--vitra-violet-soft: rgba(168, 151, 218, 0.12);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		--vitra-bg: #0a121d;
+		--vitra-bg-elevated: #111b28;
+		--vitra-bg-gradient-1: #0c1421;
+		--vitra-bg-gradient-2: #151d2a;
+		--vitra-bg-wash: rgba(33, 50, 69, 0.32);
+		--vitra-top-sheen: rgba(219, 232, 244, 0.07);
+		--vitra-glow-a: rgba(72, 103, 128, 0.18);
+		--vitra-glow-b: rgba(142, 125, 197, 0.12);
+		--vitra-glow-c: rgba(94, 122, 149, 0.08);
+		--vitra-surface: rgba(18, 28, 42, 0.68);
+		--vitra-surface-strong: rgba(24, 36, 53, 0.86);
+		--vitra-surface-soft: rgba(25, 36, 52, 0.72);
+		--vitra-surface-subtle: rgba(22, 33, 49, 0.58);
+		--vitra-surface-elevated: rgba(26, 38, 55, 0.72);
+		--vitra-surface-hover: rgba(39, 52, 69, 0.82);
+		--vitra-sidebar-surface: rgba(15, 23, 35, 0.74);
+		--vitra-panel-highlight: rgba(255, 255, 255, 0.075);
+		--vitra-border: rgba(204, 220, 236, 0.12);
+		--vitra-border-strong: rgba(209, 224, 238, 0.21);
+		--vitra-line: rgba(219, 232, 244, 0.085);
+		--vitra-text: #eef5fb;
+		--vitra-text-muted: #c0c8d1;
+		--vitra-text-soft: #a5afbc;
+		--vitra-text-subtle: #8d98a6;
+		--vitra-inverse-text: #0e1722;
+		--vitra-accent: #88b9de;
+		--vitra-accent-strong: #a5cbe8;
+		--vitra-accent-ink: #d1e8f8;
+		--vitra-accent-soft: rgba(136, 185, 222, 0.12);
+		--vitra-accent-quiet: rgba(136, 185, 222, 0.06);
+		--vitra-accent-border: rgba(136, 185, 222, 0.28);
+		--vitra-icon-muted: rgba(190, 196, 203, 0.76);
+		--vitra-icon-active: #c4ddf0;
+		--vitra-sidebar-rim: rgba(255, 255, 255, 0.09);
+		--vitra-sidebar-tint: rgba(47, 63, 82, 0.25);
+		--vitra-menu-active: rgba(136, 185, 222, 0.105);
+		--vitra-menu-band: rgba(148, 191, 224, 0.38);
+		--vitra-table-row-hover: rgba(149, 171, 190, 0.055);
+		--vitra-success: #86c4a0;
+		--vitra-success-soft: rgba(134, 196, 160, 0.12);
+		--vitra-warning: #d4b16d;
+		--vitra-warning-soft: rgba(212, 177, 109, 0.14);
+		--vitra-danger: #ec8b93;
+		--vitra-danger-soft: rgba(236, 139, 147, 0.11);
+		--vitra-info: #9abed8;
+		--vitra-violet-soft: rgba(169, 154, 218, 0.12);
+		--vitra-glass-bg: rgba(18, 28, 42, 0.66);
+		--vitra-glass-bg-strong: rgba(24, 36, 53, 0.84);
+		--vitra-glass-bg-subtle: rgba(24, 35, 50, 0.56);
+		--vitra-glass-border: rgba(204, 220, 236, 0.13);
+		--vitra-glass-highlight: rgba(255, 255, 255, 0.08);
+		--vitra-glass-shadow: 0 22px 64px rgba(0, 0, 0, 0.34), 0 8px 24px rgba(0, 0, 0, 0.18);
+		--vitra-glass-inner-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 -12px 26px rgba(0, 0, 0, 0.16) inset;
+		--vitra-glass-blur: 16px;
+		--vitra-neutral-control: rgba(31, 43, 60, 0.66);
+		--vitra-neutral-control-hover: rgba(43, 56, 74, 0.82);
+		--vitra-material-panel: rgba(18, 28, 42, 0.68);
+		--vitra-material-panel-strong: rgba(24, 36, 53, 0.86);
+		--vitra-material-inner: rgba(35, 48, 65, 0.42);
+		--vitra-material-muted: rgba(23, 34, 49, 0.58);
+		--vitra-material-field: rgba(31, 43, 60, 0.68);
+		--vitra-material-field-hover: rgba(42, 55, 73, 0.82);
+		--vitra-material-button: rgba(31, 43, 60, 0.66);
+		--vitra-material-button-hover: rgba(43, 56, 74, 0.82);
+		--vitra-material-primary: rgba(38, 52, 69, 0.9);
+		--vitra-material-primary-hover: rgba(49, 65, 84, 0.96);
+		--vitra-progress-track: rgba(23, 34, 49, 0.82);
+		--vitra-progress-fill-a: #526a7d;
+		--vitra-progress-fill-b: #78a9cc;
+		--vitra-progress-fill-c: #9dc7e5;
+		--vitra-field-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 8px 18px rgba(0, 0, 0, 0.18);
+		--vitra-card-shadow: 0 22px 58px rgba(0, 0, 0, 0.32), 0 1px 0 rgba(255, 255, 255, 0.07) inset;
+		--vitra-floating-shadow: 0 28px 76px rgba(0, 0, 0, 0.44), 0 8px 24px rgba(0, 0, 0, 0.2);
+		--vitra-modal-shadow: 0 36px 100px rgba(0, 0, 0, 0.58), 0 10px 34px rgba(0, 0, 0, 0.26);
+		--vitra-inner-highlight: rgba(255, 255, 255, 0.08);
+		--vitra-inner-dim: rgba(0, 0, 0, 0.18);
+	}
+}
+/* Stage 1.22 EOF light authority. */
+:root,
+:root:not([data-theme]),
+html[data-theme="light"] {
+	--vw-stage-version: "1.22";
+	--vw-bg-base: #f6f9fc;
+	--vw-bg: var(--vw-bg-base);
+	--vw-bg-atmosphere:
+		radial-gradient(920px 620px at 10% -8%, rgba(116, 186, 218, 0.16), transparent 62%),
+		radial-gradient(860px 580px at 94% 0%, rgba(178, 164, 235, 0.14), transparent 60%),
+		linear-gradient(145deg, #f9fcff 0%, #eef4f8 52%, #f7f6ff 100%);
+	--vw-bg-mesh-cyan: rgba(116, 186, 218, 0.16);
+	--vw-bg-mesh-aqua: rgba(182, 221, 221, 0.1);
+	--vw-bg-mesh-violet: rgba(178, 164, 235, 0.14);
+	--vw-surface-glass-1: rgba(255, 255, 255, 0.58);
+	--vw-surface-glass-2: rgba(252, 254, 255, 0.72);
+	--vw-surface-glass-3: rgba(255, 255, 255, 0.86);
+	--vw-surface: var(--vw-surface-glass-1);
+	--vw-surface-soft: var(--vw-surface-glass-2);
+	--vw-surface-strong: var(--vw-surface-glass-3);
+	--vw-surface-raised: rgba(255, 255, 255, 0.9);
+	--vw-surface-floating: rgba(255, 255, 255, 0.82);
+	--vw-surface-sunken: rgba(238, 244, 248, 0.56);
+	--vw-surface-control: rgba(255, 255, 255, 0.68);
+	--vw-surface-control-hover: rgba(255, 255, 255, 0.86);
+	--vw-surface-control-active: rgba(239, 247, 251, 0.9);
+	--vw-border-hairline: rgba(58, 75, 92, 0.075);
+	--vw-border-soft: rgba(58, 75, 92, 0.105);
+	--vw-border: rgba(58, 75, 92, 0.14);
+	--vw-border-medium: rgba(54, 72, 88, 0.18);
+	--vw-border-strong: rgba(46, 64, 82, 0.26);
+	--vw-border-focus: rgba(79, 159, 190, 0.36);
+	--vw-highlight-top: rgba(255, 255, 255, 0.84);
+	--vw-highlight-inner: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 -10px 22px rgba(66, 86, 104, 0.035) inset;
+	--vw-text-strong: #101b27;
+	--vw-text-main: #1b2835;
+	--vw-text: var(--vw-text-main);
+	--vw-text-soft: #61707c;
+	--vw-text-muted: #778590;
+	--vw-accent: #4f86ae;
+	--vw-accent-soft: rgba(79, 134, 174, 0.095);
+	--vw-accent-strong: #366f96;
+	--vw-accent-vivid: #367fa6;
+	--vw-accent-ink: #264f68;
+	--vw-cyan: #69b6c9;
+	--vw-aqua: #8ac9bd;
+	--vw-success: #5f9875;
+	--vw-success-soft: rgba(95, 152, 117, 0.12);
+	--vw-danger: #bd646d;
+	--vw-danger-soft: rgba(189, 100, 109, 0.1);
+	--vw-field-bg: rgba(255, 255, 255, 0.66);
+	--vw-field-bg-hover: rgba(255, 255, 255, 0.84);
+	--vw-field-bg-focus: rgba(247, 252, 255, 0.92);
+	--vw-field-border: rgba(60, 82, 100, 0.18);
+	--vw-dropdown-bg: rgba(255, 255, 255, 0.88);
+	--vw-dynlist-bg: rgba(241, 247, 250, 0.58);
+	--vw-button-bg: rgba(255, 255, 255, 0.58);
+	--vw-button-bg-hover: rgba(255, 255, 255, 0.78);
+	--vw-button-primary-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(234, 243, 249, 0.82));
+	--vw-button-primary-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(226, 239, 247, 0.9));
+	--vw-button-primary-solid: #294253;
+	--vw-button-danger-bg: rgba(255, 239, 242, 0.72);
+	--vw-apply-dock-bg: rgba(255, 255, 255, 0.72);
+	--vw-modal-bg: rgba(255, 255, 255, 0.78);
+	--vw-sidebar-bg: rgba(250, 253, 255, 0.68);
+	--vw-sidebar-active-bg: rgba(236, 246, 250, 0.78);
+	--vw-sidebar-hover-bg: rgba(255, 255, 255, 0.62);
+	--vw-progress-track: rgba(225, 234, 240, 0.82);
+	--vw-progress-fill: #8fbccf;
+	--vw-progress-fill-strong: #5f9ab7;
+	--vw-progress-fill-a: #d9e8ef;
+	--vw-progress-fill-b: #8fbccf;
+	--vw-progress-fill-c: #5f9ab7;
+	--vw-table-head-bg: rgba(236, 244, 249, 0.68);
+	--vw-table-row-bg: rgba(255, 255, 255, 0.48);
+	--vw-table-row-alt-bg: rgba(239, 246, 250, 0.42);
+	--vw-focus-ring: 0 0 0 3px rgba(80, 154, 190, 0.16);
+	--vw-shadow-control: 0 1px 0 rgba(255, 255, 255, 0.76) inset, 0 7px 16px rgba(42, 65, 84, 0.05);
+	--vw-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 18px 52px rgba(42, 61, 78, 0.1);
+	--vw-shadow-floating: 0 1px 0 rgba(255, 255, 255, 0.78) inset, 0 24px 68px rgba(36, 55, 76, 0.16);
+	--vw-shadow-modal: 0 1px 0 rgba(255, 255, 255, 0.82) inset, 0 36px 104px rgba(30, 48, 68, 0.24);
+	--vw-shadow-color: rgba(36, 55, 76, 0.2);
+	--vw-inner-dim: rgba(58, 74, 88, 0.08);
+	--vw-action-primary-bg: var(--vw-button-primary-bg);
+	--vw-action-primary-hover: var(--vw-button-primary-hover);
+	--vw-action-primary-text: var(--vw-accent-ink);
+	--vw-action-primary-border: rgba(70, 106, 130, 0.18);
+	--vw-tab-active-bg: var(--vw-button-primary-bg);
+	--vw-tab-active-border: rgba(75, 130, 162, 0.22);
+	--vw-dropdown-item-hover-bg: rgba(236, 246, 250, 0.76);
+	--vw-dynlist-item-bg: rgba(255, 255, 255, 0.64);
+	--vw-meter-track-bg: var(--vw-progress-track);
+	--vw-meter-fill-bg: linear-gradient(90deg, var(--vw-progress-fill-a), var(--vw-progress-fill-b), var(--vw-progress-fill-c));
+	--vw-meter-glow: rgba(86, 146, 178, 0.1);
+	--vw-material-base: var(--vw-surface-glass-1);
+	--vw-material-elevated: var(--vw-surface-raised);
+	--vw-material-inset: var(--vw-surface-sunken);
+	--vw-accent-calm: var(--vw-accent);
+	--vw-accent-atmosphere: var(--vw-bg-atmosphere);
+	--vw-focus-ring-color: var(--vw-border-focus);
+	--vw-primary-action: var(--vw-button-primary-bg);
+	--vw-primary-action-text: var(--vw-accent-ink);
+	--vw-progress-highlight: rgba(255, 255, 255, 0.58);
+	--vw-progress-shadow: 0 1px 0 rgba(255, 255, 255, 0.52) inset, 0 -5px 12px rgba(58, 74, 88, 0.08) inset;
+	--vitra-bg: var(--vw-bg-base);
+	--vitra-bg-gradient-1: #eef4f8;
+	--vitra-bg-gradient-2: #f7f6ff;
+	--vitra-glow-a: var(--vw-bg-mesh-cyan);
+	--vitra-glow-b: var(--vw-bg-mesh-violet);
+	--vitra-surface: var(--vw-surface);
+	--vitra-surface-strong: var(--vw-surface-strong);
+	--vitra-surface-soft: var(--vw-surface-soft);
+	--vitra-sidebar-surface: var(--vw-sidebar-bg);
+	--vitra-border: var(--vw-border);
+	--vitra-text: var(--vw-text-main);
+	--vitra-text-muted: var(--vw-text-muted);
+	--vitra-text-soft: var(--vw-text-soft);
+	--vitra-accent: var(--vw-accent);
+	--vitra-accent-ink: var(--vw-accent-ink);
+	--vitra-menu-active: var(--vw-sidebar-active-bg);
+	--vitra-glass-bg: rgba(255, 255, 255, 0.62);
+	--vitra-glass-bg-strong: rgba(255, 255, 255, 0.84);
+	--vitra-material-field: var(--vw-field-bg);
+	--vitra-material-button: var(--vw-button-bg);
+	--vitra-material-primary: var(--vw-button-primary-bg);
+	--vitra-progress-track: var(--vw-progress-track);
+	--vitra-progress-fill-a: var(--vw-progress-fill-a);
+	--vitra-progress-fill-b: var(--vw-progress-fill-b);
+	--vitra-progress-fill-c: var(--vw-progress-fill-c);
+}

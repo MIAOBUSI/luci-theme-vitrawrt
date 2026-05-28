@@ -1,0 +1,45 @@
+#!/bin/sh
+
+changed=0
+
+detect_pkg_mgr() {
+	if command -v apk >/dev/null 2>&1; then
+		echo apk
+	elif command -v opkg >/dev/null 2>&1; then
+		echo opkg
+	else
+		echo unknown
+	fi
+}
+
+set_opt() {
+	local key="$1"
+	local val="$2"
+
+	if ! uci -q get "luci.$key" >/dev/null 2>&1; then
+		uci -q set "luci.$key=$val"
+		changed=1
+	fi
+}
+
+pkg_mgr="$(detect_pkg_mgr)"
+
+set_opt themes.VitraWrt /luci-static/vitrawrt
+
+if [ "$PKG_UPGRADE" != 1 ]; then
+	current="$(uci -q get luci.main.mediaurlbase)"
+
+	case "$current" in
+		""|/luci-static/bootstrap|/luci-static/bootstrap-dark|/luci-static/bootstrap-light|/luci-static/openwrt*|/luci-static/material)
+			uci -q set luci.main.mediaurlbase=/luci-static/vitrawrt
+			changed=1
+		;;
+	esac
+fi
+
+if [ "$changed" = 1 ]; then
+	uci commit luci
+	logger -t luci-theme-vitrawrt "configured VitraWrt theme using package manager: $pkg_mgr"
+fi
+
+exit 0

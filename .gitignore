@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Build artifacts
+*.ipk
+build/
+
+# Audit outputs (regenerated)
+audit-output/
+
+# Editor
+.vscode/
+.idea/
+
+# Temp scripts
+*.tmp

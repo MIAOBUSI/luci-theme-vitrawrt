@@ -1,0 +1,128 @@
+# Visual Polish 1.10 Audit
+
+Generated: 2026-05-22T12:51:12.996Z
+Output: audit-output/visual-polish-1.10/20260522-204854
+
+## Login
+- light desktop: audit-output/visual-polish-1.10/20260522-204854/login-light-desktop.png
+  - logo/card width ratio: 0.119
+  - logo/card height ratio: 0.067
+  - submit background: rgb(36, 120, 212)
+  - submit is green: false
+  - horizontal overflow: false
+  - error screenshot: audit-output/visual-polish-1.10/20260522-204854/login-light-desktop-error.png
+- light tablet: audit-output/visual-polish-1.10/20260522-204854/login-light-tablet.png
+  - logo/card width ratio: 0.119
+  - logo/card height ratio: 0.067
+  - submit background: rgb(36, 120, 212)
+  - submit is green: false
+  - horizontal overflow: false
+- light mobile: audit-output/visual-polish-1.10/20260522-204854/login-light-mobile.png
+  - logo/card width ratio: 0.205
+  - logo/card height ratio: 0.167
+  - submit background: rgb(36, 120, 212)
+  - submit is green: false
+  - horizontal overflow: false
+- dark desktop: audit-output/visual-polish-1.10/20260522-204854/login-dark-desktop.png
+  - logo/card width ratio: 0.119
+  - logo/card height ratio: 0.067
+  - submit background: rgb(116, 185, 255)
+  - submit is green: false
+  - horizontal overflow: false
+  - error screenshot: audit-output/visual-polish-1.10/20260522-204854/login-dark-desktop-error.png
+- dark tablet: audit-output/visual-polish-1.10/20260522-204854/login-dark-tablet.png
+  - logo/card width ratio: 0.119
+  - logo/card height ratio: 0.067
+  - submit background: rgb(116, 185, 255)
+  - submit is green: false
+  - horizontal overflow: false
+- dark mobile: audit-output/visual-polish-1.10/20260522-204854/login-dark-mobile.png
+  - logo/card width ratio: 0.205
+  - logo/card height ratio: 0.167
+  - submit background: rgb(116, 185, 255)
+  - submit is green: false
+  - horizontal overflow: false
+
+## Admin Pages
+- light status-overview: audit-output/visual-polish-1.10/20260522-204854/light-status-overview.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- light system-system: audit-output/visual-polish-1.10/20260522-204854/light-system-system.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- light packages: audit-output/visual-polish-1.10/20260522-204854/light-packages.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 5
+  - package buttons: [{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246}]
+- light startup: audit-output/visual-polish-1.10/20260522-204854/light-startup.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- light processes: audit-output/visual-polish-1.10/20260522-204854/light-processes.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- light syslog: audit-output/visual-polish-1.10/20260522-204854/light-syslog.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- light vnstat2: audit-output/visual-polish-1.10/20260522-204854/light-vnstat2.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 2
+  - vnStat2: {"gap":42,"visibleImageCount":2,"firstImage":{"x":294,"y":318,"width":500,"height":200,"right":794,"bottom":518}}
+- light network-network: audit-output/visual-polish-1.10/20260522-204854/light-network-network.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 2
+- light network-share: audit-output/visual-polish-1.10/20260522-204854/light-network-share.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 2
+- dark status-overview: audit-output/visual-polish-1.10/20260522-204854/dark-status-overview.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- dark system-system: audit-output/visual-polish-1.10/20260522-204854/dark-system-system.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- dark packages: audit-output/visual-polish-1.10/20260522-204854/dark-packages.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 5
+  - package buttons: [{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246},{"text":"Installed","width":80,"cellWidth":246}]
+- dark startup: audit-output/visual-polish-1.10/20260522-204854/dark-startup.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- dark processes: audit-output/visual-polish-1.10/20260522-204854/dark-processes.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- dark syslog: audit-output/visual-polish-1.10/20260522-204854/dark-syslog.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 1
+- dark vnstat2: audit-output/visual-polish-1.10/20260522-204854/dark-vnstat2.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 2
+  - vnStat2: {"gap":42,"visibleImageCount":2,"firstImage":{"x":294,"y":318,"width":500,"height":200,"right":794,"bottom":518}}
+- dark network-network: audit-output/visual-polish-1.10/20260522-204854/dark-network-network.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 2
+- dark network-share: audit-output/visual-polish-1.10/20260522-204854/dark-network-share.png
+  - horizontal overflow: false
+  - sidebar expanded groups: 1
+  - stretched button samples: 2
+
+## Safety
+- fake click findings in theme JS: 0
+- global table normalize findings: 0
+
+Stage 1.10 does not implement dashboard, rpcd, service data, or fake tab recovery.

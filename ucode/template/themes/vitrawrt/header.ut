@@ -1,0 +1,140 @@
+{#
+ Copyright (C) 2026 VitraWrt contributors
+ Licensed to the public under the Apache License 2.0.
+-#}
+
+{%
+	import { getuid, getspnam } from 'luci.core';
+
+	const boardinfo = ubus.call('system', 'board');
+
+	http.prepare_content('text/html; charset=UTF-8');
+-%}
+
+<!DOCTYPE html>
+<html lang="{{ dispatcher.lang }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="color-scheme" content="light dark">
+		<meta name="darkreader-lock">
+		<title>{{ striptags(`${boardinfo.hostname ?? '?'}${dispatched?.title ? ` | ${_(dispatched.title)}` : ''}`) }}</title>
+		<script src="{{ media }}/js/theme-mode.js?v=1.24P"></script>
+		<script src="{{ media }}/js/glass-quality.js?v=1.24P"></script>
+		{% if (node?.css): %}
+		<link rel="stylesheet" href="{{ resource }}/{{ node.css }}">
+		{% endif %}
+		{% if (css): %}
+		<style title="text/css">{{ css }}</style>
+		{% endif %}
+		<link rel="stylesheet" href="{{ media }}/cascade.css?v=1.24P">
+		<link rel="icon" href="{{ media }}/img/logo.svg?v=1.24P" sizes="any">
+		<script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
+		<script src="{{ resource }}/cbi.js"></script>
+		<script defer src="{{ media }}/js/sidebar.js?v=1.24P"></script>
+		<script defer src="{{ media }}/js/boot.js?v=1.24P"></script>
+	</head>
+
+	<body class="lang_{{ dispatcher.lang }} {{ blank_page ? 'vwrt-auth-body' : 'vwrt-shell-body' }} {{ entityencode(striptags(node?.title ?? ''), true) }}" data-page="{{ entityencode(join('-', ctx.request_path), true) }}">
+		{% if (!blank_page): %}
+		<a class="vwrt-skip-link" href="#maincontent">{{ _('Skip to content') }}</a>
+
+		<div id="vwrt-app">
+			<div class="vwrt-shell-aura" aria-hidden="true"></div>
+
+			<header class="vwrt-mobile-topbar" aria-label="{{ _('Navigation') }}">
+				<button class="vwrt-icon-button" type="button" data-vwrt-drawer-toggle aria-controls="vwrt-sidebar" aria-expanded="false" aria-label="{{ _('Open menu') }}">
+					<span class="vwrt-bars" aria-hidden="true"></span>
+				</button>
+				<a class="vwrt-mobile-brand" href="/">
+					<img src="{{ media }}/img/logo.svg" alt="">
+					<span class="vwrt-mobile-title">VitraWrt</span>
+				</a>
+				<button class="vwrt-text-button" type="button" data-vwrt-theme-action="cycle" aria-label="{{ _('Cycle color mode') }}">
+					<span data-vwrt-theme-current>System</span>
+				</button>
+			</header>
+
+			<div class="vwrt-drawer-backdrop" data-vwrt-drawer-backdrop></div>
+
+			<aside id="vwrt-sidebar" aria-label="{{ _('Navigation') }}">
+				<a class="vwrt-sidebar-brand" href="/">
+					<img src="{{ media }}/img/logo.svg" alt="">
+					<span class="vwrt-brand-text">
+						<span class="vwrt-brand-name">VitraWrt</span>
+						<span class="vwrt-brand-subname">璃境</span>
+						<span class="vwrt-hostname">{{ striptags(boardinfo.hostname ?? '?') }}</span>
+					</span>
+				</a>
+
+				<div class="vwrt-sidebar-status">
+					<span>{{ version.distname }} {{ version.distversion }}</span>
+					<span class="vwrt-status-dot" aria-hidden="true"></span>
+				</div>
+
+				<nav id="vitrawrt-sidebar-menu" aria-label="{{ _('Main menu') }}"></nav>
+
+				<div class="vwrt-sidebar-actions vitra-sidebar-controls">
+					<div class="vwrt-theme-panel" id="vwrt-theme-panel" hidden>
+						<div class="vwrt-theme-grid" role="group" aria-label="{{ _('Color mode') }}">
+							<button class="vwrt-theme-button" type="button" data-vwrt-theme-value="system">System</button>
+							<button class="vwrt-theme-button" type="button" data-vwrt-theme-value="light">Light</button>
+							<button class="vwrt-theme-button" type="button" data-vwrt-theme-value="dark">Dark</button>
+						</div>
+						<div class="vwrt-glass-row" role="group" aria-label="{{ _('Glass quality') }}">
+							<span>Glass</span>
+							<button class="vwrt-theme-button" type="button" data-vwrt-glass-value="auto">Auto</button>
+							<button class="vwrt-theme-button" type="button" data-vwrt-glass-value="low">Low</button>
+						</div>
+					</div>
+
+					<div class="vwrt-sidebar-action-row">
+						<button class="vwrt-text-button vwrt-control-pill" type="button" data-vwrt-panel-toggle="#vwrt-theme-panel" data-vwrt-control-tooltip="{{ _('Theme settings') }}" aria-label="{{ _('Theme settings') }}" aria-expanded="false">
+							<span class="vwrt-control-label">Theme Settings</span>
+						</button>
+						<button class="vwrt-icon-button vwrt-control-icon" type="button" data-vwrt-sidebar-toggle data-vwrt-control-tooltip="{{ _('Collapse sidebar') }}" aria-label="{{ _('Collapse sidebar') }}" aria-pressed="false">
+							<span class="vwrt-control-label">Collapse</span>
+						</button>
+						<button class="vwrt-icon-button vwrt-control-icon" type="button" data-vwrt-theme-action="cycle" data-vwrt-control-tooltip="{{ _('Cycle color mode') }}" aria-label="{{ _('Cycle color mode') }}">
+							<span data-vwrt-theme-current>System</span>
+						</button>
+					</div>
+				</div>
+			</aside>
+
+			<main id="maincontent" class="container vitra-page" tabindex="-1">
+			{% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
+				<div class="alert-message warning password-warning">
+					<div class="vwrt-alert-content">
+						<h4>{{ _('No password set!') }}</h4>
+						<p>{{ _('There is no password set on this router. Please configure a root password to protect the web interface.') }}</p>
+					</div>
+					{% if (dispatcher.lookup("admin/system/admin")): %}
+						<div class="right"><a class="btn" href="{{ dispatcher.build_url("admin/system/admin") }}">{{ _('Go to password configuration...') }}</a></div>
+					{% endif %}
+				</div>
+			{% endif %}
+
+			{% if (boardinfo.rootfs_type == "initramfs"): %}
+				<div class="alert-message warning recovery-warning">
+					<div class="vwrt-alert-content">
+						<h4>{{ _('System running in recovery (initramfs) mode.') }}</h4>
+						<p>{{ _('No changes to settings will be stored and are lost after rebooting. This mode should only be used to install a firmware upgrade') }}</p>
+					</div>
+					{% if (dispatcher.lookup("admin/system/flash")): %}
+						<div class="right"><a class="btn" href="{{ dispatcher.build_url("admin/system/flash") }}">{{ _('Go to firmware upgrade...') }}</a></div>
+					{% endif %}
+				</div>
+			{% endif %}
+
+			<noscript>
+				<div class="alert-message warning noscript-warning">
+					<div class="vwrt-alert-content">
+						<h4>{{ _('JavaScript required!') }}</h4>
+						<p>{{ _('You must enable JavaScript in your browser or LuCI will not work properly.') }}</p>
+					</div>
+				</div>
+			</noscript>
+
+			<div id="tabmenu" style="display:none"></div>
+		{% endif %}

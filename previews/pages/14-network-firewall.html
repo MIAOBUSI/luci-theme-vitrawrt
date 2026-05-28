@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Firewall Preview</title><link rel="stylesheet" href="../css/preview.css"></head>
+<body><div class="atlas-shell app"><aside class="sidebar"><div class="brand"><svg class="brand-mark"><use href="../img/preview-assets.svg#logo"></use></svg><div class="brand-copy"><div class="brand-title">VitraWrt</div><div class="brand-subtitle">璃境</div></div></div><nav class="nav"><a class="nav-item active"><svg class="icon"><use href="../img/preview-assets.svg#network"></use></svg><span class="nav-text">Network</span></a></nav></aside><main class="content">
+  <p class="atlas-notice"><strong>This is a static visual target for luci-theme-vitrawrt.</strong> It must not be implemented by rewriting LuCI page logic. Real LuCI pages must preserve native behavior and DOM lifecycle.</p>
+  <div class="page-head"><div><div class="eyebrow">Network</div><h1>Firewall</h1><p class="muted">Rules and zones stay table/form based, not converted to dashboard panels.</p></div></div>
+  <section class="panel"><div class="panel-header"><h2>Zones</h2><span class="btn primary">Add zone</span></div><div class="table-wrap"><table><tr><th>Name</th><th>Input</th><th>Output</th><th>Forward</th><th>Masq</th><th>Actions</th></tr><tr><td>lan</td><td>accept</td><td>accept</td><td>accept</td><td>-</td><td><span class="btn">Edit</span></td></tr><tr><td>wan</td><td>reject</td><td>accept</td><td>reject</td><td>yes</td><td><span class="btn">Edit</span></td></tr></table></div></section>
+  <p class="boundary">Safe visual skin · Do not globally normalize firewall tables · Wide rules use page-scoped overflow only.</p>
+</main></div></body></html>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="VitraWrt dark">
+  <defs>
+    <linearGradient id="leftFacet" x1="11" y1="8" x2="32" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eefaff" stop-opacity=".9"/>
+      <stop offset=".43" stop-color="#6db8ec" stop-opacity=".76"/>
+      <stop offset="1" stop-color="#284f77" stop-opacity=".66"/>
+    </linearGradient>
+    <linearGradient id="rightFacet" x1="53" y1="8" x2="32" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e7f7ff" stop-opacity=".88"/>
+      <stop offset=".48" stop-color="#6e9cdb" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#9a8cff" stop-opacity=".58"/>
+    </linearGradient>
+    <linearGradient id="coreFacet" x1="31" y1="7" x2="34" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".9"/>
+      <stop offset=".54" stop-color="#afe4ff" stop-opacity=".56"/>
+      <stop offset="1" stop-color="#c0b6ff" stop-opacity=".36"/>
+    </linearGradient>
+    <radialGradient id="prismGlow" cx="43%" cy="28%" r="60%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".58"/>
+      <stop offset=".55" stop-color="#8fd2ff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glassDepth" x="-24%" y="-18%" width="148%" height="150%">
+      <feDropShadow dx="0" dy="7" stdDeviation="4.5" flood-color="#000b16" flood-opacity=".34"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="1.2" flood-color="#b9e9ff" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <g filter="url(#glassDepth)">
+    <path d="M9.5 9.5h11.8l12.2 40.8-7.2 7.9L9.5 9.5Z" fill="url(#leftFacet)" stroke="#d7f1ff" stroke-opacity=".44" stroke-width="1.05" stroke-linejoin="round"/>
+    <path d="M54.5 9.5H42.7L30.5 50.3l7.2 7.9L54.5 9.5Z" fill="url(#rightFacet)" stroke="#e6f6ff" stroke-opacity=".42" stroke-width="1.05" stroke-linejoin="round"/>
+    <path d="M25.7 9.5h12.6l-4.8 40.2L30 34.6 25.7 9.5Z" fill="url(#coreFacet)" stroke="#ffffff" stroke-opacity=".44" stroke-width=".9" stroke-linejoin="round"/>
+    <path d="M15.7 12.8 27.7 47M48.4 12.7 37.3 47.7" fill="none" stroke="#eaf8ff" stroke-opacity=".28" stroke-width=".95" stroke-linecap="round"/>
+    <ellipse cx="32" cy="24.5" rx="17" ry="14.5" fill="url(#prismGlow)" opacity=".5"/>
+  </g>
+</svg>

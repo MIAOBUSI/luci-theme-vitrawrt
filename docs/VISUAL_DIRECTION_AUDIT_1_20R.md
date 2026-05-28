@@ -1,0 +1,218 @@
+# Visual Direction Audit 1.20R
+
+Output: audit-output/visual-direction-1.20R/20260526-121703
+
+## Source Safety
+- check-js-safety status: 0
+- check-css-safety status: 0
+- fake click detected: no
+- global table normalize detected: no
+
+## Login
+- light 1920x1080: audit-output/visual-direction-1.20R/20260526-121703/login-light-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgba(0, 0, 0, 0)
+- light 390x844: audit-output/visual-direction-1.20R/20260526-121703/login-light-390x844.png; logo={"x":159,"y":237,"width":72,"height":72}; button=rgba(0, 0, 0, 0)
+- dark 1920x1080: audit-output/visual-direction-1.20R/20260526-121703/login-dark-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgba(0, 0, 0, 0)
+- dark 390x844: audit-output/visual-direction-1.20R/20260526-121703/login-dark-390x844.png; logo={"x":159,"y":237,"width":72,"height":72}; button=rgba(0, 0, 0, 0)
+
+## Pages
+- light status-overview: audit-output/visual-direction-1.20R/20260526-121703/light-status-overview.png
+  - blue usage ratio: 0.103
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light system-system: audit-output/visual-direction-1.20R/20260526-121703/light-system-system.png
+  - blue usage ratio: 0.141
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light network-network: audit-output/visual-direction-1.20R/20260526-121703/light-network-network.png
+  - blue usage ratio: 0.089
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+  - modal opened: true
+- light vnstat2: audit-output/visual-direction-1.20R/20260526-121703/light-vnstat2.png
+  - blue usage ratio: 0.109
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light services: audit-output/visual-direction-1.20R/20260526-121703/light-services.png
+  - blue usage ratio: 0.074
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light openclash: audit-output/visual-direction-1.20R/20260526-121703/light-openclash.png
+  - blue usage ratio: 0.04
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light mosdns: audit-output/visual-direction-1.20R/20260526-121703/light-mosdns.png
+  - blue usage ratio: 0.088
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light packages: audit-output/visual-direction-1.20R/20260526-121703/light-packages.png
+  - blue usage ratio: 0.03
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light startup: audit-output/visual-direction-1.20R/20260526-121703/light-startup.png
+  - blue usage ratio: 0.065
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light processes: audit-output/visual-direction-1.20R/20260526-121703/light-processes.png
+  - blue usage ratio: 0.011
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- light syslog: audit-output/visual-direction-1.20R/20260526-121703/light-syslog.png
+  - blue usage ratio: 0.031
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark status-overview: audit-output/visual-direction-1.20R/20260526-121703/dark-status-overview.png
+  - blue usage ratio: 0.154
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark system-system: audit-output/visual-direction-1.20R/20260526-121703/dark-system-system.png
+  - blue usage ratio: 0.192
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark network-network: audit-output/visual-direction-1.20R/20260526-121703/dark-network-network.png
+  - blue usage ratio: 0.155
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+  - modal opened: true
+- dark vnstat2: audit-output/visual-direction-1.20R/20260526-121703/dark-vnstat2.png
+  - blue usage ratio: 0.211
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark services: audit-output/visual-direction-1.20R/20260526-121703/dark-services.png
+  - blue usage ratio: 0.117
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark openclash: audit-output/visual-direction-1.20R/20260526-121703/dark-openclash.png
+  - blue usage ratio: 0.104
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark mosdns: audit-output/visual-direction-1.20R/20260526-121703/dark-mosdns.png
+  - blue usage ratio: 0.142
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark packages: audit-output/visual-direction-1.20R/20260526-121703/dark-packages.png
+  - blue usage ratio: 0.059
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark startup: audit-output/visual-direction-1.20R/20260526-121703/dark-startup.png
+  - blue usage ratio: 0.079
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark processes: audit-output/visual-direction-1.20R/20260526-121703/dark-processes.png
+  - blue usage ratio: 0.023
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+- dark syslog: audit-output/visual-direction-1.20R/20260526-121703/dark-syslog.png
+  - blue usage ratio: 0.115
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - dropdown options visible before open: 0
+
+## Direction Checks
+- Visual target: docs/previews/vitrawrt-preview-premium-v4.html. The audit checks whether the live theme follows that low-saturation glass direction without copying preview DOM.
+- Does dark mode still feel industrial grey-blue? Review dark screenshots, panel borders, and row surfaces.
+- Does light mode feel like the same product? Compare geometry and material of light/dark fields, tabs, modal, progress, and sidebar.
+- Does light mode look like Apple/VisionOS ice glass? Review light overview/system/modal screenshots.
+- Does dark mode look like Apple/VisionOS luminous glass? Review dark overview/modal/sidebar screenshots.
+- Are borders too heavy? Review panel/table/sidebar closeups.
+- Are there too many nested glass layers? Review sidebar and CBI section screenshots.
+- Are progress bars still native-looking? Review progress close-up screenshots.
+- Are dynlist internals fully styled? Review network modal dynlist screenshots when available.
+- Are dropdown internals fully styled? Review dropdown-open screenshots.
+- Are input/select/textarea/file fields unified? Review system, network modal, and textarea/config screenshots.
+- Are tabs unified across page and modal? Review system-tabs and modal-tabs screenshots.
+- Does sidebar hover still split text and chevron? Review sidebar-hover-parent and sidebar-hover-child screenshots.
+- Is sidebar bottom dock contained? Review collapsed sidebar screenshots and metrics.
+- Do buttons have recalculated spacing? Review apply dock and table action button close-ups.
+- Are tables refined without global normalization? Review source safety and process/package/startup screenshots.
+- Are there dark-mode white patches? Review dark modal/dropdown/dynlist/table screenshots.
+- Are there light-mode native LuCI patches? Review light system/network/plugin screenshots.
+- Is the result closer to docs/previews/vitrawrt-preview-premium-v4.html than Stage 1.18?
+- Is the result closer to Apple/VisionOS than Stage 1.18?
+- Did any LuCI behavior regress? Runtime regression is authoritative for lifecycle behavior.
+
+## Stage 1.20R Defect Status
+- Sidebar hover split: partial - expanded parent/child hover screenshots captured; final judgment requires visual review of `*-sidebar-hover-parent.png` and `*-sidebar-hover-child.png`.
+- Sidebar layer stacking: partial - rail, status, child rows and bottom dock are captured for visual review.
+- Sidebar bottom dock containment: partial - collapsed rail and `*-sidebar-bottom-dock.png` are captured; metrics list control rects.
+- Progress bar LuCI recolor: partial - progress close-up captured; verify trough/fill material in `*-progress.png`.
+- Dynlist native patches: partial - modal dynlist close-ups captured when available; behavior remains runtime-tested.
+- cbi-dropdown native patches: partial - dropdown closed/open close-ups captured; behavior remains runtime-tested.
+- Page/modal/plugin tabs unified: partial - system tabs, modal tabs, modal hover, and plugin tabs are captured.
+- Apply dock spacing/material: partial - apply dock close-up captured after safe edit when page allows it.
+- Modal internals: partial - modal full, tabs, hover, fields and footer screenshots are captured.
+- OpenClash/MosDNS/plugin adaptation: partial - plugin pages are attempted and screenshots/errors are recorded.
+- Light/dark parity: partial - every audited key page is captured in both modes.
+- No fake click repair: fixed by source safety check when status is 0.
+- No global table normalization: fixed by source safety check when status is 0.
+
+## Stage 1.20R Answers
+- Dual-theme system: light and dark use paired geometry and material tokens; only luminance, shadow, and atmosphere differ.
+- Visual weight: Stage 1.20R intentionally lowers panel borders, shadow density, sidebar stacking, modal slab weight, and capsule noise.
+- Fields: text inputs, selects, textareas, file inputs, cbi-dropdown closed state, and dynlist inputs share the frosted field material.
+- Dropdowns: open cbi-dropdown menus are captured as glass popovers without forcing option exposure.
+- Dynlist: modal dynlist close-ups are captured when LuCI exposes a dynlist in the edit modal.
+- Tabs: page tabs and modal tabs use the same floating pill material.
+- Progress: close-up screenshots check that progress uses a soft trough and aqua/mint fill while preserving values.
+- Sidebar: expanded hover parent/child, collapsed rail, collapsed tooltip, and bottom dock containment are captured.
+- Tables: global table normalization remains absent; process/package/startup fixes stay page-scoped.
+- Runtime behavior: use runtime regression report as authority for cbi-dropdown, dynlist, modal close/tabs, apply lifecycle, ifacebox hover, and table overflow.
+
+## Final Visual Review
+- Fixed - sidebar hover split: `dark-sidebar-hover-parent.png` shows one row surface; the chevron no longer reads as a separate pill.
+- Fixed - sidebar bottom dock containment: `dark-sidebar-collapsed.png` and `dark-sidebar-bottom-dock.png` show controls contained inside the rail.
+- Fixed - OpenClash white slabs: `dark-openclash.png` and `light-openclash.png` show plugin internals using VitraWrt glass surfaces instead of native white slabs.
+- Fixed - modal tab strip residue: `dark-network-edit-modal-tabs.png` and `dark-network-edit-modal-tab-hover.png` use the same pill system as page tabs.
+- Fixed - apply dock: `dark-system-apply-area.png` shows a compact floating island with natural-width buttons.
+- Fixed - global safety boundaries: source safety reports no fake click and no global table normalization.
+- Partially fixed - progress bars: `dark-progress.png` and `light-progress.png` now use a softer trough and luminous fill, but LuCI table-row context still limits how much richer the bar can appear without redrawing markup.
+- Partially fixed - dynlist internals: available modal dynlist/add-row close-ups show frosted input/add controls; pages with no existing dynlist item cannot prove remove-button styling in this audit run.
+- Partially fixed - dropdown open: cbi-dropdown behavior is preserved and closed/open captures exist, but native browser `select` popovers remain browser-owned and cannot be fully glass-skinned safely.
+- Partially fixed - dark-mode industrial tone: weight and white patches are reduced, but some dense LuCI/plugin pages still read as dark operational admin surfaces because the theme does not rewrite page layouts.
+
+## Known Limitations
+- VitraWrt theme does not repair app/plugin first-load tab issues with simulated clicks.
+- Status -> Overview remains native LuCI overview; VitraWrt Dashboard is a future independent luci-app page.
+- Table layout fixes remain page-scoped and are not expanded by this visual direction pass.

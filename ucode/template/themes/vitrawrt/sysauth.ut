@@ -1,0 +1,85 @@
+{#
+ Copyright (C) 2026 VitraWrt contributors
+ Licensed to the public under the Apache License 2.0.
+-#}
+
+{% include('header', { blank_page: true }) %}
+
+<div class="vwrt-auth-page">
+	<section class="vwrt-auth-card" aria-label="{{ _('Authorization Required') }}">
+		<div class="vwrt-auth-brand">
+			<img class="vwrt-auth-logo" src="{{ media }}/img/logo.svg" alt="">
+			<div>
+				<h1 class="vwrt-auth-title">VitraWrt</h1>
+				<p class="vwrt-auth-subtitle">璃境 LuCI</p>
+				<p class="vwrt-auth-kicker">OpenWrt Management Experience</p>
+			</div>
+		</div>
+
+		{% if (auth_message): %}
+		<div class="alert-message{% if (auth_plugin): %} warning{% endif %}">
+			{{ auth_message }}
+		</div>
+		{% elif (fuser): %}
+		<div class="alert-message error">
+			{{ _('Invalid username and/or password! Please try again.') }}
+		</div>
+		{% endif %}
+
+		<form method="post" class="cbi-map vwrt-auth-form">
+			<div class="cbi-section">
+				<div class="cbi-section-node">
+					<div class="cbi-value">
+						<label class="cbi-value-title" for="luci_username">{{ _('Username') }}</label>
+						<div class="cbi-value-field">
+							<input name="luci_username" id="luci_username" type="text" autocomplete="username" value="{{ entityencode(duser, true) }}" autofocus>
+						</div>
+					</div>
+					<div class="cbi-value">
+						<label class="cbi-value-title" for="luci_password">{{ _('Password') }}</label>
+						<div class="cbi-value-field">
+							<input name="luci_password" id="luci_password" type="password" autocomplete="current-password">
+						</div>
+					</div>
+					{% if (auth_fields): %}
+						{% for (let field in auth_fields): %}
+						<div class="cbi-value">
+							<label class="cbi-value-title" for="{{ field.name }}">{{ _(field.label ?? field.name) }}</label>
+							<div class="cbi-value-field">
+								<input
+									name="{{ field.name }}"
+									id="{{ field.name }}"
+									type="{{ field.type ?? 'text' }}"
+									{% if (field.placeholder): %}placeholder="{{ field.placeholder }}"{% endif %}
+									{% if (field.inputmode): %}inputmode="{{ field.inputmode }}"{% endif %}
+									{% if (field.pattern): %}pattern="{{ field.pattern }}"{% endif %}
+									{% if (field.maxlength): %}maxlength="{{ field.maxlength }}"{% endif %}
+									{% if (field.autocomplete): %}autocomplete="{{ field.autocomplete }}"{% endif %}
+									{% if (field.required): %}required{% endif %}
+								>
+							</div>
+						</div>
+						{% endfor %}
+					{% endif %}
+					{% if (auth_html): %}
+					<div class="cbi-value">
+						{{ auth_html }}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+
+			<button class="btn cbi-button-positive important vwrt-auth-submit" type="submit">{{ _('Log in') }}</button>
+		</form>
+
+		{% if (auth_assets): %}
+			{% for (let asset in auth_assets): %}
+				{% if (asset.type == 'script'): %}
+				<script src="{{ asset.src }}"></script>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</section>
+</div>
+
+{% include('footer', { blank_page: true }) %}
