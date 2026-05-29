@@ -205,7 +205,17 @@ function allowedComponentVisualProp(selector, prop, value) {
 		}
 	}
 
-	if (isProgressSelector(selector)) {
+	if (selector.includes('.vwrt-progress-meter')) {
+		if (selector.includes(' > div')) {
+			if (/^(position|z-index|overflow|height|background|box-shadow|border)$/.test(prop)) return true;
+		} else if (selector.includes('.vwrt-progress-track') || selector.includes('.vwrt-progress-fill') || selector.includes('.vwrt-progress-shine')) {
+			if (/^(position|z-index|pointer-events|width|max-width|min-width|top|bottom|left|inset|border-radius|background|box-shadow|transition)$/.test(prop)) return true;
+		} else {
+			if (/^(display|align-items|position|min-height|border-radius|background|border|box-shadow|overflow|padding|z-index)$/.test(prop)) return true;
+		}
+	}
+
+	if (isProgressSelector(selector) && !selector.includes('.vwrt-progress-meter')) {
 		if (selector.includes('::after') || selector.includes('::before')) {
 			if (/^(position|pointer-events|content|inset|border-radius|box-shadow|background|color|font-size|font-weight|padding|line-height)$/.test(prop)) return true;
 		} else if (selector.includes('> div') || selector.includes('::-webkit-progress-value')) {

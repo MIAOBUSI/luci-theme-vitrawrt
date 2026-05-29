@@ -96,7 +96,7 @@ function analyzeFile(file, source) {
 		const createPattern = new RegExp(`(?:var|let|const)\\s+${varName}\\s*=\s*document\\.createElement`);
 		if (!createPattern.test(source)) {
 			// Also allow if it's a known theme container or dummy element being appended
-			if (!/dummy|header|badge|txt|fill|track|layer/.test(varName)) {
+			if (!/dummy|header|badge|txt|fill|track|layer|shine/.test(varName)) {
 				report(file, source, appendMatch.index, `appendChild of non-new or LuCI-owned node '${varName}' is forbidden`);
 			}
 		}

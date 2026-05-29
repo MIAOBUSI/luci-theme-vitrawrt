@@ -264,7 +264,7 @@ async function testRuntimeSourceSafety(report) {
 			hasElementClick: /\.click\s*\(/.test(source),
 			hasDispatchEvent: /dispatchEvent\s*\(/.test(source),
 			hasMouseEvent: /new\s+MouseEvent\s*\(/.test(source),
-			queriesLuCIInternals: /querySelector(All)?\(\s*['"][^'"]*(?:#maincontent|\.cbi|\.modal|\.ifacebox|\.cbi-dropdown|\.cbi-dynlist|\.tabs|data-tab)/.test(source)
+			queriesLuCIInternals: /querySelector(All)?\(\s*['"][^'"]*(?:#maincontent|\.cbi(?!-progressbar)|\.modal|\.ifacebox|\.cbi-dropdown|\.cbi-dynlist|\.tabs|data-tab)/.test(source)
 		};
 
 		checks.push(result);

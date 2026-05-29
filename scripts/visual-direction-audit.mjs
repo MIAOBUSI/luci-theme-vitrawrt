@@ -750,7 +750,7 @@ async function writeReport(dir, report) {
 		'- Table layout fixes remain page-scoped and are not expanded by this visual direction pass.'
 	];
 
-	await fs.writeFile(path.join('docs', 'VISUAL_DIRECTION_AUDIT_1_41C_R2.md'), `${lines.join('\n')}\n`);
+	await fs.writeFile(path.join('docs', 'VISUAL_DIRECTION_AUDIT_1_41C_R3.md'), `${lines.join('\n')}\n`);
 	await writeJson(path.join(dir, 'report.json'), report);
 }
 
@@ -758,7 +758,8 @@ async function main() {
 	const args = parseArgs(process.argv.slice(2));
 	const playwright = await loadPlaywright();
 	const baseUrl = normalizeHost(args.host);
-	const dir = args.outputDir || path.join('audit-output', 'visual-direction-1.41C-R2', stamp());
+	const timestamp = process.env.VWRT_AUDIT_TIMESTAMP || new Date().toISOString().replace(/[:T-]/g, '').slice(0, 15);
+	const dir = path.join('audit-output', 'visual-direction-1.41C-R3', timestamp);
 	const pages = [
 		{ name: 'status-overview', path: '/cgi-bin/luci/admin/status/overview' },
 		{ name: 'system-system', path: '/cgi-bin/luci/admin/system/system' },
@@ -807,7 +808,7 @@ async function main() {
 
 	await writeReport(dir, report);
 	console.log(`Visual direction audit output: ${dir}`);
-	console.log('Markdown: docs/VISUAL_DIRECTION_AUDIT_1_41C_R2.md');
+	console.log('Markdown: docs/VISUAL_DIRECTION_AUDIT_1_41C_R3.md');
 }
 
 main().catch((err) => {

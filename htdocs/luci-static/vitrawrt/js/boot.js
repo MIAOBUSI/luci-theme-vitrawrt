@@ -117,12 +117,42 @@
 		return !(children.length === 1 && children[0].classList.contains('spinning'));
 	}
 
+	function enhanceProgressMeters() {
+		var bars = document.querySelectorAll('.cbi-progressbar:not(.vwrt-progress-meter)');
+		for (var i = 0; i < bars.length; i++) {
+			var bar = bars[i];
+			var inner = bar.querySelector('div');
+			if (!inner) continue;
+			
+			var width = inner.style.width || '0%';
+			bar.classList.add('vwrt-progress-meter');
+			bar.style.setProperty('--vwrt-progress-value', width);
+			
+			var track = document.createElement('span');
+			track.className = 'vwrt-progress-track';
+			track.setAttribute('aria-hidden', 'true');
+			
+			var fill = document.createElement('span');
+			fill.className = 'vwrt-progress-fill';
+			fill.setAttribute('aria-hidden', 'true');
+			
+			var shine = document.createElement('span');
+			shine.className = 'vwrt-progress-shine';
+			shine.setAttribute('aria-hidden', 'true');
+			
+			bar.appendChild(track);
+			bar.appendChild(fill);
+			bar.appendChild(shine);
+		}
+	}
+
 	function updateReadyClass() {
 		if (!document.body)
 			return;
 
 		document.body.classList.toggle('vwrt-view-ready', viewReady());
 		setPageClasses();
+		enhanceProgressMeters();
 	}
 
 	function watchViewReady() {
@@ -139,7 +169,7 @@
 	function init() {
 		root.classList.add('vwrt-ready');
 		root.classList.add('vitrawrt-ready');
-		root.dataset.vitrawrt = '1.41C';
+		root.dataset.vitrawrt = '1.41C-R3';
 
 		if (document.body)
 			document.body.classList.add('vitrawrt-body');

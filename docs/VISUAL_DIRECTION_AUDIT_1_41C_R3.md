@@ -1,0 +1,323 @@
+# Visual Direction Audit 1.41C-R2
+
+Output: audit-output/visual-direction-1.41C-R3/20260529092600.
+
+## Source Safety
+- check-js-safety status: 0
+- check-css-safety status: 0
+- check-css-safety output: CSS safety check passed (10 files scanned, 3 warning(s)).
+- cascade imports: /luci-static/bootstrap/cascade.css?v=1.41C-R3, ./css/tokens.css?v=1.41C-R3, ./css/light.css?v=1.41C-R3, ./css/dark.css?v=1.41C-R3, ./css/base.css?v=1.41C-R3, ./css/sidebar.css?v=1.41C-R3, ./css/luci-components-visual.css?v=1.41C-R3, ./css/luci-layout-exceptions.css?v=1.41C-R3, ./css/responsive.css?v=1.41C-R3
+- luci-visual.css imported: no
+- luci-components-visual.css imported: yes
+- fake click detected: no
+- global table normalize detected: no
+
+## Login
+- light 1920x1080: audit-output/visual-direction-1.41C-R3/20260529092600./login-light-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgb(41, 66, 83)
+- light 390x844: audit-output/visual-direction-1.41C-R3/20260529092600./login-light-390x844.png; logo={"x":159,"y":229,"width":72,"height":72}; button=rgb(41, 66, 83)
+- dark 1920x1080: audit-output/visual-direction-1.41C-R3/20260529092600./login-dark-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgb(36, 63, 82)
+- dark 390x844: audit-output/visual-direction-1.41C-R3/20260529092600./login-dark-390x844.png; logo={"x":159,"y":229,"width":72,"height":72}; button=rgb(36, 63, 82)
+
+## Pages
+- light status-overview: audit-output/visual-direction-1.41C-R3/20260529092600./light-status-overview.png
+  - blue usage ratio: 0.154
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light system-system: audit-output/visual-direction-1.41C-R3/20260529092600./light-system-system.png
+  - blue usage ratio: 0.155
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light network-routes: audit-output/visual-direction-1.41C-R3/20260529092600./light-network-routes.png
+  - blue usage ratio: 0.154
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+  - tab gaps: Static IPv4 Routes:16, Static IPv6 Routes:16, IPv4 Rules:16, IPv6 Rules:16
+- light network-network: audit-output/visual-direction-1.41C-R3/20260529092600./light-network-network.png
+  - blue usage ratio: 0.132
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+  - modal opened: false
+  - tab gaps: Interfaces:16, Devices:16, Global network options:16
+- light network-dhcp: audit-output/visual-direction-1.41C-R3/20260529092600./light-network-dhcp.png
+  - blue usage ratio: 0.145
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+  - tab gaps: Leases:16, dnsmasq:16, odhcpd:16
+- light vnstat2: audit-output/visual-direction-1.41C-R3/20260529092600./light-vnstat2.png
+  - blue usage ratio: 0.171
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+  - tab gaps: Graphs:92, Configuration:97
+- light services: audit-output/visual-direction-1.41C-R3/20260529092600./light-services.png
+  - blue usage ratio: 0.113
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light openclash: audit-output/visual-direction-1.41C-R3/20260529092600./light-openclash.png
+  - blue usage ratio: 0.1
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light openclash-config: audit-output/visual-direction-1.41C-R3/20260529092600./light-openclash-config.png
+  - blue usage ratio: 0.202
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light openclash-log: audit-output/visual-direction-1.41C-R3/20260529092600./light-openclash-log.png
+  - blue usage ratio: 0.132
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light mosdns: audit-output/visual-direction-1.41C-R3/20260529092600./light-mosdns.png
+  - blue usage ratio: 0.146
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light mosdns-config: audit-output/visual-direction-1.41C-R3/20260529092600./light-mosdns-config.png
+  - blue usage ratio: 0.158
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light mosdns-log: audit-output/visual-direction-1.41C-R3/20260529092600./light-mosdns-log.png
+  - blue usage ratio: 0.158
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light packages: audit-output/visual-direction-1.41C-R3/20260529092600./light-packages.png
+  - blue usage ratio: 0.046
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light startup: audit-output/visual-direction-1.41C-R3/20260529092600./light-startup.png
+  - blue usage ratio: 0.132
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light processes: audit-output/visual-direction-1.41C-R3/20260529092600./light-processes.png
+  - blue usage ratio: 0.118
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- light syslog: audit-output/visual-direction-1.41C-R3/20260529092600./light-syslog.png
+  - blue usage ratio: n/a
+  - default icons all blue: n/a
+  - overflow: n/a
+  - expanded groups: n/a
+  - media filters applied: n/a
+  - dropdown options visible before open: n/a
+  - error: page.evaluate: Target page, context or browser has been closed
+- light cpulimit: audit-output/visual-direction-1.41C-R3/20260529092600./light-cpulimit.png
+  - blue usage ratio: 0.102
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark status-overview: audit-output/visual-direction-1.41C-R3/20260529092600./dark-status-overview.png
+  - blue usage ratio: 0.154
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark system-system: audit-output/visual-direction-1.41C-R3/20260529092600./dark-system-system.png
+  - blue usage ratio: 0.141
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark network-routes: audit-output/visual-direction-1.41C-R3/20260529092600./dark-network-routes.png
+  - blue usage ratio: 0.128
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+  - tab gaps: Static IPv4 Routes:16, Static IPv6 Routes:16, IPv4 Rules:16, IPv6 Rules:16
+- dark network-network: audit-output/visual-direction-1.41C-R3/20260529092600./dark-network-network.png
+  - blue usage ratio: 0.116
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+  - modal opened: false
+  - tab gaps: Interfaces:16, Devices:16, Global network options:16
+- dark network-dhcp: audit-output/visual-direction-1.41C-R3/20260529092600./dark-network-dhcp.png
+  - blue usage ratio: 0.128
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+  - tab gaps: Leases:16, dnsmasq:16, odhcpd:16
+- dark vnstat2: audit-output/visual-direction-1.41C-R3/20260529092600./dark-vnstat2.png
+  - blue usage ratio: 0.116
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+  - tab gaps: Graphs:92, Configuration:97
+- dark services: audit-output/visual-direction-1.41C-R3/20260529092600./dark-services.png
+  - blue usage ratio: 0.104
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark openclash: audit-output/visual-direction-1.41C-R3/20260529092600./dark-openclash.png
+  - blue usage ratio: 0.075
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark openclash-config: audit-output/visual-direction-1.41C-R3/20260529092600./dark-openclash-config.png
+  - blue usage ratio: 0.173
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark openclash-log: audit-output/visual-direction-1.41C-R3/20260529092600./dark-openclash-log.png
+  - blue usage ratio: 0.101
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark mosdns: audit-output/visual-direction-1.41C-R3/20260529092600./dark-mosdns.png
+  - blue usage ratio: 0.123
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark mosdns-config: audit-output/visual-direction-1.41C-R3/20260529092600./dark-mosdns-config.png
+  - blue usage ratio: 0.125
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark mosdns-log: audit-output/visual-direction-1.41C-R3/20260529092600./dark-mosdns-log.png
+  - blue usage ratio: 0.125
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark packages: audit-output/visual-direction-1.41C-R3/20260529092600./dark-packages.png
+  - blue usage ratio: 0.042
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark startup: audit-output/visual-direction-1.41C-R3/20260529092600./dark-startup.png
+  - blue usage ratio: 0.13
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark processes: audit-output/visual-direction-1.41C-R3/20260529092600./dark-processes.png
+  - blue usage ratio: 0.118
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark syslog: audit-output/visual-direction-1.41C-R3/20260529092600./dark-syslog.png
+  - blue usage ratio: 0.115
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark cpulimit: audit-output/visual-direction-1.41C-R3/20260529092600./dark-cpulimit.png
+  - blue usage ratio: 0.102
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+
+## Stage 1.41C-R2 Direction Checks
+- Is OpenClash less alien? Review overview/config/log screenshots, plugin action controls, cards, tabs, and log/editor captures.
+- Are OpenClash saturated blue controls reduced? Compare blue usage ratio and action/log screenshots against Stage 1.24A evidence.
+- Are OpenClash buttons role-colored? Review apply/add/reload/remove/action controls in page-scoped captures.
+- Are MosDNS cards/forms/editors/logs integrated? Review MosDNS basic/config/log screenshots and editor close-ups.
+- Are MosDNS buttons role-colored? Review add/apply/refresh controls in MosDNS captures.
+- Is Network interface slab feeling reduced? Review network interface/device/global option tab screenshots.
+- Is LAN green strip reduced to subtle status accent? Review network ifacebox header screenshot and computed style evidence.
+- Are ifacebox/tooltips still working? Runtime regression remains authoritative; hover screenshots provide visual evidence.
+- Were Stage 1.24A progress/vnStat2 fixes preserved? Progress inline width and vnStat2 media filters must remain safe.
+- Was any JS used? Stage 1.41C-R2 should only update version markers and passive route classes.
+- If JS was used, was it passive only? Source safety must remain clean.
+
+## Stage 1.41C-R2 Defect Status
+- Dropdown closed state has visible chevron: partial until confirmed by screenshot.
+- Dropdown closed state has no blue/cyan inner fill: partial until confirmed by screenshot.
+- Dropdown does not look like a plain native input: partial until confirmed by screenshot.
+- Dynlist existing items are styled as VitraWrt controls: partial until confirmed by screenshot.
+- Dynlist remove button is aligned and styled: partial until confirmed by screenshot.
+- Dynlist add input and green add button are same visual height: partial until confirmed by screenshot.
+- Green add button keeps success semantic color: partial until confirmed by screenshot.
+- Form row label/field rhythm is aligned: partial until confirmed by screenshot.
+- Progress meter does not regress to native LuCI style: partial until confirmed by screenshot.
+- Tab dock uses fit-content Apple dock style when applicable: partial until confirmed by screenshot.
+- Modal tabs do not show full-width rectangular native strip: partial until confirmed by screenshot.
+- Safety scripts classify safe enhancement vs destructive modification: yes, confirmed by CSS/JS status.
+- luci-visual.css is not re-imported: yes, confirmed by imports list.
+- Deprecated CSS is not restored live: yes, confirmed by imports list.
+
+## Architecture Safety
+- JS safety passes: yes
+- CSS safety passes: yes
+- Runtime regression passes: check manually.
+
+## Known Limitations
+- VitraWrt theme does not repair app/plugin first-load tab issues with simulated clicks.
+- Status -> Overview remains native LuCI overview; VitraWrt Dashboard is a future independent luci-app page.
+- Table layout fixes remain page-scoped and are not expanded by this visual direction pass.
