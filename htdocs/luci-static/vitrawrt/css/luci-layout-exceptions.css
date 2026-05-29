@@ -888,17 +888,23 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 	color: transparent !important; /* Hide native solid triangle arrow */
 }
 
-/* Fix password show/hide button and control-group input combos */
-#maincontent .control-group:has(.cbi-input-password) {
+/* Fix horizontal gap for ALL control-group input combos (like OPKG) */
+#maincontent .control-group {
 	display: inline-flex !important;
-	gap: 10px !important;
+	gap: 6px !important;
 	align-items: center !important;
 }
 
 /* Remove LuCI core's negative margins and zero-radius forced on control-groups */
-#maincontent .control-group > .cbi-input-password,
-#maincontent .control-group > .cbi-input-password + .cbi-button-neutral {
+#maincontent .control-group > input,
+#maincontent .control-group > .btn,
+#maincontent .control-group > .cbi-button {
 	margin: 0 !important;
+}
+
+/* Keep larger gap for password show/hide button */
+#maincontent .control-group:has(.cbi-input-password) {
+	gap: 10px !important;
 }
 
 /* Redesign the password reveal button to match Apple Settings aesthetic */
@@ -924,4 +930,22 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 #maincontent .control-group > .cbi-input-password + .cbi-button-neutral:hover {
 	background: color-mix(in srgb, var(--vw-text-main) 5%, var(--vw-panel-bg)) !important;
 	transform: scale(1.05) !important;
+}
+
+/* --- Package Manager & General Controls Layout Adjustments --- */
+/* 1. Increase vertical gap between labels (e.g. "Filter:", "Actions:") and the inputs below them */
+#maincontent .controls > div > label {
+	margin-bottom: 12px !important;
+}
+
+/* 2. Decrease huge vertical gap between "Disk space:" label and the progressbar text/track */
+#maincontent .controls > div > .cbi-progressbar.vw-progressbar-upgraded {
+	margin-top: -6px !important;
+}
+
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-header {
+	display: flex !important;
+	justify-content: space-between !important;
+	align-items: flex-end !important;
+	margin-bottom: 8px !important; /* Proper distance between header text and the progress track */
 }
