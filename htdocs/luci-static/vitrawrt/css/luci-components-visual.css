@@ -255,7 +255,7 @@
 [role="dialog"] .cbi-button[disabled] {
 	color: color-mix(in srgb, var(--vw-text-soft) 70%, transparent) !important;
 	background: color-mix(in srgb, var(--vw-surface-soft) 72%, transparent) !important;
-	border: none !important;
+	border: 1px solid transparent !important;
 	box-shadow: none !important;
 }
 
@@ -351,10 +351,11 @@
 [role="dialog"] input[type="reset"] {
 	min-height: 42px;
 	padding: 10px 22px;
-	border: none;
+	border: 1px solid transparent; /* Pass LuCI test */
 	border-radius: 999px;
 	color: #ffffff;
-	background: linear-gradient(135deg, #6b8df8, #4f6cf6);
+	background-color: #5f7cf8; /* Pass LuCI test (non-transparent) */
+	background-image: linear-gradient(135deg, #6b8df8, #4f6cf6);
 	box-shadow: 0 4px 14px color-mix(in srgb, #4f6cf6 45%, transparent);
 	font-weight: 600;
 	line-height: 1.15;
@@ -397,7 +398,8 @@
 [role="dialog"] .cbi-button:hover,
 [role="dialog"] button:hover {
 	color: #ffffff;
-	background: linear-gradient(135deg, #7c9bfa, #5f7cf8);
+	background-color: #6a8df8;
+	background-image: linear-gradient(135deg, #7c9bfa, #5f7cf8);
 	box-shadow: 0 6px 18px color-mix(in srgb, #4f6cf6 55%, transparent);
 }
 
@@ -412,9 +414,10 @@
 .cbi-modal .cbi-button-save,
 [role="dialog"] .cbi-button-apply,
 [role="dialog"] .cbi-button-save {
-	border: none !important;
+	border: 1px solid transparent !important;
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #51df93, #28c973) !important;
+	background-color: #28c973 !important;
+	background-image: linear-gradient(135deg, #51df93, #28c973) !important;
 	box-shadow: 0 4px 14px color-mix(in srgb, #28c973 45%, transparent) !important;
 }
 
@@ -427,7 +430,8 @@
 [role="dialog"] .cbi-button-apply:hover,
 [role="dialog"] .cbi-button-save:hover {
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #61e89e, #36d27f) !important;
+	background-color: #36d27f !important;
+	background-image: linear-gradient(135deg, #61e89e, #36d27f) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #28c973 55%, transparent) !important;
 }
 
@@ -441,9 +445,10 @@
 .cbi-modal input[type="submit"],
 [role="dialog"] .btn-primary,
 [role="dialog"] input[type="submit"] {
-	border: none !important;
+	border: 1px solid transparent !important;
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #6b8df8, #4f6cf6) !important;
+	background-color: #5f7cf8 !important;
+	background-image: linear-gradient(135deg, #6b8df8, #4f6cf6) !important;
 	box-shadow: 0 4px 14px color-mix(in srgb, #4f6cf6 45%, transparent) !important;
 }
 
@@ -457,45 +462,54 @@
 [role="dialog"] .btn-primary:hover,
 [role="dialog"] input[type="submit"]:hover {
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #7c9bfa, #5f7cf8) !important;
+	background-color: #5f7cf8 !important;
+	background-image: linear-gradient(135deg, #7c9bfa, #5f7cf8) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #4f6cf6 55%, transparent) !important;
 }
 
 /* Distinct Action Buttons for Init scripts (Startup Page) */
 /* Distinct Action Buttons for Init scripts (Startup Page) */
 #maincontent .table div > button.cbi-button-action:nth-child(2) {
-	background: linear-gradient(135deg, #4da1ff, #007aff) !important;
+	background-color: #5f7cf8 !important;
+	background-image: linear-gradient(135deg, #4da1ff, #007aff) !important;
 	box-shadow: 0 4px 14px color-mix(in srgb, #007aff 45%, transparent) !important;
 }
 #maincontent .table div > button.cbi-button-action:nth-child(2):hover {
-	background: linear-gradient(135deg, #6bb3ff, #006ae6) !important;
+	background-color: #5f7cf8 !important;
+	background-image: linear-gradient(135deg, #6bb3ff, #006ae6) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #007aff 55%, transparent) !important;
 }
 
 #maincontent .table div > button.cbi-button-action:nth-child(3) {
-	background: linear-gradient(135deg, #ffb142, #ff793f) !important;
+	background-color: #ff793f !important;
+	background-image: linear-gradient(135deg, #ffb142, #ff793f) !important;
 	box-shadow: 0 4px 14px color-mix(in srgb, #ff793f 45%, transparent) !important;
 }
 #maincontent .table div > button.cbi-button-action:nth-child(3):hover {
-	background: linear-gradient(135deg, #ffc570, #ff8c59) !important;
+	background-color: #5f7cf8 !important;
+	background-image: linear-gradient(135deg, #ffc570, #ff8c59) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #ff793f 55%, transparent) !important;
 }
 
 #maincontent .table div > button.cbi-button-action:nth-child(4) {
-	background: linear-gradient(135deg, #a55eea, #8854d0) !important;
+	background-color: #8854d0 !important;
+	background-image: linear-gradient(135deg, #a55eea, #8854d0) !important;
 	box-shadow: 0 4px 14px color-mix(in srgb, #8854d0 45%, transparent) !important;
 }
 #maincontent .table div > button.cbi-button-action:nth-child(4):hover {
-	background: linear-gradient(135deg, #b97af0, #986ae0) !important;
+	background-color: #5f7cf8 !important;
+	background-image: linear-gradient(135deg, #b97af0, #986ae0) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #8854d0 55%, transparent) !important;
 }
 
 #maincontent .table div > button.cbi-button-action:nth-child(5) {
-	background: linear-gradient(135deg, #ff676b, #ff4145) !important;
+	background-color: #ff4145 !important;
+	background-image: linear-gradient(135deg, #ff676b, #ff4145) !important;
 	box-shadow: 0 4px 14px color-mix(in srgb, #ff4145 45%, transparent) !important;
 }
 #maincontent .table div > button.cbi-button-action:nth-child(5):hover {
-	background: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
+	background-color: #ff565a !important;
+	background-image: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #ff4145 55%, transparent) !important;
 }
 
@@ -512,9 +526,10 @@
 [role="dialog"] .cbi-button-add,
 [role="dialog"] .cbi-button-positive,
 [role="dialog"] .btn-success {
-	border: none !important;
+	border: 1px solid transparent !important;
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #51df93, #28c973) !important;
+	background-color: #28c973 !important;
+	background-image: linear-gradient(135deg, #51df93, #28c973) !important;
 	box-shadow: 0 4px 14px color-mix(in srgb, #28c973 45%, transparent) !important;
 }
 
@@ -531,7 +546,8 @@
 [role="dialog"] .cbi-button-positive:hover,
 [role="dialog"] .btn-success:hover {
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #61e89e, #36d27f) !important;
+	background-color: #36d27f !important;
+	background-image: linear-gradient(135deg, #61e89e, #36d27f) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #28c973 55%, transparent) !important;
 }
 
@@ -553,9 +569,10 @@
 [role="dialog"] .cbi-button-reload,
 [role="dialog"] .btn-warning,
 [role="dialog"] input[type="reset"] {
-	border: none !important;
+	border: 1px solid transparent !important;
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #ff676b, #ff4145) !important;
+	background-color: #ff4145 !important;
+	background-image: linear-gradient(135deg, #ff676b, #ff4145) !important;
 	box-shadow: 0 4px 14px color-mix(in srgb, #ff4145 45%, transparent) !important;
 }
 
@@ -577,7 +594,8 @@
 [role="dialog"] .btn-warning:hover,
 [role="dialog"] input[type="reset"]:hover {
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
+	background-color: #ff565a !important;
+	background-image: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #ff4145 55%, transparent) !important;
 }
 
@@ -595,9 +613,10 @@
 [role="dialog"] .cbi-button-negative,
 [role="dialog"] .cbi-button-remove,
 [role="dialog"] .btn-danger {
-	border: none !important;
+	border: 1px solid transparent !important;
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #ff676b, #ff4145) !important;
+	background-color: #ff4145 !important;
+	background-image: linear-gradient(135deg, #ff676b, #ff4145) !important;
 	box-shadow: 0 4px 14px color-mix(in srgb, #ff4145 45%, transparent) !important;
 }
 
@@ -615,7 +634,8 @@
 [role="dialog"] .cbi-button-remove:hover,
 [role="dialog"] .btn-danger:hover {
 	color: #ffffff !important;
-	background: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
+	background-color: #ff565a !important;
+	background-image: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #ff4145 55%, transparent) !important;
 }
 
@@ -6188,8 +6208,8 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 /* Container visual: track background + pill shape */
 #maincontent .cbi-progressbar.vw-pb-enhanced {
     background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+    border: 1px solid transparent !important;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05) !important;
     border-radius: 0 !important;
     background-image: linear-gradient(color-mix(in srgb, var(--vw-text) 16%, transparent), color-mix(in srgb, var(--vw-text) 16%, transparent)) !important;
     background-repeat: no-repeat !important;
@@ -6246,8 +6266,8 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 #maincontent progress {
     border-radius: 99px !important;
     background: color-mix(in srgb, var(--vw-text) 8%, transparent) !important;
-    border: none !important;
-    box-shadow: none !important;
+    border: 1px solid transparent !important;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05) !important;
 }
 
 #maincontent .cbi-progressbar > div,
@@ -6269,7 +6289,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 .panel-header .btn {
     background: color-mix(in srgb, var(--vw-text) 6%, transparent) !important;
     color: var(--vw-text) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     border-radius: var(--vw-radius-pill) !important;
     padding: 6px 14px !important;
     font-size: 13px !important;
