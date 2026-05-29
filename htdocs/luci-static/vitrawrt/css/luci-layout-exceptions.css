@@ -771,3 +771,17 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 }
 
 
+
+/* Fix alignment for multi-line or tall form rows while keeping single-line rows centered */
+#maincontent .cbi-value:has(.cbi-value-description, .cbi-dynlist, textarea) {
+	align-items: flex-start !important;
+}
+
+#maincontent .cbi-value:has(.cbi-value-description, .cbi-dynlist, textarea) > .cbi-value-title {
+	padding-top: 10px !important;
+}
+
+#maincontent .cbi-value:has(.cbi-value-description, .cbi-dynlist, textarea) > .cbi-value-field > input[type="checkbox"],
+#maincontent .cbi-value:has(.cbi-value-description, .cbi-dynlist, textarea) > .cbi-value-field > input[type="radio"] {
+	margin-top: 9px !important;
+}
