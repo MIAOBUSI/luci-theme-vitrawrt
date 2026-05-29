@@ -6262,27 +6262,53 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* --- Pro Max UI: Progress Bars & Badges --- */
-/* Layout rules live in luci-layout-exceptions.css. */
+/* Layout rules (position, display, height, overflow) live in luci-layout-exceptions.css.
+ * Only visual tokens (colors, border-radius, font) live here. */
+
 /* Container visual: track background + pill shape */
-#maincontent .cbi-progressbar.vw-pb-enhanced {
+#maincontent .cbi-progressbar.vw-progressbar-upgraded {
     background: transparent !important;
-    border: 1px solid transparent !important;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05) !important;
+    border: none !important;
+    box-shadow: none !important;
     border-radius: 0 !important;
-    background-image: linear-gradient(color-mix(in srgb, var(--vw-text) 16%, transparent), color-mix(in srgb, var(--vw-text) 16%, transparent)) !important;
-    background-repeat: no-repeat !important;
-    background-size: 100% 10px !important;
-    background-position: left bottom 4px !important;
+}
+/* Native pseudo-elements injected by LuCI cascade.css — make them invisible without display:none */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded::before,
+#maincontent .cbi-progressbar.vw-progressbar-upgraded::after {
+    color: transparent !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
 }
 
-#maincontent .cbi-progressbar.vw-pb-enhanced::before {
+/* Track styling */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
+    background: color-mix(in srgb, var(--vw-text) 16%, transparent) !important;
+    border-radius: 99px !important;
+}
+
+/* Colored fill bar: gradient colors */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-fill {
+    border-radius: var(--vw-radius-pill) !important;
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    box-shadow: none !important;
+}
+#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-primary .vw-pb-fill {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-accent) 70%, white), var(--vw-accent)) !important;
+}
+#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-fill {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-success) 70%, white), var(--vw-success)) !important;
+}
+
+/* Text label: font style */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-text {
     font-size: 13px !important;
     font-weight: 500 !important;
     color: var(--vw-text-main) !important;
     line-height: 1 !important;
 }
 
-#maincontent .cbi-progressbar.vw-pb-enhanced::after {
+/* Percentage badge: font style */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
     font-size: 12px !important;
     font-weight: 600 !important;
     color: var(--vw-accent) !important;
@@ -6292,22 +6318,9 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     line-height: 1 !important;
 }
 
-#maincontent .cbi-progressbar.vw-pb-enhanced[data-vw-variant="success"]::after {
+#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-badge {
     color: var(--vw-success) !important;
     background: color-mix(in srgb, var(--vw-success) 12%, transparent) !important;
-}
-
-#maincontent .cbi-progressbar.vw-pb-enhanced > div {
-    border-radius: var(--vw-radius-pill) !important;
-    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    box-shadow: none !important;
-    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-accent) 70%, white), var(--vw-accent)) !important;
-    color: transparent !important;
-    font-size: 0 !important;
-}
-
-#maincontent .cbi-progressbar.vw-pb-enhanced[data-vw-variant="success"] > div {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-success) 70%, white), var(--vw-success)) !important;
 }
 
 /* --- Apple UI: Dropdown Enhancements --- */
@@ -6317,11 +6330,11 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     border-left: 1px solid color-mix(in srgb, #ffffff 20%, transparent) !important;
 }
 
-/* --- Native Progress Bars --- */
-#maincontent .cbi-progressbar,
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
+/* --- Native Progress Bars (fallback for non-upgraded bars) --- */
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progressbar:not(.vw-progressbar-upgraded),
+#maincontent .progress:not(.vw-progressbar-upgraded),
+#maincontent progress:not(.vw-progressbar-upgraded) {
     position: relative !important;
     min-height: 18px !important;
     border-radius: 99px !important;
@@ -6331,9 +6344,9 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     overflow: hidden !important;
 }
 
-#maincontent .cbi-progressbar::after,
-#maincontent .progressbar::after,
-#maincontent .progress::after {
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded)::after,
+#maincontent .progressbar:not(.vw-progressbar-upgraded)::after,
+#maincontent .progress:not(.vw-progressbar-upgraded)::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -6342,10 +6355,10 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     pointer-events: none;
 }
 
-#maincontent .cbi-progressbar > div,
-#maincontent .progressbar > div,
-#maincontent .progress > div,
-#maincontent progress::-webkit-progress-value {
+#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) > div,
+#maincontent .progressbar:not(.vw-progressbar-upgraded) > div,
+#maincontent .progress:not(.vw-progressbar-upgraded) > div,
+#maincontent progress:not(.vw-progressbar-upgraded)::-webkit-progress-value {
     position: relative !important;
     min-height: 18px !important;
     border-radius: 99px !important;

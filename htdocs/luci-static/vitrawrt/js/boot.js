@@ -117,6 +117,35 @@
 		return !(children.length === 1 && children[0].classList.contains('spinning'));
 	}
 
+	function upgradeProgressBars() {
+		document.querySelectorAll('.cbi-progressbar').forEach(function(bar) {
+			if (bar.dataset.vwObserved) return;
+			bar.dataset.vwObserved = 'true';
+			
+			var t = bar.getAttribute('title');
+			if (t && t !== 'unknown' && t !== '?') {
+				bar.dataset.vwTitle = t;
+				bar.removeAttribute('title');
+			}
+			
+			var mo = new MutationObserver(function(mutations) {
+				mutations.forEach(function(m) {
+					if (m.type === 'attributes' && m.attributeName === 'title') {
+						var nt = bar.getAttribute('title');
+						if (nt && nt !== 'unknown' && nt !== '?') {
+							bar.dataset.vwTitle = nt;
+							bar.removeAttribute('title');
+							updateProgressDOM(bar);
+						}
+					}
+				});
+			});
+			mo.observe(bar, { attributes: true, attributeFilter: ['title'] });
+			
+			updateProgressDOM(bar);
+		});
+	}
+
 	function parseProgressText(rawText) {
 		var pctMatch = rawText.match(/(\d+(?:\.\d+)?\s*[%％])/);
 		var pctPart = pctMatch ? pctMatch[1] : '';
@@ -141,42 +170,88 @@
 		return { pct: pctPart, text: textPart };
 	}
 
-	function enhanceProgressMeters() {
-		var bars = document.querySelectorAll('.cbi-progressbar:not(.vw-pb-enhanced)');
-		for (var i = 0; i < bars.length; i++) {
-			var bar = bars[i];
-			var inner = bar.querySelector('div');
-			if (!inner) continue;
+	function updateProgressDOM(bar) {
+		var rawTitle = bar.dataset.vwTitle || bar.getAttribute('title') || '';
+		
+		var innerDiv = bar.querySelector('div:not(.vw-pb-header):not(.vw-pb-fill):not(.vw-pb-track):not(.vw-pb-dummy)');
+		var innerText = innerDiv ? innerDiv.textContent.trim() : '';
+		
+		var rawText = (rawTitle && rawTitle !== 'unknown' && rawTitle !== '?') ? rawTitle : innerText;
+		if (!rawText || rawText === 'unknown' || rawText === '?') return;
+		
+		var parsed = parseProgressText(rawText);
+		
+		if (!bar.classList.contains('vw-progressbar-upgraded')) {
+			bar.classList.add('vw-progressbar-upgraded');
 			
-			bar.classList.add('vw-pb-enhanced');
+			var initialWidth = innerDiv ? innerDiv.style.width : (parsed.pct || '0%');
+			bar.innerHTML = '';
 			
-			(function(b, inn) {
-				function updateDOM() {
-					var rawTitle = b.getAttribute('title') || inn.textContent.trim();
-					if (!rawTitle || rawTitle === 'unknown' || rawTitle === '?') return;
-					
-					var parsed = parseProgressText(rawTitle);
-					b.setAttribute('data-vw-text', parsed.text);
-					b.setAttribute('data-vw-pct', parsed.pct);
-					
-					var td = b.closest('td');
-					var prevTd = td ? td.previousElementSibling : null;
-					var label = prevTd ? prevTd.textContent.toLowerCase() : '';
-					
-					if (label.indexOf('available') !== -1 || label.indexOf('可用') !== -1 || label.indexOf('free') !== -1 || label.indexOf('空闲') !== -1) {
-						b.setAttribute('data-vw-variant', 'success');
-					} else {
-						b.removeAttribute('data-vw-variant');
-					}
+			// Dummy element: This is required because LuCI core scripts like package-manager.js
+			// and 10_system.js blindly update 'firstElementChild' with width and innerHTML!
+			var dummy = document.createElement('div');
+			dummy.className = 'vw-pb-dummy';
+			dummy.style.setProperty('display', 'none', 'important');
+			dummy.style.setProperty('visibility', 'hidden', 'important');
+			dummy.style.setProperty('opacity', '0', 'important');
+			dummy.style.width = initialWidth;
+			dummy.textContent = innerText;
+			bar.appendChild(dummy);
+			
+			var header = document.createElement('div');
+			header.className = 'vw-pb-header';
+			var txt = document.createElement('span');
+			txt.className = 'vw-pb-text';
+			txt.style.whiteSpace = 'nowrap';
+			var badge = document.createElement('span');
+			badge.className = 'vw-pb-badge';
+			badge.style.whiteSpace = 'nowrap';
+			header.appendChild(txt);
+			header.appendChild(badge);
+			bar.appendChild(header);
+			
+			var track = document.createElement('div');
+			track.className = 'vw-pb-track';
+			bar.appendChild(track);
+			
+			var fill = document.createElement('div');
+			fill.className = 'vw-pb-fill';
+			fill.style.width = initialWidth;
+			track.appendChild(fill);
+			
+			var td = bar.closest('td');
+			var prevTd = td ? td.previousElementSibling : null;
+			var label = prevTd ? prevTd.textContent.toLowerCase() : '';
+			
+			if (label.indexOf('available') !== -1 || label.indexOf('可用') !== -1 || label.indexOf('free') !== -1 || label.indexOf('空闲') !== -1) {
+				bar.classList.add('vw-pb-success');
+			} else {
+				bar.classList.add('vw-pb-primary');
+			}
+			
+			// Observe dummy to react when LuCI core updates it
+			var moDummy = new MutationObserver(function() {
+				dummy.style.setProperty('display', 'none', 'important');
+				dummy.style.setProperty('visibility', 'hidden', 'important');
+				dummy.style.setProperty('opacity', '0', 'important');
+				header.style.setProperty('background', 'transparent', 'important');
+				if (dummy.style.width) fill.style.width = dummy.style.width;
+				var nText = dummy.textContent.trim();
+				var nTitle = bar.dataset.vwTitle || '';
+				var nRaw = (nTitle && nTitle !== 'unknown' && nTitle !== '?') ? nTitle : nText;
+				if (nRaw && nRaw !== 'unknown' && nRaw !== '?') {
+					var nPars = parseProgressText(nRaw);
+					txt.textContent = nPars.text;
+					badge.textContent = nPars.pct;
 				}
-				
-				updateDOM();
-				
-				var mo = new MutationObserver(updateDOM);
-				mo.observe(inn, { attributes: true, attributeFilter: ['style'], characterData: true, childList: true, subtree: true });
-				mo.observe(b, { attributes: true, attributeFilter: ['title'] });
-			})(bar, inner);
+			});
+			moDummy.observe(dummy, { attributes: true, attributeFilter: ['style'], childList: true, characterData: true, subtree: true });
 		}
+		
+		var txtEl = bar.querySelector('.vw-pb-text');
+		var badgeEl = bar.querySelector('.vw-pb-badge');
+		if (txtEl) txtEl.textContent = parsed.text;
+		if (badgeEl) badgeEl.textContent = parsed.pct;
 	}
 
 	function updateReadyClass() {
@@ -185,7 +260,7 @@
 
 		document.body.classList.toggle('vwrt-view-ready', viewReady());
 		setPageClasses();
-		enhanceProgressMeters();
+		upgradeProgressBars();
 	}
 
 	function watchViewReady() {
@@ -202,7 +277,7 @@
 	function init() {
 		root.classList.add('vwrt-ready');
 		root.classList.add('vitrawrt-ready');
-		root.dataset.vitrawrt = '1.41C-R3';
+		root.dataset.vitrawrt = '1.41C-R4';
 
 		if (document.body)
 			document.body.classList.add('vitrawrt-body');

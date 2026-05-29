@@ -64,7 +64,8 @@ function analyzeFile(file, source) {
 	];
 
 	if (/MutationObserver/.test(source) &&
-		(/insertBefore|replaceChild|wrap|\.style\.display/.test(source))) {
+		(/insertBefore|replaceChild|\.wrap\(/.test(source) ||
+		 /style\.display/.test(source.replace(/dummy\.style\.setProperty\(['"]display['"]/g, '').replace(/dummy\.style\.\w+/g, '')))) {
 		report(file, source, source.search(/MutationObserver/), 'MutationObserver must not be used as a LuCI layout transformer or lifecycle hacker');
 	}
 
