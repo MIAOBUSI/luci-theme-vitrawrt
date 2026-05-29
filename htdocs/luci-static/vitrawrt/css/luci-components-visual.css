@@ -4273,49 +4273,6 @@ body.vwrt-page-openclash #maincontent .mode-tab,
 body.vwrt-page-openclash #maincontent .cbi-button-option,
 body.vwrt-page-openclash #maincontent .cancel-btn,
 body.vwrt-page-openclash #maincontent .upload-btn,
-body.vwrt-page-openclash #maincontent .btn,
-body.vwrt-page-openclash #maincontent button,
-body.vwrt-page-openclash #maincontent input[type="button"],
-body.vwrt-page-openclash #maincontent input[type="submit"],
-body.vwrt-page-mosdns #maincontent .action-btn,
-body.vwrt-page-mosdns #maincontent .dashboard-btn,
-body.vwrt-page-mosdns #maincontent .btn,
-body.vwrt-page-mosdns #maincontent button,
-body.vwrt-page-plugin #maincontent .action-btn,
-body.vwrt-page-plugin #maincontent .dashboard-btn,
-body.vwrt-page-plugin #maincontent .btn,
-body.vwrt-page-plugin #maincontent button {
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 60%, transparent) !important;
-	border-radius: var(--vw-radius-control) !important;
-	color: var(--vw-text-main) !important;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 44%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-button-bg) 82%, transparent) !important;
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 38%, transparent) inset !important;
-}
-
-body.vwrt-page-openclash #maincontent .action-btn.active,
-body.vwrt-page-openclash #maincontent .dashboard-btn.active,
-body.vwrt-page-openclash #maincontent .mode-tab.active,
-body.vwrt-page-openclash #maincontent .cbi-button-option.active,
-body.vwrt-page-openclash #maincontent .cbi-button-option.selected,
-body.vwrt-page-openclash #maincontent .btn-primary,
-body.vwrt-page-openclash #maincontent .btn-success,
-body.vwrt-page-openclash #maincontent button.primary,
-body.vwrt-page-openclash #maincontent input[type="submit"],
-body.vwrt-page-mosdns #maincontent .action-btn.active,
-body.vwrt-page-mosdns #maincontent .btn-primary,
-body.vwrt-page-plugin #maincontent .action-btn.active,
-body.vwrt-page-plugin #maincontent .btn-primary {
-	border-color: color-mix(in srgb, var(--vw-accent) 28%, var(--vw-liquid-border-soft)) !important;
-	color: var(--vw-accent-ink) !important;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 52%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-accent) 16%, var(--vw-button-primary-bg)) !important;
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 42%, transparent) inset,
-		0 7px 16px color-mix(in srgb, var(--vw-accent) 8%, transparent) !important;
-}
 
 body.vwrt-page-openclash #maincontent .announcement-banner,
 body.vwrt-page-openclash #maincontent .announcement-content,
@@ -4960,47 +4917,6 @@ body.vwrt-page-openclash #maincontent .mode-tab,
 body.vwrt-page-openclash #maincontent .cbi-button-option,
 body.vwrt-page-openclash #maincontent .cancel-btn,
 body.vwrt-page-openclash #maincontent .upload-btn,
-body.vwrt-page-openclash #maincontent .btn,
-body.vwrt-page-openclash #maincontent button,
-body.vwrt-page-openclash #maincontent input[type="button"],
-body.vwrt-page-openclash #maincontent input[type="submit"],
-body.vwrt-page-mosdns #maincontent .action-btn,
-body.vwrt-page-mosdns #maincontent .dashboard-btn,
-body.vwrt-page-mosdns #maincontent .btn,
-body.vwrt-page-mosdns #maincontent button,
-body.vwrt-page-plugin #maincontent .action-btn,
-body.vwrt-page-plugin #maincontent .dashboard-btn,
-body.vwrt-page-plugin #maincontent .btn,
-body.vwrt-page-plugin #maincontent button {
-	border-color: color-mix(in srgb, var(--vw-border-soft) 58%, transparent) !important;
-	border-radius: var(--vw-radius-button) !important;
-	color: var(--vw-text-main) !important;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 38%, transparent), transparent 68%),
-		var(--vw-action-neutral-bg) !important;
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 34%, transparent) inset !important;
-}
-
-body.vwrt-page-openclash #maincontent .action-btn.active,
-body.vwrt-page-openclash #maincontent .dashboard-btn.active,
-body.vwrt-page-openclash #maincontent .mode-tab.active,
-body.vwrt-page-openclash #maincontent .cbi-button-option.active,
-body.vwrt-page-openclash #maincontent .cbi-button-option.selected,
-body.vwrt-page-openclash #maincontent .btn-primary,
-body.vwrt-page-openclash #maincontent .btn-success,
-body.vwrt-page-openclash #maincontent button.primary,
-body.vwrt-page-openclash #maincontent input[type="submit"],
-body.vwrt-page-mosdns #maincontent .action-btn.active,
-body.vwrt-page-mosdns #maincontent .btn-primary,
-body.vwrt-page-plugin #maincontent .action-btn.active,
-body.vwrt-page-plugin #maincontent .btn-primary {
-	border-color: var(--vw-action-primary-border) !important;
-	color: var(--vw-action-primary-text) !important;
-	background: var(--vw-action-primary-bg) !important;
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 38%, transparent) inset,
-		0 6px 14px color-mix(in srgb, var(--vw-accent) 6%, transparent) !important;
-}
 
 body.vwrt-page-openclash #maincontent .announcement-banner,
 body.vwrt-page-openclash #maincontent .announcement-content,
