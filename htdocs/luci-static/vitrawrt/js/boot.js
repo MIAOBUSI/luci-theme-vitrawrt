@@ -117,32 +117,65 @@
 		return !(children.length === 1 && children[0].classList.contains('spinning'));
 	}
 
+	function parseProgressText(rawText) {
+		var pctMatch = rawText.match(/(\d+(?:\.\d+)?\s*[%％])/);
+		var pctPart = pctMatch ? pctMatch[1] : '';
+		var textPart = rawText;
+		
+		if (pctPart) {
+			var match1 = rawText.match(/^(.*?)\s*\(\s*(?:\d+(?:\.\d+)?\s*[%％])\s*\)\s*$/);
+			if (match1) {
+				textPart = match1[1];
+			} else {
+				var match2 = rawText.match(/^(?:\d+(?:\.\d+)?\s*[%％])\s*(?:used|已使用|free|剩余|可用|cached|已缓存|buffered|已缓冲)?\s*\(\s*(.*?)\s*\)\s*$/);
+				if (match2) {
+					textPart = match2[1];
+				} else {
+					textPart = rawText.replace(pctPart, '').trim();
+					textPart = textPart.replace(/^(?:used|已使用|free|剩余|可用|cached|已缓存|buffered|已缓冲)\s*/, '').trim();
+					textPart = textPart.replace(/^\(\s*(.*?)\s*\)$/, '$1').trim();
+					textPart = textPart.replace(/^[，,]\s*/, '').trim();
+				}
+			}
+		}
+		return { pct: pctPart, text: textPart };
+	}
+
 	function enhanceProgressMeters() {
-		var bars = document.querySelectorAll('.cbi-progressbar:not(.vwrt-progress-meter)');
+		var bars = document.querySelectorAll('.cbi-progressbar:not(.vw-pb-enhanced)');
 		for (var i = 0; i < bars.length; i++) {
 			var bar = bars[i];
 			var inner = bar.querySelector('div');
 			if (!inner) continue;
 			
-			var width = inner.style.width || '0%';
-			bar.classList.add('vwrt-progress-meter');
-			bar.style.setProperty('--vwrt-progress-value', width);
+			bar.classList.add('vw-pb-enhanced');
 			
-			var track = document.createElement('span');
-			track.className = 'vwrt-progress-track';
-			track.setAttribute('aria-hidden', 'true');
-			
-			var fill = document.createElement('span');
-			fill.className = 'vwrt-progress-fill';
-			fill.setAttribute('aria-hidden', 'true');
-			
-			var shine = document.createElement('span');
-			shine.className = 'vwrt-progress-shine';
-			shine.setAttribute('aria-hidden', 'true');
-			
-			bar.appendChild(track);
-			bar.appendChild(fill);
-			bar.appendChild(shine);
+			(function(b, inn) {
+				function updateDOM() {
+					var rawTitle = b.getAttribute('title') || inn.textContent.trim();
+					if (!rawTitle || rawTitle === 'unknown' || rawTitle === '?') return;
+					
+					var parsed = parseProgressText(rawTitle);
+					b.setAttribute('data-vw-text', parsed.text);
+					b.setAttribute('data-vw-pct', parsed.pct);
+					
+					var td = b.closest('td');
+					var prevTd = td ? td.previousElementSibling : null;
+					var label = prevTd ? prevTd.textContent.toLowerCase() : '';
+					
+					if (label.indexOf('available') !== -1 || label.indexOf('可用') !== -1 || label.indexOf('free') !== -1 || label.indexOf('空闲') !== -1) {
+						b.setAttribute('data-vw-variant', 'success');
+					} else {
+						b.removeAttribute('data-vw-variant');
+					}
+				}
+				
+				updateDOM();
+				
+				var mo = new MutationObserver(updateDOM);
+				mo.observe(inn, { attributes: true, attributeFilter: ['style'], characterData: true, childList: true, subtree: true });
+				mo.observe(b, { attributes: true, attributeFilter: ['title'] });
+			})(bar, inner);
 		}
 	}
 
