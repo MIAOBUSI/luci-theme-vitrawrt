@@ -889,20 +889,20 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 }
 
 /* Fix password show/hide button and control-group input combos */
-#maincontent .control-group {
+#maincontent .control-group:has(.cbi-input-password) {
 	display: inline-flex !important;
 	gap: 10px !important;
 	align-items: center !important;
 }
 
 /* Remove LuCI core's negative margins and zero-radius forced on control-groups */
-#maincontent .control-group > input,
-#maincontent .control-group > .btn {
+#maincontent .control-group > .cbi-input-password,
+#maincontent .control-group > .cbi-input-password + .cbi-button-neutral {
 	margin: 0 !important;
 }
 
 /* Redesign the password reveal button to match Apple Settings aesthetic */
-#maincontent .control-group > .cbi-button-neutral {
+#maincontent .control-group > .cbi-input-password + .cbi-button-neutral {
 	background: var(--vw-panel-bg) !important;
 	border: 1px solid color-mix(in srgb, var(--vw-border-soft) 80%, transparent) !important;
 	border-radius: 50% !important;
@@ -921,7 +921,7 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 	line-height: 1 !important;
 }
 
-#maincontent .control-group > .cbi-button-neutral:hover {
+#maincontent .control-group > .cbi-input-password + .cbi-button-neutral:hover {
 	background: color-mix(in srgb, var(--vw-text-main) 5%, var(--vw-panel-bg)) !important;
 	transform: scale(1.05) !important;
 }
