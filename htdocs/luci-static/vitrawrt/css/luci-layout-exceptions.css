@@ -869,8 +869,14 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 
 /* If a row lacks a title, let the field span full width instead of squeezing into the left column */
 #maincontent .cbi-value:not(:has(.cbi-value-title)):not(.hidden):not(.hide):not([hidden]),
-#maincontent .cbi-value:has(> .cbi-value-title:empty):not(.hidden):not(.hide):not([hidden]) {
+#maincontent .cbi-value:has(> .cbi-value-title:empty):not(.hidden):not(.hide):not([hidden]),
+#maincontent .cbi-value[data-widget="CBI.ContainerValue"]:not(.hidden):not(.hide):not([hidden]) {
 	grid-template-columns: 1fr !important;
+}
+
+/* Hide dummy titles for container values (e.g. Backup/Restore nested sections) */
+#maincontent .cbi-value[data-widget="CBI.ContainerValue"] > .cbi-value-title {
+	display: none !important;
 }
 
 /* Fix spacing between textarea and buttons in repokeys and similar custom forms */
@@ -891,7 +897,7 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 /* Fix horizontal gap for ALL control-group input combos (like OPKG) */
 #maincontent .control-group {
 	display: inline-flex !important;
-	gap: 6px !important;
+	gap: 10px !important;
 	align-items: center !important;
 }
 
@@ -935,7 +941,8 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 /* --- Package Manager & General Controls Layout Adjustments --- */
 /* 1. Increase vertical gap between labels (e.g. "Filter:", "Actions:") and the inputs below them */
 #maincontent .controls > div > label {
-	margin-bottom: 12px !important;
+	display: inline-block !important;
+	margin-bottom: 8px !important;
 }
 
 /* 2. Decrease huge vertical gap between "Disk space:" label and the progressbar text/track */
@@ -947,5 +954,5 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 	display: flex !important;
 	justify-content: space-between !important;
 	align-items: flex-end !important;
-	margin-bottom: 8px !important; /* Proper distance between header text and the progress track */
+	margin-bottom: 4px !important; /* Proper distance between header text and the progress track */
 }
