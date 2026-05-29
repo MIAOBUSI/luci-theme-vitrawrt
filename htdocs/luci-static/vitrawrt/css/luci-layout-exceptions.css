@@ -772,19 +772,7 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 
 
 
-/* Fix alignment for multi-line or tall form rows while keeping single-line rows centered */
-#maincontent .cbi-value:has(.cbi-value-description, .cbi-dynlist, textarea) {
-	align-items: flex-start !important;
-}
 
-#maincontent .cbi-value:has(.cbi-value-description, .cbi-dynlist, textarea) > .cbi-value-title {
-	padding-top: 10px !important;
-}
-
-#maincontent .cbi-value:has(.cbi-value-description, .cbi-dynlist, textarea) > .cbi-value-field > input[type="checkbox"],
-#maincontent .cbi-value:has(.cbi-value-description, .cbi-dynlist, textarea) > .cbi-value-field > input[type="radio"] {
-	margin-top: 9px !important;
-}
 
 /* Force cbi-value rows to be completely transparent inside the card to avoid double backgrounds */
 #maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]),
@@ -820,4 +808,53 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 	html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]):hover {
 		background: color-mix(in srgb, var(--vw-text-main) 2%, transparent) !important;
 	}
+}
+
+/* ==========================================================================
+   Stage 1.41C-R4b: CBI Form Row Rhythm / Apple Settings Baseline Alignment (V2)
+   ========================================================================== */
+
+/* Outer Row: Grid layout for solid alignment */
+#maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]) {
+	display: grid !important;
+	grid-template-columns: min(238px, 34%) minmax(0, 1fr) !important;
+	align-items: start !important;
+	gap: clamp(12px, 1.2vw, 20px) !important;
+	padding: 12px 16px !important;
+}
+
+@media screen and (max-width: 600px) {
+	#maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]) {
+		grid-template-columns: 1fr !important;
+		gap: 6px !important;
+	}
+}
+
+/* Title text mathematical vertical center alignment */
+#maincontent .cbi-value-title,
+#maincontent .cbi-value label.cbi-value-title {
+	padding-top: 9px !important;
+	line-height: 20px !important;
+	margin: 0 !important;
+	text-align: left !important;
+}
+
+/* Field container remains block-level natively to preserve standard width/floating, 
+   but ensure it doesn't overflow horizontally */
+#maincontent .cbi-value-field {
+	min-width: 0 !important;
+	margin: 0 !important;
+}
+
+/* Description text precisely spaced below the field inputs */
+#maincontent .cbi-value-description {
+	display: block !important;
+	margin-top: 6px !important;
+}
+
+/* Checkbox offset to align precisely with the 19px visual center of Title */
+#maincontent .cbi-value-field > input[type="checkbox"],
+#maincontent .cbi-value-field > input[type="radio"],
+#maincontent .cbi-value-field > .cbi-checkbox {
+	margin-top: 9px !important;
 }
