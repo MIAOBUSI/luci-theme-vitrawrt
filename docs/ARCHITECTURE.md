@@ -91,9 +91,9 @@ Theme JS must not:
 - Replace native views.
 - Fetch dashboard/service data.
 
-## Stage 1.12 CSS Cascade
+## Stage 1.41A CSS Cascade
 
-Stage 1.12 keeps Bootstrap as the native LuCI behavior baseline and applies only safe VitraWrt visual identity layers on top:
+Stage 1.41A keeps Bootstrap as the native LuCI behavior baseline and applies only safe VitraWrt visual identity layers on top:
 
 ```text
 /luci-static/bootstrap/cascade.css
@@ -102,21 +102,18 @@ light.css
 dark.css
 base.css
 sidebar.css
-luci-visual.css
 luci-components-visual.css
 luci-layout-exceptions.css
 responsive.css
 ```
 
-Deprecated files such as `glass.css`, `luci-overrides.css`, `luci-reset.css`, `luci-safe.css`, and `luci-native.css` are no longer imported.
+Deprecated files such as `luci-visual.css`, `glass.css`, `luci-overrides.css`, `luci-reset.css`, `luci-safe.css`, and `luci-native.css` are archived and no longer imported.
 
 `sidebar.css` owns the VitraWrt shell navigation, including the local SVG menu icon system. It must not style or mutate `#maincontent` LuCI business components.
 
-`luci-visual.css` is visual-only. It may style color, background, border, radius, shadow, padding, margin, font, and focus treatment. It must not set display, position, z-index, pointer-events, transform, overflow, width, table layout, or target tabs, dropdowns, dynlists, modals, apply areas, ifacebox internals, or option elements.
+`luci-components-visual.css` is visual-only, and it is the only place allowed to skin native LuCI component surfaces such as tabs, form shells, progress bars, apply areas, modal/dialog surfaces, loading cards, and status/ifacebox shells. It must not alter display/hidden state, pointer events, positioning, table layout, modal lifecycle, dropdown lifecycle, dynlist lifecycle, apply lifecycle, or ifacebox tooltip behavior.
 
-`luci-components-visual.css` is also visual-only, but it is the only place allowed to skin native LuCI component surfaces such as tabs, form shells, progress bars, apply areas, modal/dialog surfaces, loading cards, and status/ifacebox shells. It must not alter display/hidden state, pointer events, positioning, table layout, modal lifecycle, dropdown lifecycle, dynlist lifecycle, apply lifecycle, or ifacebox tooltip behavior.
-
-`luci-layout-exceptions.css` contains only audited page-scoped fixes for startup, processes, syslog, network-share, packages, and vnStat2. New table fixes must remain page-scoped and be justified by Bootstrap/Argon metric comparison.
+`luci-layout-exceptions.css` contains only audited page-scoped fixes for OpenClash, MosDNS, startup, processes, syslog, network-share, packages, and vnStat2. New table fixes must remain page-scoped and be justified by Bootstrap/Argon metric comparison.
 
 ## Regression Requirements
 

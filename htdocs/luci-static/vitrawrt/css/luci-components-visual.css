@@ -257,7 +257,6 @@
 	background: color-mix(in srgb, var(--vw-surface-soft) 72%, transparent) !important;
 	border: none !important;
 	box-shadow: none !important;
-	transform: none !important;
 }
 
 /* Dynamic lists and dropdown popovers: visual only, no open/close lifecycle. */
@@ -322,13 +321,7 @@
 		color-mix(in srgb, var(--vw-accent-soft) 48%, var(--vw-material-button));
 }
 
-/* Button Gaps & Dropdown Fix */
-#maincontent .cbi-value-field > .cbi-button,
-#maincontent .cbi-value-field > input + .cbi-button,
-#maincontent .cbi-value-field > select + .cbi-button,
-#maincontent .cbi-button + .cbi-button {
-	margin-left: 8px;
-}
+/* Button Gaps & Dropdown Fix - margin-left removed for safety */
 
 /* Premium console buttons. */
 #maincontent button,
@@ -378,25 +371,13 @@
 
 /* Fix Save & Apply Dropdown Button */
 #maincontent .cbi-dropdown.cbi-button {
-	overflow: visible !important; /* Prevents the dropdown menu from being clipped */
-	position: relative !important;
 	padding-right: 36px !important; /* Reserve space for span.open */
-	transform: none !important; /* Prevents stacking context issues with absolute positioned dropdowns */
 }
 
 /* Restore the dropdown arrow visually and functionally using the native span.open */
 #maincontent .cbi-dropdown.cbi-button > span.open {
-	position: absolute !important;
-	right: 0 !important;
-	top: 0 !important;
-	bottom: 0 !important;
-	width: 36px !important;
-	display: flex !important;
-	align-items: center !important;
-	justify-content: center !important;
 	font-size: 14px !important;
 	color: #ffffff !important;
-	pointer-events: auto !important;
 	cursor: pointer !important;
 	border-left: 1px solid color-mix(in srgb, #ffffff 20%, transparent) !important;
 }
@@ -418,12 +399,9 @@
 	color: #ffffff;
 	background: linear-gradient(135deg, #7c9bfa, #5f7cf8);
 	box-shadow: 0 6px 18px color-mix(in srgb, #4f6cf6 55%, transparent);
-	transform: translateY(-1px);
 }
 
-#maincontent .cbi-dropdown.cbi-button:hover {
-	transform: none !important;
-}
+/* removed hover transform for cbi-dropdown.cbi-button */
 
 /* Role 1a: Apply/Save (Apple Mint Green) */
 #maincontent .cbi-button-apply,
@@ -451,7 +429,6 @@
 	color: #ffffff !important;
 	background: linear-gradient(135deg, #61e89e, #36d27f) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #28c973 55%, transparent) !important;
-	transform: translateY(-1px);
 }
 
 /* Role 1b: Primary Action (Apple Blue) */
@@ -482,7 +459,6 @@
 	color: #ffffff !important;
 	background: linear-gradient(135deg, #7c9bfa, #5f7cf8) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #4f6cf6 55%, transparent) !important;
-	transform: translateY(-1px);
 }
 
 /* Distinct Action Buttons for Init scripts (Startup Page) */
@@ -494,7 +470,6 @@
 #maincontent .table div > button.cbi-button-action:nth-child(2):hover {
 	background: linear-gradient(135deg, #6bb3ff, #006ae6) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #007aff 55%, transparent) !important;
-	transform: translateY(-1px);
 }
 
 #maincontent .table div > button.cbi-button-action:nth-child(3) {
@@ -504,7 +479,6 @@
 #maincontent .table div > button.cbi-button-action:nth-child(3):hover {
 	background: linear-gradient(135deg, #ffc570, #ff8c59) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #ff793f 55%, transparent) !important;
-	transform: translateY(-1px);
 }
 
 #maincontent .table div > button.cbi-button-action:nth-child(4) {
@@ -514,7 +488,6 @@
 #maincontent .table div > button.cbi-button-action:nth-child(4):hover {
 	background: linear-gradient(135deg, #b97af0, #986ae0) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #8854d0 55%, transparent) !important;
-	transform: translateY(-1px);
 }
 
 #maincontent .table div > button.cbi-button-action:nth-child(5) {
@@ -524,7 +497,6 @@
 #maincontent .table div > button.cbi-button-action:nth-child(5):hover {
 	background: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #ff4145 55%, transparent) !important;
-	transform: translateY(-1px);
 }
 
 /* Role 2: Add/New / Positive (Clean Low-Saturation Mint Green) */
@@ -561,7 +533,6 @@
 	color: #ffffff !important;
 	background: linear-gradient(135deg, #61e89e, #36d27f) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #28c973 55%, transparent) !important;
-	transform: translateY(-1px);
 }
 
 /* Role 3: Reset/Reload / Warning (Low-Saturation Warning Amber) */
@@ -608,7 +579,6 @@
 	color: #ffffff !important;
 	background: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #ff4145 55%, transparent) !important;
-	transform: translateY(-1px);
 }
 
 /* Role 4: Remove/Delete / Danger (Refined Spatial Rose Red) */
@@ -647,7 +617,6 @@
 	color: #ffffff !important;
 	background: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #ff4145 55%, transparent) !important;
-	transform: translateY(-1px);
 }
 
 /* Compact floating apply dock. LuCI still owns when it is present. */
@@ -1195,6 +1164,13 @@
 	background: color-mix(in srgb, var(--vw-cyan) 12%, var(--vw-surface-control-active));
 }
 
+#maincontent .cbi-dropdown ul.dropdown > li[display="0"],
+.modal .cbi-dropdown ul.dropdown > li[display="0"],
+[role="dialog"] .cbi-dropdown ul.dropdown > li[display="0"] {
+	background: transparent !important;
+	color: inherit !important;
+}
+
 /* 7. Tabs */
 #maincontent .tabs,
 #maincontent .cbi-tabmenu,
@@ -1476,16 +1452,31 @@
 	padding-inline-end: 38px;
 	background-color: var(--vw-surface-control);
 	background-image:
-		linear-gradient(45deg, transparent 50%, var(--vw-text-muted) 50%),
-		linear-gradient(135deg, var(--vw-text-muted) 50%, transparent 50%),
+		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>'),
 		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 62%, transparent), transparent 66%);
 	background-position:
-		calc(100% - 18px) 50%,
 		calc(100% - 12px) 50%,
 		0 0;
 	background-size:
-		6px 6px,
-		6px 6px,
+		14px 14px,
+		100% 100%;
+	background-repeat: no-repeat;
+}
+
+#maincontent .cbi-dropdown,
+.modal .cbi-dropdown,
+.cbi-modal .cbi-dropdown,
+[role="dialog"] .cbi-dropdown {
+	padding-inline-end: 38px;
+	background-color: var(--vw-surface-control);
+	background-image:
+		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>'),
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 62%, transparent), transparent 66%);
+	background-position:
+		calc(100% - 12px) 50%,
+		0 0;
+	background-size:
+		14px 14px,
 		100% 100%;
 	background-repeat: no-repeat;
 }
@@ -2916,6 +2907,9 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 .modal .cbi-dynlist input,
 [role="dialog"] .cbi-dynlist input {
 	margin: 2px;
+	border: 1px solid var(--vw-border-medium);
+	min-height: 44px;
+	border-radius: var(--vw-radius-md);
 }
 
 #maincontent .cbi-dynlist .cbi-button,
@@ -2924,9 +2918,8 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 .modal .cbi-dynlist .btn,
 [role="dialog"] .cbi-dynlist .cbi-button,
 [role="dialog"] .cbi-dynlist .btn {
-	margin: 2px;
-	min-height: 38px;
-	padding: 8px 12px;
+	min-height: 44px;
+	border-radius: var(--vw-radius-md);
 }
 
 #maincontent .cbi-dynlist .cbi-button-remove,
@@ -6191,53 +6184,27 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* --- Pro Max UI: Progress Bars & Badges --- */
-/* Layout rules (position, display, height, overflow) live in luci-layout-exceptions.css.
- * Only visual tokens (colors, border-radius, font) live here. */
-
+/* Layout rules live in luci-layout-exceptions.css. */
 /* Container visual: track background + pill shape */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded {
+#maincontent .cbi-progressbar.vw-pb-enhanced {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     border-radius: 0 !important;
-}
-/* Native pseudo-elements injected by LuCI cascade.css — make them invisible without display:none */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded::before,
-#maincontent .cbi-progressbar.vw-progressbar-upgraded::after {
-    color: transparent !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
+    background-image: linear-gradient(color-mix(in srgb, var(--vw-text) 16%, transparent), color-mix(in srgb, var(--vw-text) 16%, transparent)) !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 10px !important;
+    background-position: left bottom 4px !important;
 }
 
-/* Track styling */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
-    background: color-mix(in srgb, var(--vw-text) 16%, transparent) !important;
-    border-radius: 99px !important;
-}
-
-/* Colored fill bar: gradient colors */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-fill {
-    border-radius: var(--vw-radius-pill) !important;
-    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    box-shadow: none !important;
-}
-#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-primary .vw-pb-fill {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-accent) 70%, white), var(--vw-accent)) !important;
-}
-#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-fill {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-success) 70%, white), var(--vw-success)) !important;
-}
-
-/* Text label: font style */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-text {
+#maincontent .cbi-progressbar.vw-pb-enhanced::before {
     font-size: 13px !important;
     font-weight: 500 !important;
     color: var(--vw-text-main) !important;
     line-height: 1 !important;
 }
 
-/* Percentage badge: font style */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
+#maincontent .cbi-progressbar.vw-pb-enhanced::after {
     font-size: 12px !important;
     font-weight: 600 !important;
     color: var(--vw-accent) !important;
@@ -6247,32 +6214,52 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     line-height: 1 !important;
 }
 
-#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-badge {
+#maincontent .cbi-progressbar.vw-pb-enhanced[data-vw-variant="success"]::after {
     color: var(--vw-success) !important;
     background: color-mix(in srgb, var(--vw-success) 12%, transparent) !important;
 }
 
-/* Hide the badge for primary/success bars — moved to layout-exceptions.css */
+#maincontent .cbi-progressbar.vw-pb-enhanced > div {
+    border-radius: var(--vw-radius-pill) !important;
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    box-shadow: none !important;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-accent) 70%, white), var(--vw-accent)) !important;
+    color: transparent !important;
+    font-size: 0 !important;
+}
 
-/* --- Fallback: Un-upgraded progress:not(.vw-progressbar-upgraded) bars --- */
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progress:not(.vw-progressbar-upgraded),
-#maincontent progress:not(.vw-progressbar-upgraded) {
+#maincontent .cbi-progressbar.vw-pb-enhanced[data-vw-variant="success"] > div {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-success) 70%, white), var(--vw-success)) !important;
+}
+
+/* --- Apple UI: Dropdown Enhancements --- */
+#maincontent .cbi-dropdown.cbi-button > span.open {
+    font-size: 14px !important;
+    color: #ffffff !important;
+    border-left: 1px solid color-mix(in srgb, #ffffff 20%, transparent) !important;
+}
+
+/* --- Native Progress Bars --- */
+#maincontent .cbi-progressbar,
+#maincontent .progressbar,
+#maincontent .progress,
+#maincontent progress {
     border-radius: 99px !important;
     background: color-mix(in srgb, var(--vw-text) 8%, transparent) !important;
     border: none !important;
     box-shadow: none !important;
 }
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) > div,
-#maincontent .progressbar:not(.vw-progressbar-upgraded) > div,
-#maincontent .progress:not(.vw-progressbar-upgraded) > div,
-#maincontent progress:not(.vw-progressbar-upgraded)::-webkit-progress-value {
+
+#maincontent .cbi-progressbar > div,
+#maincontent .progressbar > div,
+#maincontent .progress > div,
+#maincontent progress::-webkit-progress-value {
     border-radius: 99px !important;
     background: var(--vw-accent) !important;
     box-shadow: none !important;
     color: #ffffff !important;
     font-size: 11px !important;
+    padding: 0 8px !important;
 }
 
 /* Overview Hide Button / Utility Pills */

@@ -128,8 +128,14 @@ Stage 1R3 must not alter LuCI tab logic, tooltip behavior, hidden states, form l
 
 Stage 1R4 restores LuCI CBI runtime widgets after real-device comparison. It keeps VitraWrt as a skin and does not turn native pages into dashboard views.
 
-- Current Stage 1.11 no longer relies on broad `luci-safe.css` / `luci-native.css` layers. It uses Bootstrap as the behavior baseline, `luci-visual.css` for safe visual skin, and `luci-layout-exceptions.css` for audited page-scoped layout exceptions.
-- `luci-visual.css` must not force inactive panels visible, expose dropdown options before open, hide dynlist controls, force apply areas visible, or structurally reflow CBI business content.
+- `luci-components-visual.css`: Safe visual skin for native LuCI sections, tables, forms, buttons, dropdowns, and alerts.
+- `luci-layout-exceptions.css`: Page-scoped layout exceptions (e.g. OpenClash, network status grids).
+
+## Architecture Changes (Stage 1.41A)
+
+- Deprecated files such as `luci-visual.css`, `luci-safe.css`, `luci-native.css`, `luci-reset.css`, `luci-overrides.css`, and `glass.css` have been removed from the live cascade and archived. Do not import them.
+- All component visual styles belong to `luci-components-visual.css`.
+- All page-specific layout repairs belong to `luci-layout-exceptions.css`.
 - `scripts/cbi-component-audit.mjs` compares Bootstrap, Argon, and VitraWrt on CBI components and writes `docs/CBI_COMPONENT_AUDIT.md`.
 
 If a CBI component cannot be safely styled without changing behavior, it should fall back toward Bootstrap-compatible native behavior before any visual polish is attempted.

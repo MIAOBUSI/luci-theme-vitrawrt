@@ -19,22 +19,22 @@
 		<meta name="color-scheme" content="light dark">
 		<meta name="darkreader-lock">
 		<title>{{ striptags(`${boardinfo.hostname ?? '?'}${dispatched?.title ? ` | ${_(dispatched.title)}` : ''}`) }}</title>
-		<script src="{{ media }}/js/theme-mode.js?v=1.40R"></script>
-		<script src="{{ media }}/js/glass-quality.js?v=1.40R"></script>
-		<script src="{{ media }}/js/theme-mode.js?v=1.40R"></script>
-		<script src="{{ media }}/js/glass-quality.js?v=1.40R"></script>
+		<script src="{{ media }}/js/theme-mode.js?v=1.41A"></script>
+		<script src="{{ media }}/js/glass-quality.js?v=1.41A"></script>
+		<script src="{{ media }}/js/theme-mode.js?v=1.41A"></script>
+		<script src="{{ media }}/js/glass-quality.js?v=1.41A"></script>
 		{% if (node?.css): %}
 		<link rel="stylesheet" href="{{ resource }}/{{ node.css }}">
 		{% endif %}
 		{% if (css): %}
 		<style title="text/css">{{ css }}</style>
 		{% endif %}
-		<link rel="stylesheet" href="{{ media }}/cascade.css?v=1.40R">
-		<link rel="icon" href="{{ media }}/img/logo.svg?v=1.40R" sizes="any">
+		<link rel="stylesheet" href="{{ media }}/cascade.css?v=1.41A">
+		<link rel="icon" href="{{ media }}/img/logo.svg?v=1.41A" sizes="any">
 		<script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
 		<script src="{{ resource }}/cbi.js"></script>
-		<script defer src="{{ media }}/js/sidebar.js?v=1.40R"></script>
-		<script defer src="{{ media }}/js/boot.js?v=1.40R"></script>
+		<script defer src="{{ media }}/js/sidebar.js?v=1.41A"></script>
+		<script defer src="{{ media }}/js/boot.js?v=1.41A"></script>
 	</head>
 
 	<body class="lang_{{ dispatcher.lang }} {{ blank_page ? 'vwrt-auth-body' : 'vwrt-shell-body' }} {{ entityencode(striptags(node?.title ?? ''), true) }}" data-page="{{ entityencode(join('-', ctx.request_path), true) }}">

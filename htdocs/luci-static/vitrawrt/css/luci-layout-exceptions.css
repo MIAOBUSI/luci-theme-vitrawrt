@@ -611,95 +611,14 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section {
 }
 
 /* ==========================================================================
-   Pro Max UI: Progress Bar Layout
-   boot.js rewrites .cbi-progressbar into .vw-progressbar-upgraded with child
-   elements: .vw-pb-dummy, .vw-pb-fill, .vw-pb-header, .vw-pb-text, .vw-pb-badge
-   Visual rules (colors, fonts) live in luci-components-visual.css
+   Pro Max UI: Progress Bar Layout & Tab Menus
    ========================================================================== */
-
-/* Container: vertical flex layout */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded {
-	position: relative !important;
-	display: flex !important;
-	flex-direction: column !important;
-	justify-content: center !important;
-	padding: 4px 0 !important;
-	margin-bottom: 4px !important;
-	min-height: 44px !important;
-	overflow: visible !important;
-	border: none !important;
-	background: transparent !important;
-}
-
-/* Hidden dummy — LuCI core JS writes width/text here; we mirror it to .vw-pb-fill */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-dummy,
-#maincontent .cbi-progressbar.vw-progressbar-upgraded > div:first-child {
-	display: none !important;
-	visibility: hidden !important;
-	position: absolute !important;
-	background: transparent !important;
-	opacity: 0 !important;
-	pointer-events: none !important;
-}
-
-/* Header row: text + badge above the track */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-header {
-	display: flex !important;
-	align-items: center !important;
-	justify-content: space-between !important;
-	width: 100% !important;
-	margin-bottom: 6px !important;
-	background: transparent !important;
-}
-
-/* Text & Badge layout */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-text {
-	overflow: hidden !important;
-	text-overflow: ellipsis !important;
-	flex: 1 1 0 !important;
-	min-width: 0 !important;
-	
-}
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
-	flex-shrink: 0 !important;
-	margin-left: 8px !important;
-}
-
-/* The track (grey background) */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
-	position: relative !important;
-	width: 100% !important;
-	height: 10px !important;
-	display: block !important;
-	overflow: hidden !important;
-}
-
-/* The actual colored fill — inside the track */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-fill {
-	position: absolute !important;
-	top: 0 !important;
-	left: 0 !important;
-	bottom: 0 !important;
-	height: 100% !important;
-	max-width: 100% !important;
-}
-
-/* Fallback un-upgraded bars: give them a fixed height */
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progressbar,
-#maincontent .progress,
-#maincontent progress {
-	height: 16px !important;
-}
-
 
 /* Apple Dock Style Tab Menu: adaptive width */
 #maincontent .tabs,
 #maincontent .cbi-tabmenu,
-.modal .tabs,
-.modal .cbi-tabmenu,
-.cbi-modal .tabs,
-.cbi-modal .cbi-tabmenu,
+div[class*="modal"] .tabs,
+div[class*="modal"] .cbi-tabmenu,
 [role="dialog"] .tabs,
 [role="dialog"] .cbi-tabmenu {
     display: inline-flex !important;
@@ -710,13 +629,97 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section {
 
 #maincontent .tabs > li > a,
 #maincontent .cbi-tabmenu > li > a,
-.modal .tabs > li > a,
-.modal .cbi-tabmenu > li > a,
-.cbi-modal .tabs > li > a,
-.cbi-modal .cbi-tabmenu > li > a,
+div[class*="modal"] .tabs > li > a,
+div[class*="modal"] .cbi-tabmenu > li > a,
 [role="dialog"] .tabs > li > a,
 [role="dialog"] .cbi-tabmenu > li > a {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
 }
+
+/* Progress bar enhanced layout (CSS Grid) */
+#maincontent .cbi-progressbar.vw-pb-enhanced {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-rows: auto 10px !important;
+    row-gap: 6px !important;
+    column-gap: 8px !important;
+    position: relative !important;
+    min-height: 44px !important;
+    padding: 4px 0 !important;
+    margin-bottom: 8px !important;
+    overflow: visible !important;
+}
+
+#maincontent .cbi-progressbar.vw-pb-enhanced::before {
+    content: attr(data-vw-text) !important;
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / 2 !important;
+    display: -webkit-box !important;
+    align-items: center !important;
+    -webkit-line-clamp: 1 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+#maincontent .cbi-progressbar.vw-pb-enhanced::after {
+    content: attr(data-vw-pct) !important;
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#maincontent .cbi-progressbar.vw-pb-enhanced > div {
+    grid-column: 1 / 3 !important;
+    grid-row: 2 / 3 !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    white-space: normal !important;
+}
+
+/* ==========================================================================
+   Apple UI: Component Layout Adjustments
+   ========================================================================== */
+
+/* Button Spacing */
+#maincontent .cbi-button + .cbi-button,
+#maincontent .cbi-button + .cbi-dropdown {
+    margin-left: 8px !important;
+}
+
+/* Dropdown layout enhancements */
+#maincontent .cbi-dropdown.cbi-button {
+    overflow: visible !important;
+    position: relative !important;
+    padding-right: 36px !important;
+    transform: none !important;
+}
+
+/* Dropdown Arrow Wrapper */
+#maincontent .cbi-dropdown.cbi-button > span.open {
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Dynlist Compound Control Layout */
+.cbi-dynlist .cbi-dynlist-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+
