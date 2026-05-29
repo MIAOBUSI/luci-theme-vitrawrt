@@ -6265,14 +6265,14 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 /* Layout rules (position, display, height, overflow) live in luci-layout-exceptions.css.
  * Only visual tokens (colors, border-radius, font) live here. */
 
-/* Container visual: track background + pill shape */
+/* Container visual */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     border-radius: 0 !important;
 }
-/* Native pseudo-elements injected by LuCI cascade.css — make them invisible without display:none */
+/* Native pseudo-elements injected by LuCI cascade.css — make them invisible */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded::before,
 #maincontent .cbi-progressbar.vw-progressbar-upgraded::after {
     color: transparent !important;
@@ -6280,26 +6280,31 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     line-height: 0 !important;
 }
 
-/* Track styling */
+/* Track: Apple-style frosted trough */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
-    background: color-mix(in srgb, var(--vw-text) 16%, transparent) !important;
-    border-radius: 99px !important;
+    background: color-mix(in srgb, var(--vw-text) 12%, transparent) !important;
+    border-radius: 999px !important;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.18) !important;
 }
 
-/* Colored fill bar: gradient colors */
+/* Colored fill bar */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-fill {
-    border-radius: var(--vw-radius-pill) !important;
-    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    box-shadow: none !important;
-}
-#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-primary .vw-pb-fill {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-accent) 70%, white), var(--vw-accent)) !important;
-}
-#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-fill {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-success) 70%, white), var(--vw-success)) !important;
+    border-radius: 999px !important;
+    transition: width 0.45s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25) !important;
 }
 
-/* Text label: font style */
+/* Primary (blue) — Apple System Blue */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-primary .vw-pb-fill {
+    background: linear-gradient(90deg, #0a84ff, #409cff) !important;
+}
+
+/* Success (green) — Apple System Green */
+#maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-fill {
+    background: linear-gradient(90deg, #30d158, #34c759) !important;
+}
+
+/* Text label */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-text {
     font-size: 13px !important;
     font-weight: 500 !important;
@@ -6307,20 +6312,22 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     line-height: 1 !important;
 }
 
-/* Percentage badge: font style */
+/* Percentage badge */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
     font-size: 12px !important;
-    font-weight: 600 !important;
-    color: var(--vw-accent) !important;
-    background: color-mix(in srgb, var(--vw-accent) 12%, transparent) !important;
-    padding: 3px 8px !important;
-    border-radius: 99px !important;
+    font-weight: 700 !important;
+    color: #0a84ff !important;
+    background: rgba(10, 132, 255, 0.14) !important;
+    padding: 2px 8px !important;
+    border-radius: 999px !important;
     line-height: 1 !important;
+    letter-spacing: 0.02em !important;
 }
 
+/* Success badge */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-badge {
-    color: var(--vw-success) !important;
-    background: color-mix(in srgb, var(--vw-success) 12%, transparent) !important;
+    color: #30d158 !important;
+    background: rgba(48, 209, 88, 0.14) !important;
 }
 
 /* --- Apple UI: Dropdown Enhancements --- */

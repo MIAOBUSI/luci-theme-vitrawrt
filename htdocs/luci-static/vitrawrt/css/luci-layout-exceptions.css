@@ -673,11 +673,12 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 /* Header row: text + badge above the track */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-header {
 	display: flex !important;
-	align-items: center !important;
+	align-items: baseline !important;
 	justify-content: space-between !important;
 	width: 100% !important;
-	margin-bottom: 6px !important;
+	margin-bottom: 8px !important;
 	background: transparent !important;
+	line-height: 1 !important;
 }
 
 /* Text & Badge layout */
@@ -686,20 +687,22 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 	text-overflow: ellipsis !important;
 	flex: 1 1 0 !important;
 	min-width: 0 !important;
-	
+	line-height: 1 !important;
 }
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
 	flex-shrink: 0 !important;
-	margin-left: 8px !important;
+	margin-left: 10px !important;
+	line-height: 1 !important;
 }
 
 /* The track (grey background) */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
 	position: relative !important;
 	width: 100% !important;
-	height: 10px !important;
+	height: 8px !important;
 	display: block !important;
 	overflow: hidden !important;
+	border-radius: 999px !important;
 }
 
 /* The actual colored fill — inside the track */
@@ -710,6 +713,7 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 	bottom: 0 !important;
 	height: 100% !important;
 	max-width: 100% !important;
+	border-radius: 999px !important;
 }
 
 /* Fallback un-upgraded bars: give them a fixed height */
