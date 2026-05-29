@@ -858,3 +858,11 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 #maincontent .cbi-value-field > .cbi-checkbox {
 	margin-top: 9px !important;
 }
+
+/* Force hide dependent elements */
+#maincontent .cbi-value.hidden,
+#maincontent .cbi-value.hide,
+#maincontent .cbi-value[data-depends-hidden],
+#maincontent .cbi-value[hidden] {
+	display: none !important;
+}
