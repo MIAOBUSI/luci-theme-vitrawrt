@@ -139,7 +139,7 @@
 	function init() {
 		root.classList.add('vwrt-ready');
 		root.classList.add('vitrawrt-ready');
-		root.dataset.vitrawrt = '1.41B';
+		root.dataset.vitrawrt = '1.41C';
 
 		if (document.body)
 			document.body.classList.add('vitrawrt-body');

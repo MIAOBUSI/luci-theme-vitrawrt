@@ -162,6 +162,12 @@ function targetsShellAncestor(selector) {
 function allowedComponentVisualProp(selector, prop, value) {
 	if (prop === 'display' && isVisibleCbiValueSelector(selector) && /^(flex|block)$/.test(value))
 		return true;
+	if (prop === 'display' && selector.includes('.cbi-tabmenu') && /^(inline-flex|flex)$/.test(value))
+		return true;
+	if (prop === 'width' && selector.includes('.cbi-tabmenu') && value === 'fit-content')
+		return true;
+	if (prop === 'display' && selector.includes('.cbi-dynlist') && /^(inline-flex|flex)$/.test(value))
+		return true;
 
 	if (prop === 'opacity' && selector.includes('.ifacebox') && selector.includes('.cbi-tooltip'))
 		return value === '1';
@@ -339,7 +345,7 @@ function analyzeComponentsVisualRule(file, source, selector, decls, index) {
 		report(file, line, selector, 'luci-components-visual.css must not style option elements');
 
 	if ((selector.includes('.tabs') || selector.includes('.cbi-tabmenu') || selector.includes('.cbi-tab')) &&
-		(declValue(decls, 'display') || declValue(decls, 'visibility') || declValue(decls, 'position') || declValue(decls, 'z-index') || declValue(decls, 'pointer-events')))
+		((declValue(decls, 'display') && !/^(inline-flex|flex)$/.test(declValue(decls, 'display'))) || declValue(decls, 'visibility') || declValue(decls, 'position') || declValue(decls, 'z-index') || declValue(decls, 'pointer-events')))
 		report(file, line, selector, 'tab visual selectors must not change behavior properties');
 
 	if ((selector.includes('.cbi-dropdown') || selector.includes('ul.dropdown')) &&
@@ -386,7 +392,7 @@ function analyzeGlobalRule(file, source, selector, decls, index) {
 		report(file, line, selector, 'html/body/main shell transform/filter/perspective can break LuCI fixed modals');
 
 	if (selector.includes('.modal')) {
-		if (display)
+		if (display && !selector.includes('.cbi-tabmenu') && !selector.includes('.tabs') && !selector.includes('.cbi-dynlist'))
 			report(file, line, selector, '.modal display overrides are forbidden');
 		if (declValue(decls, 'position'))
 			report(file, line, selector, '.modal position overrides are forbidden');

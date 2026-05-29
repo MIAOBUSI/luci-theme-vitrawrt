@@ -1,280 +1,280 @@
 # Visual Direction Audit 1.24B
 
-Output: audit-output/visual-direction-1.24B/20260527-113438
+Output: audit-output/visual-direction-1.24B/20260529-155249
 
 ## Source Safety
 - check-js-safety status: 0
 - check-css-safety status: 0
-- check-css-safety output: CSS safety check passed (16 files scanned, 2 warning(s)).
-- cascade imports: /luci-static/bootstrap/cascade.css?v=1.24B-base, ./css/tokens.css?v=1.24B, ./css/light.css?v=1.24B, ./css/dark.css?v=1.24B, ./css/base.css?v=1.24B, ./css/sidebar.css?v=1.24B, ./css/luci-components-visual.css?v=1.24B, ./css/luci-layout-exceptions.css?v=1.24B, ./css/responsive.css?v=1.24B
+- check-css-safety output: CSS safety check passed (10 files scanned, 3 warning(s)).
+- cascade imports: /luci-static/bootstrap/cascade.css?v=1.41C, ./css/tokens.css?v=1.41C, ./css/light.css?v=1.41C, ./css/dark.css?v=1.41C, ./css/base.css?v=1.41C, ./css/sidebar.css?v=1.41C, ./css/luci-components-visual.css?v=1.41C, ./css/luci-layout-exceptions.css?v=1.41C, ./css/responsive.css?v=1.41C
 - luci-visual.css imported: no
 - luci-components-visual.css imported: yes
 - fake click detected: no
 - global table normalize detected: no
 
 ## Login
-- light 1920x1080: audit-output/visual-direction-1.24B/20260527-113438/login-light-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgb(41, 66, 83)
-- light 390x844: audit-output/visual-direction-1.24B/20260527-113438/login-light-390x844.png; logo={"x":159,"y":237,"width":72,"height":72}; button=rgb(41, 66, 83)
-- dark 1920x1080: audit-output/visual-direction-1.24B/20260527-113438/login-dark-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgb(36, 63, 82)
-- dark 390x844: audit-output/visual-direction-1.24B/20260527-113438/login-dark-390x844.png; logo={"x":159,"y":237,"width":72,"height":72}; button=rgb(36, 63, 82)
+- light 1920x1080: audit-output/visual-direction-1.24B/20260529-155249/login-light-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgb(41, 66, 83)
+- light 390x844: audit-output/visual-direction-1.24B/20260529-155249/login-light-390x844.png; logo={"x":159,"y":229,"width":72,"height":72}; button=rgb(41, 66, 83)
+- dark 1920x1080: audit-output/visual-direction-1.24B/20260529-155249/login-dark-1920x1080.png; logo={"x":651,"y":451,"width":100,"height":100}; button=rgb(36, 63, 82)
+- dark 390x844: audit-output/visual-direction-1.24B/20260529-155249/login-dark-390x844.png; logo={"x":159,"y":229,"width":72,"height":72}; button=rgb(36, 63, 82)
 
 ## Pages
-- light status-overview: audit-output/visual-direction-1.24B/20260527-113438/light-status-overview.png
+- light status-overview: audit-output/visual-direction-1.24B/20260529-155249/light-status-overview.png
   - blue usage ratio: 0.154
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light system-system: audit-output/visual-direction-1.24B/20260527-113438/light-system-system.png
-  - blue usage ratio: 0.221
+- light system-system: audit-output/visual-direction-1.24B/20260529-155249/light-system-system.png
+  - blue usage ratio: 0.155
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light network-routes: audit-output/visual-direction-1.24B/20260527-113438/light-network-routes.png
-  - blue usage ratio: 0.163
+- light network-routes: audit-output/visual-direction-1.24B/20260529-155249/light-network-routes.png
+  - blue usage ratio: 0.154
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-  - tab gaps: 静态 IPv4 路由:10, 静态 IPv6 路由:10, IPv4 规则:10, IPv6 规则:10
-- light network-network: audit-output/visual-direction-1.24B/20260527-113438/light-network-network.png
-  - blue usage ratio: 0.137
+  - tab gaps: Static IPv4 Routes:16, Static IPv6 Routes:16, IPv4 Rules:16, IPv6 Rules:16
+- light network-network: audit-output/visual-direction-1.24B/20260529-155249/light-network-network.png
+  - blue usage ratio: 0.132
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-  - modal opened: true
-  - tab gaps: 接口:10, 设备:10, 全局网络选项:10
-- light network-dhcp: audit-output/visual-direction-1.24B/20260527-113438/light-network-dhcp.png
-  - blue usage ratio: 0.2
+  - modal opened: false
+  - tab gaps: Interfaces:16, Devices:16, Global network options:16
+- light network-dhcp: audit-output/visual-direction-1.24B/20260529-155249/light-network-dhcp.png
+  - blue usage ratio: 0.145
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-  - tab gaps: 租约:10, dnsmasq:10, odhcpd:10, 常规:10, 设置及端口:10, 日志:10, 文件:10, 中继:10, 标签:10, PXE/TFTP:10, 匹配标签:10, 设置标签:10, 厂商类:10, 用户类:10, 常规:10, IPv6 PXE:10
-- light vnstat2: audit-output/visual-direction-1.24B/20260527-113438/light-vnstat2.png
-  - blue usage ratio: 0.211
+  - tab gaps: Leases:16, dnsmasq:16, odhcpd:16
+- light vnstat2: audit-output/visual-direction-1.24B/20260529-155249/light-vnstat2.png
+  - blue usage ratio: 0.171
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-  - tab gaps: 图表:71, 配置:89
-- light services: audit-output/visual-direction-1.24B/20260527-113438/light-services.png
-  - blue usage ratio: 0.117
+  - tab gaps: Graphs:92, Configuration:97
+- light services: audit-output/visual-direction-1.24B/20260529-155249/light-services.png
+  - blue usage ratio: 0.113
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light openclash: audit-output/visual-direction-1.24B/20260527-113438/light-openclash.png
-  - blue usage ratio: 0.104
+- light openclash: audit-output/visual-direction-1.24B/20260529-155249/light-openclash.png
+  - blue usage ratio: 0.1
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light openclash-config: audit-output/visual-direction-1.24B/20260527-113438/light-openclash-config.png
-  - blue usage ratio: 0.208
+- light openclash-config: audit-output/visual-direction-1.24B/20260529-155249/light-openclash-config.png
+  - blue usage ratio: 0.202
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light openclash-log: audit-output/visual-direction-1.24B/20260527-113438/light-openclash-log.png
-  - blue usage ratio: 0.138
+- light openclash-log: audit-output/visual-direction-1.24B/20260529-155249/light-openclash-log.png
+  - blue usage ratio: 0.132
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light mosdns: audit-output/visual-direction-1.24B/20260527-113438/light-mosdns.png
-  - blue usage ratio: 0.153
+- light mosdns: audit-output/visual-direction-1.24B/20260529-155249/light-mosdns.png
+  - blue usage ratio: 0.146
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light mosdns-config: audit-output/visual-direction-1.24B/20260527-113438/light-mosdns-config.png
+- light mosdns-config: audit-output/visual-direction-1.24B/20260529-155249/light-mosdns-config.png
   - blue usage ratio: 0.158
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light mosdns-log: audit-output/visual-direction-1.24B/20260527-113438/light-mosdns-log.png
+- light mosdns-log: audit-output/visual-direction-1.24B/20260529-155249/light-mosdns-log.png
   - blue usage ratio: 0.158
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light packages: audit-output/visual-direction-1.24B/20260527-113438/light-packages.png
-  - blue usage ratio: 0.053
+- light packages: audit-output/visual-direction-1.24B/20260529-155249/light-packages.png
+  - blue usage ratio: 0.046
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light startup: audit-output/visual-direction-1.24B/20260527-113438/light-startup.png
-  - blue usage ratio: 0.13
+- light startup: audit-output/visual-direction-1.24B/20260529-155249/light-startup.png
+  - blue usage ratio: 0.132
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light processes: audit-output/visual-direction-1.24B/20260527-113438/light-processes.png
-  - blue usage ratio: 0.023
+- light processes: audit-output/visual-direction-1.24B/20260529-155249/light-processes.png
+  - blue usage ratio: 0.118
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light syslog: audit-output/visual-direction-1.24B/20260527-113438/light-syslog.png
+- light syslog: audit-output/visual-direction-1.24B/20260529-155249/light-syslog.png
   - blue usage ratio: 0.115
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- light cpulimit: audit-output/visual-direction-1.24B/20260527-113438/light-cpulimit.png
+- light cpulimit: audit-output/visual-direction-1.24B/20260529-155249/light-cpulimit.png
   - blue usage ratio: 0.102
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark status-overview: audit-output/visual-direction-1.24B/20260527-113438/dark-status-overview.png
+- dark status-overview: audit-output/visual-direction-1.24B/20260529-155249/dark-status-overview.png
   - blue usage ratio: 0.154
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark system-system: audit-output/visual-direction-1.24B/20260527-113438/dark-system-system.png
-  - blue usage ratio: 0.221
+- dark system-system: audit-output/visual-direction-1.24B/20260529-155249/dark-system-system.png
+  - blue usage ratio: 0.141
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark network-routes: audit-output/visual-direction-1.24B/20260527-113438/dark-network-routes.png
-  - blue usage ratio: 0.163
+- dark network-routes: audit-output/visual-direction-1.24B/20260529-155249/dark-network-routes.png
+  - blue usage ratio: 0.128
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-  - tab gaps: 静态 IPv4 路由:10, 静态 IPv6 路由:10, IPv4 规则:10, IPv6 规则:10
-- dark network-network: audit-output/visual-direction-1.24B/20260527-113438/dark-network-network.png
-  - blue usage ratio: 0.137
+  - tab gaps: Static IPv4 Routes:16, Static IPv6 Routes:16, IPv4 Rules:16, IPv6 Rules:16
+- dark network-network: audit-output/visual-direction-1.24B/20260529-155249/dark-network-network.png
+  - blue usage ratio: 0.116
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-  - modal opened: true
-  - tab gaps: 接口:10, 设备:10, 全局网络选项:10
-- dark network-dhcp: audit-output/visual-direction-1.24B/20260527-113438/dark-network-dhcp.png
-  - blue usage ratio: 0.2
+  - modal opened: false
+  - tab gaps: Interfaces:16, Devices:16, Global network options:16
+- dark network-dhcp: audit-output/visual-direction-1.24B/20260529-155249/dark-network-dhcp.png
+  - blue usage ratio: 0.128
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-  - tab gaps: 租约:10, dnsmasq:10, odhcpd:10, 常规:10, 设置及端口:10, 日志:10, 文件:10, 中继:10, 标签:10, PXE/TFTP:10, 匹配标签:10, 设置标签:10, 厂商类:10, 用户类:10, 常规:10, IPv6 PXE:10
-- dark vnstat2: audit-output/visual-direction-1.24B/20260527-113438/dark-vnstat2.png
-  - blue usage ratio: 0.211
+  - tab gaps: Leases:16, dnsmasq:16, odhcpd:16
+- dark vnstat2: audit-output/visual-direction-1.24B/20260529-155249/dark-vnstat2.png
+  - blue usage ratio: 0.116
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-  - tab gaps: 图表:71, 配置:89
-- dark services: audit-output/visual-direction-1.24B/20260527-113438/dark-services.png
-  - blue usage ratio: 0.117
-  - default icons all blue: false
-  - overflow: false
-  - expanded groups: 1
-  - media filters applied: 0
-  - dropdown options visible before open: 0
-- dark openclash: audit-output/visual-direction-1.24B/20260527-113438/dark-openclash.png
+  - tab gaps: Graphs:92, Configuration:97
+- dark services: audit-output/visual-direction-1.24B/20260529-155249/dark-services.png
   - blue usage ratio: 0.104
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark openclash-config: audit-output/visual-direction-1.24B/20260527-113438/dark-openclash-config.png
-  - blue usage ratio: 0.208
+- dark openclash: audit-output/visual-direction-1.24B/20260529-155249/dark-openclash.png
+  - blue usage ratio: 0.075
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark openclash-log: audit-output/visual-direction-1.24B/20260527-113438/dark-openclash-log.png
-  - blue usage ratio: 0.138
+- dark openclash-config: audit-output/visual-direction-1.24B/20260529-155249/dark-openclash-config.png
+  - blue usage ratio: 0.173
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark mosdns: audit-output/visual-direction-1.24B/20260527-113438/dark-mosdns.png
-  - blue usage ratio: 0.153
+- dark openclash-log: audit-output/visual-direction-1.24B/20260529-155249/dark-openclash-log.png
+  - blue usage ratio: 0.101
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark mosdns-config: audit-output/visual-direction-1.24B/20260527-113438/dark-mosdns-config.png
-  - blue usage ratio: 0.158
+- dark mosdns: audit-output/visual-direction-1.24B/20260529-155249/dark-mosdns.png
+  - blue usage ratio: 0.123
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark mosdns-log: audit-output/visual-direction-1.24B/20260527-113438/dark-mosdns-log.png
-  - blue usage ratio: 0.158
+- dark mosdns-config: audit-output/visual-direction-1.24B/20260529-155249/dark-mosdns-config.png
+  - blue usage ratio: 0.125
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark packages: audit-output/visual-direction-1.24B/20260527-113438/dark-packages.png
-  - blue usage ratio: 0.053
+- dark mosdns-log: audit-output/visual-direction-1.24B/20260529-155249/dark-mosdns-log.png
+  - blue usage ratio: 0.125
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark startup: audit-output/visual-direction-1.24B/20260527-113438/dark-startup.png
+- dark packages: audit-output/visual-direction-1.24B/20260529-155249/dark-packages.png
+  - blue usage ratio: 0.042
+  - default icons all blue: false
+  - overflow: false
+  - expanded groups: 1
+  - media filters applied: 0
+  - dropdown options visible before open: 0
+- dark startup: audit-output/visual-direction-1.24B/20260529-155249/dark-startup.png
   - blue usage ratio: 0.13
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark processes: audit-output/visual-direction-1.24B/20260527-113438/dark-processes.png
-  - blue usage ratio: 0.023
+- dark processes: audit-output/visual-direction-1.24B/20260529-155249/dark-processes.png
+  - blue usage ratio: 0.118
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark syslog: audit-output/visual-direction-1.24B/20260527-113438/dark-syslog.png
+- dark syslog: audit-output/visual-direction-1.24B/20260529-155249/dark-syslog.png
   - blue usage ratio: 0.115
   - default icons all blue: false
   - overflow: false
   - expanded groups: 1
   - media filters applied: 0
   - dropdown options visible before open: 0
-- dark cpulimit: audit-output/visual-direction-1.24B/20260527-113438/dark-cpulimit.png
+- dark cpulimit: audit-output/visual-direction-1.24B/20260529-155249/dark-cpulimit.png
   - blue usage ratio: 0.102
   - default icons all blue: false
   - overflow: false

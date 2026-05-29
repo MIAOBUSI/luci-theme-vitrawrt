@@ -486,7 +486,7 @@
 	box-shadow: 0 4px 14px color-mix(in srgb, #ff793f 45%, transparent) !important;
 }
 #maincontent .table div > button.cbi-button-action:nth-child(3):hover {
-	background-color: #5f7cf8 !important;
+	background-color: #ff8c59 !important;
 	background-image: linear-gradient(135deg, #ffc570, #ff8c59) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #ff793f 55%, transparent) !important;
 }
@@ -497,7 +497,7 @@
 	box-shadow: 0 4px 14px color-mix(in srgb, #8854d0 45%, transparent) !important;
 }
 #maincontent .table div > button.cbi-button-action:nth-child(4):hover {
-	background-color: #5f7cf8 !important;
+	background-color: #986ae0 !important;
 	background-image: linear-gradient(135deg, #b97af0, #986ae0) !important;
 	box-shadow: 0 6px 18px color-mix(in srgb, #8854d0 55%, transparent) !important;
 }
@@ -680,19 +680,23 @@
 #maincontent .cbi-tabmenu,
 #tabmenu .tabs,
 #tabmenu .cbi-tabmenu {
+	display: inline-flex;
+	width: fit-content;
 	margin: 0 0 20px;
-	padding: 0;
-	border-color: transparent;
-	border-radius: 0;
-	background: transparent;
-	box-shadow: none;
+	padding: 4px;
+	gap: 6px;
+	align-items: center;
+	border: 1px solid color-mix(in srgb, var(--vw-border) 40%, transparent);
+	border-radius: var(--vw-radius-pill);
+	background: color-mix(in srgb, var(--vw-surface-inner) 60%, transparent);
+	box-shadow: inset 0 2px 4px color-mix(in srgb, #000 4%, transparent);
 }
 
 #maincontent .tabs li,
 #maincontent .cbi-tabmenu li,
 #tabmenu .tabs li,
 #tabmenu .cbi-tabmenu li {
-	margin: 0 9px 10px 0;
+	margin: 0;
 	border-color: transparent;
 	border-radius: var(--vw-radius-pill);
 	background: transparent;
@@ -1752,11 +1756,16 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 .cbi-modal .cbi-tabmenu,
 [role="dialog"] .tabs,
 [role="dialog"] .cbi-tabmenu {
-	gap: 9px;
+	display: inline-flex;
+	width: fit-content;
+	gap: 6px;
 	margin-bottom: 18px;
-	padding: 2px 0;
-	border-color: transparent;
-	background: transparent;
+	padding: 4px;
+	align-items: center;
+	border: 1px solid color-mix(in srgb, var(--vw-border) 40%, transparent);
+	border-radius: var(--vw-radius-pill);
+	background: color-mix(in srgb, var(--vw-surface-inner) 60%, transparent);
+	box-shadow: inset 0 2px 4px color-mix(in srgb, #000 4%, transparent);
 }
 
 #maincontent .tabs > li > a,
@@ -3615,6 +3624,21 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 		color-mix(in srgb, var(--vw-accent) 14%, var(--vw-surface-control-active));
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 34%, transparent) inset;
 }
+/* Flex alignment for dynlist rows */
+#maincontent .cbi-dynlist .item,
+#maincontent .cbi-dynlist .cbi-dynlist-item,
+#maincontent .cbi-dynlist .control-group,
+.modal .cbi-dynlist .item,
+.modal .cbi-dynlist .cbi-dynlist-item,
+.modal .cbi-dynlist .control-group,
+[role="dialog"] .cbi-dynlist .item,
+[role="dialog"] .cbi-dynlist .cbi-dynlist-item,
+[role="dialog"] .cbi-dynlist .control-group {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
 
 #maincontent .cbi-dropdown .more,
 #maincontent .cbi-dropdown .open,
