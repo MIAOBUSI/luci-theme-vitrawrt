@@ -866,3 +866,14 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 #maincontent .cbi-value[hidden] {
 	display: none !important;
 }
+
+/* If a row lacks a title, let the field span full width instead of squeezing into the left column */
+#maincontent .cbi-value:not(:has(.cbi-value-title)):not(.hidden):not(.hide):not([hidden]),
+#maincontent .cbi-value:has(> .cbi-value-title:empty):not(.hidden):not(.hide):not([hidden]) {
+	grid-template-columns: 1fr !important;
+}
+
+/* Fix spacing between textarea and buttons in repokeys and similar custom forms */
+#maincontent .cbi-section-node textarea + .right {
+	margin-top: 12px !important;
+}
