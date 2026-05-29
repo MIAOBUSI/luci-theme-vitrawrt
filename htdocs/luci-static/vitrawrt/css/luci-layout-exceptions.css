@@ -887,3 +887,38 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 #maincontent .cbi-dropdown.cbi-button > span.open {
 	color: transparent !important; /* Hide native solid triangle arrow */
 }
+
+/* Fix password show/hide button and control-group input combos */
+#maincontent .control-group {
+	display: inline-flex !important;
+	gap: 6px !important;
+	align-items: center !important;
+}
+
+/* Remove LuCI core's negative margins and zero-radius forced on control-groups */
+#maincontent .control-group > input,
+#maincontent .control-group > .btn {
+	margin: 0 !important;
+}
+
+/* Redesign the password reveal button to match Apple Settings aesthetic */
+#maincontent .control-group > .cbi-button-neutral {
+	background: var(--vw-panel-bg) !important;
+	border: 1px solid color-mix(in srgb, var(--vw-border-soft) 80%, transparent) !important;
+	border-radius: var(--vw-radius-button) !important;
+	color: var(--vw-text-muted) !important;
+	padding: 0 14px !important;
+	min-width: 44px !important;
+	min-height: 44px !important;
+	box-shadow: none !important;
+	font-size: 16px !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	transition: all 0.2s ease !important;
+}
+
+#maincontent .control-group > .cbi-button-neutral:hover {
+	background: var(--vw-surface-soft) !important;
+	color: var(--vw-text-main) !important;
+}
