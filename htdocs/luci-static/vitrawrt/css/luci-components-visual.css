@@ -154,13 +154,8 @@
 	border: 1px solid color-mix(in srgb, var(--vw-border) 86%, transparent);
 	border-radius: 17px;
 	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 58%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-material-field) 94%, transparent);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 70%, transparent) inset,
-		0 -10px 22px color-mix(in srgb, var(--vitra-inner-dim) 70%, transparent) inset,
-		0 10px 24px color-mix(in srgb, var(--vw-shadow-color) 6%, transparent);
+	background: var(--vw-material-field);
+	box-shadow: 0 2px 5px color-mix(in srgb, var(--vw-shadow-color) 4%, transparent) inset;
 }
 
 #maincontent select,
@@ -226,9 +221,7 @@
 [role="dialog"] textarea:hover,
 [role="dialog"] .cbi-dropdown:hover {
 	border-color: color-mix(in srgb, var(--vw-accent) 22%, var(--vw-border));
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 68%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-material-field-hover) 94%, transparent);
+	background: var(--vw-material-field-hover);
 }
 
 #maincontent input:focus,
@@ -252,13 +245,10 @@
 [role="dialog"] .cbi-dropdown:focus,
 [role="dialog"] .cbi-dropdown:focus-within {
 	border-color: color-mix(in srgb, var(--vw-accent) 42%, var(--vw-border));
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 74%, transparent), transparent 64%),
-		color-mix(in srgb, var(--vw-material-field-hover) 98%, transparent);
+	background: var(--vw-panel-bg);
 	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 78%, transparent) inset,
-		0 0 0 3px color-mix(in srgb, var(--vw-accent) 14%, transparent),
-		0 14px 30px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent);
+		0 0 0 3px color-mix(in srgb, var(--vw-accent) 18%, transparent),
+		0 12px 24px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent);
 	outline: none;
 }
 
