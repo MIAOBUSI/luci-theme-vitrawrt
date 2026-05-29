@@ -651,9 +651,9 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 	display: flex !important;
 	flex-direction: column !important;
 	justify-content: center !important;
-	padding: 0 !important;
-	margin-bottom: 0 !important;
-	min-height: 28px !important;
+	padding: 4px 0 !important;
+	margin-bottom: 4px !important;
+	min-height: 44px !important;
 	overflow: visible !important;
 	border: none !important;
 	background: transparent !important;
@@ -703,7 +703,7 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
 	position: relative !important;
 	width: 100% !important;
-	height: 12px !important;
+	height: 16px !important;
 	display: block !important;
 	overflow: hidden !important;
 	border-radius: 999px !important;
