@@ -891,7 +891,7 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 /* Fix password show/hide button and control-group input combos */
 #maincontent .control-group {
 	display: inline-flex !important;
-	gap: 6px !important;
+	gap: 10px !important;
 	align-items: center !important;
 }
 
@@ -905,20 +905,23 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 #maincontent .control-group > .cbi-button-neutral {
 	background: var(--vw-panel-bg) !important;
 	border: 1px solid color-mix(in srgb, var(--vw-border-soft) 80%, transparent) !important;
-	border-radius: var(--vw-radius-button) !important;
-	color: var(--vw-text-muted) !important;
-	padding: 0 14px !important;
-	min-width: 44px !important;
-	min-height: 44px !important;
-	box-shadow: none !important;
-	font-size: 16px !important;
+	border-radius: 50% !important;
+	color: var(--vw-text-main) !important;
+	padding: 0 !important;
+	width: 40px !important;
+	height: 40px !important;
+	min-width: 40px !important;
+	min-height: 40px !important;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.04) !important;
+	font-size: 18px !important;
 	display: inline-flex !important;
 	align-items: center !important;
 	justify-content: center !important;
 	transition: all 0.2s ease !important;
+	line-height: 1 !important;
 }
 
 #maincontent .control-group > .cbi-button-neutral:hover {
-	background: var(--vw-surface-soft) !important;
-	color: var(--vw-text-main) !important;
+	background: color-mix(in srgb, var(--vw-text-main) 5%, var(--vw-panel-bg)) !important;
+	transform: scale(1.05) !important;
 }
