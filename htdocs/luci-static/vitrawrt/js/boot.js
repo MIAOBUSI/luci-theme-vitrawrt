@@ -191,7 +191,9 @@
 			// and 10_system.js blindly update 'firstElementChild' with width and innerHTML!
 			var dummy = document.createElement('div');
 			dummy.className = 'vw-pb-dummy';
-			dummy.style.display = 'none';
+			dummy.style.setProperty('display', 'none', 'important');
+			dummy.style.setProperty('visibility', 'hidden', 'important');
+			dummy.style.setProperty('opacity', '0', 'important');
 			dummy.style.width = initialWidth;
 			dummy.textContent = innerText;
 			bar.appendChild(dummy);
@@ -229,6 +231,10 @@
 			
 			// Observe dummy to react when LuCI core updates it
 			var moDummy = new MutationObserver(function() {
+				dummy.style.setProperty('display', 'none', 'important');
+				dummy.style.setProperty('visibility', 'hidden', 'important');
+				dummy.style.setProperty('opacity', '0', 'important');
+				header.style.setProperty('background', 'transparent', 'important');
 				if (dummy.style.width) fill.style.width = dummy.style.width;
 				var nText = dummy.textContent.trim();
 				var nTitle = bar.dataset.vwTitle || '';

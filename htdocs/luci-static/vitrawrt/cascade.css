@@ -1,10 +1,10 @@
 @import url("/luci-static/bootstrap/cascade.css?v=1.24P-base");
-@import url("./css/tokens.css?v=1.24P");
-@import url("./css/light.css?v=1.24P");
-@import url("./css/dark.css?v=1.24P");
-@import url("./css/base.css?v=1.24P");
-@import url("./css/sidebar.css?v=1.24P");
-@import url("./css/luci-components-visual.css?v=1.24P");
-@import url("./css/luci-layout-exceptions.css?v=1.24P");
-@import url("./css/responsive.css?v=1.24P");
+@import url("./css/tokens.css?v=1.24P-1");
+@import url("./css/light.css?v=1.24P-1");
+@import url("./css/dark.css?v=1.24P-1");
+@import url("./css/base.css?v=1.24P-1");
+@import url("./css/sidebar.css?v=1.24P-1");
+@import url("./css/luci-components-visual.css?v=1.40R");
+@import url("./css/luci-layout-exceptions.css?v=1.40R");
+@import url("./css/responsive.css?v=1.24P-1");
 

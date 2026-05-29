@@ -253,8 +253,11 @@
 [role="dialog"] select[disabled],
 [role="dialog"] textarea[disabled],
 [role="dialog"] .cbi-button[disabled] {
-	color: color-mix(in srgb, var(--vw-text-soft) 70%, transparent);
-	background: color-mix(in srgb, var(--vw-surface-soft) 72%, transparent);
+	color: color-mix(in srgb, var(--vw-text-soft) 70%, transparent) !important;
+	background: color-mix(in srgb, var(--vw-surface-soft) 72%, transparent) !important;
+	border: none !important;
+	box-shadow: none !important;
+	transform: none !important;
 }
 
 /* Dynamic lists and dropdown popovers: visual only, no open/close lifecycle. */
@@ -319,6 +322,14 @@
 		color-mix(in srgb, var(--vw-accent-soft) 48%, var(--vw-material-button));
 }
 
+/* Button Gaps & Dropdown Fix */
+#maincontent .cbi-value-field > .cbi-button,
+#maincontent .cbi-value-field > input + .cbi-button,
+#maincontent .cbi-value-field > select + .cbi-button,
+#maincontent .cbi-button + .cbi-button {
+	margin-left: 8px;
+}
+
 /* Premium console buttons. */
 #maincontent button,
 #maincontent input[type="button"],
@@ -346,20 +357,48 @@
 [role="dialog"] input[type="submit"],
 [role="dialog"] input[type="reset"] {
 	min-height: 42px;
-	padding: 10px 17px;
-	border: 1px solid color-mix(in srgb, var(--vw-border) 84%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 64%, transparent), transparent 62%),
-		linear-gradient(150deg, color-mix(in srgb, var(--vw-material-button-hover) 72%, transparent), color-mix(in srgb, var(--vw-material-button) 92%, transparent));
-	background-color: var(--vw-material-button);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 72%, transparent) inset,
-		0 -8px 18px color-mix(in srgb, var(--vitra-inner-dim) 64%, transparent) inset,
-		0 12px 28px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent);
-	font-weight: 690;
+	padding: 10px 22px;
+	border: none;
+	border-radius: 999px;
+	color: #ffffff;
+	background: linear-gradient(135deg, #6b8df8, #4f6cf6);
+	box-shadow: 0 4px 14px color-mix(in srgb, #4f6cf6 45%, transparent);
+	font-weight: 600;
 	line-height: 1.15;
+	transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Make bottom action buttons properly sized and styled */
+#maincontent .cbi-page-actions .cbi-button,
+#maincontent .cbi-page-actions .btn {
+	padding: 10px 24px !important;
+	font-size: 13px !important;
+	min-height: 38px !important;
+}
+
+/* Fix Save & Apply Dropdown Button */
+#maincontent .cbi-dropdown.cbi-button {
+	overflow: visible !important; /* Prevents the dropdown menu from being clipped */
+	position: relative !important;
+	padding-right: 36px !important; /* Reserve space for span.open */
+	transform: none !important; /* Prevents stacking context issues with absolute positioned dropdowns */
+}
+
+/* Restore the dropdown arrow visually and functionally using the native span.open */
+#maincontent .cbi-dropdown.cbi-button > span.open {
+	position: absolute !important;
+	right: 0 !important;
+	top: 0 !important;
+	bottom: 0 !important;
+	width: 36px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	font-size: 14px !important;
+	color: #ffffff !important;
+	pointer-events: auto !important;
+	cursor: pointer !important;
+	border-left: 1px solid color-mix(in srgb, #ffffff 20%, transparent) !important;
 }
 
 #maincontent button:hover,
@@ -376,63 +415,116 @@
 [role="dialog"] .btn:hover,
 [role="dialog"] .cbi-button:hover,
 [role="dialog"] button:hover {
-	border-color: color-mix(in srgb, var(--vw-border-strong) 76%, transparent);
-	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 76%, transparent), transparent 62%),
-		color-mix(in srgb, var(--vw-material-button-hover) 96%, transparent);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 78%, transparent) inset,
-		0 16px 34px color-mix(in srgb, var(--vw-shadow-color) 10%, transparent);
+	color: #ffffff;
+	background: linear-gradient(135deg, #7c9bfa, #5f7cf8);
+	box-shadow: 0 6px 18px color-mix(in srgb, #4f6cf6 55%, transparent);
+	transform: translateY(-1px);
 }
 
-/* Role 1: Apply/Save / Primary Action (Calm Apple Blue-Cyan) */
+#maincontent .cbi-dropdown.cbi-button:hover {
+	transform: none !important;
+}
+
+/* Role 1a: Apply/Save (Apple Mint Green) */
 #maincontent .cbi-button-apply,
 #maincontent .cbi-button-save,
-#maincontent .btn-primary,
-#maincontent input[type="submit"],
-#maincontent .cbi-button-action,
 .modal .cbi-button-apply,
 .modal .cbi-button-save,
-.modal .btn-primary,
-.modal input[type="submit"],
 .cbi-modal .cbi-button-apply,
 .cbi-modal .cbi-button-save,
-.cbi-modal .btn-primary,
-.cbi-modal input[type="submit"],
 [role="dialog"] .cbi-button-apply,
-[role="dialog"] .cbi-button-save,
-[role="dialog"] .btn-primary,
-[role="dialog"] input[type="submit"] {
-	border-color: var(--vw-role-primary-border) !important;
-	color: var(--vw-role-primary-text) !important;
-	background: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 64%, transparent), transparent 62%) !important;
-	background-color: var(--vw-role-primary-bg) !important;
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 72%, transparent) inset,
-		0 12px 28px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent) !important;
+[role="dialog"] .cbi-button-save {
+	border: none !important;
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #51df93, #28c973) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #28c973 45%, transparent) !important;
 }
 
 #maincontent .cbi-button-apply:hover,
 #maincontent .cbi-button-save:hover,
+.modal .cbi-button-apply:hover,
+.modal .cbi-button-save:hover,
+.cbi-modal .cbi-button-apply:hover,
+.cbi-modal .cbi-button-save:hover,
+[role="dialog"] .cbi-button-apply:hover,
+[role="dialog"] .cbi-button-save:hover {
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #61e89e, #36d27f) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #28c973 55%, transparent) !important;
+	transform: translateY(-1px);
+}
+
+/* Role 1b: Primary Action (Apple Blue) */
+#maincontent .btn-primary,
+#maincontent input[type="submit"],
+#maincontent .cbi-button-action,
+.modal .btn-primary,
+.modal input[type="submit"],
+.cbi-modal .btn-primary,
+.cbi-modal input[type="submit"],
+[role="dialog"] .btn-primary,
+[role="dialog"] input[type="submit"] {
+	border: none !important;
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #6b8df8, #4f6cf6) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #4f6cf6 45%, transparent) !important;
+}
+
 #maincontent .btn-primary:hover,
 #maincontent input[type="submit"]:hover,
 #maincontent .cbi-button-action:hover,
-.modal .cbi-button-apply:hover,
-.modal .cbi-button-save:hover,
 .modal .btn-primary:hover,
 .modal input[type="submit"]:hover,
-.cbi-modal .cbi-button-apply:hover,
-.cbi-modal .cbi-button-save:hover,
 .cbi-modal .btn-primary:hover,
 .cbi-modal input[type="submit"]:hover,
-[role="dialog"] .cbi-button-apply:hover,
-[role="dialog"] .cbi-button-save:hover,
 [role="dialog"] .btn-primary:hover,
 [role="dialog"] input[type="submit"]:hover {
-	border-color: color-mix(in srgb, var(--vw-role-primary-border) 86%, var(--vw-text-main)) !important;
-	background: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 76%, transparent), transparent 62%) !important;
-	background-color: var(--vw-role-primary-hover) !important;
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #7c9bfa, #5f7cf8) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #4f6cf6 55%, transparent) !important;
+	transform: translateY(-1px);
+}
+
+/* Distinct Action Buttons for Init scripts (Startup Page) */
+/* Distinct Action Buttons for Init scripts (Startup Page) */
+#maincontent .table div > button.cbi-button-action:nth-child(2) {
+	background: linear-gradient(135deg, #4da1ff, #007aff) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #007aff 45%, transparent) !important;
+}
+#maincontent .table div > button.cbi-button-action:nth-child(2):hover {
+	background: linear-gradient(135deg, #6bb3ff, #006ae6) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #007aff 55%, transparent) !important;
+	transform: translateY(-1px);
+}
+
+#maincontent .table div > button.cbi-button-action:nth-child(3) {
+	background: linear-gradient(135deg, #ffb142, #ff793f) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #ff793f 45%, transparent) !important;
+}
+#maincontent .table div > button.cbi-button-action:nth-child(3):hover {
+	background: linear-gradient(135deg, #ffc570, #ff8c59) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #ff793f 55%, transparent) !important;
+	transform: translateY(-1px);
+}
+
+#maincontent .table div > button.cbi-button-action:nth-child(4) {
+	background: linear-gradient(135deg, #a55eea, #8854d0) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #8854d0 45%, transparent) !important;
+}
+#maincontent .table div > button.cbi-button-action:nth-child(4):hover {
+	background: linear-gradient(135deg, #b97af0, #986ae0) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #8854d0 55%, transparent) !important;
+	transform: translateY(-1px);
+}
+
+#maincontent .table div > button.cbi-button-action:nth-child(5) {
+	background: linear-gradient(135deg, #ff676b, #ff4145) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #ff4145 45%, transparent) !important;
+}
+#maincontent .table div > button.cbi-button-action:nth-child(5):hover {
+	background: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #ff4145 55%, transparent) !important;
+	transform: translateY(-1px);
 }
 
 /* Role 2: Add/New / Positive (Clean Low-Saturation Mint Green) */
@@ -448,13 +540,10 @@
 [role="dialog"] .cbi-button-add,
 [role="dialog"] .cbi-button-positive,
 [role="dialog"] .btn-success {
-	border-color: var(--vw-role-success-border) !important;
-	color: var(--vw-role-success-text) !important;
-	background: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 64%, transparent), transparent 62%) !important;
-	background-color: var(--vw-role-success-bg) !important;
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 72%, transparent) inset,
-		0 12px 28px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent) !important;
+	border: none !important;
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #51df93, #28c973) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #28c973 45%, transparent) !important;
 }
 
 #maincontent .cbi-button-add:hover,
@@ -469,9 +558,10 @@
 [role="dialog"] .cbi-button-add:hover,
 [role="dialog"] .cbi-button-positive:hover,
 [role="dialog"] .btn-success:hover {
-	border-color: color-mix(in srgb, var(--vw-role-success-border) 86%, var(--vw-text-main)) !important;
-	background: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 76%, transparent), transparent 62%) !important;
-	background-color: var(--vw-role-success-hover) !important;
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #61e89e, #36d27f) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #28c973 55%, transparent) !important;
+	transform: translateY(-1px);
 }
 
 /* Role 3: Reset/Reload / Warning (Low-Saturation Warning Amber) */
@@ -492,13 +582,10 @@
 [role="dialog"] .cbi-button-reload,
 [role="dialog"] .btn-warning,
 [role="dialog"] input[type="reset"] {
-	border-color: var(--vw-role-warning-border) !important;
-	color: var(--vw-role-warning-text) !important;
-	background: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 64%, transparent), transparent 62%) !important;
-	background-color: var(--vw-role-warning-bg) !important;
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 72%, transparent) inset,
-		0 12px 28px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent) !important;
+	border: none !important;
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #ff676b, #ff4145) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #ff4145 45%, transparent) !important;
 }
 
 #maincontent .cbi-button-reset:hover,
@@ -518,9 +605,10 @@
 [role="dialog"] .cbi-button-reload:hover,
 [role="dialog"] .btn-warning:hover,
 [role="dialog"] input[type="reset"]:hover {
-	border-color: color-mix(in srgb, var(--vw-role-warning-border) 86%, var(--vw-text-main)) !important;
-	background: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 76%, transparent), transparent 62%) !important;
-	background-color: var(--vw-role-warning-hover) !important;
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #ff4145 55%, transparent) !important;
+	transform: translateY(-1px);
 }
 
 /* Role 4: Remove/Delete / Danger (Refined Spatial Rose Red) */
@@ -537,13 +625,10 @@
 [role="dialog"] .cbi-button-negative,
 [role="dialog"] .cbi-button-remove,
 [role="dialog"] .btn-danger {
-	border-color: var(--vw-role-danger-border) !important;
-	color: var(--vw-role-danger-text) !important;
-	background: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 64%, transparent), transparent 62%) !important;
-	background-color: var(--vw-role-danger-bg) !important;
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 72%, transparent) inset,
-		0 12px 28px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent) !important;
+	border: none !important;
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #ff676b, #ff4145) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #ff4145 45%, transparent) !important;
 }
 
 #maincontent .cbi-button-negative:hover,
@@ -559,9 +644,10 @@
 [role="dialog"] .cbi-button-negative:hover,
 [role="dialog"] .cbi-button-remove:hover,
 [role="dialog"] .btn-danger:hover {
-	border-color: color-mix(in srgb, var(--vw-role-danger-border) 86%, var(--vw-text-main)) !important;
-	background: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 76%, transparent), transparent 62%) !important;
-	background-color: var(--vw-role-danger-hover) !important;
+	color: #ffffff !important;
+	background: linear-gradient(135deg, #ff7b7f, #ff565a) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #ff4145 55%, transparent) !important;
+	transform: translateY(-1px);
 }
 
 /* Compact floating apply dock. LuCI still owns when it is present. */
@@ -6125,7 +6211,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 /* Track styling */
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
-    background: color-mix(in srgb, var(--vw-text) 8%, transparent) !important;
+    background: color-mix(in srgb, var(--vw-text) 16%, transparent) !important;
     border-radius: 99px !important;
 }
 
@@ -6136,7 +6222,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     box-shadow: none !important;
 }
 #maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-primary .vw-pb-fill {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-primary) 70%, white), var(--vw-primary)) !important;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-accent) 70%, white), var(--vw-accent)) !important;
 }
 #maincontent .cbi-progressbar.vw-progressbar-upgraded.vw-pb-success .vw-pb-fill {
     background: linear-gradient(90deg, color-mix(in srgb, var(--vw-success) 70%, white), var(--vw-success)) !important;
@@ -6154,8 +6240,8 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-badge {
     font-size: 12px !important;
     font-weight: 600 !important;
-    color: var(--vw-primary) !important;
-    background: color-mix(in srgb, var(--vw-primary) 12%, transparent) !important;
+    color: var(--vw-accent) !important;
+    background: color-mix(in srgb, var(--vw-accent) 12%, transparent) !important;
     padding: 3px 8px !important;
     border-radius: 99px !important;
     line-height: 1 !important;

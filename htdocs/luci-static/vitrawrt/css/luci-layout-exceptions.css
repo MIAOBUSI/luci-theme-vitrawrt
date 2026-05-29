@@ -632,10 +632,14 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section {
 }
 
 /* Hidden dummy — LuCI core JS writes width/text here; we mirror it to .vw-pb-fill */
-#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-dummy {
+#maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-dummy,
+#maincontent .cbi-progressbar.vw-progressbar-upgraded > div:first-child {
 	display: none !important;
 	visibility: hidden !important;
 	position: absolute !important;
+	background: transparent !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
 }
 
 /* Header row: text + badge above the track */
@@ -645,6 +649,7 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section {
 	justify-content: space-between !important;
 	width: 100% !important;
 	margin-bottom: 6px !important;
+	background: transparent !important;
 }
 
 /* Text & Badge layout */
