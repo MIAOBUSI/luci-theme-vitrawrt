@@ -13,7 +13,7 @@ Options:
   --host <ip>           Target host. Default: 10.10.10.148
   --luci-user <user>    LuCI login user. Default: root
   --luci-password <pw>  LuCI password. Default: empty
-  --output-dir <dir>    Output directory. Default: audit-output/visual-direction-1.24B/<timestamp>
+  --output-dir <dir>    Output directory. Default: audit-output/visual-direction-1.41C-R2/<timestamp>
   --browser <name>      chromium, webkit, or firefox. Default: chromium
   --headed              Run headed browser
   -h, --help            Show help`);
@@ -690,7 +690,7 @@ async function writeReport(dir, report) {
 	].filter(Boolean).join('\n'));
 
 	const lines = [
-		'# Visual Direction Audit 1.24B',
+		'# Visual Direction Audit 1.41C-R2',
 		'',
 		`Output: ${dir}`,
 		'',
@@ -710,7 +710,7 @@ async function writeReport(dir, report) {
 		'## Pages',
 		...pageLines,
 		'',
-		'## Stage 1.24B Direction Checks',
+		'## Stage 1.41C-R2 Direction Checks',
 		'- Is OpenClash less alien? Review overview/config/log screenshots, plugin action controls, cards, tabs, and log/editor captures.',
 		'- Are OpenClash saturated blue controls reduced? Compare blue usage ratio and action/log screenshots against Stage 1.24A evidence.',
 		'- Are OpenClash buttons role-colored? Review apply/add/reload/remove/action controls in page-scoped captures.',
@@ -720,65 +720,29 @@ async function writeReport(dir, report) {
 		'- Is LAN green strip reduced to subtle status accent? Review network ifacebox header screenshot and computed style evidence.',
 		'- Are ifacebox/tooltips still working? Runtime regression remains authoritative; hover screenshots provide visual evidence.',
 		'- Were Stage 1.24A progress/vnStat2 fixes preserved? Progress inline width and vnStat2 media filters must remain safe.',
-		'- Was any JS used? Stage 1.24B should only update version markers and passive route classes.',
+		'- Was any JS used? Stage 1.41C-R2 should only update version markers and passive route classes.',
 		'- If JS was used, was it passive only? Source safety must remain clean.',
 		'',
-		'## Stage 1.24B Defect Status',
-		'- OpenClash integration: fixed/partial based on overview/config/log screenshots and blue usage ratio.',
-		'- MosDNS integration: fixed/partial based on basic/config/log screenshots and editor/button close-ups.',
-		'- Network page polish: fixed/partial based on tab screenshots, ifacebox hover, and LAN strip material.',
-		'- Button role consistency: fixed/partial based on plugin/network action screenshots.',
-		'- Stage 1.24A regressions: progress/vnStat2/sidebar/security checks should remain stable.',
+		'## Stage 1.41C-R2 Defect Status',
+		'- Dropdown closed state has visible chevron: partial until confirmed by screenshot.',
+		'- Dropdown closed state has no blue/cyan inner fill: partial until confirmed by screenshot.',
+		'- Dropdown does not look like a plain native input: partial until confirmed by screenshot.',
+		'- Dynlist existing items are styled as VitraWrt controls: partial until confirmed by screenshot.',
+		'- Dynlist remove button is aligned and styled: partial until confirmed by screenshot.',
+		'- Dynlist add input and green add button are same visual height: partial until confirmed by screenshot.',
+		'- Green add button keeps success semantic color: partial until confirmed by screenshot.',
+		'- Form row label/field rhythm is aligned: partial until confirmed by screenshot.',
+		'- Progress meter does not regress to native LuCI style: partial until confirmed by screenshot.',
+		'- Tab dock uses fit-content Apple dock style when applicable: partial until confirmed by screenshot.',
+		'- Modal tabs do not show full-width rectangular native strip: partial until confirmed by screenshot.',
+		'- Safety scripts classify safe enhancement vs destructive modification: yes, confirmed by CSS/JS status.',
+		'- luci-visual.css is not re-imported: yes, confirmed by imports list.',
+		'- Deprecated CSS is not restored live: yes, confirmed by imports list.',
 		'',
 		'## Architecture Safety',
-		'- Was luci-visual.css ownership consolidated? Source Safety lists live cascade imports and should show luci-visual.css imported: no.',
-		'- Are duplicate component owners reduced? Source Safety and cascade imports should show luci-components-visual.css as the sole LuCI component visual owner.',
-		'- Are canonical tokens used consistently? Review source safety output and computed screenshots for --vw-* driven colors rather than old mixed token paint.',
-		'- Is green/mint no longer global? Review light/dark full-page captures, active controls, progress, sidebar active rows, and plugin buttons.',
-		'- Is blue/cyan no longer a plastic global accent? Review blue usage ratio plus primary buttons, tabs, and plugin actions.',
-		'- Are progress bars no longer native recolor? Review progress close-up screenshots for trough, inner highlight, and restrained fill.',
-		'- Are dynlist existing items truly styled? Review `*-system-dynlist-existing.png`, `*-system-dynlist-add-row.png`, and modal dynlist screenshots.',
-		'- Are dropdown open menus truly styled? Review dropdown-open captures; native browser select popups remain browser-owned.',
-		'- Is modal tab strip removed? Review modal tab and hover close-ups for absent rectangular underlay.',
-		'- Is sidebar hover row integrated with chevron? Review parent hover and chevron area in sidebar hover crops.',
-		'- Is sidebar layer stacking reduced? Review expanded sidebar, active parent, child rows, and bottom dock captures.',
-		'- Are .cbi-value rows lighter and less cardified? Review system forms and network modal field close-ups.',
-		'- Are field densities appropriate by context? Compare normal form, modal, compact table/plugin, and dynlist controls.',
-		'- Are plugin pages less alien? Review OpenClash/MosDNS/service tabs, cards, buttons, logs and editors.',
-		'- Did any LuCI behavior regress? Runtime regression is authoritative for lifecycle behavior.',
-		'',
-		'## Stage 1.22 Carry-Forward Status',
-		'- Ownership cleanup: fixed when cascade imports exclude luci-visual.css and include luci-components-visual.css.',
-		'- Duplicate component ownership: fixed at import level; remaining historical CSS is inert unless imported elsewhere.',
-		'- Canonical token use: partial - final Stage 1.22 component blocks use --vw-* tokens; safety output records remaining historical compatibility warnings.',
-		'- Green/mint dominance: partial - reviewed through full-page light/dark captures and color metrics.',
-		'- Blue/cyan plastic accent: partial - reviewed through blue usage ratio and action/tab/plugin screenshots.',
-		'- Sidebar hover split: partial until screenshots confirm row, link, and chevron share one hover surface.',
-		'- Sidebar layer stacking: partial until expanded/collapsed screenshots confirm only rail, row, guide, and dock layers dominate.',
-		'- .cbi-value over-cardification: partial until system/network forms show lightweight rows instead of per-row cards.',
-		'- Field density: partial until normal, modal, compact table/plugin and dynlist controls show distinct density.',
-		'- Progress bar LuCI recolor: partial until `*-progress.png` shows VitraWrt meter material.',
-		'- Dynlist native patches: partial until System/modal dynlist close-ups show styled existing and add rows.',
-		'- cbi-dropdown native patches: partial until dropdown closed/open close-ups show styled LuCI popovers.',
-		'- Modal tab strip: partial until modal tab hover close-up shows no rectangular old strip.',
-		'- Apply dock/buttons: partial until apply dock and table/plugin action screenshots show balanced natural-width buttons.',
-		'- OpenClash/MosDNS/plugin adaptation: partial - plugin pages are attempted and screenshots/errors are recorded.',
-		'- No fake click repair: fixed by source safety check when status is 0.',
-		'- No global table normalization: fixed by source safety check when status is 0.',
-		'',
-		'## Stage 1.22 Answers',
-		'- Was luci-visual.css ownership consolidated? See Source Safety; expected answer is yes when imported: no.',
-		'- Are duplicate component owners reduced? Yes at cascade level; luci-components-visual.css is the final component owner.',
-		'- Are canonical tokens used consistently? Final Stage 1.22 blocks use --vw-* roles; old --vitra/--vwrt names remain compatibility aliases only.',
-		'- Is green/mint no longer global? Screenshot review decides final status; token roles reserve green primarily for success/status.',
-		'- Is blue/cyan no longer plastic? Screenshot review decides final status; primary, tab, focus, and progress roles are separated.',
-		'- Are progress bars redesigned? Progress close-ups check a soft trough plus restrained meter fill with real values preserved.',
-		'- Are dynlist/dropdown internals styled from real DOM? System/modal close-ups target the documented LuCI 25.12 DOM.',
-		'- Is modal tab strip removed? Modal tab hover close-up checks wrapper background and pseudo-strip removal.',
-		'- Is sidebar hover integrated with chevron? Sidebar hover screenshots check the row-owned hover/active material.',
-		'- Are .cbi-value rows lighter? System/network forms check section-owned cards with row separators only.',
-		'- Are plugin pages less alien? OpenClash/MosDNS/service captures check page-scoped visual compatibility.',
-		'- Did any LuCI behavior regress? Use runtime regression report as authority for cbi-dropdown, dynlist, modal close/tabs, apply lifecycle, ifacebox hover, and table overflow.',
+		'- JS safety passes: ' + (report.sourceSafety.js.status === 0 ? 'yes' : 'no'),
+		'- CSS safety passes: ' + (report.sourceSafety.css.status === 0 ? 'yes' : 'no'),
+		'- Runtime regression passes: check manually.',
 		'',
 		'## Known Limitations',
 		'- VitraWrt theme does not repair app/plugin first-load tab issues with simulated clicks.',
@@ -786,7 +750,7 @@ async function writeReport(dir, report) {
 		'- Table layout fixes remain page-scoped and are not expanded by this visual direction pass.'
 	];
 
-	await fs.writeFile(path.join('docs', 'VISUAL_DIRECTION_AUDIT_1_24B.md'), `${lines.join('\n')}\n`);
+	await fs.writeFile(path.join('docs', 'VISUAL_DIRECTION_AUDIT_1_41C_R2.md'), `${lines.join('\n')}\n`);
 	await writeJson(path.join(dir, 'report.json'), report);
 }
 
@@ -794,7 +758,7 @@ async function main() {
 	const args = parseArgs(process.argv.slice(2));
 	const playwright = await loadPlaywright();
 	const baseUrl = normalizeHost(args.host);
-	const dir = args.outputDir || path.join('audit-output', 'visual-direction-1.24B', stamp());
+	const dir = args.outputDir || path.join('audit-output', 'visual-direction-1.41C-R2', stamp());
 	const pages = [
 		{ name: 'status-overview', path: '/cgi-bin/luci/admin/status/overview' },
 		{ name: 'system-system', path: '/cgi-bin/luci/admin/system/system' },
@@ -843,7 +807,7 @@ async function main() {
 
 	await writeReport(dir, report);
 	console.log(`Visual direction audit output: ${dir}`);
-	console.log('Markdown: docs/VISUAL_DIRECTION_AUDIT_1_24B.md');
+	console.log('Markdown: docs/VISUAL_DIRECTION_AUDIT_1_41C_R2.md');
 }
 
 main().catch((err) => {

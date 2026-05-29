@@ -82,7 +82,7 @@
 #maincontent .cbi-value-title,
 #maincontent .cbi-value label.cbi-value-title {
 	flex: 0 0 clamp(150px, 20vw, 230px);
-	padding-top: 9px;
+	padding-top: 14px;
 	color: var(--vw-muted);
 	font-weight: 690;
 	line-height: 1.34;
@@ -156,7 +156,6 @@
 	color: var(--vw-text);
 	background:
 		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 58%, transparent), transparent 68%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-cyan) 10%, transparent), transparent 40%),
 		color-mix(in srgb, var(--vw-material-field) 94%, transparent);
 	box-shadow:
 		0 1px 0 color-mix(in srgb, var(--vw-highlight) 70%, transparent) inset,
@@ -168,7 +167,38 @@
 .modal select,
 .cbi-modal select,
 [role="dialog"] select {
-	appearance: auto;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 14px center;
+	background-size: 16px;
+	padding-right: 40px;
+}
+
+#maincontent .cbi-dropdown,
+.modal .cbi-dropdown,
+.cbi-modal .cbi-dropdown,
+[role="dialog"] .cbi-dropdown {
+	position: relative;
+	padding-right: 40px;
+}
+
+#maincontent .cbi-dropdown::after,
+.modal .cbi-dropdown::after,
+.cbi-modal .cbi-dropdown::after,
+[role="dialog"] .cbi-dropdown::after {
+	content: "";
+	position: absolute;
+	right: 14px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 16px;
+	height: 16px;
+	background-color: var(--vw-text);
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") center / contain no-repeat;
+	pointer-events: none;
+	opacity: 0.5;
 }
 
 #maincontent textarea,
@@ -3693,10 +3723,10 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 [role="dialog"] .cbi-dynlist input,
 [role="dialog"] .cbi-dynlist select,
 [role="dialog"] .cbi-dynlist textarea {
-	min-height: 38px;
-	padding: 8px 12px;
+	min-height: 44px;
+	padding: 10px 14px;
 	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 64%, transparent);
-	border-radius: 14px;
+	border-radius: 18px;
 	background:
 		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent), transparent 70%),
 		var(--vw-field-bg);
@@ -3715,10 +3745,10 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 [role="dialog"] .cbi-dynlist .cbi-button,
 [role="dialog"] .cbi-dynlist .cbi-button-add,
 [role="dialog"] .cbi-dynlist .cbi-button-remove {
-	min-height: 38px;
-	padding: 8px 12px;
+	min-height: 44px;
+	padding: 10px 14px;
 	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 60%, transparent);
-	border-radius: 14px;
+	border-radius: 18px;
 	background:
 		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent), transparent 70%),
 		var(--vw-button-bg);
@@ -3728,11 +3758,11 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 #maincontent .cbi-dynlist .cbi-button-add,
 .modal .cbi-dynlist .cbi-button-add,
 [role="dialog"] .cbi-dynlist .cbi-button-add {
-	border-color: color-mix(in srgb, var(--vw-accent) 22%, var(--vw-liquid-border-soft));
-	color: var(--vw-accent-ink);
+	border-color: color-mix(in srgb, var(--vw-success) 22%, var(--vw-liquid-border-soft));
+	color: var(--vw-success);
 	background:
 		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 54%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-accent) 12%, var(--vw-button-primary-bg));
+		color-mix(in srgb, var(--vw-success-soft) 30%, var(--vw-button-bg));
 }
 
 #maincontent .cbi-dynlist .cbi-button-remove,
@@ -3756,11 +3786,15 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 .cbi-modal .cbi-tabmenu,
 [role="dialog"] .tabs,
 [role="dialog"] .cbi-tabmenu {
+	display: inline-flex;
+	width: fit-content;
+	flex-wrap: wrap;
 	margin-bottom: 16px;
-	padding: 0;
+	padding: 5px;
 	border-color: transparent;
-	background: transparent;
-	box-shadow: none;
+	border-radius: 16px;
+	background: color-mix(in srgb, var(--vw-text) 5%, transparent);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
 }
 
 #maincontent .tabs li,
@@ -3773,7 +3807,7 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 .cbi-modal .cbi-tabmenu li,
 [role="dialog"] .tabs li,
 [role="dialog"] .cbi-tabmenu li {
-	margin: 0 7px 8px 0;
+	margin: 0;
 	border-color: transparent;
 	background: transparent;
 	box-shadow: none;
@@ -6288,22 +6322,43 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 #maincontent .progressbar,
 #maincontent .progress,
 #maincontent progress {
+    position: relative !important;
+    min-height: 18px !important;
     border-radius: 99px !important;
-    background: color-mix(in srgb, var(--vw-text) 8%, transparent) !important;
+    background: color-mix(in srgb, var(--vw-text) 6%, transparent) !important;
     border: 1px solid transparent !important;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05) !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06) !important;
+    overflow: hidden !important;
+}
+
+#maincontent .cbi-progressbar::after,
+#maincontent .progressbar::after,
+#maincontent .progress::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 99px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    pointer-events: none;
 }
 
 #maincontent .cbi-progressbar > div,
 #maincontent .progressbar > div,
 #maincontent .progress > div,
 #maincontent progress::-webkit-progress-value {
+    position: relative !important;
+    min-height: 18px !important;
     border-radius: 99px !important;
-    background: var(--vw-accent) !important;
-    box-shadow: none !important;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--vw-accent) 70%, white), var(--vw-accent)) !important;
+    box-shadow: inset 0 -1px 2px color-mix(in srgb, var(--vw-text) 10%, transparent) !important;
     color: #ffffff !important;
     font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 18px !important;
     padding: 0 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
 }
 
 /* Overview Hide Button / Utility Pills */

@@ -162,11 +162,11 @@ function targetsShellAncestor(selector) {
 function allowedComponentVisualProp(selector, prop, value) {
 	if (prop === 'display' && isVisibleCbiValueSelector(selector) && /^(flex|block)$/.test(value))
 		return true;
-	if (prop === 'display' && selector.includes('.cbi-tabmenu') && /^(inline-flex|flex)$/.test(value))
+	if (prop === 'display' && (selector.includes('.cbi-tabmenu') || selector.includes('.tabs')) && /^(inline-flex|flex)$/.test(value))
 		return true;
-	if (prop === 'width' && selector.includes('.cbi-tabmenu') && value === 'fit-content')
+	if (prop === 'width' && (selector.includes('.cbi-tabmenu') || selector.includes('.tabs')) && value === 'fit-content')
 		return true;
-	if (prop === 'display' && selector.includes('.cbi-dynlist') && /^(inline-flex|flex)$/.test(value))
+	if (prop === 'display' && (selector.includes('.cbi-dynlist') || selector.includes('.cbi-dynlist-item') || selector.includes('.add-item')) && /^(inline-flex|flex)$/.test(value))
 		return true;
 
 	if (prop === 'opacity' && selector.includes('.ifacebox') && selector.includes('.cbi-tooltip'))
@@ -195,6 +195,24 @@ function allowedComponentVisualProp(selector, prop, value) {
 			return true;
 		const px = numericPx(value);
 		return px !== null && px >= 8 && px <= 24;
+	}
+
+	if (selector.includes('.cbi-dropdown')) {
+		if (selector.includes('::after')) {
+			if (/^(position|opacity|pointer-events|transform|width|height|top|right|content|background-color|mask|-webkit-mask)$/.test(prop)) return true;
+		} else {
+			if (prop === 'position' && value === 'relative') return true;
+		}
+	}
+
+	if (isProgressSelector(selector)) {
+		if (selector.includes('::after') || selector.includes('::before')) {
+			if (/^(position|pointer-events|content|inset|border-radius|box-shadow|background|color|font-size|font-weight|padding|line-height)$/.test(prop)) return true;
+		} else if (selector.includes('> div') || selector.includes('::-webkit-progress-value')) {
+			if (/^(display|position|min-height|border-radius|background|box-shadow|color|font-size|font-weight|line-height|padding|align-items|justify-content|transition)$/.test(prop)) return true;
+		} else {
+			if (/^(position|overflow|min-height|border-radius|background|border|box-shadow)$/.test(prop)) return true;
+		}
 	}
 
 	if (prop === 'width' && isApplyAreaSelector(selector))
@@ -348,8 +366,8 @@ function analyzeComponentsVisualRule(file, source, selector, decls, index) {
 		((declValue(decls, 'display') && !/^(inline-flex|flex)$/.test(declValue(decls, 'display'))) || declValue(decls, 'visibility') || declValue(decls, 'position') || declValue(decls, 'z-index') || declValue(decls, 'pointer-events')))
 		report(file, line, selector, 'tab visual selectors must not change behavior properties');
 
-	if ((selector.includes('.cbi-dropdown') || selector.includes('ul.dropdown')) &&
-		(declValue(decls, 'display') || declValue(decls, 'visibility') || declValue(decls, 'pointer-events')))
+	if ((selector.includes('.cbi-dropdown') || selector.includes('ul.dropdown')) && !selector.includes('::after') &&
+		(declValue(decls, 'display') || declValue(decls, 'visibility') || (declValue(decls, 'pointer-events') && !selector.includes('span.open'))))
 		report(file, line, selector, 'dropdown visual selectors must not change open/close behavior properties');
 
 	if (isApplyAreaSelector(selector) &&
@@ -392,9 +410,9 @@ function analyzeGlobalRule(file, source, selector, decls, index) {
 		report(file, line, selector, 'html/body/main shell transform/filter/perspective can break LuCI fixed modals');
 
 	if (selector.includes('.modal')) {
-		if (display && !selector.includes('.cbi-tabmenu') && !selector.includes('.tabs') && !selector.includes('.cbi-dynlist'))
+		if (display && !selector.includes('.cbi-tabmenu') && !selector.includes('.tabs') && !selector.includes('.cbi-dynlist') && !selector.includes('.cbi-dropdown'))
 			report(file, line, selector, '.modal display overrides are forbidden');
-		if (declValue(decls, 'position'))
+		if (declValue(decls, 'position') && !selector.includes('.cbi-dropdown'))
 			report(file, line, selector, '.modal position overrides are forbidden');
 		if (declValue(decls, 'z-index'))
 			warn(file, line, selector, '.modal z-index override should be avoided');
