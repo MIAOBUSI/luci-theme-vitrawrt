@@ -785,3 +785,39 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 #maincontent .cbi-value:has(.cbi-value-description, .cbi-dynlist, textarea) > .cbi-value-field > input[type="radio"] {
 	margin-top: 9px !important;
 }
+
+/* Force cbi-value rows to be completely transparent inside the card to avoid double backgrounds */
+#maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]),
+#maincontent .cbi-section .cbi-value:not(.hidden):not(.hide):not([hidden]),
+#maincontent .cbi-section-node .cbi-value:not(.hidden):not(.hide):not([hidden]),
+html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]),
+html[data-theme="dark"] #maincontent .cbi-section .cbi-value:not(.hidden):not(.hide):not([hidden]),
+html[data-theme="dark"] #maincontent .cbi-section-node .cbi-value:not(.hidden):not(.hide):not([hidden]) {
+	background: transparent !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
+}
+
+/* Maintain only the light bottom border for row separation */
+#maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]),
+html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]) {
+	border-left: none !important;
+	border-right: none !important;
+	border-top: none !important;
+	border-bottom: 1px solid color-mix(in srgb, var(--vw-border-hairline) 78%, transparent) !important;
+}
+
+/* Remove bottom border on last row */
+#maincontent .cbi-section-node > .cbi-value:last-child,
+#maincontent .cbi-map > .cbi-value:last-child,
+#maincontent .cbi-section > .cbi-value:last-child {
+	border-bottom-color: transparent !important;
+}
+
+/* Extremely subtle hover effect for rows, no heavy slabs */
+@media (hover: hover) {
+	#maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]):hover,
+	html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]):hover {
+		background: color-mix(in srgb, var(--vw-text-main) 2%, transparent) !important;
+	}
+}
