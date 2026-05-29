@@ -651,9 +651,9 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 	display: flex !important;
 	flex-direction: column !important;
 	justify-content: center !important;
-	padding: 4px 0 !important;
-	margin-bottom: 4px !important;
-	min-height: 44px !important;
+	padding: 0 !important;
+	margin-bottom: 0 !important;
+	min-height: 28px !important;
 	overflow: visible !important;
 	border: none !important;
 	background: transparent !important;
