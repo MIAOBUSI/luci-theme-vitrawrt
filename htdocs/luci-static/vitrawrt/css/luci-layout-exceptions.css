@@ -679,6 +679,10 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 	margin-bottom: 8px !important;
 	background: transparent !important;
 	line-height: 1 !important;
+	/* Reset the global > div padding-left that would otherwise indent the text */
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	box-sizing: border-box !important;
 }
 
 /* Text & Badge layout */
@@ -699,10 +703,13 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 #maincontent .cbi-progressbar.vw-progressbar-upgraded .vw-pb-track {
 	position: relative !important;
 	width: 100% !important;
-	height: 8px !important;
+	height: 12px !important;
 	display: block !important;
 	overflow: hidden !important;
 	border-radius: 999px !important;
+	/* Reset the global > div padding-left */
+	padding: 0 !important;
+	box-sizing: border-box !important;
 }
 
 /* The actual colored fill — inside the track */
