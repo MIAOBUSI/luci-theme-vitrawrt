@@ -877,3 +877,13 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 #maincontent .cbi-section-node textarea + .right {
 	margin-top: 12px !important;
 }
+
+/* Fix Save & Apply split dropdown button double-background and double-arrows */
+#maincontent .cbi-dropdown.cbi-button > button.cbi-button {
+	background: transparent !important;
+	box-shadow: none !important;
+	border: none !important;
+}
+#maincontent .cbi-dropdown.cbi-button > span.open {
+	color: transparent !important; /* Hide native solid triangle arrow */
+}

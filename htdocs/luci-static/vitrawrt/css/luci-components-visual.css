@@ -5115,24 +5115,6 @@ body.vwrt-page-plugin #maincontent .card-icon {
 	background-color: color-mix(in srgb, var(--vw-danger-soft) 76%, var(--vw-button-bg));
 }
 
-body.vwrt-page-openclash #maincontent .btn,
-body.vwrt-page-openclash #maincontent button,
-body.vwrt-page-openclash #maincontent input[type="button"],
-body.vwrt-page-openclash #maincontent input[type="submit"],
-body.vwrt-page-mosdns #maincontent .btn,
-body.vwrt-page-mosdns #maincontent button,
-body.vwrt-page-plugin #maincontent .btn,
-body.vwrt-page-plugin #maincontent button {
-	background-color: color-mix(in srgb, var(--vw-button-bg) 86%, transparent) !important;
-}
-
-body.vwrt-page-openclash #maincontent .btn-primary,
-body.vwrt-page-openclash #maincontent .btn-success,
-body.vwrt-page-openclash #maincontent input[type="submit"],
-body.vwrt-page-mosdns #maincontent .btn-primary,
-body.vwrt-page-plugin #maincontent .btn-primary {
-	background-color: var(--vw-button-primary-solid) !important;
-}
 
 /* Stage 1.22 consolidated LuCI component owner.
  * `luci-visual.css` is no longer imported; this block is the final visual
