@@ -170,30 +170,56 @@
 	padding-right: 40px;
 }
 
-#maincontent .cbi-dropdown,
-.modal .cbi-dropdown,
-.cbi-modal .cbi-dropdown,
-[role="dialog"] .cbi-dropdown {
+#maincontent .cbi-dropdown:not(.cbi-button):not(.btn),
+.modal .cbi-dropdown:not(.cbi-button):not(.btn),
+.cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn),
+[role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn) {
 	position: relative;
-	padding-right: 40px;
+	display: flex !important;
+	align-items: center;
+	padding-right: 12px !important;
+	gap: 0;
 }
 
-#maincontent .cbi-dropdown::after,
-.modal .cbi-dropdown::after,
-.cbi-modal .cbi-dropdown::after,
-[role="dialog"] .cbi-dropdown::after {
-	content: "";
-	position: absolute;
-	right: 14px;
-	top: 50%;
-	transform: translateY(-50%);
+/* Hide the fake ::after arrow for form dropdowns — span.open is the real arrow */
+#maincontent .cbi-dropdown:not(.cbi-button):not(.btn)::after,
+.modal .cbi-dropdown:not(.cbi-button):not(.btn)::after,
+.cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn)::after,
+[role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn)::after {
+	display: none !important;
+	content: none !important;
+}
+
+/* Style the real span.open arrow */
+#maincontent .cbi-dropdown:not(.cbi-button):not(.btn) > span.open,
+.modal .cbi-dropdown:not(.cbi-button):not(.btn) > span.open,
+.cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn) > span.open,
+[role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn) > span.open {
+	flex: 0 0 auto;
+	order: 2;
 	width: 16px;
 	height: 16px;
+	margin-left: 8px;
+	color: transparent;
 	background-color: var(--vw-text);
 	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") center / contain no-repeat;
 	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") center / contain no-repeat;
-	pointer-events: none;
 	opacity: 0.5;
+	font-size: 0;
+	pointer-events: none;
+}
+
+/* The ul holds the selected text — make it flex-grow and truncate */
+#maincontent .cbi-dropdown:not(.cbi-button):not(.btn) > ul,
+.modal .cbi-dropdown:not(.cbi-button):not(.btn) > ul,
+.cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn) > ul,
+[role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn) > ul {
+	flex: 1 1 auto;
+	order: 1;
+	min-width: 0;
+	overflow: hidden;
+	max-width: 100%;
+	display: block;
 }
 
 #maincontent textarea,
