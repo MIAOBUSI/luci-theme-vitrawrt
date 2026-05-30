@@ -330,10 +330,10 @@
 .modal .cbi-dropdown ul.dropdown,
 .cbi-modal .cbi-dropdown ul.dropdown,
 [role="dialog"] .cbi-dropdown ul.dropdown,
-#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown,
-.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown,
-.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown,
-[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown {
+#maincontent .cbi-dropdown[open] > ul.dropdown,
+.modal .cbi-dropdown[open] > ul.dropdown,
+.cbi-modal .cbi-dropdown[open] > ul.dropdown,
+[role="dialog"] .cbi-dropdown[open] > ul.dropdown {
 	padding: 6px !important;
 	border: 1px solid color-mix(in srgb, var(--vw-border-medium) 80%, transparent) !important;
 	border-radius: var(--vw-radius-xl) !important;
@@ -357,10 +357,10 @@
 .modal .cbi-dropdown ul.dropdown > li,
 .cbi-modal .cbi-dropdown ul.dropdown > li,
 [role="dialog"] .cbi-dropdown ul.dropdown > li,
-#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown > li,
-.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown > li,
-.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown > li,
-[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown > li {
+#maincontent .cbi-dropdown[open] > ul.dropdown > li,
+.modal .cbi-dropdown[open] > ul.dropdown > li,
+.cbi-modal .cbi-dropdown[open] > ul.dropdown > li,
+[role="dialog"] .cbi-dropdown[open] > ul.dropdown > li {
 	padding: 10px 14px !important;
 	border-radius: 8px !important;
 	color: var(--vw-text) !important;
@@ -374,10 +374,10 @@
 .modal .cbi-dropdown ul.dropdown > li:last-child,
 .cbi-modal .cbi-dropdown ul.dropdown > li:last-child,
 [role="dialog"] .cbi-dropdown ul.dropdown > li:last-child,
-#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:last-child,
-.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:last-child,
-.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:last-child,
-[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:last-child {
+#maincontent .cbi-dropdown[open] > ul > li:last-child,
+.modal .cbi-dropdown[open] > ul > li:last-child,
+.cbi-modal .cbi-dropdown[open] > ul > li:last-child,
+[role="dialog"] .cbi-dropdown[open] > ul > li:last-child {
 	margin-bottom: 0 !important;
 }
 
@@ -397,22 +397,22 @@
 [role="dialog"] .cbi-dropdown ul.dropdown > li:focus,
 [role="dialog"] .cbi-dropdown ul.dropdown > li[selected],
 [role="dialog"] .cbi-dropdown ul.dropdown > li[aria-selected="true"],
-#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:hover,
-#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:focus,
-#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li[selected],
-#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li[aria-selected="true"],
-.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:hover,
-.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:focus,
-.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li[selected],
-.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li[aria-selected="true"],
-.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:hover,
-.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:focus,
-.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li[selected],
-.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li[aria-selected="true"],
-[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:hover,
-[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li:focus,
-[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li[selected],
-[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li[aria-selected="true"] {
+#maincontent .cbi-dropdown[open] > ul > li:hover,
+#maincontent .cbi-dropdown[open] > ul > li:focus,
+#maincontent .cbi-dropdown[open] > ul > li[selected],
+#maincontent .cbi-dropdown[open] > ul > li[aria-selected="true"],
+.modal .cbi-dropdown[open] > ul > li:hover,
+.modal .cbi-dropdown[open] > ul > li:focus,
+.modal .cbi-dropdown[open] > ul > li[selected],
+.modal .cbi-dropdown[open] > ul > li[aria-selected="true"],
+.cbi-modal .cbi-dropdown[open] > ul > li:hover,
+.cbi-modal .cbi-dropdown[open] > ul > li:focus,
+.cbi-modal .cbi-dropdown[open] > ul > li[selected],
+.cbi-modal .cbi-dropdown[open] > ul > li[aria-selected="true"],
+[role="dialog"] .cbi-dropdown[open] > ul > li:hover,
+[role="dialog"] .cbi-dropdown[open] > ul > li:focus,
+[role="dialog"] .cbi-dropdown[open] > ul > li[selected],
+[role="dialog"] .cbi-dropdown[open] > ul > li[aria-selected="true"] {
 	background: color-mix(in srgb, var(--vw-accent) 20%, transparent) !important;
 	backdrop-filter: blur(16px) !important;
 	-webkit-backdrop-filter: blur(16px) !important;
@@ -490,6 +490,8 @@
 	color: #ffffff !important;
 	cursor: pointer !important;
 	border-left: 1px solid color-mix(in srgb, #ffffff 20%, transparent) !important;
+	pointer-events: auto !important;
+	z-index: 10 !important;
 }
 
 #maincontent button:hover,
@@ -6285,12 +6287,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
     background: rgba(48, 209, 88, 0.14) !important;
 }
 
-/* --- Apple UI: Dropdown Enhancements --- */
-#maincontent .cbi-dropdown.cbi-button > span.open {
-    font-size: 14px !important;
-    color: #ffffff !important;
-    border-left: 1px solid color-mix(in srgb, #ffffff 20%, transparent) !important;
-}
+
 
 /* --- Native Progress Bars (fallback for non-upgraded bars) --- */
 #maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
