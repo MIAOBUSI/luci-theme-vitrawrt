@@ -948,20 +948,18 @@
 .cbi-modal,
 [role="dialog"],
 .ui-dialog,
-.dialog {
+.dialog,
+.modal,
+.cbi-modal,
+[role="dialog"] {
 	padding: 18px;
-	border-color: color-mix(in srgb, var(--vw-border) 86%, transparent);
+	border: 1px solid color-mix(in srgb, var(--vw-border) 60%, transparent);
 	border-radius: var(--vw-radius-modal);
 	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 72%, transparent), transparent 38%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-violet) 14%, transparent), transparent 42%),
-		radial-gradient(circle at 100% 4%, color-mix(in srgb, var(--vw-cyan) 9%, transparent), transparent 38%),
-		color-mix(in srgb, var(--vw-surface-strong) 94%, transparent);
+	background: var(--vw-panel-bg);
 	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 80%, transparent) inset,
-		0 -18px 40px color-mix(in srgb, var(--vitra-inner-dim) 76%, transparent) inset,
-		var(--vw-shadow-modal);
+		0 1px 0 rgba(255, 255, 255, 0.08) inset,
+		0 24px 60px rgba(0, 0, 0, 0.25);
 	backdrop-filter: blur(var(--vw-blur-floating)) saturate(122%);
 	-webkit-backdrop-filter: blur(var(--vw-blur-floating)) saturate(122%);
 }
@@ -969,30 +967,24 @@
 .modal-header,
 .modal-footer {
 	padding: 14px 16px;
-	border-color: color-mix(in srgb, var(--vw-border) 62%, transparent);
+	border-color: color-mix(in srgb, var(--vw-border) 60%, transparent);
 	border-radius: 22px;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 58%, transparent), transparent 74%),
-		color-mix(in srgb, var(--vw-surface-soft) 80%, transparent);
+	background: transparent;
 }
 
 .modal-body {
 	padding: 16px;
 	border-radius: 24px;
 	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 34%, transparent), transparent 76%),
-		color-mix(in srgb, var(--vw-surface-inner) 56%, transparent);
+	background: transparent;
 }
 
 .modal-backdrop,
 .modal-overlay,
 .overlay {
-	background:
-		radial-gradient(circle at 52% 12%, color-mix(in srgb, var(--vitra-violet-soft) 48%, transparent), transparent 42%),
-		color-mix(in srgb, var(--vw-bg) 72%, rgba(9, 18, 29, 0.58));
-	backdrop-filter: blur(var(--vw-blur-soft)) saturate(110%);
-	-webkit-backdrop-filter: blur(var(--vw-blur-soft)) saturate(110%);
+	background: rgba(0, 0, 0, 0.35);
+	backdrop-filter: blur(24px) saturate(110%);
+	-webkit-backdrop-filter: blur(24px) saturate(110%);
 }
 
 .spinning,
@@ -1000,15 +992,15 @@
 .modal .spinning,
 [role="dialog"] .spinning {
 	padding: 18px 22px;
-	border: 1px solid color-mix(in srgb, var(--vw-border) 86%, transparent);
+	border: 1px solid color-mix(in srgb, var(--vw-border) 60%, transparent);
 	border-radius: 24px;
-	color: var(--vw-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 66%, transparent), transparent 56%),
-		color-mix(in srgb, var(--vw-surface-strong) 92%, transparent);
+	color: var(--vw-text);
+	background: var(--vw-panel-bg);
 	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 72%, transparent) inset,
-		0 22px 60px color-mix(in srgb, var(--vw-shadow-color) 16%, transparent);
+		0 1px 0 rgba(255, 255, 255, 0.08) inset,
+		0 24px 60px rgba(0, 0, 0, 0.25);
+	backdrop-filter: blur(16px) saturate(120%);
+	-webkit-backdrop-filter: blur(16px) saturate(120%);
 }
 
 /* Alerts and session/apply messages. */
@@ -1017,15 +1009,15 @@
 .modal .alert-message,
 [role="dialog"] .alert-message {
 	padding: 16px 18px;
-	border: 1px solid color-mix(in srgb, var(--vw-border) 84%, transparent);
+	border: 1px solid color-mix(in srgb, var(--vw-border) 60%, transparent);
 	border-radius: 22px;
 	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 62%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-surface-soft) 86%, transparent);
+	background: var(--vw-panel-bg);
 	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 68%, transparent) inset,
-		0 14px 34px color-mix(in srgb, var(--vw-shadow-color) 9%, transparent);
+		0 1px 0 rgba(255, 255, 255, 0.08) inset,
+		0 14px 34px rgba(0, 0, 0, 0.25);
+	backdrop-filter: blur(16px) saturate(120%);
+	-webkit-backdrop-filter: blur(16px) saturate(120%);
 }
 
 #maincontent .alert-message.warning,
@@ -3356,11 +3348,7 @@ html[data-theme="dark"] [role="dialog"],
 html[data-theme="dark"] .ui-dialog,
 html[data-theme="dark"] .dialog {
 	border-color: color-mix(in srgb, var(--vw-glass-border-strong) 62%, transparent);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 44%, transparent), transparent 45%),
-		radial-gradient(circle at 14% 0%, color-mix(in srgb, var(--vw-glow-violet) 20%, transparent), transparent 48%),
-		radial-gradient(circle at 100% 4%, color-mix(in srgb, var(--vw-glow-cyan) 18%, transparent), transparent 50%),
-		var(--vw-modal-bg);
+	background: var(--vw-panel-bg);
 	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
 }
 
@@ -3374,9 +3362,7 @@ html[data-theme="dark"] .modal-body,
 html[data-theme="dark"] .cbi-modal .modal-body,
 html[data-theme="dark"] [role="dialog"] .modal-body {
 	border-color: color-mix(in srgb, var(--vw-glass-border) 42%, transparent);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 20%, transparent), transparent 76%),
-		color-mix(in srgb, var(--vw-glass-inner) 36%, transparent);
+	background: transparent;
 }
 
 /* Stage 1.19V loop 3: modal tabs and dialog sheet refinement. */
@@ -3451,11 +3437,7 @@ html[data-theme="dark"] .cbi-modal,
 html[data-theme="dark"] [role="dialog"],
 html[data-theme="dark"] .ui-dialog,
 html[data-theme="dark"] .dialog {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 38%, transparent), transparent 42%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-glow-aqua) 16%, transparent), transparent 45%),
-		radial-gradient(circle at 100% 2%, color-mix(in srgb, var(--vw-glow-violet) 16%, transparent), transparent 50%),
-		color-mix(in srgb, var(--vw-modal-bg) 88%, transparent);
+	background: var(--vw-panel-bg);
 	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
 }
 
