@@ -979,63 +979,141 @@
 	background: transparent;
 }
 
-.modal-backdrop,
-.modal-overlay,
-.overlay {
-	background: rgba(0, 0, 0, 0.35);
-	backdrop-filter: blur(24px) saturate(110%);
-	-webkit-backdrop-filter: blur(24px) saturate(110%);
+/* ============================================================
+   MODAL DIALOG + ALERT-MESSAGE: Neon Frosted Glass (Pro Max)
+   Real DOM:
+     - Session expired: #modal_overlay > .modal  (bg on .modal)
+     - Apply waiting:   #modal_overlay > .modal.alert-message.notice.spinning
+     - No changes:      #modal_overlay > .modal.alert-message.notice
+     - Page banners:    #maincontent > .alert-message
+   ============================================================ */
+
+/* --- The full-screen backdrop --- */
+#modal_overlay {
+	background: rgba(0, 0, 0, 0.42) !important;
+	backdrop-filter: blur(8px) saturate(140%) !important;
+	-webkit-backdrop-filter: blur(8px) saturate(140%) !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.spinning,
-#view > .spinning,
-.modal .spinning,
-[role="dialog"] .spinning {
-	padding: 18px 22px;
-	border: 1px solid color-mix(in srgb, var(--vw-border) 60%, transparent);
+/* --- Base glass for all .modal panels (session expiry, file upload, etc.) --- */
+#modal_overlay > .modal {
+	padding: 32px 36px;
 	border-radius: 24px;
-	color: var(--vw-text);
-	background: var(--vw-panel-bg);
+	border: 1px solid rgba(255, 255, 255, 0.14) !important;
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(0, 210, 255, 0.14) 0%, transparent 55%),
+		radial-gradient(ellipse at 90% 5%, rgba(157, 0, 255, 0.10) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
 	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.08) inset,
-		0 24px 60px rgba(0, 0, 0, 0.25);
-	backdrop-filter: blur(16px) saturate(120%);
-	-webkit-backdrop-filter: blur(16px) saturate(120%);
+		0 1px 0 rgba(255, 255, 255, 0.10) inset,
+		0 -1px 0 rgba(0, 0, 0, 0.20) inset,
+		0 32px 80px rgba(0, 0, 0, 0.50),
+		0 0 0 1px rgba(0, 210, 255, 0.06) !important;
+	backdrop-filter: blur(40px) saturate(160%) !important;
+	-webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+	color: var(--vw-text, #e0edf6) !important;
 }
 
-/* Alerts and session/apply messages. */
-#maincontent .alert-message,
-#maincontent .alert,
-.modal .alert-message,
-[role="dialog"] .alert-message {
-	padding: 16px 18px;
-	border: 1px solid color-mix(in srgb, var(--vw-border) 60%, transparent);
-	border-radius: 22px;
-	color: var(--vw-text);
-	background: var(--vw-panel-bg);
+/* --- .modal.alert-message: the displayStatus() panel (apply/revert/no-changes) --- */
+#modal_overlay > .modal.alert-message {
+	padding: 28px 32px;
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.14) !important;
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(0, 210, 255, 0.14) 0%, transparent 55%),
+		radial-gradient(ellipse at 90% 5%, rgba(157, 0, 255, 0.10) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.10) inset,
+		0 24px 60px rgba(0, 0, 0, 0.45),
+		0 0 0 1px rgba(0, 210, 255, 0.06) !important;
+	backdrop-filter: blur(40px) saturate(160%) !important;
+	-webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+	color: var(--vw-text, #e0edf6) !important;
+}
+
+/* --- notice: applying configuration (blue-cyan glow) --- */
+#modal_overlay > .modal.alert-message.notice {
+	border-color: rgba(0, 210, 255, 0.22) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.10) inset,
+		0 24px 60px rgba(0, 0, 0, 0.45),
+		0 0 24px rgba(0, 210, 255, 0.12),
+		0 0 0 1px rgba(0, 210, 255, 0.10) !important;
+}
+
+/* --- warning: rollback / connectivity warning (amber glow) --- */
+#modal_overlay > .modal.alert-message.warning {
+	border-color: rgba(255, 170, 0, 0.22) !important;
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(255, 170, 0, 0.14) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
 	box-shadow:
 		0 1px 0 rgba(255, 255, 255, 0.08) inset,
-		0 14px 34px rgba(0, 0, 0, 0.25);
-	backdrop-filter: blur(16px) saturate(120%);
-	-webkit-backdrop-filter: blur(16px) saturate(120%);
+		0 24px 60px rgba(0, 0, 0, 0.45),
+		0 0 24px rgba(255, 170, 0, 0.12),
+		0 0 0 1px rgba(255, 170, 0, 0.10) !important;
+}
+
+/* --- session expired modal: notice.warning on .alert-message inside .modal --- */
+#modal_overlay > .modal > .alert-message.warning {
+	background: rgba(255, 170, 0, 0.10) !important;
+	border: 1px solid rgba(255, 170, 0, 0.22) !important;
+	border-radius: 12px;
+	padding: 12px 16px;
+	color: var(--vw-text, #e0edf6) !important;
+	margin-bottom: 16px;
+}
+
+/* --- spinning: applying / reverting state (add a subtle animated border) --- */
+#modal_overlay > .modal.alert-message.spinning {
+	animation: vw-border-pulse 2s ease-in-out infinite;
+}
+
+@keyframes vw-border-pulse {
+	0%, 100% { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.10) inset, 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 16px rgba(0, 210, 255, 0.10), 0 0 0 1px rgba(0, 210, 255, 0.08); }
+	50%       { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.10) inset, 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 32px rgba(0, 210, 255, 0.22), 0 0 0 1px rgba(0, 210, 255, 0.18); }
+}
+
+/* --- page-level alert banners (#maincontent) --- */
+#maincontent .alert-message,
+#maincontent .alert {
+	padding: 16px 18px;
+	border: 1px solid rgba(255, 255, 255, 0.12) !important;
+	border-radius: 16px;
+	color: var(--vw-text, #e0edf6) !important;
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 8px 24px rgba(0, 0, 0, 0.25);
+	backdrop-filter: blur(20px) saturate(140%);
+	-webkit-backdrop-filter: blur(20px) saturate(140%);
 }
 
 #maincontent .alert-message.warning,
 #maincontent .alert-warning,
 .modal .alert-warning {
-	border-color: color-mix(in srgb, var(--vw-warning) 32%, var(--vw-border));
+	border-color: rgba(255, 170, 0, 0.24) !important;
 	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 62%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-warning-soft) 70%, var(--vw-surface-soft));
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(255, 170, 0, 0.12) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
 }
 
 #maincontent .alert-message.error,
 #maincontent .alert-danger,
 .modal .alert-danger {
-	border-color: color-mix(in srgb, var(--vw-danger) 34%, var(--vw-border));
+	border-color: rgba(255, 60, 60, 0.24) !important;
 	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 62%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-danger-soft) 72%, var(--vw-surface-soft));
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(255, 60, 60, 0.12) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
 }
 
 @media (max-width: 700px) {
