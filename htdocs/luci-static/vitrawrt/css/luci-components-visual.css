@@ -6816,8 +6816,17 @@ body > #view > .spinning::after,
 	flex-wrap: wrap;
 	justify-content: flex-end;
 	align-items: center;
-	gap: 10px;
-	margin-bottom: 20px;
+	gap: 6px; /* Tighter gap to match tabs */
+	margin-bottom: 24px;
+	margin-left: auto; /* Align the fit-content container to the right */
+	width: fit-content;
+	padding: 4px;
+	background: color-mix(in srgb, var(--vw-text) 6%, transparent);
+	backdrop-filter: blur(24px);
+	-webkit-backdrop-filter: blur(24px);
+	border: 1px solid color-mix(in srgb, var(--vw-border) 15%, transparent);
+	border-radius: var(--vw-radius-pill, 24px);
+	box-shadow: inset 0 1px 3px color-mix(in srgb, var(--vw-shadow-soft) 10%, transparent);
 }
 
 #vwrt-indicators-bar:empty {
@@ -6836,16 +6845,16 @@ body > #view > .spinning::after,
 .vwrt-indicator-chip {
 	display: inline-flex;
 	align-items: center;
-	padding: 7px 16px;
+	padding: 6px 14px; /* Slightly tighter padding inside the wrapper */
 	border-radius: 20px;
 	font-size: 13px;
 	font-weight: 500;
 	color: var(--vw-text-main);
 	background:
 		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-		var(--vw-surface-glass-2, rgba(20, 30, 45, 0.65));
+		var(--vw-surface-glass-2, rgba(20, 30, 45, 0.45)); /* Slightly lighter */
 	border: 1px solid rgba(255, 255, 255, 0.12);
-	box-shadow: 0 4px 16px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.05) inset;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 1px 0 rgba(255,255,255,0.05) inset;
 	backdrop-filter: blur(20px) saturate(140%);
 	-webkit-backdrop-filter: blur(20px) saturate(140%);
 	cursor: pointer;
