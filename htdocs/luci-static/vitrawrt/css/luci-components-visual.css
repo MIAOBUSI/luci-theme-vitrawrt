@@ -312,9 +312,11 @@
 	color: var(--vw-text) !important;
 	background: var(--vw-panel-bg) !important;
 	box-shadow: 0 4px 24px color-mix(in srgb, var(--vw-shadow-color) 40%, transparent) !important;
-	left: -1px !important;
-	right: -1px !important;
-	width: calc(100% + 2px) !important;
+	left: 0 !important;
+	right: auto !important;
+	width: max-content !important;
+	min-width: 100% !important;
+	max-width: min(420px, 92vw) !important;
 	margin-top: 4px !important;
 	z-index: 1000 !important;
 	box-sizing: border-box !important;
