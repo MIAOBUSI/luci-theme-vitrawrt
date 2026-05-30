@@ -191,19 +191,21 @@
 .modal .cbi-dropdown:not(.cbi-button):not(.btn) > span.open,
 .cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn) > span.open,
 [role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn) > span.open {
-	position: absolute;
-	right: 13px;
-	top: 50%;
-	transform: translateY(-50%);
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	font-size: 14px;
-	line-height: 1;
-	color: var(--vw-text);
-	opacity: 0.5;
-	pointer-events: none;
-	text-align: center;
+	position: absolute !important;
+	right: 14px !important;
+	top: 50% !important;
+	transform: translateY(-50%) !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 16px !important;
+	height: 16px !important;
+	font-size: 14px !important;
+	line-height: 1 !important;
+	color: var(--vw-text-muted) !important;
+	opacity: 0.7 !important;
+	pointer-events: none !important;
+	z-index: 5 !important;
 }
 
 /* Reserve space in the static ul so text doesn't reach under the arrow */
@@ -328,10 +330,10 @@
 .modal .cbi-dropdown ul.dropdown,
 .cbi-modal .cbi-dropdown ul.dropdown,
 [role="dialog"] .cbi-dropdown ul.dropdown,
-#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul,
-.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul,
-.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul,
-[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul {
+#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown,
+.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown,
+.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown,
+[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown {
 	padding: 6px !important;
 	border: 1px solid color-mix(in srgb, var(--vw-border-medium) 80%, transparent) !important;
 	border-radius: var(--vw-radius-xl) !important;
@@ -355,10 +357,10 @@
 .modal .cbi-dropdown ul.dropdown > li,
 .cbi-modal .cbi-dropdown ul.dropdown > li,
 [role="dialog"] .cbi-dropdown ul.dropdown > li,
-#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li,
-.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li,
-.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li,
-[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul > li {
+#maincontent .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown > li,
+.modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown > li,
+.cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown > li,
+[role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul.dropdown > li {
 	padding: 10px 14px !important;
 	border-radius: 8px !important;
 	color: var(--vw-text) !important;
