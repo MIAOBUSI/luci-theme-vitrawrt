@@ -1,0 +1,2 @@
+sed -i '' -e 's/\.cbi-dropdown > ul/.cbi-dropdown\[open\] > ul/g' /Users/nyakabeusu/Documents/GitHub/vitrawrt/luci-theme-vitrawrt/htdocs/luci-static/vitrawrt/css/luci-components-visual.css
+sed -i '' -e 's/v=1\.41C-R11/v=1.41C-R12/g' /Users/nyakabeusu/Documents/GitHub/vitrawrt/luci-theme-vitrawrt/htdocs/luci-static/vitrawrt/cascade.css /Users/nyakabeusu/Documents/GitHub/vitrawrt/luci-theme-vitrawrt/luasrc/view/themes/vitrawrt/header.htm

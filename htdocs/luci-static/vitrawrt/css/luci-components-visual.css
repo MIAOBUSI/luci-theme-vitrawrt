@@ -6446,3 +6446,80 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
         0 2px 6px color-mix(in srgb, var(--vw-accent) 15%, transparent),
         0 0 0 1px color-mix(in srgb, var(--vw-accent) 12%, transparent) !important;
 }
+
+/* ==========================================================================
+   UI/UX PRO MAX ABSOLUTE OVERRIDES
+   Forcing clean panel backgrounds and removing legacy dirty gradients.
+   ========================================================================== */
+
+/* 1. Modal Backdrops */
+.modal-backdrop,
+.modal-overlay,
+.overlay {
+	background: rgba(0, 0, 0, 0.35) !important;
+	backdrop-filter: blur(24px) saturate(110%) !important;
+	-webkit-backdrop-filter: blur(24px) saturate(110%) !important;
+}
+
+/* 2. Main Dialog Panels */
+.ui-dialog,
+.dialog,
+.modal,
+.cbi-modal,
+[role="dialog"] {
+	background: var(--vw-panel-bg) !important;
+	border: 1px solid color-mix(in srgb, var(--vw-border) 60%, transparent) !important;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 24px 60px rgba(0, 0, 0, 0.25) !important;
+	backdrop-filter: blur(var(--vw-blur-floating)) saturate(122%) !important;
+	-webkit-backdrop-filter: blur(var(--vw-blur-floating)) saturate(122%) !important;
+}
+
+/* 3. Sub-components (Headers, Footers, Bodies) */
+.modal-header,
+.modal-footer,
+.modal-body,
+.cbi-modal .modal-header,
+.cbi-modal .modal-footer,
+.cbi-modal .modal-body,
+[role="dialog"] .modal-header,
+[role="dialog"] .modal-footer,
+[role="dialog"] .modal-body {
+	background: transparent !important;
+}
+
+/* 4. Alert Messages and Spinning Modals */
+.spinning,
+#view > .spinning,
+.modal .spinning,
+[role="dialog"] .spinning,
+#maincontent .alert-message,
+#maincontent .alert,
+.modal .alert-message,
+[role="dialog"] .alert-message {
+	background: var(--vw-panel-bg) !important;
+	border: 1px solid color-mix(in srgb, var(--vw-border) 60%, transparent) !important;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 14px 34px rgba(0, 0, 0, 0.25) !important;
+	backdrop-filter: blur(16px) saturate(120%) !important;
+	-webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+}
+
+/* 5. Warning & Error specific tints to survive the absolute override */
+#maincontent .alert-message.warning,
+#maincontent .alert.warning {
+	background: color-mix(in srgb, var(--vw-warning) 10%, var(--vw-panel-bg)) !important;
+	border-color: color-mix(in srgb, var(--vw-warning) 30%, transparent) !important;
+}
+#maincontent .alert-message.error,
+#maincontent .alert.error {
+	background: color-mix(in srgb, var(--vw-error) 10%, var(--vw-panel-bg)) !important;
+	border-color: color-mix(in srgb, var(--vw-error) 30%, transparent) !important;
+}
+
+/* Dark mode generic overrides */
+html[data-theme="dark"] .ui-dialog,
+html[data-theme="dark"] .dialog,
+html[data-theme="dark"] .modal,
+html[data-theme="dark"] .cbi-modal,
+html[data-theme="dark"] [role="dialog"] {
+	background: var(--vw-panel-bg) !important;
+}
