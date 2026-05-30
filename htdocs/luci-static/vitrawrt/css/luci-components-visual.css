@@ -6812,33 +6812,32 @@ body > #view > .spinning::after,
    ============================================================ */
 #vwrt-indicators-bar {
 	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	margin-bottom: 24px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
 }
 
 #vwrt-indicators-bar:empty {
 	display: none;
 }
 
-/* Container for JS indicators (Unsaved changes, Refresh, etc) */
+/* Container for JS indicators */
 #indicators {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-}
-#indicators:empty {
-	display: none;
+	display: contents;
 }
 
-/* Individual Indicator Chips (Unsaved Changes, Auto Refresh) */
+/* Individual Indicator Chips */
 #indicators > span,
 #indicators > .label,
-#indicators > .indicator {
+#indicators > .indicator,
+.vwrt-indicator-chip {
 	display: inline-flex;
 	align-items: center;
 	padding: 7px 16px;
-	border-radius: 14px;
+	border-radius: 20px;
 	font-size: 13px;
 	font-weight: 500;
 	color: var(--vw-text-main);
@@ -6851,11 +6850,14 @@ body > #view > .spinning::after,
 	-webkit-backdrop-filter: blur(20px) saturate(140%);
 	cursor: pointer;
 	transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+	text-decoration: none;
+	gap: 6px;
 }
 
 #indicators > span:hover,
 #indicators > .label:hover,
-#indicators > .indicator:hover {
+#indicators > .indicator:hover,
+.vwrt-indicator-chip:hover {
 	background:
 		linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
 		var(--vw-surface-glass-hover, rgba(30, 45, 65, 0.75));
@@ -6874,55 +6876,19 @@ body > #view > .spinning::after,
 	box-shadow: 0 4px 16px rgba(255, 170, 0, 0.15), 0 1px 0 rgba(255,255,255,0.1) inset;
 }
 
-/* Password and Initramfs Warnings inside the bar */
-#vwrt-indicators-bar .alert-message {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 14px 20px;
-	border-radius: 18px;
-	margin: 0 !important; /* Managed by bar gap */
+.vwrt-indicator-chip.warning {
+	color: rgba(255, 170, 0, 0.95);
+	border-color: rgba(255, 170, 0, 0.3);
+}
+
+.vwrt-indicator-chip.warning:hover {
 	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-		var(--vw-surface-glass-2, rgba(20, 30, 45, 0.65));
-	border: 1px solid rgba(255, 170, 0, 0.25) !important;
-	box-shadow: 0 8px 32px rgba(0,0,0,0.25), 0 0 20px rgba(255, 170, 0, 0.08);
+		linear-gradient(135deg, rgba(255, 170, 0, 0.15) 0%, transparent 50%),
+		var(--vw-surface-glass-hover, rgba(30, 45, 65, 0.75));
+	border-color: rgba(255, 170, 0, 0.6);
+	box-shadow: 0 8px 24px rgba(255, 170, 0, 0.15), 0 1px 0 rgba(255,255,255,0.08) inset;
 }
 
-#vwrt-indicators-bar .alert-message .vwrt-alert-content {
-	flex: 1;
-}
-
-#vwrt-indicators-bar .alert-message h4 {
-	margin: 0 0 4px 0 !important;
+.vwrt-indicator-icon {
 	font-size: 14px;
-	color: rgba(255, 170, 0, 0.95) !important;
-	font-weight: 600;
-}
-
-#vwrt-indicators-bar .alert-message p {
-	margin: 0 !important;
-	font-size: 13px;
-	color: var(--vw-text-muted);
-}
-
-/* Fix button alignment inside warnings */
-#vwrt-indicators-bar .alert-message .right {
-	margin-left: 20px;
-	display: flex;
-	align-items: center;
-	float: none !important;
-}
-
-#vwrt-indicators-bar .alert-message .btn {
-	white-space: nowrap;
-	padding: 8px 18px !important;
-	font-size: 13px;
-	min-height: 0 !important; /* Fix vertical squeeze */
-	height: auto !important;
-	border-radius: 12px;
-	margin: 0 !important;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
 }

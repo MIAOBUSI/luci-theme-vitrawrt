@@ -104,30 +104,20 @@
 
 			<main id="maincontent" class="container vitra-page" tabindex="-1">
 			<div id="vwrt-indicators-bar">
-				<div id="indicators"></div>
 			{% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
-				<div class="alert-message warning password-warning">
-					<div class="vwrt-alert-content">
-						<h4>{{ _('No password set!') }}</h4>
-						<p>{{ _('There is no password set on this router. Please configure a root password to protect the web interface.') }}</p>
-					</div>
-					{% if (dispatcher.lookup("admin/system/admin")): %}
-						<div class="right"><a class="btn" href="{{ dispatcher.build_url("admin/system/admin") }}">{{ _('Go to password configuration...') }}</a></div>
-					{% endif %}
-				</div>
+				<a class="vwrt-indicator-chip warning" href="{{ dispatcher.lookup("admin/system/admin") ? dispatcher.build_url("admin/system/admin") : '#' }}" title="{{ _('There is no password set on this router. Please configure a root password to protect the web interface.') }}">
+					<span class="vwrt-indicator-icon">⚠️</span>
+					<span class="vwrt-indicator-text">{{ _('No password set!') }}</span>
+				</a>
 			{% endif %}
 
 			{% if (boardinfo.rootfs_type == "initramfs"): %}
-				<div class="alert-message warning recovery-warning">
-					<div class="vwrt-alert-content">
-						<h4>{{ _('System running in recovery (initramfs) mode.') }}</h4>
-						<p>{{ _('No changes to settings will be stored and are lost after rebooting. This mode should only be used to install a firmware upgrade') }}</p>
-					</div>
-					{% if (dispatcher.lookup("admin/system/flash")): %}
-						<div class="right"><a class="btn" href="{{ dispatcher.build_url("admin/system/flash") }}">{{ _('Go to firmware upgrade...') }}</a></div>
-					{% endif %}
-				</div>
+				<a class="vwrt-indicator-chip warning" href="{{ dispatcher.lookup("admin/system/flash") ? dispatcher.build_url("admin/system/flash") : '#' }}" title="{{ _('No changes to settings will be stored and are lost after rebooting. This mode should only be used to install a firmware upgrade') }}">
+					<span class="vwrt-indicator-icon">⚠️</span>
+					<span class="vwrt-indicator-text">{{ _('System running in recovery (initramfs) mode.') }}</span>
+				</a>
 			{% endif %}
+				<div id="indicators"></div>
 			</div>
 
 			<noscript>
