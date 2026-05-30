@@ -7124,3 +7124,122 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 .uci-change-legend-label > var::before {
 	content: '';
 }
+
+/* ── 3rd-Party Plugin Adapters ───────────────────────────────────────────── */
+
+/* --- OpenClash --- */
+/* Target all pages under admin/services/openclash */
+body[data-page^="admin-services-openclash"] {
+	/* Override the main openclash wrapper so our default fieldset glass doesn't break the layout */
+}
+
+/* 1. Strip the giant glass box from the outer fieldset */
+body[data-page^="admin-services-openclash"] #cbi-openclash > fieldset,
+body[data-page^="admin-services-openclash"] #cbi-openclash > fieldset > table > tbody > tr > td {
+	background: none !important;
+	border: none !important;
+	box-shadow: none !important;
+	-webkit-backdrop-filter: none !important;
+	backdrop-filter: none !important;
+	padding: 0 !important;
+}
+
+/* 2. Reset the internal Dashboard cards (.oc) */
+body[data-page^="admin-services-openclash"] .oc {
+	--bg-light: transparent !important;
+	--bg-gray: transparent !important;
+}
+body[data-page^="admin-services-openclash"] .oc .main-card,
+body[data-page^="admin-services-openclash"] .oc .myip-main-card,
+body[data-page^="admin-services-openclash"] .oc .sub-card,
+body[data-page^="admin-services-openclash"] .oc .config-upload-content,
+body[data-page^="admin-services-openclash"] .oc .developer-container {
+	background: var(--vw-surface-glass) !important;
+	-webkit-backdrop-filter: blur(var(--vw-glass-blur)) !important;
+	backdrop-filter: blur(var(--vw-glass-blur)) !important;
+	border: 1px solid var(--vw-border-color) !important;
+	box-shadow: var(--vw-shadow-sm) !important;
+	border-radius: var(--vw-radius-lg) !important;
+}
+
+body[data-page^="admin-services-openclash"] .oc .main-card {
+	padding: 1rem !important;
+	margin-bottom: 1rem !important;
+}
+
+/* 3. Fix the top spacing of cards container */
+body[data-page^="admin-services-openclash"] .oc .main-cards-container {
+	margin: 0 !important;
+	gap: 1rem !important;
+}
+body[data-page^="admin-services-openclash"] .oc .announcement-card {
+	width: auto !important;
+	margin: 1rem !important;
+}
+
+/* 4. Disable hover transforms on cards that conflict with our glass styles */
+body[data-page^="admin-services-openclash"] .oc .sub-card:hover,
+body[data-page^="admin-services-openclash"] .oc .myip-ip-item:hover,
+body[data-page^="admin-services-openclash"] .oc .myip-check-item:hover {
+	transform: none !important;
+}
+
+/* 5. Fix Log Viewers and CodeMirror (Pre and Textareas) */
+body[data-page^="admin-services-openclash"] #diag-rc-output > pre,
+body[data-page^="admin-services-openclash"] #dns-rc-output > pre,
+body[data-page^="admin-services-openclash"] [id="container.openclash.config.debug"] fieldset {
+	background: var(--vw-surface-glass) !important;
+	color: var(--vw-text-secondary) !important;
+	border: 1px solid var(--vw-border-color) !important;
+	border-radius: var(--vw-radius-md) !important;
+	font-family: monospace !important;
+	padding: 1rem !important;
+}
+
+body[data-page^="admin-services-openclash"] .CodeMirror {
+	background: var(--vw-surface-glass) !important;
+	border: 1px solid var(--vw-border-color) !important;
+	border-radius: var(--vw-radius-md) !important;
+	color: var(--vw-text-primary) !important;
+}
+body[data-page^="admin-services-openclash"] .CodeMirror-gutters {
+	background: var(--vw-surface-glass) !important;
+	border-right: 1px solid var(--vw-border-color) !important;
+}
+
+/* 6. Fix OpenClash Tabmenus */
+body[data-page^="admin-services-openclash"] .cbi-tabmenu {
+	background: transparent !important;
+	border-bottom: 1px solid var(--vw-border-color) !important;
+	display: flex !important;
+	gap: 0.25rem !important;
+	margin-bottom: 1rem !important;
+}
+body[data-page^="admin-services-openclash"] .cbi-tabmenu > li > a {
+	padding: 0.5rem 1rem !important;
+	border-radius: var(--vw-radius-md) var(--vw-radius-md) 0 0 !important;
+	color: var(--vw-text-secondary) !important;
+	border: none !important;
+}
+body[data-page^="admin-services-openclash"] .cbi-tabmenu > li.cbi-tab > a {
+	background: var(--vw-primary-color) !important;
+	color: #fff !important;
+}
+
+/* 7. Button Overrides inside OpenClash */
+body[data-page^="admin-services-openclash"] .cbi-button-up,
+body[data-page^="admin-services-openclash"] .cbi-button-down {
+	background-color: var(--vw-surface-glass) !important;
+	border: 1px solid var(--vw-border-color) !important;
+	border-radius: var(--vw-radius-sm) !important;
+	color: var(--vw-text-primary) !important;
+}
+
+/* 8. Fix dropdown select menus inside OpenClash */
+body[data-page^="admin-services-openclash"] select#CORE_VERSION,
+body[data-page^="admin-services-openclash"] select#RELEASE_BRANCH {
+	background-color: var(--vw-surface-glass) !important;
+	color: var(--vw-text-primary) !important;
+	border: 1px solid var(--vw-border-color) !important;
+	border-radius: var(--vw-radius-sm) !important;
+}
