@@ -6926,7 +6926,9 @@ body > #view > .spinning::after,
 
 /* Fix cbi-button-group (like Save & Apply split button) inside modals */
 .modal .cbi-button-group,
-[role="dialog"] .cbi-button-group {
+[role="dialog"] .cbi-button-group,
+.modal .button-row .cbi-button-group,
+[role="dialog"] .button-row .cbi-button-group {
 	display: inline-flex !important;
 	align-items: stretch !important;
 	vertical-align: middle !important;
@@ -6937,19 +6939,23 @@ body > #view > .spinning::after,
 }
 
 .modal .cbi-button-group > .cbi-button,
-[role="dialog"] .cbi-button-group > .cbi-button {
+[role="dialog"] .cbi-button-group > .cbi-button,
+.modal .button-row .cbi-button-group > .cbi-button,
+[role="dialog"] .button-row .cbi-button-group > .cbi-button {
 	margin: 0 !important;
 	min-height: var(--vw-button-height) !important;
 }
 
 .modal .cbi-button-group > .cbi-button:not(:last-child),
-[role="dialog"] .cbi-button-group > .cbi-button:not(:last-child) {
+[role="dialog"] .cbi-button-group > .cbi-button:not(:last-child),
+.modal .button-row .cbi-button-group > .cbi-button:not(:last-child) {
 	border-top-right-radius: 0 !important;
 	border-bottom-right-radius: 0 !important;
 }
 
 .modal .cbi-button-group > .cbi-button:not(:first-child),
-[role="dialog"] .cbi-button-group > .cbi-button:not(:first-child) {
+[role="dialog"] .cbi-button-group > .cbi-button:not(:first-child),
+.modal .button-row .cbi-button-group > .cbi-button:not(:first-child) {
 	border-top-left-radius: 0 !important;
 	border-bottom-left-radius: 0 !important;
 	border-left: 1px solid rgba(0, 0, 0, 0.15) !important;
@@ -6959,7 +6965,9 @@ body > #view > .spinning::after,
 
 /* Ensure modal bottom right section groups buttons nicely */
 .modal .right,
-[role="dialog"] .right {
+[role="dialog"] .right,
+.modal .button-row,
+[role="dialog"] .button-row {
 	display: flex !important;
 	flex-wrap: wrap;
 	align-items: center !important;
@@ -6971,7 +6979,10 @@ body > #view > .spinning::after,
 
 .modal .right > .btn,
 .modal .right > .cbi-button,
-.modal .right > .cbi-button-group {
+.modal .right > .cbi-button-group,
+.modal .button-row > .btn,
+.modal .button-row > .cbi-button,
+.modal .button-row > .cbi-button-group {
 	margin: 0 !important;
 	float: none !important;
 }
@@ -7003,37 +7014,37 @@ body > #view > .spinning::after,
 
 /* Base Modification (div > var) */
 .uci-dialog div > var {
-	background-color: color-mix(in srgb, var(--vw-primary-soft, #3b82f6) 20%, transparent) !important;
-	border-color: color-mix(in srgb, var(--vw-primary-soft, #3b82f6) 40%, transparent) !important;
+	background-color: color-mix(in srgb, var(--vw-accent, #3b82f6) 20%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-accent, #3b82f6) 40%, transparent) !important;
 }
 
 /* Added Node (div > ins) - Dark Green */
 .uci-dialog div > ins {
-	background-color: color-mix(in srgb, var(--vw-success-soft, #10b981) 25%, transparent) !important;
-	border-color: color-mix(in srgb, var(--vw-success-soft, #10b981) 40%, transparent) !important;
-	color: color-mix(in srgb, var(--vw-success-soft, #10b981) 90%, white) !important;
+	background-color: color-mix(in srgb, var(--vw-success, #10b981) 25%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-success, #10b981) 50%, transparent) !important;
+	color: color-mix(in srgb, var(--vw-success, #10b981) 60%, var(--vw-text-main, white)) !important;
 }
 
 /* Removed Node (div > del) - Dark Red */
 .uci-dialog div > del {
-	background-color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 25%, transparent) !important;
-	border-color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 40%, transparent) !important;
-	color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 90%, white) !important;
+	background-color: color-mix(in srgb, var(--vw-danger, #ef4444) 25%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-danger, #ef4444) 50%, transparent) !important;
+	color: color-mix(in srgb, var(--vw-danger, #ef4444) 60%, var(--vw-text-main, white)) !important;
 }
 
 /* Option Added/Changed (var > ins) - Light Green/Subtle */
 .uci-dialog var > ins {
-	background-color: color-mix(in srgb, var(--vw-success-soft, #10b981) 15%, transparent) !important;
-	border-color: color-mix(in srgb, var(--vw-success-soft, #10b981) 20%, transparent) !important;
-	color: color-mix(in srgb, var(--vw-success-soft, #10b981) 80%, white) !important;
+	background-color: color-mix(in srgb, var(--vw-success, #10b981) 15%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-success, #10b981) 30%, transparent) !important;
+	color: color-mix(in srgb, var(--vw-success, #10b981) 40%, var(--vw-text-main, white)) !important;
 	margin-bottom: 0 !important;
 }
 
 /* Option Removed (var > del) - Light Red/Subtle */
 .uci-dialog var > del {
-	background-color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 15%, transparent) !important;
-	border-color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 20%, transparent) !important;
-	color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 80%, white) !important;
+	background-color: color-mix(in srgb, var(--vw-danger, #ef4444) 15%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-danger, #ef4444) 30%, transparent) !important;
+	color: color-mix(in srgb, var(--vw-danger, #ef4444) 40%, var(--vw-text-main, white)) !important;
 	margin-bottom: 0 !important;
 }
 
@@ -7067,6 +7078,13 @@ body > #view > .spinning::after,
 	padding: 0 !important;
 	border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
+
+/* Explicitly set the background for the legend icons so they perfectly match the diff lines */
+.uci-change-legend-label > ins { background-color: color-mix(in srgb, var(--vw-success, #10b981) 25%, transparent) !important; border-color: color-mix(in srgb, var(--vw-success, #10b981) 50%, transparent) !important; }
+.uci-change-legend-label > del { background-color: color-mix(in srgb, var(--vw-danger, #ef4444) 25%, transparent) !important; border-color: color-mix(in srgb, var(--vw-danger, #ef4444) 50%, transparent) !important; }
+.uci-change-legend-label > var { background-color: color-mix(in srgb, var(--vw-accent, #3b82f6) 20%, transparent) !important; border-color: color-mix(in srgb, var(--vw-accent, #3b82f6) 40%, transparent) !important; }
+.uci-change-legend-label > var > ins { background-color: color-mix(in srgb, var(--vw-success, #10b981) 15%, transparent) !important; border-color: color-mix(in srgb, var(--vw-success, #10b981) 30%, transparent) !important; }
+.uci-change-legend-label > var > del { background-color: color-mix(in srgb, var(--vw-danger, #ef4444) 15%, transparent) !important; border-color: color-mix(in srgb, var(--vw-danger, #ef4444) 30%, transparent) !important; }
 
 /* Ensure empty text doesn't show in legend colored boxes */
 .uci-change-legend-label > ins::before,
