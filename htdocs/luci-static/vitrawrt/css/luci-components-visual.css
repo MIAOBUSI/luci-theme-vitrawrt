@@ -6570,11 +6570,11 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* ── Page-level loading spinner (#view > .spinning) ──────────────────────── */
-#view > .spinning,
-.modal .spinning,
-[role="dialog"] .spinning,
-.alert-message.spinning,
-.spinning {
+body > #view > .spinning,
+#modal_overlay > .modal.spinning,
+#modal_overlay > .modal > .spinning,
+[role="dialog"].spinning,
+[role="dialog"] > .spinning {
 	background:
 		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 45%),
 		radial-gradient(ellipse at 12% 0%, rgba(0, 200, 240, 0.09) 0%, transparent 50%),
@@ -6612,11 +6612,11 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* Apple UI Style 12-tick spinner */
-body #view > .spinning::before,
-body .modal .spinning::before,
-body [role="dialog"] .spinning::before,
-body .alert-message.spinning::before,
-body .spinning::before {
+body > #view > .spinning::before,
+#modal_overlay > .modal.spinning::before,
+#modal_overlay > .modal > .spinning::before,
+[role="dialog"].spinning::before,
+[role="dialog"] > .spinning::before {
 	content: "" !important;
 	display: block !important;
 	position: relative !important;
@@ -6631,11 +6631,11 @@ body .spinning::before {
 }
 
 /* Remove bottom progress bar as per Apple UI style */
-body #view > .spinning::after,
-body .modal .spinning::after,
-body [role="dialog"] .spinning::after,
-body .alert-message.spinning::after,
-body .spinning::after {
+body > #view > .spinning::after,
+#modal_overlay > .modal.spinning::after,
+#modal_overlay > .modal > .spinning::after,
+[role="dialog"].spinning::after,
+[role="dialog"] > .spinning::after {
 	content: none !important;
 	display: none !important;
 }
