@@ -472,12 +472,17 @@
 }
 
 /* Fix Save & Apply Dropdown Button */
-#maincontent .cbi-dropdown.cbi-button {
+#maincontent .cbi-dropdown.cbi-button,
+.modal .cbi-dropdown.cbi-button {
+	overflow: visible !important; /* Prevents the dropdown menu from being clipped */
+	position: relative !important;
 	padding-right: 36px !important; /* Reserve space for span.open */
+	transform: none !important; /* Prevents stacking context issues with absolute positioned dropdowns */
 }
 
 /* Restore the dropdown arrow visually and functionally using the native span.open */
-#maincontent .cbi-dropdown.cbi-button > span.open {
+#maincontent .cbi-dropdown.cbi-button > span.open,
+.modal .cbi-dropdown.cbi-button > span.open {
 	position: absolute !important;
 	right: 0 !important;
 	top: 0 !important;
