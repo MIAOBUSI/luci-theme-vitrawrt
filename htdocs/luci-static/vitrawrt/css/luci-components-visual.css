@@ -209,10 +209,10 @@
 }
 
 /* Reserve space in the static ul so text doesn't reach under the arrow */
-#maincontent .cbi-dropdown:not(.cbi-button):not(.btn) > ul:not(.dropdown),
-.modal .cbi-dropdown:not(.cbi-button):not(.btn) > ul:not(.dropdown),
-.cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn) > ul:not(.dropdown),
-[role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn) > ul:not(.dropdown) {
+#maincontent .cbi-dropdown > ul:not(.dropdown),
+.modal .cbi-dropdown > ul:not(.dropdown),
+.cbi-modal .cbi-dropdown > ul:not(.dropdown),
+[role="dialog"] .cbi-dropdown > ul:not(.dropdown) {
 	display: block;
 	overflow: hidden;
 	padding-right: 30px;
@@ -342,6 +342,8 @@
 		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 66%, transparent), transparent 56%),
 		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-bg-mesh-violet) 46%, transparent), transparent 42%),
 		var(--vw-surface-glass-3) !important;
+	backdrop-filter: blur(24px) saturate(140%) !important;
+	-webkit-backdrop-filter: blur(24px) saturate(140%) !important;
 	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating) !important;
 	left: 0 !important;
 	right: auto !important;
@@ -498,6 +500,28 @@
 	pointer-events: auto !important;
 	z-index: 10 !important;
 }
+
+/* Ensure the ul dropdown itself is correctly positioned */
+#maincontent .cbi-dropdown.cbi-button > ul.dropdown,
+.modal .cbi-dropdown.cbi-button > ul.dropdown {
+	position: absolute !important;
+	top: 100% !important;
+	right: 0 !important;
+	left: auto !important;
+	z-index: 9999 !important;
+}
+
+/* Make the dropdown visible when open */
+#maincontent .cbi-dropdown.cbi-button[open] > ul.dropdown,
+#maincontent .cbi-dropdown.cbi-button.open > ul.dropdown,
+.modal .cbi-dropdown.cbi-button[open] > ul.dropdown,
+.modal .cbi-dropdown.cbi-button.open > ul.dropdown {
+	display: block !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	pointer-events: auto !important;
+}
+
 
 #maincontent button:hover,
 #maincontent input[type="button"]:hover,
@@ -1027,54 +1051,6 @@
 	background: transparent;
 }
 
-/* ============================================================
-   MODAL DIALOG + ALERT-MESSAGE GLASS STYLES
-   This block handles backdrop only (not background).
-   Actual neon glass is set at end of file with confirmed selectors.
-   ============================================================ */
-
-/* --- Backdrop: semi-transparent dimming only, no layout changes --- */
-#modal_overlay {
-	background: rgba(0, 0, 0, 0.38) !important;
-	backdrop-filter: blur(6px) saturate(120%) !important;
-	-webkit-backdrop-filter: blur(6px) saturate(120%) !important;
-	/* NO flex here — original block layout keeps modal correctly sized */
-}
-
-/* --- page-level alert banners (#maincontent) --- */
-#maincontent .alert-message,
-#maincontent .alert {
-	padding: 14px 18px;
-	border: 1px solid rgba(255, 255, 255, 0.10) !important;
-	border-radius: 14px;
-	color: var(--vw-text, #e0edf6) !important;
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.60)) !important;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 6px 18px rgba(0, 0, 0, 0.22);
-	backdrop-filter: blur(16px) saturate(130%);
-	-webkit-backdrop-filter: blur(16px) saturate(130%);
-}
-
-#maincontent .alert-message.warning,
-#maincontent .alert-warning,
-.modal .alert-warning {
-	border-color: rgba(255, 170, 0, 0.20) !important;
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(255, 170, 0, 0.09) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.60)) !important;
-}
-
-#maincontent .alert-message.error,
-#maincontent .alert-danger,
-.modal .alert-danger {
-	border-color: rgba(255, 60, 60, 0.20) !important;
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(255, 60, 60, 0.09) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.60)) !important;
-}
 
 @media (max-width: 700px) {
 	#maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]) {
@@ -6619,92 +6595,151 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 
 
-/* ── All modal panels (session expired, edit dialogs, etc.) ───────────────── */
+/* ============================================================
+   MODAL DIALOG + ALERT-MESSAGE: Neon Frosted Glass (Pro Max)
+   Real DOM:
+     - Session expired: #modal_overlay > .modal  (bg on .modal)
+     - Apply waiting:   #modal_overlay > .modal.alert-message.notice.spinning
+     - No changes:      #modal_overlay > .modal.alert-message.notice
+     - Page banners:    #maincontent > .alert-message
+   ============================================================ */
+
+/* --- The full-screen backdrop --- */
+#modal_overlay {
+	background: rgba(0, 0, 0, 0.42) !important;
+	backdrop-filter: blur(8px) saturate(140%) !important;
+	-webkit-backdrop-filter: blur(8px) saturate(140%) !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* --- Base glass for all .modal panels (session expiry, file upload, etc.) --- */
 #modal_overlay > .modal {
+	padding: 32px 36px;
+	border-radius: 24px;
+	border: 1px solid rgba(255, 255, 255, 0.14) !important;
 	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, transparent 48%),
-		radial-gradient(ellipse at 14% 0%, rgba(0, 210, 255, 0.18) 0%, transparent 52%),
-		radial-gradient(ellipse at 86% 6%, rgba(157, 0, 255, 0.13) 0%, transparent 52%),
-		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.72)) !important;
-	border: 1px solid rgba(255, 255, 255, 0.16) !important;
+		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(0, 210, 255, 0.14) 0%, transparent 55%),
+		radial-gradient(ellipse at 90% 5%, rgba(157, 0, 255, 0.10) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
 	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.11) inset,
-		0 -1px 0 rgba(0, 0, 0, 0.18) inset,
-		0 32px 80px rgba(0, 0, 0, 0.55),
-		0 0 0 1px rgba(0, 210, 255, 0.08) !important;
-	backdrop-filter: blur(42px) saturate(165%) !important;
-	-webkit-backdrop-filter: blur(42px) saturate(165%) !important;
-	color: var(--vw-text, #dceef8) !important;
-	border-radius: 20px !important;
+		0 1px 0 rgba(255, 255, 255, 0.10) inset,
+		0 -1px 0 rgba(0, 0, 0, 0.20) inset,
+		0 32px 80px rgba(0, 0, 0, 0.50),
+		0 0 0 1px rgba(0, 210, 255, 0.06) !important;
+	backdrop-filter: blur(40px) saturate(160%) !important;
+	-webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+	color: var(--vw-text, #e0edf6) !important;
+	
+	/* FIX FOR OVERFLOW IN FLEX CENTERING: */
+	max-height: 90vh;
+	overflow-y: auto;
+}
+
+/* --- .modal.alert-message: the displayStatus() panel (apply/revert/no-changes) --- */
+#modal_overlay > .modal.alert-message {
+	padding: 28px 32px;
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.14) !important;
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(0, 210, 255, 0.14) 0%, transparent 55%),
+		radial-gradient(ellipse at 90% 5%, rgba(157, 0, 255, 0.10) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.10) inset,
+		0 24px 60px rgba(0, 0, 0, 0.45),
+		0 0 0 1px rgba(0, 210, 255, 0.06) !important;
+	backdrop-filter: blur(40px) saturate(160%) !important;
+	-webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+	color: var(--vw-text, #e0edf6) !important;
 }
 
 /* Modal heading text */
 #modal_overlay > .modal h4 {
-	color: var(--vw-text, #dceef8) !important;
+	color: var(--vw-text, #e0edf6) !important;
 	font-weight: 600 !important;
 }
 
-/* ── Apply / No-changes / Status dialogs (.modal.alert-message) ───────────── */
-#modal_overlay > .modal.alert-message {
-	/* inherits neon glass from above — add cyan glow border */
+/* --- notice: applying configuration (blue-cyan glow) --- */
+#modal_overlay > .modal.alert-message.notice {
 	border-color: rgba(0, 210, 255, 0.22) !important;
 	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.11) inset,
-		0 24px 64px rgba(0, 0, 0, 0.52),
-		0 0 22px rgba(0, 210, 255, 0.13),
-		0 0 0 1px rgba(0, 210, 255, 0.12) !important;
+		0 1px 0 rgba(255, 255, 255, 0.10) inset,
+		0 24px 60px rgba(0, 0, 0, 0.45),
+		0 0 24px rgba(0, 210, 255, 0.12),
+		0 0 0 1px rgba(0, 210, 255, 0.10) !important;
 }
 
-/* ── Warning state: rollback / connectivity ───────────────────────────────── */
+/* --- warning: rollback / connectivity warning (amber glow) --- */
 #modal_overlay > .modal.alert-message.warning {
+	border-color: rgba(255, 170, 0, 0.22) !important;
 	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 48%),
-		radial-gradient(ellipse at 14% 0%, rgba(255, 170, 0, 0.20) 0%, transparent 52%),
-		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.72)) !important;
-	border-color: rgba(255, 170, 0, 0.26) !important;
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(255, 170, 0, 0.14) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
 	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.09) inset,
-		0 24px 64px rgba(0, 0, 0, 0.52),
-		0 0 22px rgba(255, 170, 0, 0.14),
-		0 0 0 1px rgba(255, 170, 0, 0.14) !important;
+		0 1px 0 rgba(255, 255, 255, 0.08) inset,
+		0 24px 60px rgba(0, 0, 0, 0.45),
+		0 0 24px rgba(255, 170, 0, 0.12),
+		0 0 0 1px rgba(255, 170, 0, 0.10) !important;
 }
 
-/* ── Spinning state: pulse animation ─────────────────────────────────────── */
-#modal_overlay > .modal.alert-message.spinning {
-	animation: vw-neon-pulse 2.2s ease-in-out infinite !important;
-}
-
-@keyframes vw-neon-pulse {
-	0%, 100% {
-		box-shadow:
-			0 1px 0 rgba(255, 255, 255, 0.11) inset,
-			0 24px 64px rgba(0, 0, 0, 0.52),
-			0 0 14px rgba(0, 210, 255, 0.10),
-			0 0 0 1px rgba(0, 210, 255, 0.10);
-	}
-	50% {
-		box-shadow:
-			0 1px 0 rgba(255, 255, 255, 0.11) inset,
-			0 24px 64px rgba(0, 0, 0, 0.52),
-			0 0 36px rgba(0, 210, 255, 0.30),
-			0 0 0 1px rgba(0, 210, 255, 0.24);
-	}
-}
-
-/* Ensure text inside apply/status dialogs is readable */
-#modal_overlay > .modal.alert-message p,
-#modal_overlay > .modal.alert-message h4 {
-	color: var(--vw-text, #dceef8) !important;
-}
-
-/* Session expired: inner warning text block */
+/* --- session expired modal: notice.warning on .alert-message inside .modal --- */
 #modal_overlay > .modal > .alert-message.warning {
-	background: rgba(255, 170, 0, 0.12) !important;
-	border: 1px solid rgba(255, 170, 0, 0.24) !important;
-	border-radius: 12px !important;
-	color: var(--vw-text, #dceef8) !important;
-	padding: 12px 16px !important;
-	margin-bottom: 16px !important;
+	background: rgba(255, 170, 0, 0.10) !important;
+	border: 1px solid rgba(255, 170, 0, 0.22) !important;
+	border-radius: 12px;
+	padding: 12px 16px;
+	color: var(--vw-text, #e0edf6) !important;
+	margin-bottom: 16px;
+}
+
+/* --- spinning: applying / reverting state (add a subtle animated border) --- */
+#modal_overlay > .modal.alert-message.spinning {
+	animation: vw-border-pulse 2s ease-in-out infinite;
+}
+
+@keyframes vw-border-pulse {
+	0%, 100% { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.10) inset, 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 16px rgba(0, 210, 255, 0.10), 0 0 0 1px rgba(0, 210, 255, 0.08); }
+	50%       { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.10) inset, 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 32px rgba(0, 210, 255, 0.22), 0 0 0 1px rgba(0, 210, 255, 0.18); }
+}
+
+/* --- page-level alert banners (#maincontent) --- */
+#maincontent .alert-message,
+#maincontent .alert {
+	padding: 16px 18px;
+	border: 1px solid rgba(255, 255, 255, 0.12) !important;
+	border-radius: 16px;
+	color: var(--vw-text, #e0edf6) !important;
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 8px 24px rgba(0, 0, 0, 0.25);
+	backdrop-filter: blur(20px) saturate(140%);
+	-webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+#maincontent .alert-message.warning,
+#maincontent .alert-warning,
+.modal .alert-warning {
+	border-color: rgba(255, 170, 0, 0.24) !important;
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(255, 170, 0, 0.12) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
+}
+
+#maincontent .alert-message.error,
+#maincontent .alert-danger,
+.modal .alert-danger {
+	border-color: rgba(255, 60, 60, 0.24) !important;
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(255, 60, 60, 0.12) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
 }
 
 /* ── Page-level loading spinner (#view > .spinning) ──────────────────────── */
@@ -6720,7 +6755,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 		0 16px 48px rgba(0, 0, 0, 0.45) !important;
 	backdrop-filter: blur(32px) saturate(150%) !important;
 	-webkit-backdrop-filter: blur(32px) saturate(150%) !important;
-	color: var(--vw-text, #dceef8) !important;
+	color: var(--vw-text, #e0edf6) !important;
 	border-radius: 18px !important;
 }
 
