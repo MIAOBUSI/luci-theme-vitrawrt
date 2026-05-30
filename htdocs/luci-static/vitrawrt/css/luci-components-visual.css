@@ -1240,6 +1240,14 @@
 	background: color-mix(in srgb, var(--vw-cyan) 12%, var(--vw-surface-control-active));
 }
 
+#maincontent .cbi-dropdown > ul:not(.dropdown),
+.modal .cbi-dropdown > ul:not(.dropdown),
+[role="dialog"] .cbi-dropdown > ul:not(.dropdown) {
+	max-width: 100%;
+	overflow: hidden;
+	display: block;
+}
+
 #maincontent .cbi-dropdown > ul > li[display="0"],
 .modal .cbi-dropdown > ul > li[display="0"],
 [role="dialog"] .cbi-dropdown > ul > li[display="0"] {
@@ -1249,6 +1257,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	max-width: 100%;
 }
 
 /* 7. Tabs */
