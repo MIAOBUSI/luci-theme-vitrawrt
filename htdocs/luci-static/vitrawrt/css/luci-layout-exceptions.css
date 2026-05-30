@@ -745,7 +745,7 @@ div[class*="modal"] .cbi-tabmenu > li > a,
 #maincontent .cbi-dropdown.cbi-button {
     overflow: visible !important;
     position: relative !important;
-    padding-right: 36px !important;
+    padding-right: 48px !important;
     transform: none !important;
 }
 
@@ -889,7 +889,7 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 	background: transparent !important;
 	box-shadow: none !important;
 	border: none !important;
-	padding-right: 32px !important;
+	padding-right: 42px !important;
 }
 #maincontent .cbi-dropdown.cbi-button > span.open {
 	color: inherit;

@@ -208,6 +208,14 @@
 	z-index: 5 !important;
 }
 
+/* Prevent dropdown text from overlapping the dropdown arrow */
+#maincontent .cbi-dropdown > input,
+.modal .cbi-dropdown > input,
+.cbi-modal .cbi-dropdown > input,
+[role="dialog"] .cbi-dropdown > input {
+	padding-right: 42px !important;
+}
+
 /* Reserve space in the static ul so text doesn't reach under the arrow */
 #maincontent .cbi-dropdown > ul:not(.dropdown),
 .modal .cbi-dropdown > ul:not(.dropdown),
@@ -215,7 +223,7 @@
 [role="dialog"] .cbi-dropdown > ul:not(.dropdown) {
 	display: block;
 	overflow: hidden;
-	padding-right: 30px;
+	padding-right: 42px !important;
 }
 
 /* Restore position:relative for cbi-button dropdown so its span.open still works */
@@ -6615,22 +6623,28 @@ body .spinning::before {
 }
 
 /* Add modern buffer progress bar at the bottom */
-#view > .spinning::after,
-.modal .spinning::after,
-[role="dialog"] .spinning::after {
+body #view > .spinning::after,
+body .modal .spinning::after,
+body [role="dialog"] .spinning::after,
+body .alert-message.spinning::after,
+body .spinning::after {
 	content: "" !important;
+	display: block !important;
 	position: absolute !important;
 	bottom: 0 !important;
 	left: 0 !important;
 	height: 4px !important;
 	width: 100% !important;
+	background: var(--vw-accent, #00c8f0) !important;
 	background: linear-gradient(90deg, 
-		color-mix(in srgb, var(--vw-primary-action) 10%, transparent) 0%,
-		var(--vw-primary-action) 50%,
-		color-mix(in srgb, var(--vw-primary-action) 10%, transparent) 100%) !important;
+		transparent 0%,
+		var(--vw-accent, #00c8f0) 50%,
+		transparent 100%) !important;
 	background-size: 200% 100% !important;
 	animation: vw-buffer-progress 1.5s infinite linear !important;
 	border-radius: 0 0 16px 16px !important;
+	z-index: 10 !important;
+	opacity: 0.9 !important;
 }
 
 @keyframes vw-buffer-progress {
