@@ -889,6 +889,7 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 	background: transparent !important;
 	box-shadow: none !important;
 	border: none !important;
+	padding-right: 32px !important;
 }
 #maincontent .cbi-dropdown.cbi-button > span.open {
 	color: inherit;

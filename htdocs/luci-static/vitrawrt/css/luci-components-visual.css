@@ -398,23 +398,7 @@
 [role="dialog"] .cbi-dropdown ul.dropdown > li:hover,
 [role="dialog"] .cbi-dropdown ul.dropdown > li:focus,
 [role="dialog"] .cbi-dropdown ul.dropdown > li[selected],
-[role="dialog"] .cbi-dropdown ul.dropdown > li[aria-selected="true"],
-#maincontent .cbi-dropdown[open] > ul > li:hover,
-#maincontent .cbi-dropdown[open] > ul > li:focus,
-#maincontent .cbi-dropdown[open] > ul > li[selected],
-#maincontent .cbi-dropdown[open] > ul > li[aria-selected="true"],
-.modal .cbi-dropdown[open] > ul > li:hover,
-.modal .cbi-dropdown[open] > ul > li:focus,
-.modal .cbi-dropdown[open] > ul > li[selected],
-.modal .cbi-dropdown[open] > ul > li[aria-selected="true"],
-.cbi-modal .cbi-dropdown[open] > ul > li:hover,
-.cbi-modal .cbi-dropdown[open] > ul > li:focus,
-.cbi-modal .cbi-dropdown[open] > ul > li[selected],
-.cbi-modal .cbi-dropdown[open] > ul > li[aria-selected="true"],
-[role="dialog"] .cbi-dropdown[open] > ul > li:hover,
-[role="dialog"] .cbi-dropdown[open] > ul > li:focus,
-[role="dialog"] .cbi-dropdown[open] > ul > li[selected],
-[role="dialog"] .cbi-dropdown[open] > ul > li[aria-selected="true"] {
+[role="dialog"] .cbi-dropdown ul.dropdown > li[aria-selected="true"] {
 	background: color-mix(in srgb, var(--vw-accent) 20%, transparent) !important;
 	backdrop-filter: blur(16px) !important;
 	-webkit-backdrop-filter: blur(16px) !important;
@@ -6578,7 +6562,11 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* ── Page-level loading spinner (#view > .spinning) ──────────────────────── */
-#view > .spinning {
+#view > .spinning,
+.modal .spinning,
+[role="dialog"] .spinning,
+.alert-message.spinning,
+.spinning {
 	background:
 		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 45%),
 		radial-gradient(ellipse at 12% 0%, rgba(0, 200, 240, 0.09) 0%, transparent 50%),
@@ -6593,19 +6581,37 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 	border-radius: 16px !important;
 	position: relative !important;
 	overflow: hidden !important;
-	padding: 24px !important;
+	padding: 24px 32px !important;
 	text-align: center !important;
-	display: flex !important;
+	display: inline-flex !important;
 	align-items: center !important;
 	justify-content: center !important;
+	min-width: 240px;
+}
+
+#view > .spinning {
+	margin: 15vh auto !important;
 }
 
 /* Hide native LuCI spinner images, SVGs, or old pseudo-elements */
-#view > .spinning > img,
-#view > .spinning > svg,
-#view > .spinning::before {
+body #view > .spinning > img,
+body #view > .spinning > svg,
+body #view > .spinning::before,
+body .modal .spinning > img,
+body .modal .spinning > svg,
+body .modal .spinning::before,
+body [role="dialog"] .spinning > img,
+body [role="dialog"] .spinning > svg,
+body [role="dialog"] .spinning::before,
+body .alert-message.spinning::before,
+body .spinning > img,
+body .spinning > svg,
+body .spinning::before {
+	content: none !important;
 	display: none !important;
 	background-image: none !important;
+	width: 0 !important;
+	height: 0 !important;
 }
 
 /* Add modern buffer progress bar at the bottom */
@@ -6779,22 +6785,5 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
 		radial-gradient(ellipse at 10% 0%, rgba(255, 60, 60, 0.12) 0%, transparent 55%),
 		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
-}
-
-/* ── Page-level loading spinner (#view > .spinning) ──────────────────────── */
-#view > .spinning {
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, transparent 48%),
-		radial-gradient(ellipse at 14% 0%, rgba(0, 210, 255, 0.16) 0%, transparent 52%),
-		radial-gradient(ellipse at 86% 6%, rgba(157, 0, 255, 0.11) 0%, transparent 52%),
-		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.72)) !important;
-	border: 1px solid rgba(255, 255, 255, 0.15) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.10) inset,
-		0 16px 48px rgba(0, 0, 0, 0.45) !important;
-	backdrop-filter: blur(32px) saturate(150%) !important;
-	-webkit-backdrop-filter: blur(32px) saturate(150%) !important;
-	color: var(--vw-text, #e0edf6) !important;
-	border-radius: 18px !important;
 }
 
