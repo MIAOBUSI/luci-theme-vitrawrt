@@ -6579,6 +6579,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 /* ── Page-level loading spinner (#view > .spinning) ──────────────────────── */
 /* Only #view > .spinning needs the glass box because .modal already has it */
+#view > div.spinning:first-child,
 #view > .spinning {
 	background:
 		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 45%),
@@ -6600,6 +6601,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* Flex layout and sizing for ALL spinners (inside and outside modals) */
+#view > div.spinning:first-child,
 #view > .spinning,
 #modal_overlay > .modal.spinning,
 #modal_overlay > .modal > .spinning,
@@ -6619,37 +6621,48 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 	margin: 0 auto !important;
 }
 
-/* Apple UI Style 12-tick spinner */
+/* Modal spinner MUST NOT have an extra box since the modal itself provides the background */
+#modal_overlay > .modal.spinning,
+#modal_overlay > .modal > .spinning,
+[role="dialog"].spinning,
+[role="dialog"] > .spinning {
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+/* completely hide native ::before spinner to avoid black artifact boxes */
+#view > div.spinning:first-child::before,
 #view > .spinning::before,
 #modal_overlay > .modal.spinning::before,
 #modal_overlay > .modal > .spinning::before,
 [role="dialog"].spinning::before,
 [role="dialog"] > .spinning::before {
-	content: "" !important;
-	display: block !important;
-	position: relative !important;
-	top: auto !important;
-	left: auto !important;
-	width: 36px !important;
-	height: 36px !important;
-	margin: 0 auto 16px auto !important;
-	background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g><animateTransform attributeName='transform' type='rotate' calcMode='discrete' values='0 50 50;30 50 50;60 50 50;90 50 50;120 50 50;150 50 50;180 50 50;210 50 50;240 50 50;270 50 50;300 50 50;330 50 50;360 50 50' dur='1s' repeatCount='indefinite'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='1'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.9' transform='rotate(30 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.8' transform='rotate(60 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.7' transform='rotate(90 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.6' transform='rotate(120 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.5' transform='rotate(150 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.4' transform='rotate(180 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.3' transform='rotate(210 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.25' transform='rotate(240 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.2' transform='rotate(270 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.15' transform='rotate(300 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.1' transform='rotate(330 50 50)'/></g></svg>") !important;
-	background-size: contain !important;
-	background-repeat: no-repeat !important;
-	/* OVERRIDE OPENWRT NATIVE MASKS & BACKGROUNDS TO PREVENT BLOCKING ARTIFACTS */
-	background-color: transparent !important;
+	content: none !important;
+	display: none !important;
+	background: transparent !important;
 	mask: none !important;
 	-webkit-mask: none !important;
 }
 
-/* Remove bottom progress bar as per Apple UI style */
+/* USE ::after for the beautiful custom spinner to avoid any conflicts */
+#view > div.spinning:first-child::after,
 #view > .spinning::after,
 #modal_overlay > .modal.spinning::after,
 #modal_overlay > .modal > .spinning::after,
 [role="dialog"].spinning::after,
 [role="dialog"] > .spinning::after {
-	content: none !important;
-	display: none !important;
+	content: "" !important;
+	display: block !important;
+	position: relative !important;
+	top: auto !important;
+	left: auto !important;
+	width: 44px !important;
+	height: 44px !important;
+	margin: 0 auto 16px auto !important;
+	background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='20' fill='none' stroke='%2300c8f0' stroke-width='4' stroke-opacity='0.2'/%3E%3Ccircle cx='25' cy='25' r='20' fill='none' stroke='%2300c8f0' stroke-width='4' stroke-dasharray='31.4 125.6' stroke-linecap='round'%3E%3CanimateTransform attributeName='transform' type='rotate' repeatCount='indefinite' dur='1s' from='0 25 25' to='360 25 25'/%3E%3C/circle%3E%3C/svg%3E") center / contain no-repeat !important;
 }
 
 
