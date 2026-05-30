@@ -6901,3 +6901,77 @@ body > #view > .spinning::after,
 .vwrt-indicator-icon {
 	font-size: 14px;
 }
+
+/* ============================================================
+   MODAL BUTTON ALIGNMENT FIXES (Session Expired, Unsaved Configs)
+   ============================================================ */
+.modal .btn,
+.modal .cbi-button,
+.modal button,
+.modal input[type="button"],
+.modal input[type="submit"],
+.modal input[type="reset"],
+[role="dialog"] .btn,
+[role="dialog"] .cbi-button,
+[role="dialog"] button,
+[role="dialog"] input[type="button"],
+[role="dialog"] input[type="submit"],
+[role="dialog"] input[type="reset"] {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	vertical-align: middle !important;
+	line-height: 1.2 !important; /* Fix vertical text shift */
+}
+
+/* Fix cbi-button-group (like Save & Apply split button) inside modals */
+.modal .cbi-button-group,
+[role="dialog"] .cbi-button-group {
+	display: inline-flex !important;
+	align-items: stretch !important;
+	vertical-align: middle !important;
+	padding: 0 !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.modal .cbi-button-group > .cbi-button,
+[role="dialog"] .cbi-button-group > .cbi-button {
+	margin: 0 !important;
+	min-height: var(--vw-button-height) !important;
+}
+
+.modal .cbi-button-group > .cbi-button:not(:last-child),
+[role="dialog"] .cbi-button-group > .cbi-button:not(:last-child) {
+	border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+.modal .cbi-button-group > .cbi-button:not(:first-child),
+[role="dialog"] .cbi-button-group > .cbi-button:not(:first-child) {
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+	border-left: 1px solid rgba(0, 0, 0, 0.15) !important;
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+}
+
+/* Ensure modal bottom right section groups buttons nicely */
+.modal .right,
+[role="dialog"] .right {
+	display: flex !important;
+	flex-wrap: wrap;
+	align-items: center !important;
+	justify-content: flex-end !important;
+	gap: 8px !important;
+	margin-top: 24px !important;
+	width: 100% !important;
+}
+
+.modal .right > .btn,
+.modal .right > .cbi-button,
+.modal .right > .cbi-button-group {
+	margin: 0 !important;
+	float: none !important;
+}
