@@ -7206,8 +7206,9 @@ body[data-page^="admin-services-openclash"] .CodeMirror-gutters {
 	border-right: 1px solid var(--vw-border-color) !important;
 }
 
-/* 6. Fix OpenClash Tabmenus - Redesign as Chip Cloud */
-body[data-page^="admin-services-openclash"] .cbi-tabmenu {
+/* 6. Fix OpenClash Tabmenus - Redesign as Chip Cloud for main tabs only */
+body[data-page^="admin-services-openclash"] .cbi-map > .cbi-section:first-of-type > .cbi-tabmenu,
+body[data-page^="admin-services-openclash"] #tabmenu > .cbi-tabmenu {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -7217,12 +7218,14 @@ body[data-page^="admin-services-openclash"] .cbi-tabmenu {
     padding: 0 !important;
     margin-bottom: 24px !important;
 }
-body[data-page^="admin-services-openclash"] .cbi-tabmenu > li {
+body[data-page^="admin-services-openclash"] .cbi-map > .cbi-section:first-of-type > .cbi-tabmenu > li,
+body[data-page^="admin-services-openclash"] #tabmenu > .cbi-tabmenu > li {
     display: flex !important;
     margin: 0 !important;
     padding: 0 !important;
 }
-body[data-page^="admin-services-openclash"] .cbi-tabmenu > li > a {
+body[data-page^="admin-services-openclash"] .cbi-map > .cbi-section:first-of-type > .cbi-tabmenu > li > a,
+body[data-page^="admin-services-openclash"] #tabmenu > .cbi-tabmenu > li > a {
     display: inline-flex !important;
     align-items: center !important;
     padding: 8px 16px !important;
@@ -7235,13 +7238,15 @@ body[data-page^="admin-services-openclash"] .cbi-tabmenu > li > a {
     box-shadow: var(--vw-shadow-sm) !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
-body[data-page^="admin-services-openclash"] .cbi-tabmenu > li > a:hover {
+body[data-page^="admin-services-openclash"] .cbi-map > .cbi-section:first-of-type > .cbi-tabmenu > li > a:hover,
+body[data-page^="admin-services-openclash"] #tabmenu > .cbi-tabmenu > li > a:hover {
     background: var(--vw-background) !important;
     color: var(--vw-text-primary) !important;
     transform: translateY(-1px) !important;
     box-shadow: var(--vw-shadow-md) !important;
 }
-body[data-page^="admin-services-openclash"] .cbi-tabmenu > li.cbi-tab > a {
+body[data-page^="admin-services-openclash"] .cbi-map > .cbi-section:first-of-type > .cbi-tabmenu > li.cbi-tab > a,
+body[data-page^="admin-services-openclash"] #tabmenu > .cbi-tabmenu > li.cbi-tab > a {
     background: var(--vw-primary-color) !important;
     color: #ffffff !important;
     border-color: var(--vw-primary-color) !important;
@@ -7267,7 +7272,8 @@ body[data-page^="admin-services-openclash"] select#RELEASE_BRANCH {
 }
 
 /* Remove icons from OpenClash tabs to reduce clutter in Chip Cloud */
-body[data-page^="admin-services-openclash"] .cbi-tabmenu > li > a::before {
+body[data-page^="admin-services-openclash"] .cbi-map > .cbi-section:first-of-type > .cbi-tabmenu > li > a::before,
+body[data-page^="admin-services-openclash"] #tabmenu > .cbi-tabmenu > li > a::before {
     display: none !important;
 }
 
