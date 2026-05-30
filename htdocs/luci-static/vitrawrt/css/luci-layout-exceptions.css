@@ -891,7 +891,7 @@ html[data-theme="dark"] #maincontent .cbi-value:not(.hidden):not(.hide):not([hid
 	border: none !important;
 }
 #maincontent .cbi-dropdown.cbi-button > span.open {
-	color: transparent !important; /* Hide native solid triangle arrow */
+	color: inherit;
 }
 
 /* Fix horizontal gap for ALL control-group input combos (like OPKG) */

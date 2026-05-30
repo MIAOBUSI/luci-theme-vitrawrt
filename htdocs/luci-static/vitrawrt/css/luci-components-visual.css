@@ -235,19 +235,19 @@
 #maincontent input:hover,
 #maincontent select:hover,
 #maincontent textarea:hover,
-#maincontent .cbi-dropdown:hover,
+#maincontent .cbi-dropdown:not(.cbi-button):not(.btn):hover,
 .modal input:hover,
 .modal select:hover,
 .modal textarea:hover,
-.modal .cbi-dropdown:hover,
+.modal .cbi-dropdown:not(.cbi-button):not(.btn):hover,
 .cbi-modal input:hover,
 .cbi-modal select:hover,
 .cbi-modal textarea:hover,
-.cbi-modal .cbi-dropdown:hover,
+.cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn):hover,
 [role="dialog"] input:hover,
 [role="dialog"] select:hover,
 [role="dialog"] textarea:hover,
-[role="dialog"] .cbi-dropdown:hover {
+[role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn):hover {
 	border-color: color-mix(in srgb, var(--vw-accent) 22%, var(--vw-border));
 	background: var(--vw-material-field-hover);
 }
@@ -255,23 +255,23 @@
 #maincontent input:focus,
 #maincontent select:focus,
 #maincontent textarea:focus,
-#maincontent .cbi-dropdown:focus,
-#maincontent .cbi-dropdown:focus-within,
+#maincontent .cbi-dropdown:not(.cbi-button):not(.btn):focus,
+#maincontent .cbi-dropdown:not(.cbi-button):not(.btn):focus-within,
 .modal input:focus,
 .modal select:focus,
 .modal textarea:focus,
-.modal .cbi-dropdown:focus,
-.modal .cbi-dropdown:focus-within,
+.modal .cbi-dropdown:not(.cbi-button):not(.btn):focus,
+.modal .cbi-dropdown:not(.cbi-button):not(.btn):focus-within,
 .cbi-modal input:focus,
 .cbi-modal select:focus,
 .cbi-modal textarea:focus,
-.cbi-modal .cbi-dropdown:focus,
-.cbi-modal .cbi-dropdown:focus-within,
+.cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn):focus,
+.cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn):focus-within,
 [role="dialog"] input:focus,
 [role="dialog"] select:focus,
 [role="dialog"] textarea:focus,
-[role="dialog"] .cbi-dropdown:focus,
-[role="dialog"] .cbi-dropdown:focus-within {
+[role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn):focus,
+[role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn):focus-within {
 	border-color: color-mix(in srgb, var(--vw-accent) 42%, var(--vw-border));
 	background: var(--vw-panel-bg);
 	box-shadow:
@@ -6591,6 +6591,45 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 	-webkit-backdrop-filter: blur(28px) saturate(140%) !important;
 	color: var(--vw-text, #dceef8) !important;
 	border-radius: 16px !important;
+	position: relative !important;
+	overflow: hidden !important;
+	padding: 24px !important;
+	text-align: center !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+/* Hide native LuCI spinner images, SVGs, or old pseudo-elements */
+#view > .spinning > img,
+#view > .spinning > svg,
+#view > .spinning::before {
+	display: none !important;
+	background-image: none !important;
+}
+
+/* Add modern buffer progress bar at the bottom */
+#view > .spinning::after,
+.modal .spinning::after,
+[role="dialog"] .spinning::after {
+	content: "" !important;
+	position: absolute !important;
+	bottom: 0 !important;
+	left: 0 !important;
+	height: 4px !important;
+	width: 100% !important;
+	background: linear-gradient(90deg, 
+		color-mix(in srgb, var(--vw-primary-action) 10%, transparent) 0%,
+		var(--vw-primary-action) 50%,
+		color-mix(in srgb, var(--vw-primary-action) 10%, transparent) 100%) !important;
+	background-size: 200% 100% !important;
+	animation: vw-buffer-progress 1.5s infinite linear !important;
+	border-radius: 0 0 16px 16px !important;
+}
+
+@keyframes vw-buffer-progress {
+	0% { background-position: 200% 0; }
+	100% { background-position: -200% 0; }
 }
 
 

@@ -30,12 +30,12 @@
 		<% if css then %>
 			<style title="text/css"><%=css%></style>
 		<% end -%>
-		<link rel="stylesheet" href="<%=media%>/cascade.css?v=1.41C-R34">
-		<link rel="icon" href="<%=media%>/img/logo.svg?v=1.41C-R34" sizes="any">
+		<link rel="stylesheet" href="<%=media%>/cascade.css?v=1.41C-R35">
+		<link rel="icon" href="<%=media%>/img/logo.svg?v=1.41C-R35" sizes="any">
 		<script src="<%=url('admin/translations', luci.i18n.context.lang)%>"></script>
 		<script src="<%=resource%>/cbi.js"></script>
-		<script defer src="<%=media%>/js/sidebar.js?v=1.41C-R34"></script>
-		<script defer src="<%=media%>/js/boot.js?v=1.41C-R34"></script>
+		<script defer src="<%=media%>/js/sidebar.js?v=1.41C-R35"></script>
+		<script defer src="<%=media%>/js/boot.js?v=1.41C-R35"></script>
 	</head>
 
 	<body class="lang_<%=luci.i18n.context.lang%><% if blank_page then %> vwrt-auth-body<% else %> vwrt-shell-body<% end %><% if node then %> <%=striptags(node.title)%><% end %>" data-page="<%=pcdata(table.concat(disp.context.requestpath, "-"))%>">
