@@ -4273,8 +4273,6 @@ body.vwrt-page-plugin #maincontent .card-title {
 }
 
 body.vwrt-page-openclash #maincontent .value-indicator,
-body.vwrt-page-openclash #maincontent .ip-result,
-body.vwrt-page-openclash #maincontent .ip-geo,
 body.vwrt-page-openclash #maincontent .form-input,
 body.vwrt-page-openclash #maincontent .form-select,
 body.vwrt-page-openclash #maincontent .form-textarea,
@@ -7135,9 +7133,19 @@ body[data-page^="admin-services-openclash"] #cbi-openclash > fieldset > table > 
 }
 
 /* 2. Reset the internal Dashboard cards (.oc) */
-body[data-page^="admin-services-openclash"] .oc {
-	--bg-light: transparent !important;
-	--bg-gray: transparent !important;
+body[data-page^="admin-services-openclash"] .oc,
+body[data-page^="admin-services-openclash"] .oc[data-darkmode="true"],
+body[data-page^="admin-services-openclash"] .oc[data-darkmode="false"] {
+    --bg-white: var(--vw-surface) !important;
+    --bg-light: transparent !important;
+    --bg-gray: transparent !important;
+    --text-primary: var(--vw-text-main) !important;
+    --text-secondary: var(--vw-text-soft) !important;
+    --text-title: var(--vw-text-main) !important;
+    --border-color: var(--vw-border-color) !important;
+    --border-light: var(--vw-border-soft) !important;
+    --hover-bg: color-mix(in srgb, var(--vw-text-main) 5%, transparent) !important;
+    color: var(--vw-text-main) !important;
 }
 /* Container cards should be transparent to avoid box-in-box and overexposure */
 body[data-page^="admin-services-openclash"] .oc .main-card,
@@ -7299,8 +7307,29 @@ body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="log"]::before
     mask-image: url("../img/menu-icons/statistics.svg");
 }
 
-/* 9. Fix OpenClash inline SVGs (preventing base.css from filling them into dots) */
-body.vwrt-page-openclash #maincontent .oc svg[fill="none"],
-body.vwrt-page-openclash #maincontent .oc svg[fill="none"] * {
+/* 9. Fix OpenClash inline SVGs (preventing base.css from collapsing/filling them into dots) */
+body[data-page^="admin-services-openclash"] .oc .icon-btn svg[fill="none"],
+body[data-page^="admin-services-openclash"] .oc .icon-btn svg[fill="none"] * {
     fill: none !important;
+}
+
+body[data-page^="admin-services-openclash"] .oc .icon-btn svg[stroke="currentColor"],
+body[data-page^="admin-services-openclash"] .oc .icon-btn svg[stroke="currentColor"] * {
+    stroke: currentColor !important;
+    stroke-width: 2 !important;
+}
+
+body[data-page^="admin-services-openclash"] .oc .icon-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+    max-width: 14px !important;
+    max-height: 14px !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
 }
