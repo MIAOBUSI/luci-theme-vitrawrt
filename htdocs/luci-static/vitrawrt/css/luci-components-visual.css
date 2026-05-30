@@ -3710,6 +3710,9 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 58%, transparent);
 	border-radius: 13px;
 	background: color-mix(in srgb, var(--vw-field-bg) 74%, transparent);
+	field-sizing: content;
+	width: auto;
+	max-width: 100%;
 }
 
 /* cbi-dynlist: existing item + remove and add row become one compound family. */
