@@ -6578,11 +6578,8 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* ── Page-level loading spinner (#view > .spinning) ──────────────────────── */
-body > #view > .spinning,
-#modal_overlay > .modal.spinning,
-#modal_overlay > .modal > .spinning,
-[role="dialog"].spinning,
-[role="dialog"] > .spinning {
+/* Only #view > .spinning needs the glass box because .modal already has it */
+#view > .spinning {
 	background:
 		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 45%),
 		radial-gradient(ellipse at 12% 0%, rgba(0, 200, 240, 0.09) 0%, transparent 50%),
@@ -6593,9 +6590,22 @@ body > #view > .spinning,
 		0 12px 36px rgba(0, 0, 0, 0.38) !important;
 	backdrop-filter: blur(28px) saturate(140%) !important;
 	-webkit-backdrop-filter: blur(28px) saturate(140%) !important;
-	color: var(--vw-text, #dceef8) !important;
 	border-radius: 16px !important;
 	position: relative !important;
+	top: auto !important;
+	left: auto !important;
+	transform: none !important;
+	margin: 25vh auto !important;
+	z-index: 1000 !important;
+}
+
+/* Flex layout and sizing for ALL spinners (inside and outside modals) */
+#view > .spinning,
+#modal_overlay > .modal.spinning,
+#modal_overlay > .modal > .spinning,
+[role="dialog"].spinning,
+[role="dialog"] > .spinning {
+	color: var(--vw-text, #dceef8) !important;
 	overflow: hidden !important;
 	padding: 32px 40px !important;
 	text-align: center !important;
@@ -6609,18 +6619,8 @@ body > #view > .spinning,
 	margin: 0 auto !important;
 }
 
-#view > .spinning {
-	position: relative !important;
-	top: auto !important;
-	left: auto !important;
-	transform: none !important;
-	margin: 25vh auto !important;
-	z-index: 1000 !important;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.09) inset, 0 24px 60px rgba(0, 0, 0, 0.5) !important;
-}
-
 /* Apple UI Style 12-tick spinner */
-body > #view > .spinning::before,
+#view > .spinning::before,
 #modal_overlay > .modal.spinning::before,
 #modal_overlay > .modal > .spinning::before,
 [role="dialog"].spinning::before,
@@ -6636,10 +6636,14 @@ body > #view > .spinning::before,
 	background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g><animateTransform attributeName='transform' type='rotate' calcMode='discrete' values='0 50 50;30 50 50;60 50 50;90 50 50;120 50 50;150 50 50;180 50 50;210 50 50;240 50 50;270 50 50;300 50 50;330 50 50;360 50 50' dur='1s' repeatCount='indefinite'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='1'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.9' transform='rotate(30 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.8' transform='rotate(60 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.7' transform='rotate(90 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.6' transform='rotate(120 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.5' transform='rotate(150 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.4' transform='rotate(180 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.3' transform='rotate(210 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.25' transform='rotate(240 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.2' transform='rotate(270 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.15' transform='rotate(300 50 50)'/><rect x='46' y='10' width='8' height='22' rx='4' fill='%23ffffff' opacity='0.1' transform='rotate(330 50 50)'/></g></svg>") !important;
 	background-size: contain !important;
 	background-repeat: no-repeat !important;
+	/* OVERRIDE OPENWRT NATIVE MASKS & BACKGROUNDS TO PREVENT BLOCKING ARTIFACTS */
+	background-color: transparent !important;
+	mask: none !important;
+	-webkit-mask: none !important;
 }
 
 /* Remove bottom progress bar as per Apple UI style */
-body > #view > .spinning::after,
+#view > .spinning::after,
 #modal_overlay > .modal.spinning::after,
 #modal_overlay > .modal > .spinning::after,
 [role="dialog"].spinning::after,
