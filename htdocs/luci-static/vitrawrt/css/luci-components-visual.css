@@ -7233,3 +7233,38 @@ body[data-page^="admin-services-openclash"] select#RELEASE_BRANCH {
 	border: 1px solid var(--vw-border-color) !important;
 	border-radius: var(--vw-radius-sm) !important;
 }
+
+/* OpenClash Tabs Icons Fix */
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    vertical-align: sub;
+    background-color: currentColor;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="client"]::before,
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="client"]::before {
+    -webkit-mask-image: url("../img/menu-icons/status.svg");
+    mask-image: url("../img/menu-icons/status.svg");
+}
+
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="settings"]::before,
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="settings"]::before {
+    -webkit-mask-image: url("../img/menu-icons/control-settings.svg");
+    mask-image: url("../img/menu-icons/control-settings.svg");
+}
+
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="proxy"]::before,
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="proxy"]::before {
+    -webkit-mask-image: url("../img/menu-icons/vpn.svg");
+    mask-image: url("../img/menu-icons/vpn.svg");
+}
