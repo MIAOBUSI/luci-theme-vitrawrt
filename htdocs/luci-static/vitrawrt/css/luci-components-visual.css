@@ -6975,3 +6975,102 @@ body > #view > .spinning::after,
 	margin: 0 !important;
 	float: none !important;
 }
+
+/* ============================================================
+   UCI DIFF DIALOG STYLING (Unsaved Changes Modal)
+   ============================================================ */
+
+.uci-dialog .uci-change-list {
+	line-height: 1.6;
+	white-space: pre-wrap; /* Better wrapping on mobile */
+	background: var(--vw-field-bg, rgba(0, 0, 0, 0.2));
+	padding: 12px;
+	border-radius: var(--vw-radius-control, 8px);
+	border: 1px solid var(--vw-border, rgba(255, 255, 255, 0.1));
+}
+
+.uci-dialog del, .uci-dialog ins, .uci-dialog var {
+	text-decoration: none;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+	font-style: normal;
+	color: var(--vw-text-main, #e2e8f0) !important;
+	display: block;
+	border-radius: 4px;
+	padding: 4px 8px !important;
+	margin-bottom: 4px;
+	border: 1px solid transparent;
+}
+
+/* Base Modification (div > var) */
+.uci-dialog div > var {
+	background-color: color-mix(in srgb, var(--vw-primary-soft, #3b82f6) 20%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-primary-soft, #3b82f6) 40%, transparent) !important;
+}
+
+/* Added Node (div > ins) - Dark Green */
+.uci-dialog div > ins {
+	background-color: color-mix(in srgb, var(--vw-success-soft, #10b981) 25%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-success-soft, #10b981) 40%, transparent) !important;
+	color: color-mix(in srgb, var(--vw-success-soft, #10b981) 90%, white) !important;
+}
+
+/* Removed Node (div > del) - Dark Red */
+.uci-dialog div > del {
+	background-color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 25%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 40%, transparent) !important;
+	color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 90%, white) !important;
+}
+
+/* Option Added/Changed (var > ins) - Light Green/Subtle */
+.uci-dialog var > ins {
+	background-color: color-mix(in srgb, var(--vw-success-soft, #10b981) 15%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-success-soft, #10b981) 20%, transparent) !important;
+	color: color-mix(in srgb, var(--vw-success-soft, #10b981) 80%, white) !important;
+	margin-bottom: 0 !important;
+}
+
+/* Option Removed (var > del) - Light Red/Subtle */
+.uci-dialog var > del {
+	background-color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 15%, transparent) !important;
+	border-color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 20%, transparent) !important;
+	color: color-mix(in srgb, var(--vw-danger-soft, #ef4444) 80%, white) !important;
+	margin-bottom: 0 !important;
+}
+
+/* Legend Styling */
+.uci-change-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-bottom: 16px;
+	padding: 12px;
+	background: var(--vw-surface-glass-1, rgba(255, 255, 255, 0.03));
+	border-radius: var(--vw-radius-control, 8px);
+	border: 1px solid var(--vw-border-soft, rgba(255, 255, 255, 0.05));
+}
+
+.uci-change-legend-label {
+	display: flex;
+	align-items: center;
+	font-size: 13px;
+	color: var(--vw-text-muted, #94a3b8);
+}
+
+.uci-change-legend-label > ins,
+.uci-change-legend-label > del,
+.uci-change-legend-label > var {
+	width: 14px !important;
+	height: 14px !important;
+	margin-right: 6px !important;
+	border-radius: 3px !important;
+	display: inline-block !important;
+	padding: 0 !important;
+	border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Ensure empty text doesn't show in legend colored boxes */
+.uci-change-legend-label > ins::before,
+.uci-change-legend-label > del::before,
+.uci-change-legend-label > var::before {
+	content: '';
+}
