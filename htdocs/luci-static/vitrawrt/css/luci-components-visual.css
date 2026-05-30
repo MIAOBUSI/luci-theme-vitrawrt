@@ -6481,7 +6481,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 /* ── All modal panels: session expired, edit dialogs, file upload, etc. ───── */
 #modal_overlay > .modal {
-	/* Prevent tall content from overflowing screen */
+	/* Prevent tall content from overflowing screen, but allow dropdowns to escape */
 	max-height: 88vh !important;
 	overflow-y: auto !important;
 	/* Subtle neon glass — toned down */
@@ -6665,8 +6665,15 @@ body > #view > .spinning::after,
 	backdrop-filter: blur(8px) saturate(140%) !important;
 	-webkit-backdrop-filter: blur(8px) saturate(140%) !important;
 	display: flex;
-	align-items: center;
+	align-items: safe center;
 	justify-content: center;
+	overflow-y: auto !important;
+	padding: 24px 12px !important;
+}
+
+/* Allow dropdown menus inside modals to escape the modal boundaries */
+#modal_overlay > .modal:has(.cbi-dropdown) {
+	overflow: visible !important;
 }
 
 /* --- Base glass for all .modal panels (session expiry, file upload, etc.) --- */
@@ -6997,6 +7004,8 @@ body > #view > .spinning::after,
 	background: var(--vw-field-bg, rgba(0, 0, 0, 0.2));
 	padding: 12px;
 	border-radius: var(--vw-radius-control, 8px);
+	max-height: 50vh;
+	overflow-y: auto;
 	border: 1px solid var(--vw-border, rgba(255, 255, 255, 0.1));
 }
 
