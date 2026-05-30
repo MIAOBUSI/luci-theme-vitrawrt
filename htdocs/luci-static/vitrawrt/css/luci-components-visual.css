@@ -6101,7 +6101,6 @@ body.vwrt-page-vnstat2 #maincontent .cbi-section[data-tab-active="true"] {
  * Component-owned selectors stay here so layout exceptions remain structural
  * and page-scoped only. No LuCI tab/iface lifecycle behavior is changed.
  */
-body.vwrt-page-openclash #maincontent #tab > .cbi-tabmenu,
 body.vwrt-page-openclash #maincontent .mode-tabs,
 body.vwrt-page-openclash #maincontent .cbi-button-group,
 body.vwrt-page-mosdns #maincontent .cbi-tabmenu {
@@ -6115,7 +6114,6 @@ body.vwrt-page-mosdns #maincontent .cbi-tabmenu {
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 36%, transparent) inset;
 }
 
-body.vwrt-page-openclash #maincontent #tab > .cbi-tabmenu a,
 body.vwrt-page-openclash #maincontent .mode-tab,
 body.vwrt-page-openclash #maincontent .cbi-button-option,
 body.vwrt-page-mosdns #maincontent .cbi-tabmenu a {
@@ -6124,16 +6122,10 @@ body.vwrt-page-mosdns #maincontent .cbi-tabmenu a {
 	box-shadow: none;
 }
 
-body.vwrt-page-openclash #maincontent #tab > .cbi-tabmenu .cbi-tab a,
 body.vwrt-page-openclash #maincontent .mode-tab.active,
 body.vwrt-page-openclash #maincontent .cbi-button-option.active,
 body.vwrt-page-openclash #maincontent .cbi-button-option.selected,
 body.vwrt-page-mosdns #maincontent .cbi-tabmenu .cbi-tab a {
-	color: var(--vw-primary-action-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 34%, transparent), transparent 58%),
-		color-mix(in srgb, var(--vw-tab-active-bg) 84%, var(--vw-page-polish-info, var(--vw-accent-calm)));
-	box-shadow:
 		0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 40%, transparent) inset,
 		0 8px 18px color-mix(in srgb, var(--vw-glow-cyan) 8%, transparent);
 }
@@ -7214,23 +7206,46 @@ body[data-page^="admin-services-openclash"] .CodeMirror-gutters {
 	border-right: 1px solid var(--vw-border-color) !important;
 }
 
-/* 6. Fix OpenClash Tabmenus */
+/* 6. Fix OpenClash Tabmenus - Redesign as Chip Cloud */
 body[data-page^="admin-services-openclash"] .cbi-tabmenu {
-	background: transparent !important;
-	border-bottom: 1px solid var(--vw-border-color) !important;
-	display: flex !important;
-	gap: 0.25rem !important;
-	margin-bottom: 1rem !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px 12px !important;
+    padding: 0 !important;
+    margin-bottom: 24px !important;
+}
+body[data-page^="admin-services-openclash"] .cbi-tabmenu > li {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 body[data-page^="admin-services-openclash"] .cbi-tabmenu > li > a {
-	padding: 0.5rem 1rem !important;
-	border-radius: var(--vw-radius-md) var(--vw-radius-md) 0 0 !important;
-	color: var(--vw-text-secondary) !important;
-	border: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 8px 16px !important;
+    background: color-mix(in srgb, var(--vw-surface-glass) 90%, transparent) !important;
+    color: var(--vw-text-secondary) !important;
+    border: 1px solid var(--vw-border-color) !important;
+    border-radius: var(--vw-radius-pill) !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    box-shadow: var(--vw-shadow-sm) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+body[data-page^="admin-services-openclash"] .cbi-tabmenu > li > a:hover {
+    background: var(--vw-background) !important;
+    color: var(--vw-text-primary) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: var(--vw-shadow-md) !important;
 }
 body[data-page^="admin-services-openclash"] .cbi-tabmenu > li.cbi-tab > a {
-	background: var(--vw-primary-color) !important;
-	color: #fff !important;
+    background: var(--vw-primary-color) !important;
+    color: #ffffff !important;
+    border-color: var(--vw-primary-color) !important;
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--vw-primary-color) 40%, transparent) !important;
 }
 
 /* 7. Button Overrides inside OpenClash */
@@ -7251,60 +7266,9 @@ body[data-page^="admin-services-openclash"] select#RELEASE_BRANCH {
 	border-radius: var(--vw-radius-sm) !important;
 }
 
-/* OpenClash Tabs Icons Fix */
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a::before {
-    content: "";
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    margin-right: 6px;
-    vertical-align: sub;
-    background-color: currentColor;
-    /* Default generic mask */
-    -webkit-mask-image: url("../img/menu-icons/generic.svg");
-    mask-image: url("../img/menu-icons/generic.svg");
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-}
-
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="client"]::before,
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="client"]::before {
-    -webkit-mask-image: url("../img/menu-icons/status.svg");
-    mask-image: url("../img/menu-icons/status.svg");
-}
-
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="settings"]::before,
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="settings"]::before {
-    -webkit-mask-image: url("../img/menu-icons/control-settings.svg");
-    mask-image: url("../img/menu-icons/control-settings.svg");
-}
-
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="config-overwrite"]::before,
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="config-overwrite"]::before {
-    -webkit-mask-image: url("../img/menu-icons/system.svg");
-    mask-image: url("../img/menu-icons/system.svg");
-}
-
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="config-subscribe"]::before,
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="config-subscribe"]::before {
-    -webkit-mask-image: url("../img/menu-icons/network.svg");
-    mask-image: url("../img/menu-icons/network.svg");
-}
-
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="config"]::before,
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="config"]::before {
-    -webkit-mask-image: url("../img/menu-icons/services.svg");
-    mask-image: url("../img/menu-icons/services.svg");
-}
-
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="log"]::before,
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="log"]::before {
-    -webkit-mask-image: url("../img/menu-icons/statistics.svg");
-    mask-image: url("../img/menu-icons/statistics.svg");
+/* Remove icons from OpenClash tabs to reduce clutter in Chip Cloud */
+body[data-page^="admin-services-openclash"] .cbi-tabmenu > li > a::before {
+    display: none !important;
 }
 
 /* 9. Fix OpenClash inline SVGs (preventing base.css from collapsing/filling them into dots) */
