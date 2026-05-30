@@ -5684,16 +5684,6 @@ body.vwrt-page-openclash #maincontent .core-control-buttons > * {
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 20%, transparent) inset;
 }
 
-body.vwrt-page-openclash #maincontent svg,
-body.vwrt-page-openclash #maincontent svg * {
-	color: color-mix(in srgb, var(--vw-accent-calm) 36%, var(--vw-text-soft));
-	stroke: currentColor;
-}
-
-body.vwrt-page-openclash #maincontent svg[fill="currentColor"],
-body.vwrt-page-openclash #maincontent svg [fill]:not([fill="none"]) {
-	fill: currentColor;
-}
 
 body.vwrt-page-openclash #maincontent [style*="59, 130, 246"],
 body.vwrt-page-openclash #maincontent [style*="#3b82f6"],
