@@ -226,6 +226,14 @@
 	padding-right: 42px !important;
 }
 
+/* Remove extra padding for button dropdowns so text isn't pushed too far left */
+#maincontent .cbi-dropdown.cbi-button > ul:not(.dropdown),
+.modal .cbi-dropdown.cbi-button > ul:not(.dropdown),
+.cbi-modal .cbi-dropdown.cbi-button > ul:not(.dropdown),
+[role="dialog"] .cbi-dropdown.cbi-button > ul:not(.dropdown) {
+	padding-right: 0 !important;
+}
+
 /* Restore position:relative for cbi-button dropdown so its span.open still works */
 #maincontent .cbi-dropdown.cbi-button,
 #maincontent .cbi-dropdown.btn {
