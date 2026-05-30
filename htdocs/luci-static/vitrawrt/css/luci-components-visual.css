@@ -7139,8 +7139,17 @@ body[data-page^="admin-services-openclash"] .oc {
 	--bg-light: transparent !important;
 	--bg-gray: transparent !important;
 }
+/* Container cards should be transparent to avoid box-in-box and overexposure */
 body[data-page^="admin-services-openclash"] .oc .main-card,
-body[data-page^="admin-services-openclash"] .oc .myip-main-card,
+body[data-page^="admin-services-openclash"] .oc .myip-main-card {
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+/* Glassmorphism applied ONLY to inner tiles (sub-cards) */
 body[data-page^="admin-services-openclash"] .oc .sub-card,
 body[data-page^="admin-services-openclash"] .oc .config-upload-content,
 body[data-page^="admin-services-openclash"] .oc .developer-container {
@@ -7243,6 +7252,9 @@ body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a::before {
     margin-right: 6px;
     vertical-align: sub;
     background-color: currentColor;
+    /* Default generic mask */
+    -webkit-mask-image: url("../img/menu-icons/generic.svg");
+    mask-image: url("../img/menu-icons/generic.svg");
     -webkit-mask-size: contain;
     mask-size: contain;
     -webkit-mask-repeat: no-repeat;
@@ -7263,8 +7275,32 @@ body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="settings"]::b
     mask-image: url("../img/menu-icons/control-settings.svg");
 }
 
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="proxy"]::before,
-body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="proxy"]::before {
-    -webkit-mask-image: url("../img/menu-icons/vpn.svg");
-    mask-image: url("../img/menu-icons/vpn.svg");
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="config-overwrite"]::before,
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="config-overwrite"]::before {
+    -webkit-mask-image: url("../img/menu-icons/system.svg");
+    mask-image: url("../img/menu-icons/system.svg");
+}
+
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="config-subscribe"]::before,
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="config-subscribe"]::before {
+    -webkit-mask-image: url("../img/menu-icons/network.svg");
+    mask-image: url("../img/menu-icons/network.svg");
+}
+
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="config"]::before,
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="config"]::before {
+    -webkit-mask-image: url("../img/menu-icons/services.svg");
+    mask-image: url("../img/menu-icons/services.svg");
+}
+
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[data-tab="log"]::before,
+body.vwrt-page-openclash #maincontent .cbi-tabmenu > li > a[href*="log"]::before {
+    -webkit-mask-image: url("../img/menu-icons/statistics.svg");
+    mask-image: url("../img/menu-icons/statistics.svg");
+}
+
+/* 9. Fix OpenClash inline SVGs (preventing base.css from filling them into dots) */
+body.vwrt-page-openclash #maincontent .oc svg[fill="none"],
+body.vwrt-page-openclash #maincontent .oc svg[fill="none"] * {
+    fill: none !important;
 }
