@@ -6589,7 +6589,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 	border-radius: 16px !important;
 	position: relative !important;
 	overflow: hidden !important;
-	padding: 24px 32px 24px 48px !important;
+	padding: 24px 32px !important;
 	text-align: center !important;
 	display: flex !important;
 	align-items: center !important;
@@ -6610,22 +6610,17 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.09) inset, 0 24px 60px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Redesign native SVG into a modern spinning cyan ring */
+/* Hide native SVG circle because user wants the bottom progress bar only */
 body #view > .spinning::before,
 body .modal .spinning::before,
 body [role="dialog"] .spinning::before,
 body .alert-message.spinning::before,
 body .spinning::before {
-	content: "" !important;
-	display: block !important;
-	position: absolute !important;
-	top: calc(50% - 10px) !important;
-	left: 18px !important;
-	width: 20px !important;
-	height: 20px !important;
-	background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><circle cx='20' cy='20' r='16' fill='none' stroke='%23ffffff' stroke-width='4' stroke-opacity='0.15'/><path d='M20 4 a16 16 0 0 1 16 16' fill='none' stroke='%2300c8f0' stroke-width='4' stroke-linecap='round'><animateTransform attributeName='transform' type='rotate' from='0 20 20' to='360 20 20' dur='1s' repeatCount='indefinite'/></path></svg>") !important;
-	background-size: contain !important;
-	background-repeat: no-repeat !important;
+	content: none !important;
+	display: none !important;
+	background-image: none !important;
+	width: 0 !important;
+	height: 0 !important;
 }
 
 /* Add modern buffer progress bar at the bottom using guaranteed animated SVG */
