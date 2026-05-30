@@ -196,6 +196,7 @@
 	right: 14px;
 	top: 50%;
 	transform: translateY(-50%);
+	display: inline-block;
 	width: 16px;
 	height: 16px;
 	font-size: 0;
@@ -329,11 +330,14 @@
 .cbi-modal .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul,
 [role="dialog"] .cbi-dropdown[open]:not(.btn):not(.cbi-button) > ul {
 	padding: 6px !important;
-	border: 1px solid color-mix(in srgb, var(--vw-border) 60%, transparent) !important;
-	border-radius: 14px !important;
+	border: 1px solid color-mix(in srgb, var(--vw-border-medium) 80%, transparent) !important;
+	border-radius: var(--vw-radius-xl) !important;
 	color: var(--vw-text) !important;
-	background: var(--vw-panel-bg) !important;
-	box-shadow: 0 4px 24px color-mix(in srgb, var(--vw-shadow-color) 40%, transparent) !important;
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 66%, transparent), transparent 56%),
+		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-bg-mesh-violet) 46%, transparent), transparent 42%),
+		var(--vw-surface-glass-3) !important;
+	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating) !important;
 	left: 0 !important;
 	right: auto !important;
 	width: max-content !important;
@@ -1229,18 +1233,8 @@
 	box-shadow: var(--vw-highlight-inner);
 }
 
-#maincontent .cbi-dropdown ul.dropdown,
-.modal .cbi-dropdown ul.dropdown,
-.cbi-modal .cbi-dropdown ul.dropdown,
-[role="dialog"] .cbi-dropdown ul.dropdown {
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-xl);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 66%, transparent), transparent 56%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-bg-mesh-violet) 46%, transparent), transparent 42%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
+/* ul.dropdown glass style consolidated into the block above — no duplicate here */
+
 
 #maincontent .cbi-dropdown ul.dropdown > li,
 .modal .cbi-dropdown ul.dropdown > li,
