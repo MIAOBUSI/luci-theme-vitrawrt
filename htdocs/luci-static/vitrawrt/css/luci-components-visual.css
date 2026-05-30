@@ -980,140 +980,52 @@
 }
 
 /* ============================================================
-   MODAL DIALOG + ALERT-MESSAGE: Neon Frosted Glass (Pro Max)
-   Real DOM:
-     - Session expired: #modal_overlay > .modal  (bg on .modal)
-     - Apply waiting:   #modal_overlay > .modal.alert-message.notice.spinning
-     - No changes:      #modal_overlay > .modal.alert-message.notice
-     - Page banners:    #maincontent > .alert-message
+   MODAL DIALOG + ALERT-MESSAGE GLASS STYLES
+   This block handles backdrop only (not background).
+   Actual neon glass is set at end of file with confirmed selectors.
    ============================================================ */
 
-/* --- The full-screen backdrop --- */
+/* --- Backdrop: semi-transparent dimming only, no layout changes --- */
 #modal_overlay {
-	background: rgba(0, 0, 0, 0.42) !important;
-	backdrop-filter: blur(8px) saturate(140%) !important;
-	-webkit-backdrop-filter: blur(8px) saturate(140%) !important;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-/* --- Base glass for all .modal panels (session expiry, file upload, etc.) --- */
-#modal_overlay > .modal {
-	padding: 32px 36px;
-	border-radius: 24px;
-	border: 1px solid rgba(255, 255, 255, 0.14) !important;
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(0, 210, 255, 0.14) 0%, transparent 55%),
-		radial-gradient(ellipse at 90% 5%, rgba(157, 0, 255, 0.10) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.10) inset,
-		0 -1px 0 rgba(0, 0, 0, 0.20) inset,
-		0 32px 80px rgba(0, 0, 0, 0.50),
-		0 0 0 1px rgba(0, 210, 255, 0.06) !important;
-	backdrop-filter: blur(40px) saturate(160%) !important;
-	-webkit-backdrop-filter: blur(40px) saturate(160%) !important;
-	color: var(--vw-text, #e0edf6) !important;
-}
-
-/* --- .modal.alert-message: the displayStatus() panel (apply/revert/no-changes) --- */
-#modal_overlay > .modal.alert-message {
-	padding: 28px 32px;
-	border-radius: 20px;
-	border: 1px solid rgba(255, 255, 255, 0.14) !important;
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(0, 210, 255, 0.14) 0%, transparent 55%),
-		radial-gradient(ellipse at 90% 5%, rgba(157, 0, 255, 0.10) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.10) inset,
-		0 24px 60px rgba(0, 0, 0, 0.45),
-		0 0 0 1px rgba(0, 210, 255, 0.06) !important;
-	backdrop-filter: blur(40px) saturate(160%) !important;
-	-webkit-backdrop-filter: blur(40px) saturate(160%) !important;
-	color: var(--vw-text, #e0edf6) !important;
-}
-
-/* --- notice: applying configuration (blue-cyan glow) --- */
-#modal_overlay > .modal.alert-message.notice {
-	border-color: rgba(0, 210, 255, 0.22) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.10) inset,
-		0 24px 60px rgba(0, 0, 0, 0.45),
-		0 0 24px rgba(0, 210, 255, 0.12),
-		0 0 0 1px rgba(0, 210, 255, 0.10) !important;
-}
-
-/* --- warning: rollback / connectivity warning (amber glow) --- */
-#modal_overlay > .modal.alert-message.warning {
-	border-color: rgba(255, 170, 0, 0.22) !important;
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(255, 170, 0, 0.14) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.08) inset,
-		0 24px 60px rgba(0, 0, 0, 0.45),
-		0 0 24px rgba(255, 170, 0, 0.12),
-		0 0 0 1px rgba(255, 170, 0, 0.10) !important;
-}
-
-/* --- session expired modal: notice.warning on .alert-message inside .modal --- */
-#modal_overlay > .modal > .alert-message.warning {
-	background: rgba(255, 170, 0, 0.10) !important;
-	border: 1px solid rgba(255, 170, 0, 0.22) !important;
-	border-radius: 12px;
-	padding: 12px 16px;
-	color: var(--vw-text, #e0edf6) !important;
-	margin-bottom: 16px;
-}
-
-/* --- spinning: applying / reverting state (add a subtle animated border) --- */
-#modal_overlay > .modal.alert-message.spinning {
-	animation: vw-border-pulse 2s ease-in-out infinite;
-}
-
-@keyframes vw-border-pulse {
-	0%, 100% { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.10) inset, 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 16px rgba(0, 210, 255, 0.10), 0 0 0 1px rgba(0, 210, 255, 0.08); }
-	50%       { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.10) inset, 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 32px rgba(0, 210, 255, 0.22), 0 0 0 1px rgba(0, 210, 255, 0.18); }
+	background: rgba(0, 0, 0, 0.38) !important;
+	backdrop-filter: blur(6px) saturate(120%) !important;
+	-webkit-backdrop-filter: blur(6px) saturate(120%) !important;
+	/* NO flex here — original block layout keeps modal correctly sized */
 }
 
 /* --- page-level alert banners (#maincontent) --- */
 #maincontent .alert-message,
 #maincontent .alert {
-	padding: 16px 18px;
-	border: 1px solid rgba(255, 255, 255, 0.12) !important;
-	border-radius: 16px;
+	padding: 14px 18px;
+	border: 1px solid rgba(255, 255, 255, 0.10) !important;
+	border-radius: 14px;
 	color: var(--vw-text, #e0edf6) !important;
 	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 8px 24px rgba(0, 0, 0, 0.25);
-	backdrop-filter: blur(20px) saturate(140%);
-	-webkit-backdrop-filter: blur(20px) saturate(140%);
+		linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.60)) !important;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 6px 18px rgba(0, 0, 0, 0.22);
+	backdrop-filter: blur(16px) saturate(130%);
+	-webkit-backdrop-filter: blur(16px) saturate(130%);
 }
 
 #maincontent .alert-message.warning,
 #maincontent .alert-warning,
 .modal .alert-warning {
-	border-color: rgba(255, 170, 0, 0.24) !important;
+	border-color: rgba(255, 170, 0, 0.20) !important;
 	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(255, 170, 0, 0.12) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
+		linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(255, 170, 0, 0.09) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.60)) !important;
 }
 
 #maincontent .alert-message.error,
 #maincontent .alert-danger,
 .modal .alert-danger {
-	border-color: rgba(255, 60, 60, 0.24) !important;
+	border-color: rgba(255, 60, 60, 0.20) !important;
 	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(255, 60, 60, 0.12) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
+		linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+		radial-gradient(ellipse at 10% 0%, rgba(255, 60, 60, 0.09) 0%, transparent 55%),
+		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.60)) !important;
 }
 
 @media (max-width: 700px) {
@@ -6527,7 +6439,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 /* ==========================================================================
    NEON FROSTED GLASS — CONFIRMED SELECTORS (verified via live DOM debug)
-   
+
    DOM structure confirmed:
    • Session expired / Edit dialogs:  #modal_overlay > .modal
    • Apply / No-changes dialogs:      #modal_overlay > .modal.alert-message[.notice][.spinning]
@@ -6537,10 +6449,126 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 
 /* ── Backdrop ─────────────────────────────────────────────────────────────── */
 #modal_overlay {
-	background: rgba(0, 0, 0, 0.42) !important;
-	backdrop-filter: blur(10px) saturate(130%) !important;
-	-webkit-backdrop-filter: blur(10px) saturate(130%) !important;
+	background: rgba(0, 0, 0, 0.38) !important;
+	backdrop-filter: blur(6px) saturate(120%) !important;
+	-webkit-backdrop-filter: blur(6px) saturate(120%) !important;
 }
+
+/* ── All modal panels: session expired, edit dialogs, file upload, etc. ───── */
+#modal_overlay > .modal {
+	/* Prevent tall content from overflowing screen */
+	max-height: 88vh !important;
+	overflow-y: auto !important;
+	/* Subtle neon glass — toned down */
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 45%),
+		radial-gradient(ellipse at 12% 0%, rgba(0, 200, 240, 0.09) 0%, transparent 50%),
+		radial-gradient(ellipse at 88% 8%, rgba(140, 0, 220, 0.07) 0%, transparent 50%),
+		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.78)) !important;
+	border: 1px solid rgba(255, 255, 255, 0.13) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.09) inset,
+		0 20px 56px rgba(0, 0, 0, 0.48),
+		0 0 0 1px rgba(0, 200, 240, 0.05) !important;
+	backdrop-filter: blur(36px) saturate(150%) !important;
+	-webkit-backdrop-filter: blur(36px) saturate(150%) !important;
+	color: var(--vw-text, #dceef8) !important;
+	border-radius: 16px !important;
+}
+
+/* Thin scrollbar for tall edit dialogs */
+#modal_overlay > .modal::-webkit-scrollbar { width: 5px; }
+#modal_overlay > .modal::-webkit-scrollbar-track { background: transparent; }
+#modal_overlay > .modal::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.14);
+	border-radius: 3px;
+}
+
+/* Modal heading */
+#modal_overlay > .modal h4 {
+	color: var(--vw-text, #dceef8) !important;
+}
+
+/* ── Apply / No-changes / Status dialogs (.modal.alert-message) ───────────── */
+#modal_overlay > .modal.alert-message {
+	overflow-y: visible !important;
+	border-color: rgba(0, 200, 240, 0.18) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.09) inset,
+		0 20px 52px rgba(0, 0, 0, 0.48),
+		0 0 16px rgba(0, 200, 240, 0.08),
+		0 0 0 1px rgba(0, 200, 240, 0.08) !important;
+}
+
+/* ── Warning: rollback / connectivity (amber tint) ───────────────────────── */
+#modal_overlay > .modal.alert-message.warning {
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 45%),
+		radial-gradient(ellipse at 12% 0%, rgba(255, 165, 0, 0.12) 0%, transparent 50%),
+		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.78)) !important;
+	border-color: rgba(255, 165, 0, 0.22) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.08) inset,
+		0 20px 52px rgba(0, 0, 0, 0.48),
+		0 0 14px rgba(255, 165, 0, 0.08),
+		0 0 0 1px rgba(255, 165, 0, 0.10) !important;
+}
+
+/* ── Spinning: subtle breathing border ───────────────────────────────────── */
+#modal_overlay > .modal.alert-message.spinning {
+	animation: vw-neon-pulse 2.4s ease-in-out infinite !important;
+}
+
+@keyframes vw-neon-pulse {
+	0%, 100% {
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.09) inset,
+			0 20px 52px rgba(0, 0, 0, 0.48),
+			0 0 8px rgba(0, 200, 240, 0.06),
+			0 0 0 1px rgba(0, 200, 240, 0.07);
+	}
+	50% {
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.09) inset,
+			0 20px 52px rgba(0, 0, 0, 0.48),
+			0 0 20px rgba(0, 200, 240, 0.15),
+			0 0 0 1px rgba(0, 200, 240, 0.13);
+	}
+}
+
+/* Text inside status dialogs */
+#modal_overlay > .modal.alert-message p,
+#modal_overlay > .modal.alert-message h4 {
+	color: var(--vw-text, #dceef8) !important;
+}
+
+/* Session expired: inner warning text bubble */
+#modal_overlay > .modal > .alert-message.warning {
+	background: rgba(255, 165, 0, 0.10) !important;
+	border: 1px solid rgba(255, 165, 0, 0.22) !important;
+	border-radius: 10px !important;
+	color: var(--vw-text, #dceef8) !important;
+	padding: 10px 14px !important;
+	margin-bottom: 14px !important;
+}
+
+/* ── Page-level loading spinner (#view > .spinning) ──────────────────────── */
+#view > .spinning {
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 45%),
+		radial-gradient(ellipse at 12% 0%, rgba(0, 200, 240, 0.09) 0%, transparent 50%),
+		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.78)) !important;
+	border: 1px solid rgba(255, 255, 255, 0.12) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.09) inset,
+		0 12px 36px rgba(0, 0, 0, 0.38) !important;
+	backdrop-filter: blur(28px) saturate(140%) !important;
+	-webkit-backdrop-filter: blur(28px) saturate(140%) !important;
+	color: var(--vw-text, #dceef8) !important;
+	border-radius: 16px !important;
+}
+
+
 
 /* ── All modal panels (session expired, edit dialogs, etc.) ───────────────── */
 #modal_overlay > .modal {
@@ -6647,93 +6675,3 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 	border-radius: 18px !important;
 }
 
-
-/* 1. Modal Backdrops */
-.modal-backdrop,
-.modal-overlay,
-.overlay {
-	background: rgba(0, 0, 0, 0.35) !important;
-	backdrop-filter: blur(24px) saturate(110%) !important;
-	-webkit-backdrop-filter: blur(24px) saturate(110%) !important;
-}
-
-/* 2. Main Dialog Panels */
-.ui-dialog,
-.dialog,
-.modal,
-.cbi-modal,
-[role="dialog"] {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top, rgba(255,255,255,0.1)) 40%, transparent), transparent 45%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-accent, #00d2ff) 12%, transparent), transparent 45%),
-		radial-gradient(circle at 100% 2%, color-mix(in srgb, #9d00ff 10%, transparent), transparent 50%),
-		var(--vw-surface-glass-2, rgba(20, 20, 20, 0.45)) !important;
-	border: 1px solid color-mix(in srgb, var(--vw-border-strong, rgba(255,255,255,0.15)) 50%, transparent) !important;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 24px 60px rgba(0, 0, 0, 0.45) !important;
-	backdrop-filter: blur(32px) saturate(140%) !important;
-	-webkit-backdrop-filter: blur(32px) saturate(140%) !important;
-}
-
-/* 3. Sub-components (Headers, Footers, Bodies) */
-.modal-header,
-.modal-footer,
-.modal-body,
-.cbi-modal .modal-header,
-.cbi-modal .modal-footer,
-.cbi-modal .modal-body,
-[role="dialog"] .modal-header,
-[role="dialog"] .modal-footer,
-[role="dialog"] .modal-body {
-	background: transparent !important;
-}
-
-/* 4. Alert Messages and Spinning Modals */
-.spinning,
-#view > .spinning,
-.modal .spinning,
-[role="dialog"] .spinning,
-#maincontent .alert-message,
-#maincontent .alert,
-.modal .alert-message,
-[role="dialog"] .alert-message {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top, rgba(255,255,255,0.1)) 40%, transparent), transparent 45%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-accent, #00d2ff) 12%, transparent), transparent 45%),
-		radial-gradient(circle at 100% 2%, color-mix(in srgb, #9d00ff 10%, transparent), transparent 50%),
-		var(--vw-surface-glass-2, rgba(20, 20, 20, 0.45)) !important;
-	border: 1px solid color-mix(in srgb, var(--vw-border-strong, rgba(255,255,255,0.15)) 50%, transparent) !important;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 14px 34px rgba(0, 0, 0, 0.45) !important;
-	backdrop-filter: blur(32px) saturate(140%) !important;
-	-webkit-backdrop-filter: blur(32px) saturate(140%) !important;
-}
-
-/* 5. Warning & Error specific tints to survive the absolute override */
-#maincontent .alert-message.warning,
-#maincontent .alert.warning {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top, rgba(255,255,255,0.1)) 40%, transparent), transparent 45%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-warning, #ffaa00) 12%, transparent), transparent 45%),
-		var(--vw-surface-glass-2, rgba(20, 20, 20, 0.45)) !important;
-	border-color: color-mix(in srgb, var(--vw-warning) 30%, transparent) !important;
-}
-#maincontent .alert-message.error,
-#maincontent .alert.error {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top, rgba(255,255,255,0.1)) 40%, transparent), transparent 45%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-error, #ff0000) 12%, transparent), transparent 45%),
-		var(--vw-surface-glass-2, rgba(20, 20, 20, 0.45)) !important;
-	border-color: color-mix(in srgb, var(--vw-error) 30%, transparent) !important;
-}
-
-/* Dark mode generic overrides */
-html[data-theme="dark"] .ui-dialog,
-html[data-theme="dark"] .dialog,
-html[data-theme="dark"] .modal,
-html[data-theme="dark"] .cbi-modal,
-html[data-theme="dark"] [role="dialog"] {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top, rgba(255,255,255,0.1)) 40%, transparent), transparent 45%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-accent, #00d2ff) 12%, transparent), transparent 45%),
-		radial-gradient(circle at 100% 2%, color-mix(in srgb, #9d00ff 10%, transparent), transparent 50%),
-		var(--vw-surface-glass-2, rgba(20, 20, 20, 0.45)) !important;
-}
