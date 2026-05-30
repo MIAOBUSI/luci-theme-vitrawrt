@@ -30,7 +30,7 @@
 		<% if css then %>
 			<style title="text/css"><%=css%></style>
 		<% end -%>
-		<link rel="stylesheet" href="<%=media%>/cascade.css?v=1.41C-R44">
+		<link rel="stylesheet" href="<%=media%>/cascade.css?v=1.41C-R45">
 		<link rel="icon" href="<%=media%>/img/logo.svg?v=1.41C-R35" sizes="any">
 		<script src="<%=url('admin/translations', luci.i18n.context.lang)%>"></script>
 		<script src="<%=resource%>/cbi.js"></script>
@@ -107,6 +107,8 @@
 			</aside>
 
 			<main id="maincontent" class="container vitra-page" tabindex="-1">
+			<div id="vwrt-indicators-bar">
+				<div id="indicators"></div>
 			<%- if sys.process.info("uid") == 0 and sys.user.getuser("root") and not sys.user.getpasswd("root") then -%>
 				<div class="alert-message warning password-warning">
 					<div class="vwrt-alert-content">
@@ -139,6 +141,7 @@
 					</div>
 				</div>
 			</noscript>
+			</div>
 
 			<div id="tabmenu" style="display:none"></div>
 		<% end %>
