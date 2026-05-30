@@ -6526,9 +6526,127 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* ==========================================================================
-   UI/UX PRO MAX ABSOLUTE OVERRIDES
-   Forcing clean panel backgrounds and removing legacy dirty gradients.
+   NEON FROSTED GLASS — CONFIRMED SELECTORS (verified via live DOM debug)
+   
+   DOM structure confirmed:
+   • Session expired / Edit dialogs:  #modal_overlay > .modal
+   • Apply / No-changes dialogs:      #modal_overlay > .modal.alert-message[.notice][.spinning]
+   • Page loading spinner:            #view > .spinning
+   • Page notifications:              #maincontent > .alert-message
    ========================================================================== */
+
+/* ── Backdrop ─────────────────────────────────────────────────────────────── */
+#modal_overlay {
+	background: rgba(0, 0, 0, 0.42) !important;
+	backdrop-filter: blur(10px) saturate(130%) !important;
+	-webkit-backdrop-filter: blur(10px) saturate(130%) !important;
+}
+
+/* ── All modal panels (session expired, edit dialogs, etc.) ───────────────── */
+#modal_overlay > .modal {
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, transparent 48%),
+		radial-gradient(ellipse at 14% 0%, rgba(0, 210, 255, 0.18) 0%, transparent 52%),
+		radial-gradient(ellipse at 86% 6%, rgba(157, 0, 255, 0.13) 0%, transparent 52%),
+		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.72)) !important;
+	border: 1px solid rgba(255, 255, 255, 0.16) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.11) inset,
+		0 -1px 0 rgba(0, 0, 0, 0.18) inset,
+		0 32px 80px rgba(0, 0, 0, 0.55),
+		0 0 0 1px rgba(0, 210, 255, 0.08) !important;
+	backdrop-filter: blur(42px) saturate(165%) !important;
+	-webkit-backdrop-filter: blur(42px) saturate(165%) !important;
+	color: var(--vw-text, #dceef8) !important;
+	border-radius: 20px !important;
+}
+
+/* Modal heading text */
+#modal_overlay > .modal h4 {
+	color: var(--vw-text, #dceef8) !important;
+	font-weight: 600 !important;
+}
+
+/* ── Apply / No-changes / Status dialogs (.modal.alert-message) ───────────── */
+#modal_overlay > .modal.alert-message {
+	/* inherits neon glass from above — add cyan glow border */
+	border-color: rgba(0, 210, 255, 0.22) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.11) inset,
+		0 24px 64px rgba(0, 0, 0, 0.52),
+		0 0 22px rgba(0, 210, 255, 0.13),
+		0 0 0 1px rgba(0, 210, 255, 0.12) !important;
+}
+
+/* ── Warning state: rollback / connectivity ───────────────────────────────── */
+#modal_overlay > .modal.alert-message.warning {
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 48%),
+		radial-gradient(ellipse at 14% 0%, rgba(255, 170, 0, 0.20) 0%, transparent 52%),
+		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.72)) !important;
+	border-color: rgba(255, 170, 0, 0.26) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.09) inset,
+		0 24px 64px rgba(0, 0, 0, 0.52),
+		0 0 22px rgba(255, 170, 0, 0.14),
+		0 0 0 1px rgba(255, 170, 0, 0.14) !important;
+}
+
+/* ── Spinning state: pulse animation ─────────────────────────────────────── */
+#modal_overlay > .modal.alert-message.spinning {
+	animation: vw-neon-pulse 2.2s ease-in-out infinite !important;
+}
+
+@keyframes vw-neon-pulse {
+	0%, 100% {
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.11) inset,
+			0 24px 64px rgba(0, 0, 0, 0.52),
+			0 0 14px rgba(0, 210, 255, 0.10),
+			0 0 0 1px rgba(0, 210, 255, 0.10);
+	}
+	50% {
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.11) inset,
+			0 24px 64px rgba(0, 0, 0, 0.52),
+			0 0 36px rgba(0, 210, 255, 0.30),
+			0 0 0 1px rgba(0, 210, 255, 0.24);
+	}
+}
+
+/* Ensure text inside apply/status dialogs is readable */
+#modal_overlay > .modal.alert-message p,
+#modal_overlay > .modal.alert-message h4 {
+	color: var(--vw-text, #dceef8) !important;
+}
+
+/* Session expired: inner warning text block */
+#modal_overlay > .modal > .alert-message.warning {
+	background: rgba(255, 170, 0, 0.12) !important;
+	border: 1px solid rgba(255, 170, 0, 0.24) !important;
+	border-radius: 12px !important;
+	color: var(--vw-text, #dceef8) !important;
+	padding: 12px 16px !important;
+	margin-bottom: 16px !important;
+}
+
+/* ── Page-level loading spinner (#view > .spinning) ──────────────────────── */
+#view > .spinning {
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, transparent 48%),
+		radial-gradient(ellipse at 14% 0%, rgba(0, 210, 255, 0.16) 0%, transparent 52%),
+		radial-gradient(ellipse at 86% 6%, rgba(157, 0, 255, 0.11) 0%, transparent 52%),
+		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.72)) !important;
+	border: 1px solid rgba(255, 255, 255, 0.15) !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.10) inset,
+		0 16px 48px rgba(0, 0, 0, 0.45) !important;
+	backdrop-filter: blur(32px) saturate(150%) !important;
+	-webkit-backdrop-filter: blur(32px) saturate(150%) !important;
+	color: var(--vw-text, #dceef8) !important;
+	border-radius: 18px !important;
+}
+
 
 /* 1. Modal Backdrops */
 .modal-backdrop,
