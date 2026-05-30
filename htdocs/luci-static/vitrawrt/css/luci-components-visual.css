@@ -175,10 +175,9 @@
 .cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn),
 [role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn) {
 	position: relative;
-	padding-right: 12px !important;
 }
 
-/* Keep the fake ::after arrow only for button dropdowns */
+/* Hide the fake ::after arrow for form dropdowns — span.open is the real one */
 #maincontent .cbi-dropdown:not(.cbi-button):not(.btn)::after,
 .modal .cbi-dropdown:not(.cbi-button):not(.btn)::after,
 .cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn)::after,
@@ -187,29 +186,27 @@
 	content: none !important;
 }
 
-/* Position the real span.open arrow absolutely at the right */
+/* Style span.open as a visible SVG-icon arrow, absolutely positioned right */
 #maincontent .cbi-dropdown:not(.cbi-button):not(.btn) > span.open,
 .modal .cbi-dropdown:not(.cbi-button):not(.btn) > span.open,
 .cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn) > span.open,
 [role="dialog"] .cbi-dropdown:not(.cbi-button):not(.btn) > span.open {
 	position: absolute;
-	right: 14px;
+	right: 13px;
 	top: 50%;
 	transform: translateY(-50%);
 	display: inline-block;
 	width: 16px;
 	height: 16px;
-	font-size: 0;
-	color: transparent;
-	background-color: var(--vw-text);
-	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") center / contain no-repeat;
-	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") center / contain no-repeat;
+	font-size: 14px;
+	line-height: 1;
+	color: var(--vw-text);
 	opacity: 0.5;
 	pointer-events: none;
-	cursor: pointer;
+	text-align: center;
 }
 
-/* The ul holds selected text — reserve space on the right for the arrow */
+/* Reserve space in the static ul so text doesn't reach under the arrow */
 #maincontent .cbi-dropdown:not(.cbi-button):not(.btn) > ul:not(.dropdown),
 .modal .cbi-dropdown:not(.cbi-button):not(.btn) > ul:not(.dropdown),
 .cbi-modal .cbi-dropdown:not(.cbi-button):not(.btn) > ul:not(.dropdown),
@@ -217,6 +214,12 @@
 	display: block;
 	overflow: hidden;
 	padding-right: 30px;
+}
+
+/* Restore position:relative for cbi-button dropdown so its span.open still works */
+#maincontent .cbi-dropdown.cbi-button,
+#maincontent .cbi-dropdown.btn {
+	position: relative;
 }
 
 #maincontent textarea,
