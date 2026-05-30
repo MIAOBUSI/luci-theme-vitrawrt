@@ -22,20 +22,20 @@
 		<meta name="color-scheme" content="light dark">
 		<meta name="darkreader-lock">
 		<title><%=striptags((boardinfo.hostname or "?") .. ((node and node.title) and " | " .. translate(node.title) or ""))%></title>
-		<script src="<%=media%>/js/theme-mode.js?v=1.41C-R22"></script>
-		<script src="<%=media%>/js/glass-quality.js?v=1.41C-R22"></script>
+		<script src="<%=media%>/js/theme-mode.js?v=1.41C-R23"></script>
+		<script src="<%=media%>/js/glass-quality.js?v=1.41C-R23"></script>
 		<% if node and node.css then %>
 			<link rel="stylesheet" href="<%=resource%>/<%=node.css%>">
 		<% end -%>
 		<% if css then %>
 			<style title="text/css"><%=css%></style>
 		<% end -%>
-		<link rel="stylesheet" href="<%=media%>/cascade.css?v=1.41C-R22">
-		<link rel="icon" href="<%=media%>/img/logo.svg?v=1.41C-R22" sizes="any">
+		<link rel="stylesheet" href="<%=media%>/cascade.css?v=1.41C-R23">
+		<link rel="icon" href="<%=media%>/img/logo.svg?v=1.41C-R23" sizes="any">
 		<script src="<%=url('admin/translations', luci.i18n.context.lang)%>"></script>
 		<script src="<%=resource%>/cbi.js"></script>
-		<script defer src="<%=media%>/js/sidebar.js?v=1.41C-R22"></script>
-		<script defer src="<%=media%>/js/boot.js?v=1.41C-R22"></script>
+		<script defer src="<%=media%>/js/sidebar.js?v=1.41C-R23"></script>
+		<script defer src="<%=media%>/js/boot.js?v=1.41C-R23"></script>
 	</head>
 
 	<body class="lang_<%=luci.i18n.context.lang%><% if blank_page then %> vwrt-auth-body<% else %> vwrt-shell-body<% end %><% if node then %> <%=striptags(node.title)%><% end %>" data-page="<%=pcdata(table.concat(disp.context.requestpath, "-"))%>">

@@ -176,6 +176,11 @@
 [role="dialog"] .cbi-dropdown {
 	position: relative;
 	padding-right: 40px;
+	display: inline-block;
+	width: max-content;
+	min-width: 160px;
+	max-width: 100%;
+	vertical-align: middle;
 }
 
 #maincontent .cbi-dropdown::after,
@@ -1245,6 +1250,10 @@
 [role="dialog"] .cbi-dropdown ul.dropdown > li[display="0"] {
 	background: transparent !important;
 	color: inherit !important;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 /* 7. Tabs */
