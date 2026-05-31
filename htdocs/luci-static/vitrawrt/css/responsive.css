@@ -26,11 +26,9 @@
 		display: none !important;
 	}
 
-	/* Convert rows to cards for BOTH .table and .cbi-section-table to prevent horizontal overflow */
+	/* Convert rows to cards specifically for .cbi-section-table */
 	#maincontent .cbi-section-table .tr,
-	#maincontent .cbi-section-table .cbi-section-table-row,
-	#maincontent .table .tr:not(.table-titles),
-	#maincontent table tbody tr {
+	#maincontent .cbi-section-table .cbi-section-table-row {
 		display: block;
 		border: 1px solid var(--border-color);
 		border-radius: 8px;
@@ -38,6 +36,18 @@
 		background: var(--surface-color);
 		padding: 0.5rem;
 		box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+	}
+
+	/* For standard tables, just use display: block to prevent horizontal scrolling,
+	   separated by a simple border instead of full cards */
+	#maincontent .table .tr:not(.table-titles),
+	#maincontent table tbody tr {
+		display: block;
+		border-bottom: 1px solid var(--border-color);
+	}
+	#maincontent .table .tr:last-child,
+	#maincontent table tbody tr:last-child {
+		border-bottom: none;
 	}
 
 	/* Convert cells to block for top-bottom alignment */
