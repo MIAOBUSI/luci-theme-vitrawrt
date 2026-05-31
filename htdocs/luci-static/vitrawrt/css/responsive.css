@@ -17,10 +17,16 @@
 		max-width: 100%;
 	}
 
+	/* Force tables to behave as block containers so overflow-x actually works. 
+	   Browsers will generate anonymous tables for the table-row children, preserving column alignment. */
 	#maincontent .table,
-	#maincontent .cbi-section-table {
-		min-width: 100%;
-		width: max-content;
+	#maincontent .cbi-section-table,
+	#maincontent table {
+		display: block !important;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		width: 100%;
+		border: none;
 	}
 
 	/* Stop long tooltips from bleeding out */
