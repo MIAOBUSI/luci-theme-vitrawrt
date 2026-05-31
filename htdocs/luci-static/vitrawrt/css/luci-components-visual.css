@@ -6676,7 +6676,7 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 }
 
 /* Allow dropdown menus inside the Unsaved Changes modal to escape the modal boundaries */
-#modal_overlay > .modal:has(.uci-dialog) {
+#modal_overlay > .modal.uci-dialog {
 	overflow: visible !important;
 }
 
