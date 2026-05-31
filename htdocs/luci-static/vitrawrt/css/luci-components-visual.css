@@ -6460,7 +6460,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* ── All modal panels: session expired, edit dialogs, file upload, etc. ───── */
-body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message),
+body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message):not(:has(.uci-dialog)),
 #modal_overlay > .modal {
 	/* Prevent tall content from overflowing screen, but allow dropdowns to escape */
 	max-height: 88vh !important;
@@ -6681,7 +6681,7 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 }
 
 /* --- Base glass for all .modal panels (session expiry, file upload, etc.) --- */
-body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message),
+body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message):not(:has(.uci-dialog)),
 #modal_overlay > .modal {
 	padding: 32px 36px;
 	border-radius: 24px;
