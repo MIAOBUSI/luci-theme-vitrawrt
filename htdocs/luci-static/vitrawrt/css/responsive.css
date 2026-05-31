@@ -8,26 +8,10 @@
 }
 
 @media (max-width: 900px) {
-	/* 1. Form inputs and dropdowns should not stretch beyond the container */
-	#maincontent input[type="text"],
-	#maincontent input[type="password"],
-	#maincontent select,
-	#maincontent textarea,
-	#maincontent .cbi-dropdown {
-		max-width: 100%;
-		box-sizing: border-box;
-	}
-
-	/* 2. Value fields need to constrain their contents and wrap flex items */
-	#maincontent .cbi-value-field {
-		min-width: 0;
-		max-width: 100%;
-		flex-wrap: wrap;
-		gap: 8px;
-	}
-	
-	/* 3. Table wrappers must scroll horizontally instead of blowing up the layout */
-	#maincontent .cbi-section-node {
+	/* --- Mobile + Tablet Fixes (max-width: 900px) --- */
+	/* Table wrappers must scroll horizontally instead of blowing up the layout */
+	#maincontent .cbi-section-node,
+	#maincontent .cbi-section-node-tabbed {
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
 		max-width: 100%;
@@ -39,25 +23,13 @@
 		width: max-content;
 	}
 
-	/* 4. Page actions (bottom buttons) need to wrap gracefully on narrow screens */
-	#maincontent .cbi-page-actions.right {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 12px;
-	}
-
-	#maincontent .cbi-page-actions.right > .cbi-button {
-		flex: 1 1 auto;
-		margin: 0 !important;
-		min-width: 120px;
-	}
-
-	/* 5. Stop long tooltips from bleeding out */
+	/* Stop long tooltips from bleeding out */
 	#maincontent .cbi-tooltip {
 		max-width: 85vw !important;
 		white-space: normal !important;
 		word-break: break-all;
 	}
+
 	body {
 		background-attachment: scroll;
 	}
@@ -254,5 +226,40 @@
 		animation-iteration-count: 1 !important;
 		scroll-behavior: auto !important;
 		transition-duration: 1ms !important;
+	}
+}
+
+@media (max-width: 700px) {
+	/* --- Mobile-only Fixes (max-width: 700px) --- */
+	/* Form inputs and dropdowns should not stretch beyond the container */
+	#maincontent input[type="text"],
+	#maincontent input[type="password"],
+	#maincontent select,
+	#maincontent textarea,
+	#maincontent .cbi-dropdown {
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+
+	/* Value fields need to constrain their contents and wrap flex items */
+	#maincontent .cbi-value-field {
+		min-width: 0;
+		max-width: 100%;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	
+	/* Page actions (bottom buttons) need to wrap gracefully on narrow screens */
+	#maincontent .cbi-page-actions.right {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	#maincontent .cbi-page-actions.right > .cbi-button,
+	#maincontent .cbi-page-actions.right > .btn {
+		flex: 1 1 auto;
+		margin: 0 !important;
+		min-width: 120px;
 	}
 }
