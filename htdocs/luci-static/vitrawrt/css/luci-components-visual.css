@@ -6460,7 +6460,7 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 }
 
 /* ── All modal panels: session expired, edit dialogs, file upload, etc. ───── */
-body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message):not(:has(.uci-dialog)),
+body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message):not(:has(.uci-dialog)):not(:has(> .alert-message)),
 #modal_overlay > .modal {
 	/* Prevent tall content from overflowing screen, but allow dropdowns to escape */
 	max-height: 88vh !important;
@@ -6548,14 +6548,6 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 	color: var(--vw-text, #dceef8) !important;
 }
 
-/* Session expired: inner warning text bubble */
-#modal_overlay > .modal > .alert-message.warning {
-	background: rgba(255, 165, 0, 0.10) !important;
-	border: 1px solid rgba(255, 165, 0, 0.22) !important;
-	border-radius: 10px !important;
-	color: var(--vw-text, #dceef8) !important;
-	padding: 10px 14px !important;
-	margin-bottom: 14px !important;
 }
 
 /* ── Apple UI Style Loading HUD ────────────────────────────────────────────── */
@@ -6681,7 +6673,7 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 }
 
 /* --- Base glass for all .modal panels (session expiry, file upload, etc.) --- */
-body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message):not(:has(.uci-dialog)),
+body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message):not(:has(.uci-dialog)):not(:has(> .alert-message)),
 #modal_overlay > .modal {
 	padding: 32px 36px;
 	border-radius: 24px;
@@ -6752,16 +6744,6 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 		0 24px 60px rgba(0, 0, 0, 0.45),
 		0 0 24px rgba(255, 170, 0, 0.12),
 		0 0 0 1px rgba(255, 170, 0, 0.10) !important;
-}
-
-/* --- session expired modal: notice.warning on .alert-message inside .modal --- */
-#modal_overlay > .modal > .alert-message.warning {
-	background: rgba(255, 170, 0, 0.10) !important;
-	border: 1px solid rgba(255, 170, 0, 0.22) !important;
-	border-radius: 12px;
-	padding: 12px 16px;
-	color: var(--vw-text, #e0edf6) !important;
-	margin-bottom: 16px;
 }
 
 /* --- spinning: applying / reverting state (add a subtle animated border) --- */
@@ -7326,4 +7308,34 @@ body[data-page^="admin-services-openclash"] .oc .icon-btn svg {
     margin: 0 !important;
     background: transparent !important;
     border-radius: 0 !important;
+}
+
+/* Session expired: inner warning text bubble (Redesigned Apple UI style for vitrawrt) */
+body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .alert-message {
+    background: color-mix(in srgb, var(--vw-surface-glass) 50%, transparent) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255, 255, 255, 0.05) inset !important;
+    border-radius: 18px !important;
+    color: var(--vw-text, #e0edf6) !important;
+    backdrop-filter: blur(24px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+}
+
+body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .alert-message > h4,
+body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .alert-message > p {
+    color: var(--vw-text, #e0edf6) !important;
+}
+
+/* Make sure the left bar is orange with a soft glow */
+body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .alert-message.warning::before {
+    background: var(--vw-accent-warn, #ff9f0a) !important;
+    box-shadow: 0 0 12px rgba(255, 159, 10, 0.4) !important;
+}
+
+/* Button style override for the session expired modal to match vitrawrt primary button */
+body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .right > .btn.primary {
+    background: var(--vw-primary-color) !important;
+    color: #ffffff !important;
+    border-color: var(--vw-primary-color) !important;
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--vw-primary-color) 40%, transparent) !important;
 }
