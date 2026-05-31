@@ -22,6 +22,7 @@
 	#maincontent .table,
 	#maincontent .cbi-section-table {
 		min-width: 100%;
+		width: max-content;
 	}
 
 	/* Stop long tooltips from bleeding out */
