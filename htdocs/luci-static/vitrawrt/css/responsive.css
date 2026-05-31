@@ -18,17 +18,19 @@
 	}
 
 	/* --- Mobile Table Card Layout --- */
-	/* Hide standard table headers only for section tables */
-	#maincontent .cbi-section-table-titles,
-	#maincontent tr.cbi-section-table-titles,
-	#maincontent .cbi-section-table > thead,
-	#maincontent .cbi-section-table > tbody > tr > th {
+	/* Hide standard table headers specifically targeted by Argon, avoiding aggressive global hiding */
+	#maincontent .tr.table-titles,
+	#maincontent .tr.cbi-section-table-titles,
+	#maincontent .tr.cbi-section-table-descr,
+	#maincontent .cbi-section-table-titles {
 		display: none !important;
 	}
 
-	/* Convert rows to cards (only for cbi-section-table) */
+	/* Convert rows to cards for BOTH .table and .cbi-section-table to prevent horizontal overflow */
 	#maincontent .cbi-section-table .tr,
-	#maincontent .cbi-section-table .cbi-section-table-row {
+	#maincontent .cbi-section-table .cbi-section-table-row,
+	#maincontent .table .tr:not(.table-titles),
+	#maincontent table tbody tr {
 		display: block;
 		border: 1px solid var(--border-color);
 		border-radius: 8px;
@@ -39,7 +41,9 @@
 	}
 
 	/* Convert cells to block for top-bottom alignment */
-	#maincontent .cbi-section-table .td {
+	#maincontent .cbi-section-table .td,
+	#maincontent .table .td,
+	#maincontent table td {
 		display: block !important;
 		padding: 0.5rem 0.2rem !important;
 		border-bottom: 1px solid var(--border-color);
@@ -47,17 +51,22 @@
 		width: 100% !important;
 		box-sizing: border-box;
 	}
-	#maincontent .cbi-section-table .td:last-child {
+	#maincontent .cbi-section-table .td:last-child,
+	#maincontent .table .td:last-child,
+	#maincontent table td:last-child {
 		border-bottom: none;
 	}
 
 	/* Fix input sizes in card view */
-	#maincontent .cbi-section-table .td > * {
+	#maincontent .cbi-section-table .td > *,
+	#maincontent .table .td > * {
 		max-width: 100%;
 	}
 
 	/* Use data-title for labels */
-	#maincontent .cbi-section-table .td::before {
+	#maincontent .cbi-section-table .td::before,
+	#maincontent .table .td::before,
+	#maincontent table td::before {
 		content: attr(data-title);
 		display: block;
 		font-size: 0.9em;
@@ -70,7 +79,9 @@
 	}
 	
 	/* Hide empty labels */
-	#maincontent .cbi-section-table .td[data-title=""]::before {
+	#maincontent .cbi-section-table .td[data-title=""]::before,
+	#maincontent .table .td[data-title=""]::before,
+	#maincontent table td[data-title=""]::before {
 		display: none;
 	}
 
@@ -97,6 +108,7 @@
 	/* Button container inside table cells: adjust margin for card view */
 	#maincontent .cbi-section-actions > * > .cbi-button,
 	#maincontent .cbi-section-actions > .cbi-button,
+	#maincontent .table .td > .cbi-button,
 	#maincontent .cbi-section-table .td > .cbi-button {
 		margin: 0 !important;
 		flex: 0 1 auto;
