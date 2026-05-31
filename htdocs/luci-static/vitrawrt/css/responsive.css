@@ -22,7 +22,25 @@
 	#maincontent .table,
 	#maincontent .cbi-section-table {
 		min-width: 100%;
-		width: max-content;
+	}
+
+	/* Keep headers from collapsing vertically on mobile */
+	#maincontent .table .th,
+	#maincontent .cbi-section-table .th,
+	#maincontent .cbi-section-table-titles .td,
+	#maincontent .cbi-section-table-titles .th,
+	#maincontent table th {
+		white-space: nowrap;
+	}
+
+	/* Prevent inputs from squeezing into unreadability */
+	#maincontent .table select,
+	#maincontent .cbi-section-table select,
+	#maincontent .table input[type="text"],
+	#maincontent .cbi-section-table input[type="text"],
+	#maincontent .table input[type="password"],
+	#maincontent .cbi-section-table input[type="password"] {
+		min-width: 100px;
 	}
 
 	/* Stop long tooltips from bleeding out */
