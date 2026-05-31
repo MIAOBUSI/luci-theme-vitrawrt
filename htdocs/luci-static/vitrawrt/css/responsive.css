@@ -9,38 +9,85 @@
 
 @media (max-width: 900px) {
 	/* --- Mobile + Tablet Fixes (max-width: 900px) --- */
-	/* Table wrappers must scroll horizontally instead of blowing up the layout */
+	/* Table wrappers */
 	#maincontent .cbi-section,
 	#maincontent .cbi-map-section,
 	#maincontent .cbi-section-node,
 	#maincontent .cbi-section-node-tabbed {
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
 		max-width: 100%;
 	}
 
-	#maincontent .table,
-	#maincontent .cbi-section-table {
-		min-width: 100%;
-	}
-
-	/* Keep headers from collapsing vertically on mobile */
-	#maincontent .table .th,
+	/* --- Mobile Table Card Layout --- */
+	/* Hide standard table headers */
+	#maincontent .cbi-section-table-titles,
 	#maincontent .cbi-section-table .th,
-	#maincontent .cbi-section-table-titles .td,
-	#maincontent .cbi-section-table-titles .th,
-	#maincontent table th {
-		white-space: nowrap;
+	#maincontent .table .th,
+	#maincontent table thead,
+	#maincontent table tr.cbi-section-table-titles {
+		display: none !important;
 	}
 
-	/* Prevent inputs from squeezing into unreadability */
-	#maincontent .table select,
-	#maincontent .cbi-section-table select,
-	#maincontent .table input[type="text"],
-	#maincontent .cbi-section-table input[type="text"],
-	#maincontent .table input[type="password"],
-	#maincontent .cbi-section-table input[type="password"] {
-		min-width: 100px;
+	/* Convert rows to cards */
+	#maincontent .cbi-section-table .tr,
+	#maincontent .cbi-section-table .cbi-section-table-row,
+	#maincontent .table .tr,
+	#maincontent table tbody tr {
+		display: block;
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		margin-bottom: 1rem;
+		background: var(--surface-color);
+		padding: 0.5rem;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+	}
+
+	/* Convert cells to flex rows */
+	#maincontent .cbi-section-table .td,
+	#maincontent .table .td,
+	#maincontent table td {
+		display: flex !important;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.75rem 0.2rem !important;
+		border-bottom: 1px solid var(--border-color);
+		text-align: right;
+		width: 100% !important;
+		box-sizing: border-box;
+		min-width: 0 !important; /* override previous min-width */
+	}
+	#maincontent .cbi-section-table .td:last-child,
+	#maincontent .table .td:last-child,
+	#maincontent table td:last-child {
+		border-bottom: none;
+	}
+
+	/* Fix input sizes in card view */
+	#maincontent .cbi-section-table .td > *,
+	#maincontent .table .td > * {
+		max-width: 100%;
+	}
+
+	/* Use data-title for labels */
+	#maincontent .cbi-section-table .td::before,
+	#maincontent .table .td::before,
+	#maincontent table td::before {
+		content: attr(data-title);
+		display: block;
+		font-weight: 600;
+		text-align: left;
+		padding-right: 1rem;
+		color: var(--text-color);
+		flex-shrink: 0;
+		max-width: 45%;
+		word-break: break-word;
+	}
+	
+	/* Hide empty labels */
+	#maincontent .cbi-section-table .td[data-title=""]::before,
+	#maincontent .table .td[data-title=""]::before,
+	#maincontent table td[data-title=""]::before {
+		display: none;
 	}
 
 	/* Stop long tooltips from bleeding out */
@@ -58,17 +105,19 @@
 	/* The actual flex container inside action cells needs to wrap its buttons */
 	#maincontent .cbi-section-actions > * {
 		flex-wrap: wrap !important;
-		gap: 4px;
+		gap: 6px;
+		justify-content: flex-end;
+		width: 100%;
 	}
 	
-	/* Button container inside table cells: add gap so they don't stick together if they wrap */
+	/* Button container inside table cells: adjust margin for card view */
 	#maincontent .cbi-section-actions > * > .cbi-button,
 	#maincontent .cbi-section-actions > .cbi-button,
 	#maincontent .table .td > .cbi-button,
 	#maincontent .cbi-section-table .td > .cbi-button,
 	#maincontent table td > .cbi-button {
-		margin: 2px !important;
-		flex: 1 1 auto;
+		margin: 0 !important;
+		flex: 0 1 auto;
 		text-align: center;
 	}
 
