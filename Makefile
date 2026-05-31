@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-theme-vitrawrt
-PKG_VERSION:=1.41.61
+PKG_VERSION:=1.41.62
 PKG_RELEASE:=1
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=VitraWrt contributors

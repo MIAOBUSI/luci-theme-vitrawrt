@@ -7344,3 +7344,14 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
     border-color: var(--vw-primary-color) !important;
     box-shadow: 0 4px 12px color-mix(in srgb, var(--vw-primary-color) 40%, transparent) !important;
 }
+
+/* Fix port status hover tooltip clipping issue */
+body[data-page="admin-status-overview"] #view > .apple-status-section-port {
+    z-index: 99 !important;
+}
+
+body[data-page="admin-status-overview"] #view .apple-port-status-card,
+body[data-page="admin-status-overview"] #view .apple-port-status-card .ifacebox-body,
+body[data-page="admin-status-overview"] #view .apple-port-status-card .cbi-tooltip-container {
+    overflow: visible !important;
+}
