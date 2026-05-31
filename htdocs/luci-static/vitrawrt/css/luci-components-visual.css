@@ -7345,38 +7345,21 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
     box-shadow: 0 4px 12px color-mix(in srgb, var(--vw-primary-color) 40%, transparent) !important;
 }
 
-/* Fix port status hover tooltip clipping issue */
-body[data-page="admin-status-overview"] #view .apple-status-section-port {
-    z-index: 99 !important;
+
+/* Fix z-index stacking context for tooltips bleeding into next sections */
+#maincontent .cbi-section {
+    position: relative;
+    z-index: 1;
 }
 
-body[data-page="admin-status-overview"] #view .apple-port-status-card,
-body[data-page="admin-status-overview"] #view .apple-port-status-card .ifacebox-body,
-body[data-page="admin-status-overview"] #view .apple-port-status-card .cbi-tooltip-container {
-    overflow: visible !important;
+#maincontent .cbi-section:hover,
+#maincontent .cbi-section:focus-within {
+    z-index: 999 !important;
 }
 
-/* Fix port status hover tooltip clipping: remove the cbi-section box from the port wrapper */
-body[data-page="admin-status-overview"] #view .apple-status-section-port {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    padding: 0 !important;
-    margin-bottom: 32px !important;
-    z-index: 99 !important;
-}
-
-/* Force overflow visible on ALL ancestor containers of the port status card */
-body[data-page="admin-status-overview"] #maincontent .apple-status-section-port,
-body[data-page="admin-status-overview"] #maincontent .apple-status-section-port .apple-port-status-wrap,
-body[data-page="admin-status-overview"] #maincontent .apple-status-section-port .apple-port-status-wrap > div,
-body[data-page="admin-status-overview"] #maincontent .apple-status-section-port .apple-port-status-grid,
-body[data-page="admin-status-overview"] #maincontent .apple-status-section-port .apple-port-status-card,
-body[data-page="admin-status-overview"] #maincontent .apple-status-section-port .apple-port-status-stats,
-body[data-page="admin-status-overview"] #maincontent .apple-status-section-port .cbi-tooltip-container,
-body[data-page="admin-status-overview"] #maincontent .apple-status-section-port .ifacebox-body,
-body[data-page="admin-status-overview"] #maincontent .apple-status-section-port .ifacebox {
+/* Ensure tooltips can escape their containers */
+#maincontent .cbi-tooltip-container,
+#maincontent .ifacebox,
+#maincontent .ifacebox-body {
     overflow: visible !important;
 }
