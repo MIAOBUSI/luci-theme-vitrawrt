@@ -6674,8 +6674,8 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
 	padding: 24px 12px !important;
 }
 
-/* Allow dropdown menus inside modals to escape the modal boundaries */
-#modal_overlay > .modal:has(.cbi-dropdown) {
+/* Allow dropdown menus inside the Unsaved Changes modal to escape the modal boundaries */
+#modal_overlay > .modal:has(.uci-dialog) {
 	overflow: visible !important;
 }
 
