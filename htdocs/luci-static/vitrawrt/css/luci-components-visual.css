@@ -6685,73 +6685,67 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 #modal_overlay > .modal {
 	padding: 32px 36px;
 	border-radius: 24px;
-	border: 1px solid rgba(255, 255, 255, 0.14) !important;
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(0, 210, 255, 0.14) 0%, transparent 55%),
-		radial-gradient(ellipse at 90% 5%, rgba(157, 0, 255, 0.10) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.10) inset,
-		0 -1px 0 rgba(0, 0, 0, 0.20) inset,
-		0 32px 80px rgba(0, 0, 0, 0.50),
-		0 0 0 1px rgba(0, 210, 255, 0.06) !important;
-	backdrop-filter: blur(40px) saturate(160%) !important;
-	-webkit-backdrop-filter: blur(40px) saturate(160%) !important;
-	color: var(--vw-text, #e0edf6) !important;
+	border: 1px solid rgba(255, 255, 255, 0.08) !important;
+	background: rgba(30, 30, 30, 0.85) !important;
+	box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4) !important;
+	backdrop-filter: blur(48px) saturate(180%) !important;
+	-webkit-backdrop-filter: blur(48px) saturate(180%) !important;
+	color: rgba(255, 255, 255, 0.85) !important;
 	
 	/* FIX FOR OVERFLOW IN FLEX CENTERING: */
 	max-height: 90vh;
 	overflow-y: auto;
 }
 
+html[data-theme="light"] body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message):not(:has(.uci-dialog)):not(:has(> .alert-message)),
+html[data-theme="light"] #modal_overlay > .modal {
+	border: 1px solid rgba(0, 0, 0, 0.05) !important;
+	background: rgba(250, 250, 250, 0.85) !important;
+	box-shadow: 0 16px 64px rgba(0, 0, 0, 0.12) !important;
+	color: rgba(0, 0, 0, 0.85) !important;
+}
+
 /* --- .modal.alert-message: the displayStatus() panel (apply/revert/no-changes) --- */
 #modal_overlay > .modal.alert-message {
 	padding: 28px 32px;
-	border-radius: 20px;
-	border: 1px solid rgba(255, 255, 255, 0.14) !important;
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(0, 210, 255, 0.14) 0%, transparent 55%),
-		radial-gradient(ellipse at 90% 5%, rgba(157, 0, 255, 0.10) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.10) inset,
-		0 24px 60px rgba(0, 0, 0, 0.45),
-		0 0 0 1px rgba(0, 210, 255, 0.06) !important;
-	backdrop-filter: blur(40px) saturate(160%) !important;
-	-webkit-backdrop-filter: blur(40px) saturate(160%) !important;
-	color: var(--vw-text, #e0edf6) !important;
+	border-radius: 24px;
+	border: 1px solid rgba(255, 255, 255, 0.08) !important;
+	background: rgba(30, 30, 30, 0.85) !important;
+	box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4) !important;
+	backdrop-filter: blur(48px) saturate(180%) !important;
+	-webkit-backdrop-filter: blur(48px) saturate(180%) !important;
+	color: rgba(255, 255, 255, 0.85) !important;
+}
+
+html[data-theme="light"] #modal_overlay > .modal.alert-message {
+	border: 1px solid rgba(0, 0, 0, 0.05) !important;
+	background: rgba(250, 250, 250, 0.85) !important;
+	box-shadow: 0 16px 64px rgba(0, 0, 0, 0.12) !important;
+	color: rgba(0, 0, 0, 0.85) !important;
 }
 
 /* Modal heading text */
 #modal_overlay > .modal h4 {
-	color: var(--vw-text, #e0edf6) !important;
+	color: var(--vw-text, inherit) !important;
 	font-weight: 600 !important;
 }
 
-/* --- notice: applying configuration (blue-cyan glow) --- */
+/* --- notice: applying configuration --- */
 #modal_overlay > .modal.alert-message.notice {
-	border-color: rgba(0, 210, 255, 0.22) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.10) inset,
-		0 24px 60px rgba(0, 0, 0, 0.45),
-		0 0 24px rgba(0, 210, 255, 0.12),
-		0 0 0 1px rgba(0, 210, 255, 0.10) !important;
+	border-top: 1px solid rgba(10, 132, 255, 0.3) !important;
 }
 
-/* --- warning: rollback / connectivity warning (amber glow) --- */
+html[data-theme="light"] #modal_overlay > .modal.alert-message.notice {
+	border-top: 1px solid rgba(10, 132, 255, 0.5) !important;
+}
+
+/* --- warning: rollback / connectivity warning --- */
 #modal_overlay > .modal.alert-message.warning {
-	border-color: rgba(255, 170, 0, 0.22) !important;
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
-		radial-gradient(ellipse at 10% 0%, rgba(255, 170, 0, 0.14) 0%, transparent 55%),
-		var(--vw-surface-glass-2, rgba(18, 30, 46, 0.55)) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.08) inset,
-		0 24px 60px rgba(0, 0, 0, 0.45),
-		0 0 24px rgba(255, 170, 0, 0.12),
-		0 0 0 1px rgba(255, 170, 0, 0.10) !important;
+	border-top: 1px solid rgba(255, 159, 10, 0.3) !important;
+}
+
+html[data-theme="light"] #modal_overlay > .modal.alert-message.warning {
+	border-top: 1px solid rgba(255, 159, 10, 0.5) !important;
 }
 
 /* --- spinning: applying / reverting state (add a subtle animated border) --- */
@@ -7318,26 +7312,29 @@ body[data-page^="admin-services-openclash"] .oc .icon-btn svg {
     border-radius: 0 !important;
 }
 
-/* Session expired: inner warning text bubble (Redesigned Apple UI style for vitrawrt) */
+/* Session expired: inner warning text bubble (Authentic Apple UI flat style) */
 body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .alert-message {
-    background: color-mix(in srgb, var(--vw-surface-glass) 50%, transparent) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255, 255, 255, 0.05) inset !important;
-    border-radius: 18px !important;
-    color: var(--vw-text, #e0edf6) !important;
-    backdrop-filter: blur(24px) saturate(150%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+    background: rgba(30, 30, 30, 0.4) !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 12px !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+html[data-theme="light"] body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .alert-message {
+    background: rgba(0, 0, 0, 0.04) !important;
 }
 
 body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .alert-message > h4,
 body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .alert-message > p {
-    color: var(--vw-text, #e0edf6) !important;
+    color: var(--vw-text, inherit) !important;
 }
 
-/* Make sure the left bar is orange with a soft glow */
+/* Make sure the left bar is orange, without neon glow */
 body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message) > .alert-message.warning::before {
     background: var(--vw-accent-warn, #ff9f0a) !important;
-    box-shadow: 0 0 12px rgba(255, 159, 10, 0.4) !important;
+    box-shadow: none !important;
 }
 
 /* Button style override for the session expired modal to match vitrawrt primary button */
