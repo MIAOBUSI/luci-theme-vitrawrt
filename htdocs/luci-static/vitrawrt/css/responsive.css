@@ -31,31 +31,26 @@
 		word-break: break-all;
 	}
 
-	/* Prevent table cells from staying on one extremely long line */
-	#maincontent .table .td,
-	#maincontent .table .th,
-	#maincontent .cbi-section-table .td,
-	#maincontent .cbi-section-table .th,
-	#maincontent .cbi-section-table-titles .td,
-	#maincontent .cbi-section-table-titles .th,
-	#maincontent table td,
-	#maincontent table th {
-		white-space: normal !important;
-		word-break: break-word;
-		overflow-wrap: break-word;
-	}
-
 	/* Allow action buttons in tables to wrap and stack */
 	#maincontent .cbi-section-actions {
 		white-space: normal !important;
 	}
 	
+	/* The actual flex container inside action cells needs to wrap its buttons */
+	#maincontent .cbi-section-actions > * {
+		flex-wrap: wrap !important;
+		gap: 4px;
+	}
+	
 	/* Button container inside table cells: add gap so they don't stick together if they wrap */
+	#maincontent .cbi-section-actions > * > .cbi-button,
 	#maincontent .cbi-section-actions > .cbi-button,
 	#maincontent .table .td > .cbi-button,
 	#maincontent .cbi-section-table .td > .cbi-button,
 	#maincontent table td > .cbi-button {
 		margin: 2px !important;
+		flex: 1 1 auto;
+		text-align: center;
 	}
 
 	body {
