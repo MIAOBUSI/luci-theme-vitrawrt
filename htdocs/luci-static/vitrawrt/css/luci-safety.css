@@ -1,0 +1,51 @@
+/* VitraWrt LuCI safety layer.
+ * This file protects LuCI's runtime visibility and tab state before visual
+ * overrides are applied. Keep it small and behavior-focused.
+ */
+
+[hidden],
+.hidden,
+.hide {
+	display: none !important;
+}
+
+[style*="display: none"],
+[style*="display:none"],
+.cbi-section[style*="display: none"],
+.cbi-section[style*="display:none"],
+.cbi-section-node[style*="display: none"],
+.cbi-section-node[style*="display:none"],
+#maincontent div[style*="display: none"],
+#maincontent div[style*="display:none"] {
+	display: none !important;
+}
+
+#maincontent [data-tab-active="false"]:not(.cbi-tab):not(.cbi-tab-disabled):not(li):not(a),
+#maincontent .cbi-section-node-tabbed > [data-tab][data-tab-active="false"] {
+	display: none !important;
+}
+
+#maincontent [data-tab-active="true"]:not(.cbi-tab):not(.cbi-tab-disabled):not(li):not(a),
+#maincontent .cbi-section-node-tabbed > [data-tab][data-tab-active="true"] {
+	visibility: visible;
+}
+
+#maincontent #tabmenu,
+#maincontent .tabs,
+#maincontent .cbi-tabmenu,
+#maincontent .tabs a,
+#maincontent .cbi-tabmenu a {
+	pointer-events: auto;
+}
+
+#maincontent img,
+#maincontent svg,
+#maincontent canvas,
+#maincontent video {
+	max-width: 100%;
+}
+
+#maincontent img,
+#maincontent video {
+	height: auto;
+}

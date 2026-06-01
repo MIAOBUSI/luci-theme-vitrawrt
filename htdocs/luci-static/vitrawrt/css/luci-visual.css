@@ -1,0 +1,279 @@
+/* Stage 1.12 LuCI visual skin.
+ * This file is deliberately visual-only. It must not control LuCI runtime
+ * state, layout, dropdowns, dynlists, modals, tabs or ifacebox internals.
+ */
+
+#maincontent h1,
+#maincontent h2,
+#maincontent h3,
+#maincontent legend {
+	color: var(--vwrt-text);
+	font-weight: var(--vitra-font-weight-strong);
+	letter-spacing: 0;
+}
+
+#maincontent h1 {
+	margin-top: 0;
+	margin-bottom: 18px;
+	font-size: 28px;
+	line-height: 1.18;
+	text-shadow: 0 1px 0 var(--vwrt-panel-highlight);
+}
+
+#maincontent h2 {
+	margin-top: 0;
+	font-size: 23px;
+	line-height: 1.22;
+}
+
+#maincontent h3,
+#maincontent legend {
+	font-size: 18px;
+	line-height: 1.28;
+}
+
+#maincontent p,
+#maincontent .cbi-map-descr,
+#maincontent .cbi-section-descr,
+#maincontent .cbi-value-description,
+#maincontent .cbi-value-helpicon {
+	color: var(--vwrt-text-muted);
+}
+
+#maincontent .cbi-map,
+#maincontent .cbi-section,
+#maincontent fieldset {
+	margin-bottom: 20px;
+	padding: 19px;
+	border: 1px solid color-mix(in srgb, var(--vwrt-border) 76%, transparent);
+	border-radius: var(--vwrt-radius-xl);
+	color: var(--vwrt-text);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vwrt-panel-highlight) 84%, transparent), transparent 52%),
+		linear-gradient(135deg, color-mix(in srgb, var(--vwrt-accent-quiet) 72%, transparent), transparent 74%),
+		var(--vwrt-surface-strong);
+	box-shadow:
+		var(--vwrt-shadow-panel),
+		0 0 0 1px color-mix(in srgb, var(--vwrt-panel-highlight) 38%, transparent) inset;
+}
+
+#maincontent .cbi-map-descr,
+#maincontent .cbi-section-descr {
+	margin-bottom: 14px;
+	font-size: var(--vitra-font-size-sm);
+}
+
+#maincontent .cbi-value-title {
+	color: var(--vwrt-text-soft);
+	font-weight: var(--vitra-font-weight-medium);
+}
+
+#maincontent table,
+#maincontent .table,
+#maincontent .cbi-section-table {
+	border-color: color-mix(in srgb, var(--vwrt-border) 76%, transparent);
+	color: var(--vwrt-text);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vwrt-panel-highlight) 72%, transparent), transparent 42%),
+		var(--vwrt-surface-elevated);
+}
+
+#maincontent table,
+#maincontent .table {
+	border: 1px solid color-mix(in srgb, var(--vwrt-border) 90%, transparent);
+	border-radius: var(--vwrt-radius-lg);
+	box-shadow:
+		var(--vwrt-shadow-xs),
+		0 1px 0 var(--vwrt-panel-highlight) inset;
+}
+
+#maincontent th,
+#maincontent td,
+#maincontent .th,
+#maincontent .td {
+	padding: 10px 12px;
+	border-color: var(--vwrt-line);
+	color: var(--vwrt-text);
+	vertical-align: middle;
+}
+
+#maincontent th,
+#maincontent .th {
+	color: var(--vwrt-text-muted);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vwrt-panel-highlight) 82%, transparent), transparent 76%),
+		var(--vwrt-surface-subtle);
+	font-weight: var(--vitra-font-weight-strong);
+}
+
+#maincontent tr:hover td,
+#maincontent .tr:hover .td {
+	background: var(--vwrt-table-row-hover);
+}
+
+#maincontent input[type="text"],
+#maincontent input[type="password"],
+#maincontent input[type="number"],
+#maincontent input[type="email"],
+#maincontent input[type="url"],
+#maincontent input[type="search"],
+#maincontent input[type="tel"],
+#maincontent input[type="time"],
+#maincontent input[type="date"],
+#maincontent select,
+#maincontent textarea {
+	padding: 8px 11px;
+	border: 1px solid color-mix(in srgb, var(--vwrt-border) 86%, transparent);
+	border-radius: 14px;
+	color: var(--vwrt-text);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vwrt-panel-highlight) 62%, transparent), transparent 80%),
+		var(--vwrt-surface-elevated);
+	box-shadow: inset 0 1px 0 var(--vwrt-panel-highlight);
+}
+
+#maincontent input[type="text"]:hover,
+#maincontent input[type="password"]:hover,
+#maincontent input[type="number"]:hover,
+#maincontent input[type="email"]:hover,
+#maincontent input[type="url"]:hover,
+#maincontent input[type="search"]:hover,
+#maincontent input[type="tel"]:hover,
+#maincontent input[type="time"]:hover,
+#maincontent input[type="date"]:hover,
+#maincontent select:hover,
+#maincontent textarea:hover {
+	border-color: color-mix(in srgb, var(--vwrt-accent) 26%, var(--vwrt-border));
+	background: color-mix(in srgb, var(--vwrt-surface-hover) 72%, var(--vwrt-surface-elevated));
+}
+
+#maincontent input[type="text"]:focus,
+#maincontent input[type="password"]:focus,
+#maincontent input[type="number"]:focus,
+#maincontent input[type="email"]:focus,
+#maincontent input[type="url"]:focus,
+#maincontent input[type="search"]:focus,
+#maincontent input[type="tel"]:focus,
+#maincontent input[type="time"]:focus,
+#maincontent input[type="date"]:focus,
+#maincontent select:focus,
+#maincontent textarea:focus {
+	border-color: color-mix(in srgb, var(--vwrt-accent) 58%, var(--vwrt-border));
+	background: var(--vwrt-surface-hover);
+	box-shadow:
+		inset 0 1px 0 var(--vwrt-panel-highlight),
+		var(--vwrt-focus-ring);
+}
+
+#maincontent input:disabled,
+#maincontent select:disabled,
+#maincontent textarea:disabled,
+#maincontent button:disabled,
+#maincontent .btn.disabled,
+#maincontent .cbi-button[disabled] {
+	color: var(--vwrt-text-subtle);
+	border-color: var(--vwrt-line);
+	background: var(--vwrt-surface-muted);
+	box-shadow: none;
+}
+
+#maincontent input[type="checkbox"],
+#maincontent input[type="radio"] {
+	accent-color: var(--vwrt-accent);
+}
+
+#maincontent button,
+#maincontent input[type="button"],
+#maincontent input[type="submit"],
+#maincontent input[type="reset"],
+#maincontent .btn,
+#maincontent a.btn,
+#maincontent .cbi-button,
+#maincontent .cbi-button-positive,
+#maincontent .cbi-button-negative,
+#maincontent .cbi-button-neutral,
+#maincontent .cbi-button-action,
+#maincontent .cbi-button-apply,
+#maincontent .cbi-button-save,
+#maincontent .cbi-button-reset {
+	padding: 7px 12px;
+	border: 1px solid color-mix(in srgb, var(--vwrt-border) 84%, transparent);
+	border-radius: 999px;
+	color: var(--vwrt-text);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vwrt-panel-highlight) 84%, transparent), transparent 74%),
+		var(--vwrt-surface-muted);
+	box-shadow:
+		0 1px 0 var(--vwrt-panel-highlight) inset,
+		var(--vwrt-shadow-xs);
+	font-weight: var(--vitra-font-weight-medium);
+	line-height: 1.25;
+	vertical-align: middle;
+}
+
+#maincontent button:hover,
+#maincontent input[type="button"]:hover,
+#maincontent input[type="submit"]:hover,
+#maincontent input[type="reset"]:hover,
+#maincontent .btn:hover,
+#maincontent .cbi-button:hover {
+	border-color: var(--vwrt-border-strong);
+	color: var(--vwrt-text);
+	background:
+		linear-gradient(180deg, var(--vwrt-panel-highlight), transparent 72%),
+		var(--vwrt-surface-hover);
+}
+
+#maincontent .cbi-button-positive,
+#maincontent .cbi-button-apply,
+#maincontent .cbi-button-save,
+#maincontent input[type="submit"] {
+	border-color: var(--vwrt-accent-border);
+	color: var(--vwrt-inverse-text);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, #ffffff 24%, transparent), transparent 72%),
+		var(--vwrt-accent);
+	box-shadow:
+		0 1px 0 color-mix(in srgb, #ffffff 28%, transparent) inset,
+		0 10px 22px color-mix(in srgb, var(--vwrt-accent) 18%, transparent);
+}
+
+#maincontent .cbi-button-negative,
+#maincontent .cbi-button-reset {
+	border-color: color-mix(in srgb, var(--vwrt-danger) 32%, var(--vwrt-border));
+	color: var(--vwrt-danger);
+	background: color-mix(in srgb, var(--vwrt-danger) 8%, var(--vwrt-surface-muted));
+}
+
+#maincontent .alert-message,
+#maincontent .alert {
+	margin-bottom: 18px;
+	padding: 15px 17px;
+	border: 1px solid color-mix(in srgb, var(--vwrt-border) 82%, transparent);
+	border-radius: var(--vwrt-radius-lg);
+	color: var(--vwrt-text);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vwrt-panel-highlight) 84%, transparent), transparent 70%),
+		var(--vwrt-surface-strong);
+	box-shadow: var(--vwrt-shadow-sm);
+}
+
+#maincontent .alert-message.warning,
+#maincontent .alert.warning,
+#maincontent .alert-message.warn {
+	border-color: color-mix(in srgb, var(--vwrt-warning) 34%, var(--vwrt-border));
+	background: var(--vwrt-warning-soft);
+}
+
+#maincontent .alert-message.error,
+#maincontent .alert.error,
+#maincontent .alert-message.danger {
+	border-color: color-mix(in srgb, var(--vwrt-danger) 38%, var(--vwrt-border));
+	background: color-mix(in srgb, var(--vwrt-danger) 9%, var(--vwrt-surface-strong));
+}
+
+#maincontent .alert-message.success,
+#maincontent .alert.success {
+	border-color: color-mix(in srgb, var(--vwrt-positive) 34%, var(--vwrt-border));
+	background: color-mix(in srgb, var(--vwrt-positive) 8%, var(--vwrt-surface-strong));
+}

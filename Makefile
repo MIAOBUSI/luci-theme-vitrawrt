@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-theme-vitrawrt
-PKG_VERSION:=1.41.79
+PKG_VERSION:=1.41.80
 PKG_RELEASE:=1
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=VitraWrt contributors
@@ -15,6 +15,8 @@ PKG_MAINTAINER:=VitraWrt contributors
 LUCI_TITLE:=VitraWrt Liquid Glass LuCI theme
 LUCI_DEPENDS:=+luci-base
 LUCI_PKGARCH:=all
+LUCI_MINIFY_CSS:=0
+LUCI_MINIFY_JS:=0
 
 define Package/luci-theme-vitrawrt/description
 VitraWrt / 璃境 is a calm Liquid Glass LuCI theme for OpenWrt and ImmortalWrt.
