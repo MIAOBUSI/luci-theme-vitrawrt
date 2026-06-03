@@ -5085,6 +5085,133 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 }
 
 /* ── OpenClash Dashboard Button Unification ─────────────────────────────── */
+/* OpenClash reads ALL button colors from CSS custom properties on .oc.
+   We override these properties directly so every button inside .oc
+   inherits the correct VitraWrt palette — no !important wars needed.        */
+
+/* --- Dark mode (default / [data-darkmode="true"]) ----------------------- */
+body[data-page^="admin-services-openclash"] .oc,
+body[data-page^="admin-services-openclash"] .oc[data-darkmode="true"],
+body.vwrt-page-openclash #maincontent .oc,
+body.vwrt-page-openclash #maincontent .oc[data-darkmode="true"] {
+	/* Background surfaces */
+	--bg-white:   var(--vw-surface-raised) !important;
+	--bg-light:   var(--vw-surface-glass)  !important;
+	--bg-gray:    var(--vw-surface-glass-2) !important;
+	--hover-bg:   color-mix(in srgb, var(--vw-text-main) 6%, transparent) !important;
+
+	/* Text */
+	--text-primary:   var(--vw-text-main) !important;
+	--text-secondary: var(--vw-text-soft) !important;
+	--text-title:     var(--vw-text-strong) !important;
+
+	/* Borders */
+	--border-color: var(--vw-border) !important;
+	--border-light: color-mix(in srgb, var(--vw-border) 40%, transparent) !important;
+
+	/* VitraWrt Action Role Colors — these drive .dashboard-btn colors */
+	--primary-color:   var(--vw-role-info-bg)    !important;  /* info  → 检查更新 / 控制面板 */
+	--success-color:   var(--vw-role-success-bg)  !important;  /* green → 刷新DNS */
+	--success-dark:    color-mix(in srgb, var(--vw-role-success-bg) 80%, #000) !important;
+	--error-color:     var(--vw-role-danger-bg)   !important;  /* red   → 关闭链接 */
+	--tip-color:       var(--vw-role-warning-bg)  !important;  /* amber → 重置防火墙 */
+	--info-color:      var(--vw-role-info-bg)     !important;
+
+	/* Radii & shadows from our token set */
+	--radius-sm: var(--vw-radius-sm)    !important;
+	--radius-md: var(--vw-radius-field)  !important;
+	--radius-lg: var(--vw-radius-card)   !important;
+	--shadow-sm: var(--vw-shadow-sm)    !important;
+	--shadow-md: var(--vw-shadow-md)    !important;
+}
+
+/* --- Light mode ---------------------------------------------------------- */
+html[data-theme="light"] body[data-page^="admin-services-openclash"] .oc,
+html[data-theme="light"] body.vwrt-page-openclash #maincontent .oc {
+	--bg-white:   var(--vw-surface-raised) !important;
+	--bg-light:   var(--vw-surface-glass)  !important;
+	--bg-gray:    var(--vw-surface-glass-2) !important;
+	--hover-bg:   color-mix(in srgb, var(--vw-text-main) 6%, transparent) !important;
+	--text-primary:   var(--vw-text-main)  !important;
+	--text-secondary: var(--vw-text-soft)  !important;
+	--text-title:     var(--vw-text-strong) !important;
+	--border-color:   var(--vw-border)     !important;
+	--border-light:   color-mix(in srgb, var(--vw-border) 40%, transparent) !important;
+	--primary-color:  var(--vw-role-info-bg)    !important;
+	--success-color:  var(--vw-role-success-bg)  !important;
+	--success-dark:   color-mix(in srgb, var(--vw-role-success-bg) 80%, #000) !important;
+	--error-color:    var(--vw-role-danger-bg)   !important;
+	--tip-color:      var(--vw-role-warning-bg)  !important;
+	--info-color:     var(--vw-role-info-bg)     !important;
+}
+
+/* Fix .dashboard-btn base geometry to match our pill-shaped button style */
+body[data-page^="admin-services-openclash"] .oc .dashboard-btn,
+body.vwrt-page-openclash #maincontent .oc .dashboard-btn {
+	border-radius: var(--vw-radius-field) !important;
+	font-weight: 500 !important;
+	font-size: 13px !important;
+	border: 1px solid transparent !important;
+	color: #ffffff !important;
+	text-shadow: none !important;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.18) inset,
+		0 4px 10px rgba(0, 0, 0, 0.15) !important;
+	transition:
+		background var(--vwrt-transition-fast),
+		box-shadow var(--vwrt-transition-fast) !important;
+}
+
+/* Quick Actions buttons — per-slot role colour via nth-child
+   Order: 关闭链接(1) 重置防火墙(2) 刷新DNS缓存(3) 检查更新(4)            */
+body[data-page^="admin-services-openclash"] .oc .quick-actions-buttons > *:nth-child(1),
+body.vwrt-page-openclash #maincontent .quick-actions-buttons > *:nth-child(1) {
+	background-color: var(--vw-role-danger-bg)  !important;
+	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 70%) !important;
+}
+body[data-page^="admin-services-openclash"] .oc .quick-actions-buttons > *:nth-child(2),
+body.vwrt-page-openclash #maincontent .quick-actions-buttons > *:nth-child(2) {
+	background-color: var(--vw-role-warning-bg) !important;
+	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 70%) !important;
+}
+body[data-page^="admin-services-openclash"] .oc .quick-actions-buttons > *:nth-child(3),
+body.vwrt-page-openclash #maincontent .quick-actions-buttons > *:nth-child(3) {
+	background-color: var(--vw-role-success-bg) !important;
+	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 32%, transparent), transparent 70%) !important;
+}
+body[data-page^="admin-services-openclash"] .oc .quick-actions-buttons > *:nth-child(4),
+body.vwrt-page-openclash #maincontent .quick-actions-buttons > *:nth-child(4) {
+	background-color: var(--vw-role-info-bg)    !important;
+	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 70%) !important;
+}
+
+/* Control panel dashboard links (Metacubexd, Zashboard) — neutral tone */
+body[data-page^="admin-services-openclash"] .oc .card-actions > .dashboard-btn,
+body.vwrt-page-openclash #maincontent .card-actions > .dashboard-btn {
+	color: var(--vw-text-main) !important;
+	background-color: var(--vw-action-neutral-bg) !important;
+	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 26%, transparent), transparent 70%) !important;
+	border: 1px solid color-mix(in srgb, var(--vw-border-soft) 46%, transparent) !important;
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 20%, transparent) inset !important;
+}
+
+/* Config upload large button — success green */
+body[data-page^="admin-services-openclash"] .oc .config-upload-btn-large,
+body.vwrt-page-openclash #maincontent .config-upload-btn-large {
+	border: 1px solid transparent !important;
+	color: #ffffff !important;
+	background-color: #28c973 !important;
+	background-image: linear-gradient(135deg, #51df93, #28c973) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #28c973 45%, transparent) !important;
+}
+body[data-page^="admin-services-openclash"] .oc .config-upload-btn-large:hover,
+body.vwrt-page-openclash #maincontent .config-upload-btn-large:hover {
+	background-color: #36d27f !important;
+	background-image: linear-gradient(135deg, #61e89e, #36d27f) !important;
+}
+
+
+/* ── OpenClash Dashboard Button Unification ─────────────────────────────── */
 /* Override the hardcoded #1473e6 / var(--primary-color) inside status.htm
    with VitraWrt role-mapped button styles.                                  */
 
