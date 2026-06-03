@@ -5083,3 +5083,140 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 #maincontent .ifacebox-body {
     overflow: visible !important;
 }
+
+/* ── OpenClash Dashboard Button Unification ─────────────────────────────── */
+/* Override the hardcoded #1473e6 / var(--primary-color) inside status.htm
+   with VitraWrt role-mapped button styles.                                  */
+
+/* Base: all .dashboard-btn get the same shape/geometry as our .btn */
+body[data-page^="admin-services-openclash"] .oc .dashboard-btn,
+body.vwrt-page-openclash #maincontent .dashboard-btn {
+	border-radius: var(--vw-radius-field) !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	transition:
+		background var(--vwrt-transition-fast),
+		border-color var(--vwrt-transition-fast),
+		box-shadow var(--vwrt-transition-fast) !important;
+}
+
+/* ── Control Panel / Dashboard links (Metacubexd, Zashboard, etc.)
+   → neutral tone: same as our general action-btn / info role             */
+body[data-page^="admin-services-openclash"] .oc .card-actions > .dashboard-btn,
+body.vwrt-page-openclash #maincontent .card-actions > .dashboard-btn {
+	border: 1px solid color-mix(in srgb, var(--vw-border-soft) 46%, transparent) !important;
+	color: var(--vw-text-main) !important;
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 26%, transparent), transparent 70%),
+		var(--vw-action-neutral-bg) !important;
+	background-color: var(--vw-action-neutral-bg) !important;
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 20%, transparent) inset !important;
+}
+
+body[data-page^="admin-services-openclash"] .oc .card-actions > .dashboard-btn:hover,
+body.vwrt-page-openclash #maincontent .card-actions > .dashboard-btn:hover {
+	border-color: color-mix(in srgb, var(--vw-border-soft) 70%, transparent) !important;
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 32%, transparent), transparent 70%),
+		var(--vw-surface-hover) !important;
+	box-shadow: var(--vwrt-shadow-sm) !important;
+}
+
+/* ── Quick Actions: 关闭链接 → danger, 重置防火墙 → warning,
+                   刷新DNS缓存 → success, 检查更新 → info          */
+
+/* 关闭链接 / Close Connections */
+body[data-page^="admin-services-openclash"] .oc #_close_all_connection_btn,
+body.vwrt-page-openclash #maincontent #_close_all_connection_btn {
+	border: 1px solid transparent !important;
+	color: var(--vw-role-danger-text) !important;
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 70%),
+		var(--vw-role-danger-bg) !important;
+	background-color: var(--vw-role-danger-bg) !important;
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 20%, transparent) inset !important;
+}
+
+body[data-page^="admin-services-openclash"] .oc #_close_all_connection_btn:hover,
+body.vwrt-page-openclash #maincontent #_close_all_connection_btn:hover {
+	background-color: color-mix(in srgb, var(--vw-role-danger-bg) 115%, transparent) !important;
+}
+
+/* 重置防火墙 / Reload Firewall */
+body[data-page^="admin-services-openclash"] .oc #_reload_firewall_btn,
+body.vwrt-page-openclash #maincontent #_reload_firewall_btn {
+	border: 1px solid transparent !important;
+	color: var(--vw-role-warning-text) !important;
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 30%, transparent), transparent 70%),
+		var(--vw-role-warning-bg) !important;
+	background-color: var(--vw-role-warning-bg) !important;
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 20%, transparent) inset !important;
+}
+
+body[data-page^="admin-services-openclash"] .oc #_reload_firewall_btn:hover,
+body.vwrt-page-openclash #maincontent #_reload_firewall_btn:hover {
+	background-color: color-mix(in srgb, var(--vw-role-warning-bg) 115%, transparent) !important;
+}
+
+/* 刷新DNS缓存 / Flush DNS Cache */
+body[data-page^="admin-services-openclash"] .oc #_flush_dns_cache_btn,
+body.vwrt-page-openclash #maincontent #_flush_dns_cache_btn {
+	border: 1px solid transparent !important;
+	color: var(--vw-role-success-text) !important;
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 32%, transparent), transparent 70%),
+		var(--vw-role-success-bg) !important;
+	background-color: var(--vw-role-success-bg) !important;
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 22%, transparent) inset !important;
+}
+
+body[data-page^="admin-services-openclash"] .oc #_flush_dns_cache_btn:hover,
+body.vwrt-page-openclash #maincontent #_flush_dns_cache_btn:hover {
+	background-color: color-mix(in srgb, var(--vw-role-success-bg) 115%, transparent) !important;
+}
+
+/* 检查更新 / Check Update (one-key update) */
+body[data-page^="admin-services-openclash"] .oc #_one_key_update_btn,
+body.vwrt-page-openclash #maincontent #_one_key_update_btn {
+	border: 1px solid transparent !important;
+	color: var(--vw-role-info-text) !important;
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 30%, transparent), transparent 70%),
+		var(--vw-role-info-bg) !important;
+	background-color: var(--vw-role-info-bg) !important;
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 20%, transparent) inset !important;
+}
+
+body[data-page^="admin-services-openclash"] .oc #_one_key_update_btn:hover,
+body.vwrt-page-openclash #maincontent #_one_key_update_btn:hover {
+	background-color: color-mix(in srgb, var(--vw-role-info-bg) 115%, transparent) !important;
+}
+
+/* ── Config upload large button (添加配置文件) → success primary tone   */
+body[data-page^="admin-services-openclash"] .oc .config-upload-btn-large,
+body.vwrt-page-openclash #maincontent .config-upload-btn-large {
+	border: 1px solid transparent !important;
+	color: #ffffff !important;
+	background-color: #28c973 !important;
+	background-image: linear-gradient(135deg, #51df93, #28c973) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #28c973 45%, transparent) !important;
+}
+
+body[data-page^="admin-services-openclash"] .oc .config-upload-btn-large:hover,
+body.vwrt-page-openclash #maincontent .config-upload-btn-large:hover {
+	background-color: #36d27f !important;
+	background-image: linear-gradient(135deg, #61e89e, #36d27f) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #28c973 55%, transparent) !important;
+}
+
+/* ── core-control-buttons: Start/Stop core use success/danger roles        */
+body[data-page^="admin-services-openclash"] .oc .core-control-buttons > *,
+body.vwrt-page-openclash #maincontent .core-control-buttons > * {
+	border: 1px solid color-mix(in srgb, var(--vw-border-soft) 46%, transparent) !important;
+	color: var(--vw-text-main) !important;
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 26%, transparent), transparent 70%),
+		var(--vw-action-neutral-bg) !important;
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 20%, transparent) inset !important;
+}
