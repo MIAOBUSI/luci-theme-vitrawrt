@@ -394,7 +394,7 @@ html[data-vwrt-glass="low"] .vwrt-auth-card {
 }
 
 .vwrt-auth-card label {
-	color: var(--vw-text-muted) !important;
+	color: var(--vw-text-main) !important;
 }
 
 .vwrt-auth-card input[type="text"],
@@ -560,19 +560,26 @@ body.vwrt-shell-body {
 	box-shadow: var(--vw-highlight-inner), 0 14px 30px color-mix(in srgb, var(--vw-cyan) 10%, transparent);
 }
 
-/* Stage 1.21 login correction: keep the submit calm but visibly material. */
+/* Stage 1.21 login correction: vibrant Apple Blue material for consistency. */
 .vwrt-auth-submit,
 button[type="submit"].vwrt-auth-submit,
 .vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit,
 .vwrt-auth-card button.vwrt-auth-submit,
 .vwrt-auth-card input[type="submit"].vwrt-auth-submit {
-	border-color: var(--vw-action-primary-border);
-	color: var(--vw-action-primary-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 42%, transparent), transparent 68%),
-		var(--vw-action-primary-bg);
-	background-color: var(--vw-button-primary-solid);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 36%, transparent) inset,
-		0 10px 24px color-mix(in srgb, var(--vw-accent) 8%, transparent);
+	border: 1px solid transparent !important;
+	color: #ffffff !important;
+	background-color: #5f7cf8 !important;
+	background-image: linear-gradient(135deg, #6b8df8, #4f6cf6) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, #4f6cf6 45%, transparent) !important;
+}
+
+.vwrt-auth-submit:hover,
+button[type="submit"].vwrt-auth-submit:hover,
+.vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit:hover,
+.vwrt-auth-card button.vwrt-auth-submit:hover,
+.vwrt-auth-card input[type="submit"].vwrt-auth-submit:hover {
+	color: #ffffff !important;
+	background-color: #6a86fd !important;
+	background-image: linear-gradient(135deg, #7897fd, #5b76f9) !important;
+	box-shadow: 0 6px 18px color-mix(in srgb, #4f6cf6 55%, transparent) !important;
 }
