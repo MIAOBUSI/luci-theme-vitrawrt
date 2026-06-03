@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-theme-vitrawrt
-PKG_VERSION:=1.41.80
+PKG_VERSION:=1.41.81
 PKG_RELEASE:=1
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=VitraWrt contributors
@@ -51,3 +51,6 @@ endif
 include $(LUCI_MK)
 
 # call BuildPackage - OpenWrt buildroot signature
+
+define CssTidy
+endef
