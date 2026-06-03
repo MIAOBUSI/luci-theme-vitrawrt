@@ -334,7 +334,7 @@ samp {
 .vwrt-auth-card label {
 	display: block;
 	margin: 0 0 8px;
-	color: var(--vwrt-text-muted);
+	color: var(--vw-text-muted) !important;
 	font-weight: var(--vitra-font-weight-medium);
 }
 
@@ -347,10 +347,11 @@ samp {
 	width: 100%;
 	min-height: 46px;
 	padding: 0 14px;
-	border: 1px solid var(--vwrt-border);
+	border: 1px solid var(--vw-border) !important;
 	border-radius: 16px;
-	background: var(--vwrt-surface-elevated);
-	box-shadow: inset 0 1px 0 var(--vwrt-panel-highlight);
+	background: var(--vw-bg-element) !important;
+	color: var(--vw-text) !important;
+	box-shadow: none !important;
 }
 
 .vwrt-auth-card button,
@@ -358,34 +359,25 @@ samp {
 	width: 100%;
 	min-height: 46px;
 	margin-top: 22px;
-	border: 1px solid var(--vwrt-accent-border);
 	border-radius: 999px;
-	color: var(--vwrt-inverse-text);
-	background: var(--vwrt-accent);
-	background-color: var(--vwrt-accent);
 	font-weight: var(--vitra-font-weight-strong);
 }
 
 .vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit,
 .vwrt-auth-card button.vwrt-auth-submit,
 .vwrt-auth-card input[type="submit"].vwrt-auth-submit {
-	border-color: var(--vwrt-accent-border);
-	color: #ffffff;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 24%, transparent), transparent 68%),
-		var(--vwrt-accent);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 30%, transparent) inset,
-		0 14px 30px color-mix(in srgb, var(--vwrt-accent) 26%, transparent);
+	border: 1px solid var(--vw-primary-color) !important;
+	color: #ffffff !important;
+	background: var(--vw-primary-color) !important;
+	box-shadow: 0 4px 14px color-mix(in srgb, var(--vw-primary-color) 42%, transparent) !important;
+	text-shadow: none !important;
 }
 
 .vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit:hover,
 .vwrt-auth-card button.vwrt-auth-submit:hover,
 .vwrt-auth-card input[type="submit"].vwrt-auth-submit:hover {
-	border-color: color-mix(in srgb, var(--vwrt-accent-strong) 82%, #ffffff);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 22%, transparent), transparent),
-		var(--vwrt-accent-strong);
+	opacity: 0.9 !important;
+	box-shadow: 0 6px 20px color-mix(in srgb, var(--vw-primary-color) 52%, transparent) !important;
 }
 
 html[data-vwrt-glass="low"] .vwrt-auth-card {
