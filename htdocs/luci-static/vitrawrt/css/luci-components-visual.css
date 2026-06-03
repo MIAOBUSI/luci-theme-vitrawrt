@@ -8,18 +8,8 @@
 #maincontent .cbi-section,
 #maincontent fieldset {
 	margin-bottom: 26px;
-	padding: clamp(20px, 2.2vw, 30px);
 	border: 1px solid var(--vw-border-hairline);
-	border-radius: var(--vw-radius-panel);
 	color: var(--vw-text);
-	background:
-		var(--vw-vision-sheen),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-violet) 8%, transparent), transparent 38%),
-		radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--vw-cyan) 6%, transparent), transparent 30%),
-		linear-gradient(160deg, color-mix(in srgb, var(--vw-surface-glass-1) 84%, transparent), color-mix(in srgb, var(--vw-surface-glass-2) 90%, transparent));
-	box-shadow:
-		var(--vw-vision-sheen-inset),
-		var(--vw-shadow-panel);
 	backdrop-filter: blur(var(--vw-blur-panel)) saturate(112%);
 	-webkit-backdrop-filter: blur(var(--vw-blur-panel)) saturate(112%);
 }
@@ -27,14 +17,7 @@
 #maincontent .cbi-section-node {
 	padding: clamp(14px, 1.45vw, 20px);
 	border: 1px solid var(--vw-border-hairline);
-	border-radius: var(--vw-radius-card);
 	color: var(--vw-text);
-	background:
-		var(--vw-vision-sheen),
-		linear-gradient(155deg, color-mix(in srgb, var(--vw-surface-inner) 80%, transparent), color-mix(in srgb, var(--vw-surface-soft) 86%, transparent));
-	box-shadow:
-		var(--vw-vision-sheen-inset),
-		var(--vw-shadow-card);
 }
 
 #maincontent .cbi-map > h2,
@@ -55,24 +38,13 @@
 #maincontent .cbi-value-description,
 #maincontent .help-block,
 #maincontent small {
-	color: var(--vw-text-soft);
 	line-height: 1.55;
 }
 
 /* Designed form rows: Continuous Apple Settings layout, weightless rows with hairline dividers. */
 #maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]) {
-	display: flex;
 	flex-wrap: wrap;
-	align-items: flex-start;
-	gap: 10px 20px;
-	margin: 0;
-	padding: var(--vw-form-row-pad-y) var(--vw-form-row-pad-x);
-	border: 0;
-	border-bottom: var(--vw-settings-row-border);
-	border-radius: 0;
 	color: var(--vw-text);
-	background: transparent;
-	box-shadow: none;
 }
 
 #maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]):last-child {
@@ -83,16 +55,12 @@
 #maincontent .cbi-value label.cbi-value-title {
 	flex: 0 0 clamp(150px, 20vw, 230px);
 	padding-top: 14px;
-	color: var(--vw-muted);
-	font-weight: 690;
 	line-height: 1.34;
 	text-align: left;
 }
 
 #maincontent .cbi-value-field {
-	flex: 1 1 340px;
 	margin-inline-start: 0;
-	color: var(--vw-text);
 }
 
 #maincontent .cbi-value-field > * + * {
@@ -162,11 +130,6 @@
 .modal select,
 .cbi-modal select,
 [role="dialog"] select {
-	appearance: none;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-	background-repeat: no-repeat;
-	background-position: right 14px center;
-	background-size: 16px;
 	padding-right: 40px;
 }
 
@@ -244,7 +207,6 @@
 .modal textarea,
 .cbi-modal textarea,
 [role="dialog"] textarea {
-	line-height: 1.55;
 	border-radius: 20px;
 }
 
@@ -324,23 +286,6 @@
 }
 
 /* Dynamic lists and dropdown popovers: visual only, no open/close lifecycle. */
-#maincontent .cbi-dynlist,
-#maincontent .cbi-dynlist-item,
-.modal .cbi-dynlist,
-.modal .cbi-dynlist-item,
-[role="dialog"] .cbi-dynlist,
-[role="dialog"] .cbi-dynlist-item {
-	padding: 7px;
-	border-color: color-mix(in srgb, var(--vw-border) 74%, transparent);
-	border-radius: 20px;
-	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 48%, transparent), transparent 74%),
-		color-mix(in srgb, var(--vw-surface-inner) 78%, transparent);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 60%, transparent) inset,
-		0 8px 22px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent);
-}
 
 #maincontent .cbi-dropdown ul.dropdown,
 .modal .cbi-dropdown ul.dropdown,
@@ -783,23 +728,10 @@
 #maincontent .cbi-page-actions,
 #maincontent #applyreboot-section,
 #maincontent #uci-apply {
-	width: fit-content;
-	max-width: 100%;
 	margin-top: 22px;
-	margin-inline-start: auto;
 	margin-inline-end: 0;
-	padding: 11px;
 	border: 1px solid color-mix(in srgb, var(--vw-border) 86%, transparent);
-	border-radius: 28px;
 	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 72%, transparent), transparent 46%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-violet) 13%, transparent), transparent 42%),
-		radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--vw-cyan) 9%, transparent), transparent 36%),
-		color-mix(in srgb, var(--vw-surface-strong) 92%, transparent);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 78%, transparent) inset,
-		0 24px 70px color-mix(in srgb, var(--vw-shadow-color) 18%, transparent);
 	backdrop-filter: blur(var(--vw-blur-soft)) saturate(112%);
 	-webkit-backdrop-filter: blur(var(--vw-blur-soft)) saturate(112%);
 }
@@ -810,8 +742,6 @@
 #maincontent #applyreboot-section .cbi-button,
 #maincontent #uci-apply .btn,
 #maincontent #uci-apply .cbi-button {
-	min-height: 46px;
-	padding: 12px 19px;
 	border-radius: var(--vw-radius-pill);
 }
 
@@ -887,130 +817,31 @@
 }
 
 /* Tables: material scan quality, not layout normalization. */
-#maincontent table,
-#maincontent .table,
-#maincontent .cbi-section-table {
-	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 24%, transparent), transparent 42%),
-		color-mix(in srgb, var(--vw-surface-table-row) 86%, transparent);
-}
-
-#maincontent th,
-#maincontent .th {
-	padding: 12px 15px;
-	border-color: color-mix(in srgb, var(--vw-border) 62%, transparent);
-	color: var(--vw-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 56%, transparent), transparent 72%),
-		color-mix(in srgb, var(--vw-surface-table-head) 92%, transparent);
-	font-weight: 760;
-}
-
-#maincontent td,
-#maincontent .td {
-	padding: 12px 15px;
-	border-color: color-mix(in srgb, var(--vw-border) 46%, transparent);
-	background: color-mix(in srgb, var(--vw-surface-table-row) 82%, transparent);
-}
-
-#maincontent tr:nth-child(even) td,
-#maincontent .tr:nth-child(even) .td,
-#maincontent .cbi-section-table-row:nth-child(even) .td {
-	background: color-mix(in srgb, var(--vw-surface-table-row-alt) 78%, transparent);
-}
-
-#maincontent tr:hover td,
-#maincontent .tr:hover .td {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 22%, transparent), transparent 72%),
-		color-mix(in srgb, var(--vw-cyan) 7%, var(--vw-surface-table-row));
-}
 
 /* Glass progress:not(.vw-progressbar-upgraded) troughs. */
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progress:not(.vw-progressbar-upgraded),
-#maincontent progress:not(.vw-progressbar-upgraded) {
-	height: 20px;
-	border: 1px solid color-mix(in srgb, var(--vw-border) 78%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 64%, transparent), transparent 52%),
-		radial-gradient(circle at 14% 24%, color-mix(in srgb, var(--vw-cyan) 12%, transparent), transparent 34%),
-		color-mix(in srgb, var(--vw-progress-track) 96%, transparent);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 74%, transparent) inset,
-		0 -10px 22px color-mix(in srgb, var(--vitra-inner-dim) 84%, transparent) inset,
-		0 10px 24px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent);
-}
-
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progress:not(.vw-progressbar-upgraded) div,
-#maincontent progress::-webkit-progress-value {
-	border-radius: var(--vw-radius-pill);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 36%, transparent), transparent 50%),
-		linear-gradient(90deg, var(--vw-progress-fill-a), var(--vw-progress-fill-b), var(--vw-progress-fill-c));
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 30%, transparent) inset,
-		0 0 0 1px color-mix(in srgb, #ffffff 10%, transparent) inset,
-		0 8px 18px color-mix(in srgb, var(--vw-cyan) 10%, transparent);
-}
-
-#maincontent progress::-webkit-progress-bar {
-	border-radius: var(--vw-radius-pill);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 64%, transparent), transparent 60%),
-		color-mix(in srgb, var(--vw-progress-track) 96%, transparent);
-}
 
 /* Port and network cards: stronger visual skin, native hover/sizing stays LuCI-owned. */
 #maincontent .ifacebox,
 #maincontent .ifacebadge {
-	border-color: color-mix(in srgb, var(--vw-border) 78%, transparent);
-	border-radius: 22px;
 	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 58%, transparent), transparent 58%),
-		radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--vw-accent) 11%, transparent), transparent 42%),
-		color-mix(in srgb, var(--vw-surface-raised) 76%, transparent);
 	background-clip: padding-box;
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 72%, transparent) inset,
-		0 14px 32px color-mix(in srgb, var(--vw-shadow-color) 10%, transparent);
 }
 
 #maincontent .ifacebox .ifacebox-head {
 	padding: 5px 8px;
-	border-color: color-mix(in srgb, var(--vw-border) 62%, transparent);
 	border-radius: 20px 20px 0 0;
-	color: var(--vw-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 56%, transparent), transparent 72%),
-		color-mix(in srgb, var(--vw-surface-table-head) 86%, transparent);
 	font-weight: 760;
 }
 
 #maincontent .ifacebox .ifacebox-head.active,
 #maincontent .network-status-table .ifacebox .ifacebox-head.active {
-	border-color: color-mix(in srgb, var(--vw-accent) 20%, var(--vw-border));
-	color: var(--vw-accent-ink);
 	text-shadow: none;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 70%, transparent), transparent 62%),
-		color-mix(in srgb, var(--vw-accent) 11%, var(--vw-material-primary));
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight) 74%, transparent) inset;
 }
 
 #maincontent .ifacebox .ifacebox-body {
 	padding: 8px;
 	border-radius: 0 0 20px 20px;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-surface-inner) 72%, transparent), transparent 82%),
-		color-mix(in srgb, var(--vw-surface-table-row-alt) 66%, transparent);
 }
 
 /* Modal/dialog/loading sheets. */
@@ -1039,16 +870,12 @@
 .modal-header,
 .modal-footer {
 	padding: 14px 16px;
-	border-color: color-mix(in srgb, var(--vw-border) 60%, transparent);
 	border-radius: 22px;
-	background: transparent;
 }
 
 .modal-body {
 	padding: 16px;
 	border-radius: 24px;
-	color: var(--vw-text);
-	background: transparent;
 }
 
 
@@ -1106,46 +933,8 @@
 }
 
 /* 3. CBI maps and sections */
-#maincontent .cbi-map,
-#maincontent .cbi-section,
-#maincontent fieldset {
-	border-color: var(--vw-border-hairline);
-	border-radius: var(--vw-radius-2xl);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 76%, transparent), transparent 30%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-bg-mesh-violet) 54%, transparent), transparent 38%),
-		radial-gradient(circle at 94% 4%, color-mix(in srgb, var(--vw-bg-mesh-cyan) 48%, transparent), transparent 42%),
-		var(--vw-surface-glass-1);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-card);
-}
-
-#maincontent .cbi-section-node {
-	border-color: var(--vw-border-soft);
-	border-radius: var(--vw-radius-xl);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 54%, transparent), transparent 64%),
-		var(--vw-surface-sunken);
-	box-shadow: var(--vw-highlight-inner), 0 10px 26px color-mix(in srgb, var(--vw-shadow-color) 6%, transparent);
-}
 
 /* 4. Form rows */
-#maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]) {
-	border-color: var(--vw-border-hairline);
-	border-radius: var(--vw-radius-xl);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 52%, transparent), transparent 70%),
-		var(--vw-surface-glass-2);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 62%, transparent) inset;
-}
-
-#maincontent .cbi-value-title,
-#maincontent .cbi-value label.cbi-value-title {
-	color: var(--vw-text-muted);
-}
-
-#maincontent .cbi-value-field {
-	color: var(--vw-text-main);
-}
 
 /* 5. Field system */
 #maincontent input[type="text"],
@@ -1217,40 +1006,8 @@
 }
 
 /* 6. cbi-dropdown and dynlist */
-#maincontent .cbi-dynlist,
-#maincontent .cbi-dynlist-item,
-.modal .cbi-dynlist,
-.modal .cbi-dynlist-item,
-[role="dialog"] .cbi-dynlist,
-[role="dialog"] .cbi-dynlist-item {
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-lg);
-	background: var(--vw-surface-sunken);
-	box-shadow: var(--vw-highlight-inner);
-}
 
 /* ul.dropdown glass style consolidated into the block above — no duplicate here */
-
-
-#maincontent .cbi-dropdown ul.dropdown > li,
-.modal .cbi-dropdown ul.dropdown > li,
-[role="dialog"] .cbi-dropdown ul.dropdown > li {
-	border-radius: var(--vw-radius-sm);
-	color: var(--vw-text-muted);
-}
-
-#maincontent .cbi-dropdown ul.dropdown > li:hover,
-#maincontent .cbi-dropdown ul.dropdown > li[selected],
-#maincontent .cbi-dropdown ul.dropdown > li[aria-selected="true"],
-.modal .cbi-dropdown ul.dropdown > li:hover,
-.modal .cbi-dropdown ul.dropdown > li[selected],
-.modal .cbi-dropdown ul.dropdown > li[aria-selected="true"],
-[role="dialog"] .cbi-dropdown ul.dropdown > li:hover,
-[role="dialog"] .cbi-dropdown ul.dropdown > li[selected],
-[role="dialog"] .cbi-dropdown ul.dropdown > li[aria-selected="true"] {
-	color: var(--vw-accent-ink);
-	background: color-mix(in srgb, var(--vw-cyan) 12%, var(--vw-surface-control-active));
-}
 
 #maincontent .cbi-dropdown > ul:not(.dropdown),
 .modal .cbi-dropdown > ul:not(.dropdown),
@@ -1273,181 +1030,14 @@
 }
 
 /* 7. Tabs */
-#maincontent .tabs,
-#maincontent .cbi-tabmenu,
-#tabmenu .tabs,
-#tabmenu .cbi-tabmenu,
-.modal .tabs,
-.modal .cbi-tabmenu,
-[role="dialog"] .tabs,
-[role="dialog"] .cbi-tabmenu {
-	margin-bottom: 18px;
-	padding: 0;
-	border-color: transparent;
-	background: transparent;
-	box-shadow: none;
-}
-
-#maincontent .tabs a,
-#maincontent .cbi-tabmenu a,
-#tabmenu .tabs a,
-#tabmenu .cbi-tabmenu a,
-.modal .tabs a,
-.modal .cbi-tabmenu a,
-[role="dialog"] .tabs a,
-[role="dialog"] .cbi-tabmenu a {
-	min-height: var(--vw-tab-height);
-	padding: 10px 17px;
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 60%, transparent), transparent 68%),
-		var(--vw-surface-control);
-	box-shadow: var(--vw-highlight-inner), 0 9px 20px color-mix(in srgb, var(--vw-shadow-color) 6%, transparent);
-}
-
-#maincontent .cbi-tab > a,
-#maincontent .tabs .active > a,
-#maincontent .tabs .cbi-tab > a,
-#tabmenu .cbi-tab > a,
-#tabmenu .tabs .active > a,
-.modal .cbi-tab > a,
-.modal .tabs .active > a,
-[role="dialog"] .cbi-tab > a,
-[role="dialog"] .tabs .active > a {
-	border-color: color-mix(in srgb, var(--vw-cyan) 34%, var(--vw-border-medium));
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 70%, transparent), transparent 64%),
-		color-mix(in srgb, var(--vw-cyan) 12%, var(--vw-surface-control-active));
-	box-shadow: var(--vw-highlight-inner), 0 12px 28px color-mix(in srgb, var(--vw-cyan) 9%, transparent);
-}
 
 /* 8. Buttons */
-#maincontent button,
-#maincontent input[type="button"],
-#maincontent input[type="submit"],
-#maincontent input[type="reset"],
-#maincontent .btn,
-#maincontent a.btn,
-#maincontent .cbi-button,
-.modal .btn,
-.modal .cbi-button,
-.modal button,
-.modal input[type="button"],
-.modal input[type="submit"],
-.modal input[type="reset"],
-[role="dialog"] .btn,
-[role="dialog"] .cbi-button,
-[role="dialog"] button,
-[role="dialog"] input[type="button"],
-[role="dialog"] input[type="submit"],
-[role="dialog"] input[type="reset"] {
-	min-height: var(--vw-button-height);
-	border-color: var(--vw-border-medium);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 66%, transparent), transparent 64%),
-		var(--vw-surface-control);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-soft);
-}
-
-#maincontent .cbi-button-positive,
-#maincontent .cbi-button-apply,
-#maincontent .cbi-button-save,
-#maincontent .btn-primary,
-#maincontent .btn-success,
-#maincontent input[type="submit"],
-.modal .btn-primary,
-.modal .btn-success,
-.modal .cbi-button-positive,
-.modal .cbi-button-save,
-.modal .cbi-button-apply,
-.modal input[type="submit"],
-[role="dialog"] .btn-primary,
-[role="dialog"] .btn-success,
-[role="dialog"] .cbi-button-positive,
-[role="dialog"] .cbi-button-save,
-[role="dialog"] .cbi-button-apply,
-[role="dialog"] input[type="submit"] {
-	border-color: color-mix(in srgb, var(--vw-cyan) 30%, var(--vw-border-medium));
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 70%, transparent), transparent 58%),
-		linear-gradient(135deg, color-mix(in srgb, var(--vw-cyan) 13%, var(--vw-surface-control-active)), var(--vw-surface-control-active));
-	background-color: color-mix(in srgb, var(--vw-cyan) 14%, var(--vw-surface-control-active));
-}
 
 /* 9. Apply dock */
-#maincontent .cbi-page-actions,
-#maincontent #applyreboot-section,
-#maincontent #uci-apply {
-	width: fit-content;
-	max-width: 100%;
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-2xl);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 72%, transparent), transparent 48%),
-		radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--vw-bg-mesh-cyan) 40%, transparent), transparent 38%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
 
 /* 10. Tables visual skin */
-#maincontent table,
-#maincontent .table,
-#maincontent .cbi-section-table {
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 18%, transparent), transparent 42%),
-		var(--vw-surface-table-row);
-}
-
-#maincontent th,
-#maincontent .th {
-	border-color: var(--vw-border-soft);
-	color: var(--vw-text-muted);
-	background: var(--vw-surface-table-head);
-}
-
-#maincontent td,
-#maincontent .td {
-	border-color: var(--vw-border-hairline);
-	background: var(--vw-surface-table-row);
-}
-
-#maincontent tr:nth-child(even) td,
-#maincontent .tr:nth-child(even) .td,
-#maincontent .cbi-section-table-row:nth-child(even) .td {
-	background: var(--vw-surface-table-row-alt);
-}
 
 /* 11. Progress bars */
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progress:not(.vw-progressbar-upgraded),
-#maincontent progress:not(.vw-progressbar-upgraded) {
-	height: 19px;
-	border-color: var(--vw-border-medium);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 48%, transparent), transparent 56%),
-		radial-gradient(circle at 12% 34%, color-mix(in srgb, var(--vw-accent) 12%, transparent), transparent 36%),
-		var(--vw-progress-track);
-	box-shadow: var(--vw-highlight-inner), 0 10px 24px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent);
-}
-
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progress:not(.vw-progressbar-upgraded) div,
-#maincontent progress::-webkit-progress-value {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 32%, transparent), transparent 52%),
-		linear-gradient(90deg, color-mix(in srgb, var(--vw-accent) 42%, var(--vw-progress-fill-a)), var(--vw-cyan), color-mix(in srgb, var(--vw-accent) 52%, var(--vw-progress-fill-c)));
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 26%, transparent) inset,
-		0 8px 18px color-mix(in srgb, var(--vw-cyan) 10%, transparent);
-}
 
 /* 12. ifacebox and network cards */
 #maincontent .ifacebox,
@@ -1467,34 +1057,11 @@
 	background: var(--vw-surface-table-head);
 }
 
-#maincontent .ifacebox .ifacebox-head.active,
-#maincontent .network-status-table .ifacebox .ifacebox-head.active {
-	border-color: color-mix(in srgb, var(--vw-accent) 30%, var(--vw-border-medium));
-	color: var(--vw-accent-ink);
-	background: color-mix(in srgb, var(--vw-accent) 12%, var(--vw-surface-control-active));
-}
-
 #maincontent .ifacebox .ifacebox-body {
 	background: var(--vw-surface-sunken);
 }
 
 /* 13. Modals */
-.modal,
-.modal-dialog,
-.modal-content,
-.cbi-modal,
-[role="dialog"],
-.ui-dialog,
-.dialog {
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-2xl);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 74%, transparent), transparent 40%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-bg-mesh-violet) 52%, transparent), transparent 42%),
-		radial-gradient(circle at 100% 4%, color-mix(in srgb, var(--vw-bg-mesh-cyan) 38%, transparent), transparent 42%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
-}
 
 .modal-header,
 .modal-footer {
@@ -1508,29 +1075,8 @@
 }
 
 /* 14. Loading / applying / session timeout dialogs */
-.spinning,
-#view > .spinning,
-.modal .spinning,
-[role="dialog"] .spinning {
-	border-color: var(--vw-border-medium);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 66%, transparent), transparent 56%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
 
 /* 15. Login page */
-.vwrt-auth-card,
-.vwrt-login-card,
-.vwrt-auth-panel {
-	border-color: var(--vw-border-medium);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 78%, transparent), transparent 44%),
-		radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--vw-bg-mesh-cyan) 44%, transparent), transparent 40%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
-}
 
 .vwrt-auth-submit,
 .vwrt-login-card button[type="submit"],
@@ -1633,22 +1179,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 }
 
 /* CBI maps and sections */
-#maincontent .cbi-map,
-#maincontent .cbi-section,
-#maincontent .cbi-section-node,
-#maincontent fieldset,
-#maincontent .panel,
-#maincontent .card {
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-panel);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 82%, transparent), transparent 34%),
-		radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--vw-bg-mesh-cyan) 32%, transparent), transparent 42%),
-		radial-gradient(circle at 98% 2%, color-mix(in srgb, var(--vw-bg-mesh-violet) 26%, transparent), transparent 45%),
-		var(--vw-surface-glass-2);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-card);
-}
 
 #maincontent .cbi-section,
 #maincontent .cbi-section-node,
@@ -1660,7 +1190,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 #maincontent .cbi-section > h3,
 #maincontent fieldset > legend {
 	margin-bottom: 14px;
-	color: var(--vw-text-strong);
 }
 
 #maincontent .cbi-section-descr,
@@ -1676,16 +1205,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 	gap: clamp(12px, 1.5vw, 22px);
 	padding: 13px 0;
 	border-color: var(--vw-border-hairline);
-}
-
-#maincontent .cbi-value-title {
-	color: var(--vw-text-soft);
-	font-weight: 660;
-	letter-spacing: 0;
-}
-
-#maincontent .cbi-value-field {
-	color: var(--vw-text-main);
 }
 
 /* Unified field system */
@@ -1783,26 +1302,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 	box-shadow: var(--vw-shadow-control);
 }
 
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul,
-.cbi-modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul {
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-xl);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 72%, transparent), transparent 46%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
-
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li,
-.cbi-modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li {
-	border-radius: var(--vw-radius-md);
-	color: var(--vw-text-main);
-}
-
 #maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[selected],
 #maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li:hover,
 .modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[selected],
@@ -1835,14 +1334,8 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 [role="dialog"] .cbi-tabmenu {
 	display: inline-flex;
 	width: fit-content;
-	gap: 6px;
 	margin-bottom: 18px;
-	padding: 4px;
 	align-items: center;
-	border: 1px solid color-mix(in srgb, var(--vw-border) 40%, transparent);
-	border-radius: var(--vw-radius-pill);
-	background: color-mix(in srgb, var(--vw-surface-inner) 60%, transparent);
-	box-shadow: inset 0 2px 4px color-mix(in srgb, #000 4%, transparent);
 }
 
 #maincontent .tabs > li > a,
@@ -1929,35 +1422,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-control);
 }
 
-#maincontent .cbi-button-positive,
-#maincontent .cbi-button-apply,
-#maincontent .cbi-button-save,
-#maincontent .btn-primary,
-#maincontent .btn-success,
-#maincontent input[type="submit"],
-.modal .btn-primary,
-.modal .btn-success,
-.modal .cbi-button-positive,
-.modal .cbi-button-save,
-.modal .cbi-button-apply,
-.modal input[type="submit"],
-[role="dialog"] .btn-primary,
-[role="dialog"] .btn-success,
-[role="dialog"] .cbi-button-positive,
-[role="dialog"] .cbi-button-save,
-[role="dialog"] .cbi-button-apply,
-[role="dialog"] input[type="submit"] {
-	border-color: color-mix(in srgb, var(--vw-accent) 34%, var(--vw-border-medium));
-	color: var(--vw-text-inverse);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 25%, transparent), transparent 62%),
-		linear-gradient(135deg, color-mix(in srgb, var(--vw-accent) 34%, #243746), color-mix(in srgb, var(--vw-cyan) 28%, #1a2b38));
-	background-color: var(--vw-button-primary-solid);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 28%, transparent) inset,
-		0 16px 34px color-mix(in srgb, var(--vw-cyan) 14%, transparent);
-}
-
 #maincontent .cbi-button-reset,
 #maincontent .cbi-button-remove,
 #maincontent .btn-danger,
@@ -1974,91 +1438,19 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 		color-mix(in srgb, var(--vw-danger-soft) 46%, var(--vw-surface-control));
 }
 
-#maincontent .cbi-page-actions,
-#maincontent #applyreboot-section,
-#maincontent #uci-apply {
-	width: fit-content;
-	max-width: 100%;
-	margin-left: auto;
-	padding: 10px;
-	border-color: var(--vw-border-medium);
-	border-radius: 28px;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 74%, transparent), transparent 54%),
-		radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--vw-bg-mesh-aqua) 35%, transparent), transparent 42%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
-
 /* Tables visual skin */
-#maincontent table,
-#maincontent .table,
-#maincontent .cbi-section-table {
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 42%),
-		var(--vw-surface-table-row);
-}
 
 #maincontent th,
 #maincontent .th {
-	border-color: var(--vw-border-soft);
-	color: var(--vw-text-muted);
 	font-weight: 740;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 52%, transparent), transparent 64%),
-		var(--vw-surface-table-head);
 }
 
 #maincontent td,
 #maincontent .td {
-	border-color: var(--vw-border-hairline);
 	color: var(--vw-text-main);
-	background: var(--vw-surface-table-row);
-}
-
-#maincontent tr:nth-child(even) td,
-#maincontent .tr:nth-child(even) .td,
-#maincontent .cbi-section-table-row:nth-child(even) .td {
-	background: var(--vw-surface-table-row-alt);
-}
-
-#maincontent tr:hover td,
-#maincontent .tr:hover .td {
-	background: color-mix(in srgb, var(--vw-accent) 8%, var(--vw-surface-table-row));
 }
 
 /* Progress bars */
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progress:not(.vw-progressbar-upgraded),
-#maincontent progress:not(.vw-progressbar-upgraded) {
-	height: 21px;
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 52%, transparent), transparent 58%),
-		radial-gradient(circle at 12% 34%, color-mix(in srgb, var(--vw-accent) 14%, transparent), transparent 38%),
-		var(--vw-progress-track);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 52%, transparent) inset,
-		0 -10px 22px color-mix(in srgb, var(--vw-text-inverse) 5%, transparent) inset,
-		0 10px 24px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent);
-}
-
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progress:not(.vw-progressbar-upgraded) div,
-#maincontent progress::-webkit-progress-value {
-	border-radius: var(--vw-radius-pill);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 34%, transparent), transparent 52%),
-		linear-gradient(90deg, var(--vw-progress-fill-a), var(--vw-progress-fill-b), var(--vw-progress-fill-c));
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 28%, transparent) inset,
-		0 8px 18px color-mix(in srgb, var(--vw-cyan) 12%, transparent);
-}
 
 /* ifacebox and network cards */
 #maincontent .ifacebox,
@@ -2068,34 +1460,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 #maincontent .ifacebox-head {
 	border-color: var(--vw-border-medium);
 	border-radius: var(--vw-radius-xl);
-}
-
-#maincontent .ifacebox,
-#maincontent .ifacebadge,
-#maincontent .network-status-table {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 66%, transparent), transparent 58%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-accent) 13%, transparent), transparent 42%),
-		var(--vw-surface-glass-2);
-	box-shadow: var(--vw-highlight-inner), 0 16px 36px color-mix(in srgb, var(--vw-shadow-color) 10%, transparent);
-}
-
-#maincontent .ifacebox .ifacebox-head,
-#maincontent .network-status-table .ifacebox-head {
-	color: var(--vw-text-muted);
-	background: color-mix(in srgb, var(--vw-surface-table-head) 88%, transparent);
-}
-
-#maincontent .ifacebox .ifacebox-head.active,
-#maincontent .network-status-table .ifacebox .ifacebox-head.active {
-	color: var(--vw-accent-ink);
-	background: color-mix(in srgb, var(--vw-accent) 14%, var(--vw-surface-control-active));
-}
-
-#maincontent .ifacebox .ifacebox-body,
-#maincontent .network-status-table .ifacebox-body {
-	color: var(--vw-text-main);
-	background: color-mix(in srgb, var(--vw-surface-sunken) 84%, transparent);
 }
 
 #maincontent .ifacebox .cbi-tooltip {
@@ -2115,97 +1479,12 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 }
 
 /* Modal and dialogs */
-.modal,
-.modal-dialog,
-.modal-content,
-.cbi-modal,
-[role="dialog"],
-.ui-dialog,
-.dialog {
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-modal);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 80%, transparent), transparent 38%),
-		radial-gradient(circle at 14% 0%, color-mix(in srgb, var(--vw-bg-mesh-violet) 44%, transparent), transparent 42%),
-		radial-gradient(circle at 100% 6%, color-mix(in srgb, var(--vw-bg-mesh-cyan) 36%, transparent), transparent 44%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
-}
-
-.modal-header,
-.modal-footer,
-.cbi-modal .modal-header,
-.cbi-modal .modal-footer,
-[role="dialog"] .modal-header,
-[role="dialog"] .modal-footer {
-	border-color: var(--vw-border-soft);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 60%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-surface-glass-2) 86%, transparent);
-}
-
-.modal-body,
-.cbi-modal .modal-body,
-[role="dialog"] .modal-body {
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 26%, transparent), transparent 56%),
-		color-mix(in srgb, var(--vw-surface-sunken) 76%, transparent);
-}
-
-.spinning,
-#view > .spinning,
-.modal .spinning,
-[role="dialog"] .spinning {
-	border-color: var(--vw-border-medium);
-	border-radius: var(--vw-radius-panel);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 70%, transparent), transparent 56%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-bg-mesh-cyan) 36%, transparent), transparent 44%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
 
 /* Stage 1.18 final visual repair layer.
  * Reference cascade palette/materials are adapted into visual-only LuCI skins.
  */
 
 /* Page shell, warnings, CBI panels */
-#maincontent .alert-message,
-#maincontent .alert,
-#maincontent .alert-warning,
-#maincontent .cbi-map,
-#maincontent .cbi-section,
-#maincontent .cbi-section-node,
-#maincontent fieldset,
-#maincontent .panel,
-#maincontent .card {
-	border-color: var(--vw-glass-border);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 78%, transparent), transparent 35%),
-		radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--vw-glow-cyan) 42%, transparent), transparent 42%),
-		radial-gradient(circle at 98% 4%, color-mix(in srgb, var(--vw-glow-violet) 34%, transparent), transparent 46%),
-		var(--vw-glass-panel);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-card);
-}
-
-#maincontent .cbi-map,
-#maincontent .cbi-section,
-#maincontent fieldset {
-	padding: var(--vw-panel-pad);
-	border-radius: var(--vw-radius-panel);
-}
-
-#maincontent .cbi-section-node {
-	border-radius: var(--vw-radius-card);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 54%, transparent), transparent 64%),
-		color-mix(in srgb, var(--vw-glass-inner) 70%, var(--vw-glass-panel));
-}
 
 #maincontent .cbi-map > h2,
 #maincontent .cbi-section > h3,
@@ -2222,22 +1501,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 }
 
 /* Form rows and unified frosted fields */
-#maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]) {
-	gap: 11px 20px;
-	padding: 14px 16px;
-	border-color: color-mix(in srgb, var(--vw-glass-border) 54%, transparent);
-	border-radius: 24px;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 34%, transparent), transparent 76%),
-		color-mix(in srgb, var(--vw-table-row-bg) 72%, transparent);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 44%, transparent) inset;
-}
-
-#maincontent .cbi-value-title,
-#maincontent .cbi-value label.cbi-value-title {
-	color: var(--vw-text-soft);
-	font-weight: 680;
-}
 
 #maincontent input[type="text"],
 #maincontent input[type="password"],
@@ -2288,83 +1551,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 		0 10px 24px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent);
 }
 
-#maincontent input:focus,
-#maincontent select:focus,
-#maincontent textarea:focus,
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button):focus,
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button):focus-within,
-.modal input:focus,
-.modal select:focus,
-.modal textarea:focus,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button):focus,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button):focus-within,
-[role="dialog"] input:focus,
-[role="dialog"] select:focus,
-[role="dialog"] textarea:focus,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):focus,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):focus-within {
-	border-color: var(--vw-border-focus);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 78%, transparent), transparent 68%),
-		radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--vw-glow-aqua) 20%, transparent), transparent 42%),
-		var(--vw-field-bg-focus);
-	box-shadow:
-		var(--vw-highlight-inner),
-		0 0 0 3px color-mix(in srgb, var(--vw-cyan) 17%, transparent),
-		0 14px 32px color-mix(in srgb, var(--vw-shadow-color) 10%, transparent);
-}
-
-#maincontent .cbi-dynlist,
-#maincontent .cbi-dynlist-item,
-.modal .cbi-dynlist,
-.modal .cbi-dynlist-item,
-[role="dialog"] .cbi-dynlist,
-[role="dialog"] .cbi-dynlist-item {
-	border-color: color-mix(in srgb, var(--vw-glass-border) 74%, transparent);
-	border-radius: 22px;
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 40%, transparent), transparent 74%),
-		color-mix(in srgb, var(--vw-glass-inner) 76%, transparent);
-	box-shadow: var(--vw-highlight-inner);
-}
-
-#maincontent .cbi-dropdown ul.dropdown,
-.modal .cbi-dropdown ul.dropdown,
-.cbi-modal .cbi-dropdown ul.dropdown,
-[role="dialog"] .cbi-dropdown ul.dropdown {
-	border-color: var(--vw-glass-border-strong);
-	border-radius: var(--vw-radius-xl);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 72%, transparent), transparent 54%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-glow-violet) 44%, transparent), transparent 42%),
-		var(--vw-glass-panel-strong);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
-
-#maincontent .cbi-dropdown ul.dropdown > li,
-.modal .cbi-dropdown ul.dropdown > li,
-[role="dialog"] .cbi-dropdown ul.dropdown > li {
-	border-radius: var(--vw-radius-sm);
-	color: var(--vw-text-muted);
-}
-
-#maincontent .cbi-dropdown ul.dropdown > li:hover,
-#maincontent .cbi-dropdown ul.dropdown > li[selected],
-#maincontent .cbi-dropdown ul.dropdown > li[aria-selected="true"],
-.modal .cbi-dropdown ul.dropdown > li:hover,
-.modal .cbi-dropdown ul.dropdown > li[selected],
-.modal .cbi-dropdown ul.dropdown > li[aria-selected="true"],
-[role="dialog"] .cbi-dropdown ul.dropdown > li:hover,
-[role="dialog"] .cbi-dropdown ul.dropdown > li[selected],
-[role="dialog"] .cbi-dropdown ul.dropdown > li[aria-selected="true"] {
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 58%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-accent) 13%, var(--vw-button-primary-bg));
-}
-
 /* Floating glass pills for page and modal tabs */
 #maincontent .tabs,
 #maincontent .cbi-tabmenu,
@@ -2381,262 +1567,15 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 	box-shadow: none;
 }
 
-#maincontent .tabs a,
-#maincontent .cbi-tabmenu a,
-#tabmenu .tabs a,
-#tabmenu .cbi-tabmenu a,
-.modal .tabs a,
-.modal .cbi-tabmenu a,
-[role="dialog"] .tabs a,
-[role="dialog"] .cbi-tabmenu a {
-	min-height: var(--vw-tab-height);
-	padding: 10px 17px;
-	border-color: color-mix(in srgb, var(--vw-glass-border) 78%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 58%, transparent), transparent 68%),
-		var(--vw-button-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 56%, transparent) inset,
-		0 10px 24px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent);
-}
-
-#maincontent .cbi-tab > a,
-#maincontent .tabs .active > a,
-#maincontent .tabs .cbi-tab > a,
-#tabmenu .cbi-tab > a,
-#tabmenu .tabs .active > a,
-.modal .cbi-tab > a,
-.modal .tabs .active > a,
-[role="dialog"] .cbi-tab > a,
-[role="dialog"] .tabs .active > a {
-	border-color: color-mix(in srgb, var(--vw-accent) 36%, var(--vw-glass-border));
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 72%, transparent), transparent 62%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-accent) 20%, transparent), transparent 44%),
-		var(--vw-button-primary-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 68%, transparent) inset,
-		0 14px 32px color-mix(in srgb, var(--vw-cyan) 11%, transparent);
-}
-
 /* Buttons and apply dock */
-#maincontent button,
-#maincontent input[type="button"],
-#maincontent input[type="submit"],
-#maincontent input[type="reset"],
-#maincontent .btn,
-#maincontent a.btn,
-#maincontent .cbi-button,
-.modal .btn,
-.modal .cbi-button,
-.modal button,
-.modal input[type="button"],
-.modal input[type="submit"],
-.modal input[type="reset"],
-[role="dialog"] .btn,
-[role="dialog"] .cbi-button,
-[role="dialog"] button,
-[role="dialog"] input[type="button"],
-[role="dialog"] input[type="submit"],
-[role="dialog"] input[type="reset"] {
-	min-height: var(--vw-button-height);
-	border-color: color-mix(in srgb, var(--vw-glass-border) 82%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 60%, transparent), transparent 66%),
-		var(--vw-button-bg);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-soft);
-}
-
-#maincontent .cbi-button-positive,
-#maincontent .cbi-button-apply,
-#maincontent .cbi-button-save,
-#maincontent .btn-primary,
-#maincontent .btn-success,
-#maincontent input[type="submit"],
-.modal .btn-primary,
-.modal .btn-success,
-.modal .cbi-button-positive,
-.modal .cbi-button-save,
-.modal .cbi-button-apply,
-.modal input[type="submit"],
-[role="dialog"] .btn-primary,
-[role="dialog"] .btn-success,
-[role="dialog"] .cbi-button-positive,
-[role="dialog"] .cbi-button-save,
-[role="dialog"] .cbi-button-apply,
-[role="dialog"] input[type="submit"] {
-	border-color: color-mix(in srgb, var(--vw-accent) 34%, var(--vw-glass-border));
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 70%, transparent), transparent 58%),
-		linear-gradient(135deg, color-mix(in srgb, var(--vw-accent) 18%, var(--vw-button-primary-bg)), color-mix(in srgb, var(--vw-cyan) 10%, var(--vw-button-primary-bg)));
-	background-color: var(--vw-button-primary-bg);
-}
-
-#maincontent .cbi-button-negative,
-#maincontent .cbi-button-reset,
-#maincontent .btn-danger,
-#maincontent input[type="reset"],
-.modal .btn-danger,
-.modal .cbi-button-negative,
-.modal .cbi-button-reset,
-.modal input[type="reset"],
-[role="dialog"] .btn-danger,
-[role="dialog"] .cbi-button-negative,
-[role="dialog"] .cbi-button-reset,
-[role="dialog"] input[type="reset"] {
-	border-color: color-mix(in srgb, var(--vw-danger) 34%, var(--vw-glass-border));
-	color: var(--vw-danger);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 56%, transparent), transparent 64%),
-		color-mix(in srgb, var(--vw-danger-soft) 72%, var(--vw-button-bg));
-}
-
-#maincontent .cbi-page-actions,
-#maincontent #applyreboot-section,
-#maincontent #uci-apply {
-	width: fit-content;
-	max-width: 100%;
-	margin-left: auto;
-	border-color: var(--vw-glass-border-strong);
-	border-radius: var(--vw-radius-2xl);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 72%, transparent), transparent 48%),
-		radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--vw-glow-cyan) 46%, transparent), transparent 40%),
-		var(--vw-glass-panel-strong);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
 
 /* Tables: visual material only, page-specific layout remains exceptions. */
-#maincontent table,
-#maincontent .table,
-#maincontent .cbi-section-table {
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 18%, transparent), transparent 42%),
-		var(--vw-table-row-bg);
-}
-
-#maincontent th,
-#maincontent .th {
-	border-color: var(--vw-border-soft);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 42%, transparent), transparent 70%),
-		var(--vw-table-head-bg);
-}
-
-#maincontent td,
-#maincontent .td {
-	border-color: var(--vw-border-hairline);
-	background: var(--vw-table-row-bg);
-}
-
-#maincontent tr:nth-child(even) td,
-#maincontent .tr:nth-child(even) .td,
-#maincontent .cbi-section-table-row:nth-child(even) .td {
-	background: var(--vw-table-row-alt-bg);
-}
-
-#maincontent tr:hover td,
-#maincontent .tr:hover .td {
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 18%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-accent) 7%, var(--vw-table-row-bg));
-}
 
 /* Progress: luminous material troughs without touching LuCI width/value. */
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progress:not(.vw-progressbar-upgraded),
-#maincontent progress:not(.vw-progressbar-upgraded) {
-	height: 21px;
-	border-color: var(--vw-glass-border);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 58%, transparent), transparent 54%),
-		radial-gradient(circle at 12% 30%, color-mix(in srgb, var(--vw-glow-cyan) 26%, transparent), transparent 38%),
-		var(--vw-progress-track);
-	box-shadow:
-		var(--vw-highlight-inner),
-		0 11px 26px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent);
-}
-
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progress:not(.vw-progressbar-upgraded) div,
-#maincontent progress::-webkit-progress-value {
-	border-radius: var(--vw-radius-pill);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 36%, transparent), transparent 52%),
-		linear-gradient(90deg, var(--vw-progress-fill-a), var(--vw-progress-fill), var(--vw-progress-fill-strong));
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 30%, transparent) inset,
-		0 0 0 1px color-mix(in srgb, #ffffff 10%, transparent) inset,
-		0 8px 20px color-mix(in srgb, var(--vw-cyan) 14%, transparent);
-}
 
 /* Port and network material cards */
-#maincontent .ifacebox,
-#maincontent .ifacebadge,
-#maincontent .network-status-table {
-	border-color: var(--vw-glass-border);
-	border-radius: var(--vw-radius-xl);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 60%, transparent), transparent 58%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-glow-aqua) 22%, transparent), transparent 42%),
-		var(--vw-glass-panel);
-	box-shadow: var(--vw-highlight-inner), 0 17px 38px color-mix(in srgb, var(--vw-shadow-color) 10%, transparent);
-}
-
-#maincontent .ifacebox .ifacebox-head,
-#maincontent .network-status-table .ifacebox-head {
-	border-color: color-mix(in srgb, var(--vw-glass-border) 66%, transparent);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 42%, transparent), transparent 70%),
-		var(--vw-table-head-bg);
-}
-
-#maincontent .ifacebox .ifacebox-head.active,
-#maincontent .network-status-table .ifacebox .ifacebox-head.active {
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 56%, transparent), transparent 66%),
-		color-mix(in srgb, var(--vw-accent) 15%, var(--vw-button-primary-bg));
-}
-
-#maincontent .ifacebox .ifacebox-body,
-#maincontent .network-status-table .ifacebox-body {
-	color: var(--vw-text-main);
-	background: color-mix(in srgb, var(--vw-glass-inner) 82%, transparent);
-}
 
 /* Modal, loading and session sheets */
-.modal,
-.modal-dialog,
-.modal-content,
-.cbi-modal,
-[role="dialog"],
-.ui-dialog,
-.dialog {
-	border-color: var(--vw-glass-border-strong);
-	border-radius: var(--vw-radius-modal);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 78%, transparent), transparent 40%),
-		radial-gradient(circle at 14% 0%, color-mix(in srgb, var(--vw-glow-violet) 50%, transparent), transparent 42%),
-		radial-gradient(circle at 100% 6%, color-mix(in srgb, var(--vw-glow-cyan) 42%, transparent), transparent 44%),
-		var(--vw-modal-bg);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
-}
 
 /* Stage 1.18 loop 2: dark modal readability. LuCI still owns modal layout and
  * lifecycle; this only corrects native low-contrast labels/help/tooltips.
@@ -2715,42 +1654,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-soft);
 }
 
-.modal-header,
-.modal-footer,
-.cbi-modal .modal-header,
-.cbi-modal .modal-footer,
-[role="dialog"] .modal-header,
-[role="dialog"] .modal-footer {
-	border-color: var(--vw-border-soft);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 56%, transparent), transparent 72%),
-		color-mix(in srgb, var(--vw-glass-panel) 84%, transparent);
-}
-
-.modal-body,
-.cbi-modal .modal-body,
-[role="dialog"] .modal-body {
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 24%, transparent), transparent 56%),
-		color-mix(in srgb, var(--vw-glass-inner) 76%, transparent);
-}
-
-.spinning,
-#view > .spinning,
-.modal .spinning,
-[role="dialog"] .spinning {
-	border-color: var(--vw-glass-border-strong);
-	border-radius: var(--vw-radius-panel);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 68%, transparent), transparent 56%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-glow-cyan) 44%, transparent), transparent 44%),
-		var(--vw-glass-panel-strong);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
-
 /* Login sheet joins the same material language. */
 .vwrt-auth-card,
 .vwrt-login-card,
@@ -2792,93 +1695,16 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 #maincontent .cbi-section,
 #maincontent fieldset {
 	padding: var(--vw-panel-pad);
-	border-radius: var(--vw-radius-panel);
-}
-
-#maincontent .cbi-section-node {
-	border-color: color-mix(in srgb, var(--vw-glass-border) 48%, transparent);
-	border-radius: var(--vw-radius-card);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 34%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-glass-inner) 54%, transparent);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 34%, transparent) inset;
 }
 
 #maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]) {
-	gap: 10px 18px;
-	padding: 12px 14px;
 	border-color: color-mix(in srgb, var(--vw-glass-border) 38%, transparent);
-	border-radius: 20px;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 26%, transparent), transparent 76%),
-		color-mix(in srgb, var(--vw-table-row-bg) 58%, transparent);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 30%, transparent) inset;
 }
 
 #maincontent .cbi-value-title,
 #maincontent .cbi-value label.cbi-value-title {
 	color: var(--vw-text-soft);
 	font-weight: 660;
-}
-
-#maincontent input[type="text"],
-#maincontent input[type="password"],
-#maincontent input[type="number"],
-#maincontent input[type="email"],
-#maincontent input[type="url"],
-#maincontent input[type="search"],
-#maincontent input[type="tel"],
-#maincontent input[type="time"],
-#maincontent input[type="date"],
-#maincontent input[type="file"],
-#maincontent select,
-#maincontent textarea,
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button),
-.modal input[type="text"],
-.modal input[type="password"],
-.modal input[type="number"],
-.modal input[type="email"],
-.modal input[type="url"],
-.modal input[type="search"],
-.modal input[type="tel"],
-.modal input[type="time"],
-.modal input[type="date"],
-.modal input[type="file"],
-.modal select,
-.modal textarea,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button),
-.cbi-modal input[type="text"],
-.cbi-modal input[type="password"],
-.cbi-modal input[type="number"],
-.cbi-modal input[type="file"],
-.cbi-modal select,
-.cbi-modal textarea,
-.cbi-modal div.cbi-dropdown:not(.btn):not(.cbi-button),
-[role="dialog"] input[type="text"],
-[role="dialog"] input[type="password"],
-[role="dialog"] input[type="number"],
-[role="dialog"] input[type="file"],
-[role="dialog"] select,
-[role="dialog"] textarea,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) {
-	min-height: var(--vw-field-height);
-	padding: 10px 14px;
-	border-color: var(--vw-field-border);
-	border-radius: var(--vw-radius-field);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 46%, transparent), transparent 70%),
-		var(--vw-field-bg);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-control);
-}
-
-#maincontent input::placeholder,
-#maincontent textarea::placeholder,
-.modal input::placeholder,
-.modal textarea::placeholder,
-[role="dialog"] input::placeholder,
-[role="dialog"] textarea::placeholder {
-	color: color-mix(in srgb, var(--vw-text-muted) 72%, transparent);
 }
 
 #maincontent input[type="file"]::file-selector-button,
@@ -2898,24 +1724,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 	box-shadow: var(--vw-highlight-inner);
 }
 
-#maincontent input:hover,
-#maincontent select:hover,
-#maincontent textarea:hover,
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button):hover,
-.modal input:hover,
-.modal select:hover,
-.modal textarea:hover,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button):hover,
-[role="dialog"] input:hover,
-[role="dialog"] select:hover,
-[role="dialog"] textarea:hover,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):hover {
-	border-color: color-mix(in srgb, var(--vw-cyan) 24%, var(--vw-field-border));
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 54%, transparent), transparent 72%),
-		var(--vw-field-bg-hover);
-}
-
 #maincontent input:focus,
 #maincontent select:focus,
 #maincontent textarea:focus,
@@ -2931,11 +1739,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 [role="dialog"] textarea:focus,
 [role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):focus,
 [role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):focus-within {
-	border-color: var(--vw-border-focus);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 58%, transparent), transparent 70%),
-		var(--vw-field-bg-focus);
-	box-shadow: var(--vw-highlight-inner), var(--vw-focus-ring), 0 11px 24px color-mix(in srgb, var(--vw-cyan) 8%, transparent);
 	outline: none;
 }
 
@@ -3028,16 +1831,6 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 	border-radius: var(--vw-radius-md);
 }
 
-#maincontent .cbi-dynlist .cbi-button-remove,
-.modal .cbi-dynlist .cbi-button-remove,
-[role="dialog"] .cbi-dynlist .cbi-button-remove {
-	border-color: color-mix(in srgb, var(--vw-danger) 28%, var(--vw-glass-border));
-	color: var(--vw-danger);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 40%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-danger-soft) 54%, var(--vw-button-bg));
-}
-
 #maincontent .tabs a,
 #maincontent .cbi-tabmenu a,
 #tabmenu .tabs a,
@@ -3075,104 +1868,10 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 	box-shadow: var(--vw-highlight-inner), 0 9px 22px color-mix(in srgb, var(--vw-cyan) 7%, transparent);
 }
 
-#maincontent button,
-#maincontent input[type="button"],
-#maincontent input[type="submit"],
-#maincontent input[type="reset"],
-#maincontent .btn,
-#maincontent a.btn,
-#maincontent .cbi-button,
-.modal .btn,
-.modal .cbi-button,
-.modal button,
-.modal input[type="button"],
-.modal input[type="submit"],
-.modal input[type="reset"],
-[role="dialog"] .btn,
-[role="dialog"] .cbi-button,
-[role="dialog"] button,
-[role="dialog"] input[type="button"],
-[role="dialog"] input[type="submit"],
-[role="dialog"] input[type="reset"] {
-	min-height: var(--vw-button-height);
-	padding: 9px 15px;
-	border-color: color-mix(in srgb, var(--vw-glass-border) 66%, transparent);
-	border-radius: var(--vw-radius-control);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 42%, transparent), transparent 68%),
-		var(--vw-button-bg);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-soft);
-}
-
-#maincontent .cbi-button-positive,
-#maincontent .cbi-button-apply,
-#maincontent .cbi-button-save,
-#maincontent .btn-primary,
-#maincontent .btn-success,
-#maincontent input[type="submit"],
-.modal .btn-primary,
-.modal .btn-success,
-.modal .cbi-button-positive,
-.modal .cbi-button-save,
-.modal .cbi-button-apply,
-.modal input[type="submit"],
-[role="dialog"] .btn-primary,
-[role="dialog"] .btn-success,
-[role="dialog"] .cbi-button-positive,
-[role="dialog"] .cbi-button-save,
-[role="dialog"] .cbi-button-apply,
-[role="dialog"] input[type="submit"] {
-	border-color: color-mix(in srgb, var(--vw-accent) 26%, var(--vw-glass-border));
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 52%, transparent), transparent 62%),
-		color-mix(in srgb, var(--vw-accent) 14%, var(--vw-button-primary-bg));
-	box-shadow: var(--vw-highlight-inner), 0 10px 24px color-mix(in srgb, var(--vw-cyan) 7%, transparent);
-}
-
-#maincontent .cbi-button-negative,
-#maincontent .cbi-button-reset,
-#maincontent .btn-danger,
-#maincontent input[type="reset"],
-.modal .btn-danger,
-.modal .cbi-button-negative,
-.modal .cbi-button-reset,
-.modal input[type="reset"],
-[role="dialog"] .btn-danger,
-[role="dialog"] .cbi-button-negative,
-[role="dialog"] .cbi-button-reset,
-[role="dialog"] input[type="reset"] {
-	border-color: color-mix(in srgb, var(--vw-danger) 28%, var(--vw-glass-border));
-	color: var(--vw-danger);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 38%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-button-danger-bg) 62%, var(--vw-button-bg));
-}
-
 #maincontent .cbi-page-actions,
 #maincontent #applyreboot-section,
 #maincontent #uci-apply {
-	width: fit-content;
-	max-width: 100%;
 	margin-inline-start: auto;
-	padding: 9px;
-	border-color: color-mix(in srgb, var(--vw-glass-border) 72%, transparent);
-	border-radius: var(--vw-radius-xl);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 48%, transparent), transparent 58%),
-		radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--vw-glow-cyan) 24%, transparent), transparent 46%),
-		var(--vw-apply-dock-bg);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-floating);
-}
-
-#maincontent .cbi-page-actions .btn,
-#maincontent .cbi-page-actions .cbi-button,
-#maincontent #applyreboot-section .btn,
-#maincontent #applyreboot-section .cbi-button,
-#maincontent #uci-apply .btn,
-#maincontent #uci-apply .cbi-button {
-	margin: 2px;
 }
 
 #maincontent table,
@@ -3214,69 +1913,15 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 		color-mix(in srgb, var(--vw-accent) 5%, var(--vw-table-row-bg));
 }
 
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progress:not(.vw-progressbar-upgraded),
-#maincontent progress:not(.vw-progressbar-upgraded) {
-	height: 18px;
-	border-color: color-mix(in srgb, var(--vw-glass-border) 62%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 44%, transparent), transparent 55%),
-		var(--vw-progress-track);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 52%, transparent) inset,
-		0 -7px 14px color-mix(in srgb, var(--vitra-inner-dim) 62%, transparent) inset;
-}
-
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progress:not(.vw-progressbar-upgraded) div,
-#maincontent progress::-webkit-progress-value {
-	border-radius: var(--vw-radius-pill);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 32%, transparent), transparent 58%),
-		linear-gradient(90deg, var(--vw-progress-fill-a), var(--vw-progress-fill), var(--vw-progress-fill-strong));
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 24%, transparent) inset,
-		0 5px 14px color-mix(in srgb, var(--vw-cyan) 10%, transparent);
-}
-
 #maincontent .ifacebox,
 #maincontent .ifacebadge,
 #maincontent .network-status-table {
-	border-color: color-mix(in srgb, var(--vw-glass-border) 64%, transparent);
-	border-radius: var(--vw-radius-card);
 	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 42%, transparent), transparent 64%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-glow-aqua) 14%, transparent), transparent 46%),
-		var(--vw-glass-panel);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-soft);
-}
-
-#maincontent .ifacebox .ifacebox-head,
-#maincontent .network-status-table .ifacebox-head {
-	border-color: color-mix(in srgb, var(--vw-glass-border) 48%, transparent);
-	color: var(--vw-text-soft);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 28%, transparent), transparent 72%),
-		var(--vw-table-head-bg);
-}
-
-#maincontent .ifacebox .ifacebox-head.active,
-#maincontent .network-status-table .ifacebox .ifacebox-head.active {
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 42%, transparent), transparent 66%),
-		color-mix(in srgb, var(--vw-accent) 10%, var(--vw-button-primary-bg));
 }
 
 #maincontent .ifacebox .ifacebox-body,
 #maincontent .network-status-table .ifacebox-body {
 	color: var(--vw-text-main);
-	background: color-mix(in srgb, var(--vw-glass-inner) 62%, transparent);
 }
 
 .modal,
@@ -3286,16 +1931,7 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 [role="dialog"],
 .ui-dialog,
 .dialog {
-	padding: 16px;
-	border-color: color-mix(in srgb, var(--vw-glass-border-strong) 76%, transparent);
-	border-radius: var(--vw-radius-modal);
 	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 56%, transparent), transparent 44%),
-		radial-gradient(circle at 14% 0%, color-mix(in srgb, var(--vw-glow-violet) 28%, transparent), transparent 46%),
-		radial-gradient(circle at 100% 4%, color-mix(in srgb, var(--vw-glow-cyan) 24%, transparent), transparent 48%),
-		var(--vw-modal-bg);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
 }
 
 .modal-header,
@@ -3304,22 +1940,7 @@ body.vwrt-shell-body #maincontent > .main > h1 {
 .cbi-modal .modal-footer,
 [role="dialog"] .modal-header,
 [role="dialog"] .modal-footer {
-	border-color: color-mix(in srgb, var(--vw-glass-border) 54%, transparent);
-	border-radius: var(--vw-radius-xl);
 	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 34%, transparent), transparent 74%),
-		color-mix(in srgb, var(--vw-glass-panel) 68%, transparent);
-}
-
-.modal-body,
-.cbi-modal .modal-body,
-[role="dialog"] .modal-body {
-	border-radius: var(--vw-radius-xl);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 18%, transparent), transparent 76%),
-		color-mix(in srgb, var(--vw-glass-inner) 42%, transparent);
 }
 
 .spinning,
@@ -3365,8 +1986,6 @@ html[data-theme="dark"] [role="dialog"],
 html[data-theme="dark"] .ui-dialog,
 html[data-theme="dark"] .dialog {
 	border-color: color-mix(in srgb, var(--vw-glass-border-strong) 62%, transparent);
-	background: var(--vw-panel-bg);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
 }
 
 html[data-theme="dark"] .modal-header,
@@ -3503,83 +2122,10 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 #maincontent fieldset,
 #maincontent .panel,
 #maincontent .card {
-	border-color: color-mix(in srgb, var(--vw-liquid-border) 58%, transparent);
-	border-radius: var(--vw-radius-panel);
 	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 46%, transparent), transparent 42%),
-		radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--vw-accent) 8%, transparent), transparent 42%),
-		radial-gradient(circle at 100% 2%, color-mix(in srgb, var(--vw-violet) 7%, transparent), transparent 46%),
-		var(--vw-liquid-panel);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 40%, transparent) inset,
-		0 14px 38px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent);
-}
-
-#maincontent .cbi-section-node,
-#maincontent .cbi-value:not(.hidden):not(.hide):not([hidden]) {
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 48%, transparent);
-	border-radius: var(--vw-radius-card);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 28%, transparent), transparent 72%),
-		color-mix(in srgb, var(--vw-liquid-panel-soft) 50%, transparent);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 28%, transparent) inset;
 }
 
 /* Unified field internals, including file inputs and modal fields. */
-#maincontent input[type="text"],
-#maincontent input[type="password"],
-#maincontent input[type="number"],
-#maincontent input[type="email"],
-#maincontent input[type="url"],
-#maincontent input[type="search"],
-#maincontent input[type="tel"],
-#maincontent input[type="time"],
-#maincontent input[type="date"],
-#maincontent input[type="file"],
-#maincontent select,
-#maincontent textarea,
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button),
-.modal input[type="text"],
-.modal input[type="password"],
-.modal input[type="number"],
-.modal input[type="email"],
-.modal input[type="url"],
-.modal input[type="search"],
-.modal input[type="tel"],
-.modal input[type="time"],
-.modal input[type="date"],
-.modal input[type="file"],
-.modal select,
-.modal textarea,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button),
-.cbi-modal input[type="text"],
-.cbi-modal input[type="password"],
-.cbi-modal input[type="number"],
-.cbi-modal input[type="file"],
-.cbi-modal select,
-.cbi-modal textarea,
-.cbi-modal div.cbi-dropdown:not(.btn):not(.cbi-button),
-[role="dialog"] input[type="text"],
-[role="dialog"] input[type="password"],
-[role="dialog"] input[type="number"],
-[role="dialog"] input[type="file"],
-[role="dialog"] select,
-[role="dialog"] textarea,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) {
-	min-height: var(--vw-field-height);
-	padding: 10px 14px;
-	border-color: var(--vw-field-border);
-	border-radius: var(--vw-radius-field);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 56%, transparent), transparent 68%),
-		radial-gradient(circle at 14% 0%, color-mix(in srgb, var(--vw-accent) 5%, transparent), transparent 42%),
-		var(--vw-field-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 52%, transparent) inset,
-		0 6px 16px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent);
-}
 
 #maincontent input::placeholder,
 #maincontent textarea::placeholder,
@@ -3590,107 +2136,7 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 	color: var(--vw-text-faint);
 }
 
-#maincontent input[type="file"]::file-selector-button,
-.modal input[type="file"]::file-selector-button,
-[role="dialog"] input[type="file"]::file-selector-button {
-	margin-inline-end: 10px;
-	padding: 8px 12px;
-	border: 1px solid color-mix(in srgb, var(--vw-liquid-border-soft) 66%, transparent);
-	border-radius: 14px;
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent), transparent 68%),
-		var(--vw-button-bg);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 40%, transparent) inset;
-}
-
-#maincontent input:hover,
-#maincontent select:hover,
-#maincontent textarea:hover,
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button):hover,
-.modal input:hover,
-.modal select:hover,
-.modal textarea:hover,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button):hover,
-[role="dialog"] input:hover,
-[role="dialog"] select:hover,
-[role="dialog"] textarea:hover,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):hover {
-	border-color: color-mix(in srgb, var(--vw-accent) 20%, var(--vw-field-border));
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 64%, transparent), transparent 68%),
-		var(--vw-field-bg-hover);
-}
-
-#maincontent input:focus,
-#maincontent select:focus,
-#maincontent textarea:focus,
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button):focus,
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button):focus-within,
-.modal input:focus,
-.modal select:focus,
-.modal textarea:focus,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button):focus,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button):focus-within,
-[role="dialog"] input:focus,
-[role="dialog"] select:focus,
-[role="dialog"] textarea:focus,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):focus,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):focus-within {
-	border-color: var(--vw-border-focus);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 70%, transparent), transparent 66%),
-		var(--vw-field-bg-focus);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 56%, transparent) inset,
-		var(--vw-focus-ring),
-		0 9px 22px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent);
-}
-
 /* cbi-dropdown: closed field and opened menu use the same glass family. */
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul,
-.cbi-modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul {
-	padding: 7px;
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 72%, transparent);
-	border-radius: var(--vw-radius-card);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 58%, transparent), transparent 55%),
-		radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--vw-accent) 8%, transparent), transparent 44%),
-		var(--vw-dropdown-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent) inset,
-		0 18px 48px color-mix(in srgb, var(--vw-shadow-color) 16%, transparent);
-}
-
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li,
-.cbi-modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li {
-	margin: 2px;
-	padding: 8px 10px;
-	border-radius: 13px;
-	color: var(--vw-text-main);
-	background: transparent;
-}
-
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li:hover,
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[selected],
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[aria-selected="true"],
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li:hover,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[selected],
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[aria-selected="true"],
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li:hover,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[selected],
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[aria-selected="true"] {
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 46%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-accent) 14%, var(--vw-surface-control-active));
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 34%, transparent) inset;
-}
 /* Flex alignment for dynlist rows */
 #maincontent .cbi-dynlist .item,
 #maincontent .cbi-dynlist .cbi-dynlist-item,
@@ -3704,20 +2150,6 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 	display: flex;
 	align-items: center;
 	gap: 8px;
-}
-
-
-#maincontent .cbi-dropdown .more,
-#maincontent .cbi-dropdown .open,
-.modal .cbi-dropdown .more,
-.modal .cbi-dropdown .open,
-[role="dialog"] .cbi-dropdown .more,
-[role="dialog"] .cbi-dropdown .open {
-	border-color: transparent;
-	border-radius: 12px;
-	color: var(--vw-text-muted);
-	background: transparent;
-	box-shadow: none;
 }
 
 #maincontent .cbi-dropdown input,
@@ -3754,67 +2186,6 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 34%, transparent) inset;
 }
 
-#maincontent .cbi-dynlist input,
-#maincontent .cbi-dynlist select,
-#maincontent .cbi-dynlist textarea,
-.modal .cbi-dynlist input,
-.modal .cbi-dynlist select,
-.modal .cbi-dynlist textarea,
-[role="dialog"] .cbi-dynlist input,
-[role="dialog"] .cbi-dynlist select,
-[role="dialog"] .cbi-dynlist textarea {
-	min-height: 44px;
-	padding: 10px 14px;
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 64%, transparent);
-	border-radius: 18px;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent), transparent 70%),
-		var(--vw-field-bg);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 42%, transparent) inset;
-}
-
-#maincontent .cbi-dynlist button,
-#maincontent .cbi-dynlist .cbi-button,
-#maincontent .cbi-dynlist .cbi-button-add,
-#maincontent .cbi-dynlist .cbi-button-remove,
-.modal .cbi-dynlist button,
-.modal .cbi-dynlist .cbi-button,
-.modal .cbi-dynlist .cbi-button-add,
-.modal .cbi-dynlist .cbi-button-remove,
-[role="dialog"] .cbi-dynlist button,
-[role="dialog"] .cbi-dynlist .cbi-button,
-[role="dialog"] .cbi-dynlist .cbi-button-add,
-[role="dialog"] .cbi-dynlist .cbi-button-remove {
-	min-height: 44px;
-	padding: 10px 14px;
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 60%, transparent);
-	border-radius: 18px;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent), transparent 70%),
-		var(--vw-button-bg);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 40%, transparent) inset;
-}
-
-#maincontent .cbi-dynlist .cbi-button-add,
-.modal .cbi-dynlist .cbi-button-add,
-[role="dialog"] .cbi-dynlist .cbi-button-add {
-	border-color: color-mix(in srgb, var(--vw-success) 22%, var(--vw-liquid-border-soft));
-	color: var(--vw-success);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 54%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-success-soft) 30%, var(--vw-button-bg));
-}
-
-#maincontent .cbi-dynlist .cbi-button-remove,
-.modal .cbi-dynlist .cbi-button-remove,
-[role="dialog"] .cbi-dynlist .cbi-button-remove {
-	border-color: color-mix(in srgb, var(--vw-danger) 22%, var(--vw-liquid-border-soft));
-	color: var(--vw-danger);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 42%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-danger-soft) 68%, var(--vw-button-bg));
-}
-
 /* Unified tabs: no old strip, no double pill; page/modal/plugin share one skin. */
 #maincontent .tabs,
 #maincontent .cbi-tabmenu,
@@ -3829,12 +2200,7 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 	display: inline-flex;
 	width: fit-content;
 	flex-wrap: wrap;
-	margin-bottom: 16px;
-	padding: 5px;
 	border-color: transparent;
-	border-radius: 16px;
-	background: color-mix(in srgb, var(--vw-text) 5%, transparent);
-	box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
 }
 
 #maincontent .tabs li,
@@ -3847,7 +2213,6 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 .cbi-modal .cbi-tabmenu li,
 [role="dialog"] .tabs li,
 [role="dialog"] .cbi-tabmenu li {
-	margin: 0;
 	border-color: transparent;
 	background: transparent;
 	box-shadow: none;
@@ -3863,62 +2228,7 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 .cbi-modal .cbi-tabmenu a,
 [role="dialog"] .tabs a,
 [role="dialog"] .cbi-tabmenu a {
-	min-height: var(--vw-tab-height);
-	padding: 9px 15px;
 	border: 1px solid color-mix(in srgb, var(--vw-liquid-border-soft) 62%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 42%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-button-bg) 74%, transparent);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 38%, transparent) inset,
-		0 6px 16px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent);
-}
-
-#maincontent .tabs a:hover,
-#maincontent .cbi-tabmenu a:hover,
-#tabmenu .tabs a:hover,
-#tabmenu .cbi-tabmenu a:hover,
-.modal .tabs a:hover,
-.modal .cbi-tabmenu a:hover,
-.cbi-modal .tabs a:hover,
-.cbi-modal .cbi-tabmenu a:hover,
-[role="dialog"] .tabs a:hover,
-[role="dialog"] .cbi-tabmenu a:hover {
-	border-color: color-mix(in srgb, var(--vw-accent) 20%, var(--vw-liquid-border-soft));
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 50%, transparent), transparent 70%),
-		color-mix(in srgb, var(--vw-button-bg-hover) 82%, transparent);
-}
-
-#maincontent .cbi-tab > a,
-#maincontent .tabs .active > a,
-#maincontent .tabs .cbi-tab > a,
-#tabmenu .cbi-tab > a,
-#tabmenu .tabs .active > a,
-.modal .cbi-tab > a,
-.modal .tabs .active > a,
-.modal .cbi-tabmenu li.active > a,
-.modal .cbi-tabmenu li[data-tab-active="true"] > a,
-.cbi-modal .cbi-tab > a,
-.cbi-modal .tabs .active > a,
-.cbi-modal .cbi-tabmenu li.active > a,
-.cbi-modal .cbi-tabmenu li[data-tab-active="true"] > a,
-[role="dialog"] .cbi-tab > a,
-[role="dialog"] .tabs .active > a,
-[role="dialog"] .cbi-tabmenu li.active > a,
-[role="dialog"] .cbi-tabmenu li[data-tab-active="true"] > a {
-	border-color: color-mix(in srgb, var(--vw-accent) 24%, var(--vw-liquid-border-soft));
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 56%, transparent), transparent 66%),
-		radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--vw-accent) 13%, transparent), transparent 54%),
-		color-mix(in srgb, var(--vw-accent) 10%, var(--vw-button-primary-bg));
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent) inset,
-		0 8px 18px color-mix(in srgb, var(--vw-accent) 7%, transparent);
 }
 
 .modal .cbi-tabmenu::before,
@@ -3933,65 +2243,6 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 }
 
 /* Compact action island and calmer buttons. */
-#maincontent button,
-#maincontent input[type="button"],
-#maincontent input[type="submit"],
-#maincontent input[type="reset"],
-#maincontent .btn,
-#maincontent a.btn,
-#maincontent .cbi-button,
-.modal .btn,
-.modal .cbi-button,
-.modal button,
-.modal input[type="button"],
-.modal input[type="submit"],
-.modal input[type="reset"],
-[role="dialog"] .btn,
-[role="dialog"] .cbi-button,
-[role="dialog"] button,
-[role="dialog"] input[type="button"],
-[role="dialog"] input[type="submit"],
-[role="dialog"] input[type="reset"] {
-	min-height: var(--vw-button-height);
-	padding: 9px 15px;
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 64%, transparent);
-	border-radius: var(--vw-radius-control);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-button-bg) 82%, transparent);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 40%, transparent) inset,
-		0 7px 16px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent);
-}
-
-#maincontent .cbi-button-positive,
-#maincontent .cbi-button-apply,
-#maincontent .cbi-button-save,
-#maincontent .btn-primary,
-#maincontent .btn-success,
-#maincontent input[type="submit"],
-.modal .btn-primary,
-.modal .btn-success,
-.modal .cbi-button-positive,
-.modal .cbi-button-save,
-.modal .cbi-button-apply,
-.modal input[type="submit"],
-[role="dialog"] .btn-primary,
-[role="dialog"] .btn-success,
-[role="dialog"] .cbi-button-positive,
-[role="dialog"] .cbi-button-save,
-[role="dialog"] .cbi-button-apply,
-[role="dialog"] input[type="submit"] {
-	border-color: color-mix(in srgb, var(--vw-accent) 28%, var(--vw-liquid-border-soft));
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 58%, transparent), transparent 65%),
-		color-mix(in srgb, var(--vw-accent) 15%, var(--vw-button-primary-bg));
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent) inset,
-		0 8px 18px color-mix(in srgb, var(--vw-accent) 8%, transparent);
-}
 
 #maincontent .cbi-button-negative,
 #maincontent .cbi-button-reset,
@@ -4012,113 +2263,9 @@ html[data-theme="dark"] [role="dialog"] .cbi-tab a {
 		color-mix(in srgb, var(--vw-danger-soft) 58%, var(--vw-button-bg));
 }
 
-#maincontent .cbi-page-actions,
-#maincontent #applyreboot-section,
-#maincontent #uci-apply {
-	width: fit-content;
-	max-width: 100%;
-	margin-left: auto;
-	padding: 9px;
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 68%, transparent);
-	border-radius: 24px;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 54%, transparent), transparent 56%),
-		radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--vw-accent) 8%, transparent), transparent 44%),
-		var(--vw-apply-dock-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 48%, transparent) inset,
-		0 16px 40px color-mix(in srgb, var(--vw-shadow-color) 12%, transparent);
-}
-
-#maincontent .cbi-page-actions .btn,
-#maincontent .cbi-page-actions .cbi-button,
-#maincontent #applyreboot-section .btn,
-#maincontent #applyreboot-section .cbi-button,
-#maincontent #uci-apply .btn,
-#maincontent #uci-apply .cbi-button {
-	min-height: 38px;
-	margin: 2px;
-	padding: 9px 14px;
-}
-
 /* Apple-like progress:not(.vw-progressbar-upgraded) material: lower border, real trough, luminous fill. */
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progress:not(.vw-progressbar-upgraded),
-#maincontent progress:not(.vw-progressbar-upgraded) {
-	height: 16px;
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 58%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 42%, transparent), transparent 54%),
-		radial-gradient(circle at 18% 50%, color-mix(in srgb, var(--vw-accent) 10%, transparent), transparent 34%),
-		var(--vw-liquid-progress-track);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 38%, transparent) inset,
-		0 -7px 14px color-mix(in srgb, var(--vitra-inner-dim) 42%, transparent) inset,
-		0 6px 15px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent);
-}
-
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progressbar:not(.vw-progressbar-upgraded) div,
-#maincontent .progress:not(.vw-progressbar-upgraded) div,
-#maincontent progress::-webkit-progress-value {
-	border-radius: var(--vw-radius-pill);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 38%, transparent), transparent 48%),
-		linear-gradient(90deg, var(--vw-liquid-progress-fill-a), var(--vw-liquid-progress-fill-b), var(--vw-liquid-progress-fill-c));
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 28%, transparent) inset,
-		0 0 0 1px color-mix(in srgb, #ffffff 8%, transparent) inset,
-		0 5px 14px color-mix(in srgb, var(--vw-accent) 12%, transparent);
-}
 
 /* Modal sheet is lighter; internals inherit the same tabs/fields/buttons. */
-.modal,
-.modal-dialog,
-.modal-content,
-.cbi-modal,
-[role="dialog"],
-.ui-dialog,
-.dialog {
-	padding: 14px;
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 68%, transparent);
-	border-radius: var(--vw-radius-modal);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 52%, transparent), transparent 42%),
-		radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--vw-accent) 9%, transparent), transparent 46%),
-		radial-gradient(circle at 100% 2%, color-mix(in srgb, var(--vw-violet) 8%, transparent), transparent 48%),
-		var(--vw-modal-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 42%, transparent) inset,
-		0 30px 86px color-mix(in srgb, var(--vw-shadow-color) 26%, transparent);
-}
-
-.modal-header,
-.modal-footer,
-.cbi-modal .modal-header,
-.cbi-modal .modal-footer,
-[role="dialog"] .modal-header,
-[role="dialog"] .modal-footer {
-	padding: 12px 14px;
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 48%, transparent);
-	border-radius: var(--vw-radius-card);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 34%, transparent), transparent 72%),
-		color-mix(in srgb, var(--vw-liquid-panel-soft) 42%, transparent);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 28%, transparent) inset;
-}
-
-.modal-body,
-.cbi-modal .modal-body,
-[role="dialog"] .modal-body {
-	border-radius: var(--vw-radius-card);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 18%, transparent), transparent 76%),
-		color-mix(in srgb, var(--vw-liquid-panel-soft) 28%, transparent);
-}
 
 .modal-backdrop,
 .modal-overlay,
@@ -4226,31 +2373,6 @@ body.vwrt-page-plugin #maincontent .cbi-tabmenu a {
 /* OpenClash ships a custom app skin after LuCI theme CSS. Keep this page-scoped
  * and visual-only so the plugin UI remains native while losing white slabs.
  */
-body.vwrt-page-openclash #maincontent .oc,
-body.vwrt-page-openclash #maincontent .main-card,
-body.vwrt-page-openclash #maincontent .myip-main-card,
-body.vwrt-page-openclash #maincontent .developer-container,
-body.vwrt-page-openclash #maincontent .announcement-card,
-body.vwrt-page-openclash #maincontent .sub-card,
-body.vwrt-page-openclash #maincontent .myip-ip-item,
-body.vwrt-page-openclash #maincontent .myip-check-item,
-body.vwrt-page-mosdns #maincontent .oc,
-body.vwrt-page-mosdns #maincontent .main-card,
-body.vwrt-page-mosdns #maincontent .sub-card,
-body.vwrt-page-plugin #maincontent .oc,
-body.vwrt-page-plugin #maincontent .main-card,
-body.vwrt-page-plugin #maincontent .sub-card {
-	border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 56%, transparent) !important;
-	border-radius: var(--vw-radius-card) !important;
-	color: var(--vw-text-main) !important;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 34%, transparent), transparent 70%),
-		radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--vw-accent) 7%, transparent), transparent 44%),
-		color-mix(in srgb, var(--vw-liquid-panel-soft) 70%, transparent) !important;
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 34%, transparent) inset,
-		0 10px 26px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent) !important;
-}
 
 body.vwrt-page-openclash #maincontent .oc,
 body.vwrt-page-openclash #maincontent .main-card,
@@ -4302,33 +2424,6 @@ body.vwrt-page-plugin #maincontent .cbi-button-group {
 	background: color-mix(in srgb, var(--vw-button-bg) 72%, transparent) !important;
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 34%, transparent) inset !important;
 }
-
-body.vwrt-page-openclash #maincontent .action-btn,
-body.vwrt-page-openclash #maincontent .dashboard-btn,
-body.vwrt-page-openclash #maincontent .icon-btn,
-body.vwrt-page-openclash #maincontent .copy-btn,
-body.vwrt-page-openclash #maincontent .mode-tab,
-body.vwrt-page-openclash #maincontent .cbi-button-option,
-body.vwrt-page-openclash #maincontent .cancel-btn,
-body.vwrt-page-openclash #maincontent .upload-btn,
-
-body.vwrt-page-openclash #maincontent .announcement-banner,
-body.vwrt-page-openclash #maincontent .announcement-content,
-body.vwrt-page-openclash #maincontent .alert,
-body.vwrt-page-openclash #maincontent .alert-message,
-body.vwrt-page-plugin #maincontent .announcement-banner,
-body.vwrt-page-plugin #maincontent .alert,
-body.vwrt-page-plugin #maincontent .alert-message {
-	border-color: color-mix(in srgb, var(--vw-accent) 24%, var(--vw-liquid-border-soft)) !important;
-	border-radius: var(--vw-radius-control) !important;
-	color: var(--vw-accent-ink) !important;
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 50%, transparent), transparent 68%),
-		color-mix(in srgb, var(--vw-accent) 14%, var(--vw-liquid-panel-soft)) !important;
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-liquid-highlight) 38%, transparent) inset,
-		0 9px 22px color-mix(in srgb, var(--vw-accent) 7%, transparent) !important;
-}
 /* Stage 1.21: color-balance and internals correction.
  * Late visual-only overrides. No LuCI lifecycle, state, value, tab, dropdown,
  * modal, apply or ifacebox behavior is changed here.
@@ -4364,16 +2459,7 @@ body.vwrt-page-plugin #maincontent .alert-message {
 }
 
 #maincontent .cbi-value-title {
-	color: var(--vw-text-soft);
-	font-weight: 560;
 	letter-spacing: 0;
-}
-
-#maincontent .cbi-value-description,
-#maincontent .cbi-value-field .cbi-value-description,
-#maincontent .help-block,
-#maincontent small {
-	color: var(--vw-text-muted);
 }
 
 #maincontent input[type="text"],
@@ -4462,14 +2548,9 @@ body.vwrt-page-plugin #maincontent .alert-message {
 [role="dialog"] textarea:focus,
 [role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):focus,
 [role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button):focus-within {
-	border-color: var(--vw-border-focus);
 	background:
 		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 58%, transparent), transparent 66%),
 		var(--vw-field-bg-focus);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 48%, transparent) inset,
-		var(--vw-focus-ring),
-		0 8px 19px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent);
 }
 
 #maincontent input[type="file"]::file-selector-button,
@@ -4486,35 +2567,6 @@ body.vwrt-page-plugin #maincontent .alert-message {
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 36%, transparent) inset;
 }
 
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul,
-.cbi-modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul {
-	padding: 6px;
-	border-color: color-mix(in srgb, var(--vw-border-soft) 72%, transparent);
-	border-radius: var(--vw-radius-popover);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 48%, transparent), transparent 56%),
-		radial-gradient(circle at 14% 0%, color-mix(in srgb, var(--vw-cyan) 6%, transparent), transparent 44%),
-		var(--vw-dropdown-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 42%, transparent) inset,
-		0 18px 46px color-mix(in srgb, var(--vw-shadow-color) 14%, transparent);
-}
-
-#maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li,
-.modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li,
-.cbi-modal div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li,
-[role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li {
-	margin: 1px;
-	padding: 7px 10px;
-	border-radius: var(--vw-radius-small);
-	color: var(--vw-text-main);
-	background: transparent;
-	box-shadow: none;
-}
-
 #maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li:hover,
 #maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[selected],
 #maincontent div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[aria-selected="true"],
@@ -4524,10 +2576,6 @@ body.vwrt-page-plugin #maincontent .alert-message {
 [role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li:hover,
 [role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[selected],
 [role="dialog"] div.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li[aria-selected="true"] {
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 38%, transparent), transparent 70%),
-		var(--vw-dropdown-item-hover-bg);
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 28%, transparent) inset;
 }
 
@@ -4539,9 +2587,6 @@ body.vwrt-page-plugin #maincontent .alert-message {
 [role="dialog"] .cbi-dropdown .open {
 	border-color: transparent;
 	border-radius: var(--vw-radius-small);
-	color: var(--vw-text-muted);
-	background: transparent;
-	box-shadow: none;
 }
 
 #maincontent .cbi-dynlist,
@@ -4615,76 +2660,7 @@ body.vwrt-page-plugin #maincontent .alert-message {
 #maincontent .cbi-dynlist .cbi-button-add,
 .modal .cbi-dynlist .cbi-button-add,
 [role="dialog"] .cbi-dynlist .cbi-button-add {
-	border-color: var(--vw-action-primary-border);
 	color: var(--vw-action-primary-text);
-	background: var(--vw-action-primary-bg);
-}
-
-#maincontent .cbi-dynlist .cbi-button-remove,
-.modal .cbi-dynlist .cbi-button-remove,
-[role="dialog"] .cbi-dynlist .cbi-button-remove {
-	border-color: var(--vw-action-danger-border);
-	color: var(--vw-danger);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 34%, transparent), transparent 70%),
-		var(--vw-action-danger-bg);
-}
-
-#maincontent .tabs,
-#maincontent .cbi-tabmenu,
-#tabmenu .tabs,
-#tabmenu .cbi-tabmenu,
-.modal .tabs,
-.modal .cbi-tabmenu,
-.cbi-modal .tabs,
-.cbi-modal .cbi-tabmenu,
-[role="dialog"] .tabs,
-[role="dialog"] .cbi-tabmenu {
-	margin-bottom: 13px;
-	padding: 0;
-	border: 0;
-	background: transparent;
-	box-shadow: none;
-}
-
-.modal .tabs::before,
-.modal .tabs::after,
-.modal .cbi-tabmenu::before,
-.modal .cbi-tabmenu::after,
-.cbi-modal .tabs::before,
-.cbi-modal .tabs::after,
-.cbi-modal .cbi-tabmenu::before,
-.cbi-modal .cbi-tabmenu::after,
-[role="dialog"] .tabs::before,
-[role="dialog"] .tabs::after,
-[role="dialog"] .cbi-tabmenu::before,
-[role="dialog"] .cbi-tabmenu::after {
-	border: 0;
-	background: transparent;
-	box-shadow: none;
-}
-
-#maincontent .tabs a,
-#maincontent .cbi-tabmenu a,
-#tabmenu .tabs a,
-#tabmenu .cbi-tabmenu a,
-.modal .tabs a,
-.modal .cbi-tabmenu a,
-.cbi-modal .tabs a,
-.cbi-modal .cbi-tabmenu a,
-[role="dialog"] .tabs a,
-[role="dialog"] .cbi-tabmenu a {
-	min-height: var(--vw-tab-height);
-	padding: 8px 14px;
-	border-color: color-mix(in srgb, var(--vw-border-soft) 62%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 36%, transparent), transparent 70%),
-		var(--vw-tab-inactive-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 30%, transparent) inset,
-		0 5px 13px color-mix(in srgb, var(--vw-shadow-color) 4%, transparent);
 }
 
 #maincontent .tabs a:hover,
@@ -4698,69 +2674,6 @@ body.vwrt-page-plugin #maincontent .alert-message {
 [role="dialog"] .tabs a:hover,
 [role="dialog"] .cbi-tabmenu a:hover {
 	border-color: color-mix(in srgb, var(--vw-accent) 20%, var(--vw-border-soft));
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 42%, transparent), transparent 70%),
-		var(--vw-button-bg-hover);
-}
-
-#maincontent .cbi-tab > a,
-#maincontent .tabs .active > a,
-#maincontent .tabs .cbi-tab > a,
-#tabmenu .cbi-tab > a,
-#tabmenu .tabs .active > a,
-.modal .cbi-tab > a,
-.modal .tabs .active > a,
-.modal .cbi-tabmenu li.active > a,
-.modal .cbi-tabmenu li[data-tab-active="true"] > a,
-.cbi-modal .cbi-tab > a,
-.cbi-modal .tabs .active > a,
-.cbi-modal .cbi-tabmenu li.active > a,
-.cbi-modal .cbi-tabmenu li[data-tab-active="true"] > a,
-[role="dialog"] .cbi-tab > a,
-[role="dialog"] .tabs .active > a,
-[role="dialog"] .cbi-tabmenu li.active > a,
-[role="dialog"] .cbi-tabmenu li[data-tab-active="true"] > a {
-	border-color: var(--vw-tab-active-border);
-	color: var(--vw-action-primary-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 46%, transparent), transparent 66%),
-		var(--vw-tab-active-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 40%, transparent) inset,
-		0 7px 16px color-mix(in srgb, var(--vw-accent) 6%, transparent);
-}
-
-#maincontent button,
-#maincontent input[type="button"],
-#maincontent input[type="submit"],
-#maincontent input[type="reset"],
-#maincontent .btn,
-#maincontent a.btn,
-#maincontent .cbi-button,
-.modal .btn,
-.modal .cbi-button,
-.modal button,
-.modal input[type="button"],
-.modal input[type="submit"],
-.modal input[type="reset"],
-[role="dialog"] .btn,
-[role="dialog"] .cbi-button,
-[role="dialog"] button,
-[role="dialog"] input[type="button"],
-[role="dialog"] input[type="submit"],
-[role="dialog"] input[type="reset"] {
-	min-height: var(--vw-button-height);
-	padding: 8px var(--vw-button-pad-x);
-	border-color: color-mix(in srgb, var(--vw-border-soft) 62%, transparent);
-	border-radius: var(--vw-radius-button);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 40%, transparent), transparent 68%),
-		var(--vw-action-neutral-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 34%, transparent) inset,
-		0 6px 14px color-mix(in srgb, var(--vw-shadow-color) 4%, transparent);
 }
 
 #maincontent .cbi-button-positive,
@@ -4789,52 +2702,6 @@ body.vwrt-page-plugin #maincontent .alert-message {
 		0 7px 16px color-mix(in srgb, var(--vw-accent) 7%, transparent);
 }
 
-#maincontent .cbi-page-actions,
-#maincontent #applyreboot-section,
-#maincontent #uci-apply {
-	width: fit-content;
-	max-width: 100%;
-	margin-left: auto;
-	padding: 7px;
-	border-color: color-mix(in srgb, var(--vw-border-soft) 66%, transparent);
-	border-radius: var(--vw-radius-dock);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 44%, transparent), transparent 58%),
-		var(--vw-control-island-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 42%, transparent) inset,
-		0 14px 34px color-mix(in srgb, var(--vw-shadow-color) 10%, transparent);
-}
-
-#maincontent .cbi-page-actions .btn,
-#maincontent .cbi-page-actions .cbi-button,
-#maincontent #applyreboot-section .btn,
-#maincontent #applyreboot-section .cbi-button,
-#maincontent #uci-apply .btn,
-#maincontent #uci-apply .cbi-button {
-	min-height: 36px;
-	margin: var(--vw-dock-gap);
-	padding: 8px 13px;
-}
-
-#maincontent .cbi-progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progressbar:not(.vw-progressbar-upgraded),
-#maincontent .progress:not(.vw-progressbar-upgraded),
-#maincontent progress:not(.vw-progressbar-upgraded) {
-	height: 18px;
-	border-color: color-mix(in srgb, var(--vw-border-soft) 52%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 38%, transparent), transparent 50%),
-		radial-gradient(circle at 18% 50%, color-mix(in srgb, var(--vw-cyan) 7%, transparent), transparent 36%),
-		var(--vw-meter-track-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 34%, transparent) inset,
-		0 -7px 13px color-mix(in srgb, var(--vitra-inner-dim) 38%, transparent) inset,
-		0 5px 13px color-mix(in srgb, var(--vw-shadow-color) 4%, transparent);
-}
-
 #maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) div,
 #maincontent .progressbar:not(.vw-progressbar-upgraded) div,
 #maincontent .progress:not(.vw-progressbar-upgraded) div,
@@ -4849,16 +2716,6 @@ body.vwrt-page-plugin #maincontent .alert-message {
 		0 5px 12px var(--vw-meter-glow);
 }
 
-#maincontent progress::-webkit-progress-bar {
-	border-radius: var(--vw-radius-pill);
-	background: var(--vw-meter-track-bg);
-}
-
-#maincontent progress::-moz-progress-bar {
-	border-radius: var(--vw-radius-pill);
-	background: var(--vw-meter-fill-bg);
-}
-
 .modal,
 .modal-dialog,
 .modal-content,
@@ -4867,16 +2724,6 @@ body.vwrt-page-plugin #maincontent .alert-message {
 .ui-dialog,
 .dialog {
 	padding: 12px;
-	border-color: color-mix(in srgb, var(--vw-border-soft) 64%, transparent);
-	border-radius: var(--vw-radius-modal);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 44%, transparent), transparent 44%),
-		radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--vw-cyan) 6%, transparent), transparent 46%),
-		radial-gradient(circle at 100% 2%, color-mix(in srgb, var(--vw-violet) 7%, transparent), transparent 48%),
-		var(--vw-modal-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 38%, transparent) inset,
-		0 28px 78px color-mix(in srgb, var(--vw-shadow-color) 22%, transparent);
 }
 
 .modal-header,
@@ -4886,12 +2733,6 @@ body.vwrt-page-plugin #maincontent .alert-message {
 [role="dialog"] .modal-header,
 [role="dialog"] .modal-footer {
 	padding: 10px 12px;
-	border-color: color-mix(in srgb, var(--vw-border-soft) 40%, transparent);
-	border-radius: var(--vw-radius-card);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 72%),
-		color-mix(in srgb, var(--vw-liquid-panel-soft) 32%, transparent);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 24%, transparent) inset;
 }
 
 .modal-body,
@@ -4902,13 +2743,6 @@ body.vwrt-page-plugin #maincontent .alert-message {
 	background:
 		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 14%, transparent), transparent 76%),
 		color-mix(in srgb, var(--vw-liquid-panel-soft) 22%, transparent);
-}
-
-body.vwrt-page-overview #maincontent .cbi-section table:not(.cbi-section-table):not(.table) th,
-body.vwrt-page-overview #maincontent .cbi-section table:not(.cbi-section-table):not(.table) td {
-	padding: 9px 12px;
-	border-color: color-mix(in srgb, var(--vw-border-soft) 42%, transparent);
-	background: color-mix(in srgb, var(--vw-table-row-bg) 70%, transparent);
 }
 
 body.vwrt-page-overview #maincontent .cbi-section table:not(.cbi-section-table):not(.table) th {
@@ -4999,27 +2833,6 @@ body.vwrt-page-plugin #maincontent .card-icon {
  * LuCI keeps values and events; these explicit colors prevent gradient-only
  * buttons from computing as transparent in runtime checks.
  */
-#maincontent button,
-#maincontent input[type="button"],
-#maincontent input[type="submit"],
-#maincontent input[type="reset"],
-#maincontent .btn,
-#maincontent a.btn,
-#maincontent .cbi-button,
-.modal .btn,
-.modal .cbi-button,
-.modal button,
-.modal input[type="button"],
-.modal input[type="submit"],
-.modal input[type="reset"],
-[role="dialog"] .btn,
-[role="dialog"] .cbi-button,
-[role="dialog"] button,
-[role="dialog"] input[type="button"],
-[role="dialog"] input[type="submit"],
-[role="dialog"] input[type="reset"] {
-	background-color: color-mix(in srgb, var(--vw-button-bg) 86%, transparent);
-}
 
 #maincontent .cbi-button-positive,
 #maincontent .cbi-button-apply,
@@ -5055,12 +2868,6 @@ body.vwrt-page-plugin #maincontent .card-icon {
 [role="dialog"] .cbi-button-reset,
 [role="dialog"] input[type="reset"] {
 	background-color: color-mix(in srgb, var(--vw-danger-soft) 76%, var(--vw-button-bg));
-}
-
-#maincontent .cbi-dynlist .cbi-button-add,
-.modal .cbi-dynlist .cbi-button-add,
-[role="dialog"] .cbi-dynlist .cbi-button-add {
-	background-color: var(--vw-button-primary-solid);
 }
 
 #maincontent .cbi-dynlist .cbi-button-remove,
@@ -5365,23 +3172,6 @@ body.vwrt-page-plugin #maincontent textarea {
 	background: var(--vw-action-danger-bg);
 }
 
-#maincontent .tabs,
-#maincontent .cbi-tabmenu,
-#tabmenu .tabs,
-#tabmenu .cbi-tabmenu,
-.modal .tabs,
-.modal .cbi-tabmenu,
-.cbi-modal .tabs,
-.cbi-modal .cbi-tabmenu,
-[role="dialog"] .tabs,
-[role="dialog"] .cbi-tabmenu {
-	margin-bottom: 10px;
-	padding: 0;
-	border: 0;
-	background: transparent;
-	box-shadow: none;
-}
-
 .modal .tabs::before,
 .modal .tabs::after,
 .modal .cbi-tabmenu::before,
@@ -5410,15 +3200,6 @@ body.vwrt-page-plugin #maincontent textarea {
 [role="dialog"] .tabs a,
 [role="dialog"] .cbi-tabmenu a {
 	box-sizing: border-box;
-	min-height: var(--vw-tab-height);
-	padding: 6px 12px;
-	border-color: color-mix(in srgb, var(--vw-border-soft) 54%, transparent);
-	border-radius: var(--vw-radius-pill);
-	color: var(--vw-text-muted);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 68%),
-		var(--vw-tab-inactive-bg);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 22%, transparent) inset;
 	line-height: 1.2;
 }
 
@@ -5430,31 +3211,6 @@ body.vwrt-page-plugin #maincontent textarea {
 [role="dialog"] .cbi-tabmenu a {
 	min-height: var(--vw-modal-tab-height);
 	padding: 5px 10px;
-}
-
-#maincontent .cbi-tab > a,
-#maincontent .tabs .active > a,
-#maincontent .tabs .cbi-tab > a,
-#tabmenu .cbi-tab > a,
-#tabmenu .tabs .active > a,
-.modal .cbi-tab > a,
-.modal .tabs .active > a,
-.modal .cbi-tabmenu li.active > a,
-.modal .cbi-tabmenu li[data-tab-active="true"] > a,
-.cbi-modal .cbi-tab > a,
-.cbi-modal .tabs .active > a,
-.cbi-modal .cbi-tabmenu li.active > a,
-.cbi-modal .cbi-tabmenu li[data-tab-active="true"] > a,
-[role="dialog"] .cbi-tab > a,
-[role="dialog"] .tabs .active > a,
-[role="dialog"] .cbi-tabmenu li.active > a,
-[role="dialog"] .cbi-tabmenu li[data-tab-active="true"] > a {
-	border-color: var(--vw-tab-active-border);
-	color: var(--vw-action-primary-text);
-	background: var(--vw-tab-active-bg);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 34%, transparent) inset,
-		0 6px 14px color-mix(in srgb, var(--vw-accent) 5%, transparent);
 }
 
 #maincontent button,
@@ -5495,9 +3251,7 @@ body.vwrt-page-plugin #maincontent textarea {
 	width: fit-content;
 	max-width: 100%;
 	margin-left: auto;
-	padding: 6px;
 	border-color: color-mix(in srgb, var(--vw-border-soft) 54%, transparent);
-	border-radius: var(--vw-radius-dock);
 	background:
 		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 34%, transparent), transparent 58%),
 		var(--vw-control-island-bg);
@@ -5521,32 +3275,16 @@ body.vwrt-page-plugin #maincontent textarea {
 #maincontent .progressbar:not(.vw-progressbar-upgraded),
 #maincontent .progress:not(.vw-progressbar-upgraded),
 #maincontent progress:not(.vw-progressbar-upgraded) {
-	height: var(--vw-progress-height);
 	border-color: color-mix(in srgb, var(--vw-border-soft) 42%, transparent);
-	border-radius: var(--vw-radius-pill);
 	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-progress-highlight) 70%, transparent), transparent 48%),
-		var(--vw-meter-track-bg);
 	background-color: var(--vw-progress-track);
-	box-shadow:
-		var(--vw-progress-shadow),
-		0 4px 10px color-mix(in srgb, var(--vw-shadow-color) 3%, transparent);
 }
 
 #maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) > div,
 #maincontent .progressbar:not(.vw-progressbar-upgraded) > div,
 #maincontent .progress:not(.vw-progressbar-upgraded) > div,
 #maincontent progress::-webkit-progress-value {
-	border-radius: var(--vw-radius-pill);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 30%, transparent), transparent 46%),
-		var(--vw-meter-fill-bg);
 	background-color: var(--vw-progress-fill);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 18%, transparent) inset,
-		0 0 0 1px color-mix(in srgb, #ffffff 5%, transparent) inset,
-		0 5px 12px var(--vw-meter-glow);
 }
 
 .modal,
@@ -6008,15 +3746,6 @@ body.vwrt-page-mosdns #maincontent .cbi-button-action {
 	box-sizing: border-box;
 	height: var(--vw-progress-height);
 	padding: 4px;
-	border: 1px solid color-mix(in srgb, var(--vw-border-soft) 46%, transparent);
-	border-radius: var(--vw-radius-pill);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-progress-highlight) 74%, transparent), transparent 50%),
-		radial-gradient(circle at 16% 26%, color-mix(in srgb, var(--vw-accent-calm) 8%, transparent), transparent 34%),
-		var(--vw-meter-track-bg);
-	box-shadow:
-		var(--vw-progress-shadow),
-		0 8px 18px color-mix(in srgb, var(--vw-shadow-color) 4%, transparent);
 }
 
 #maincontent .cbi-progressbar:not(.vw-progressbar-upgraded) > div,
@@ -6120,14 +3849,6 @@ body.vwrt-page-mosdns #maincontent .cbi-tabmenu a {
 	border-color: transparent;
 	background: transparent;
 	box-shadow: none;
-}
-
-body.vwrt-page-openclash #maincontent .mode-tab.active,
-body.vwrt-page-openclash #maincontent .cbi-button-option.active,
-body.vwrt-page-openclash #maincontent .cbi-button-option.selected,
-body.vwrt-page-mosdns #maincontent .cbi-tabmenu .cbi-tab a {
-		0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 40%, transparent) inset,
-		0 8px 18px color-mix(in srgb, var(--vw-glow-cyan) 8%, transparent);
 }
 
 body.vwrt-page-network #maincontent .ifacebox,
@@ -6453,11 +4174,6 @@ body.vwrt-page-network #maincontent .cbi-tooltip.ifacebadge {
    ========================================================================== */
 
 /* ── Backdrop ─────────────────────────────────────────────────────────────── */
-#modal_overlay {
-	background: rgba(0, 0, 0, 0.38) !important;
-	backdrop-filter: blur(6px) saturate(120%) !important;
-	-webkit-backdrop-filter: blur(6px) saturate(120%) !important;
-}
 
 /* ── All modal panels: session expired, edit dialogs, file upload, etc. ───── */
 body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not(.alert-message):not(:has(.uci-dialog)):not(:has(> .alert-message)),
@@ -6466,19 +4182,6 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 	max-height: 88vh !important;
 	overflow-y: auto !important;
 	/* Subtle neon glass — toned down */
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 45%),
-		radial-gradient(ellipse at 12% 0%, rgba(0, 200, 240, 0.09) 0%, transparent 50%),
-		radial-gradient(ellipse at 88% 8%, rgba(140, 0, 220, 0.07) 0%, transparent 50%),
-		var(--vw-surface-glass-2, rgba(16, 26, 42, 0.78)) !important;
-	border: 1px solid rgba(255, 255, 255, 0.13) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.09) inset,
-		0 20px 56px rgba(0, 0, 0, 0.48),
-		0 0 0 1px rgba(0, 200, 240, 0.05) !important;
-	backdrop-filter: blur(36px) saturate(150%) !important;
-	-webkit-backdrop-filter: blur(36px) saturate(150%) !important;
-	color: var(--vw-text, #dceef8) !important;
 	border-radius: 16px !important;
 }
 
@@ -6491,19 +4194,11 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 }
 
 /* Modal heading */
-#modal_overlay > .modal h4 {
-	color: var(--vw-text, #dceef8) !important;
-}
 
 /* ── Apply / No-changes / Status dialogs (.modal.alert-message) ───────────── */
 #modal_overlay > .modal.alert-message {
 	overflow-y: visible !important;
 	border-color: rgba(0, 200, 240, 0.18) !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.09) inset,
-		0 20px 52px rgba(0, 0, 0, 0.48),
-		0 0 16px rgba(0, 200, 240, 0.08),
-		0 0 0 1px rgba(0, 200, 240, 0.08) !important;
 }
 
 /* ── Warning: rollback / connectivity (amber tint) ───────────────────────── */
@@ -7107,9 +4802,6 @@ html[data-theme="light"] #modal_overlay > .modal.alert-message.warning {
 
 /* --- OpenClash --- */
 /* Target all pages under admin/services/openclash */
-body[data-page^="admin-services-openclash"] {
-	/* Override the main openclash wrapper so our default fieldset glass doesn't break the layout */
-}
 
 /* 1. Strip the giant glass box from the outer fieldset */
 body[data-page^="admin-services-openclash"] #cbi-openclash > fieldset,

@@ -236,20 +236,8 @@ samp {
 	display: grid;
 	grid-template-columns: minmax(0, 248px) minmax(280px, 1fr);
 	gap: 30px;
-	width: min(700px, 100%);
-	min-height: 376px;
-	padding: 30px;
 	border: 1px solid var(--vwrt-border);
-	border-radius: var(--vwrt-radius-2xl);
 	color: var(--vwrt-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vwrt-panel-highlight) 88%, transparent), transparent 54%),
-		radial-gradient(circle at 18% 14%, color-mix(in srgb, var(--vwrt-accent-soft) 54%, transparent), transparent 48%),
-		linear-gradient(135deg, var(--vwrt-accent-quiet), transparent 74%),
-		var(--vwrt-surface-strong);
-	box-shadow: var(--vwrt-shadow-floating);
-	backdrop-filter: blur(var(--vwrt-blur-panel)) saturate(130%);
-	-webkit-backdrop-filter: blur(var(--vwrt-blur-panel)) saturate(130%);
 }
 
 .vwrt-auth-brand {
@@ -264,30 +252,23 @@ samp {
 
 .vwrt-auth-logo,
 .vwrt-auth-brand img {
-	width: 108px;
-	max-width: 108px;
 	height: auto;
-	max-height: 108px;
-	filter: drop-shadow(0 18px 30px color-mix(in srgb, var(--vwrt-accent) 16%, transparent));
 }
 
 .vwrt-auth-title {
 	margin: 0;
 	font-size: 30px;
 	line-height: 1.15;
-	letter-spacing: 0;
 }
 
 .vwrt-auth-subtitle {
 	margin: 2px 0 0;
-	color: var(--vwrt-text-muted);
 	font-size: 15px;
 	font-weight: var(--vitra-font-weight-medium);
 }
 
 .vwrt-auth-kicker {
 	margin: 4px 0 0;
-	color: var(--vwrt-text-soft);
 	font-size: 12px;
 	line-height: 1.45;
 }
@@ -334,7 +315,6 @@ samp {
 .vwrt-auth-card label {
 	display: block;
 	margin: 0 0 8px;
-	color: var(--vw-text-muted) !important;
 	font-weight: var(--vitra-font-weight-medium);
 }
 
@@ -344,11 +324,8 @@ samp {
 
 .vwrt-auth-card input[type="text"],
 .vwrt-auth-card input[type="password"] {
-	width: 100%;
-	min-height: 46px;
 	padding: 0 14px;
 	border: 1px solid var(--vw-border) !important;
-	border-radius: 16px;
 	background: var(--vw-bg-element) !important;
 	color: var(--vw-text) !important;
 	box-shadow: none !important;
@@ -363,53 +340,12 @@ samp {
 	font-weight: var(--vitra-font-weight-strong);
 }
 
-.vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit,
-.vwrt-auth-card button.vwrt-auth-submit,
-.vwrt-auth-card input[type="submit"].vwrt-auth-submit {
-	border: 1px solid var(--vw-primary-color) !important;
-	color: #ffffff !important;
-	background: var(--vw-primary-color) !important;
-	box-shadow: 0 4px 14px color-mix(in srgb, var(--vw-primary-color) 42%, transparent) !important;
-	text-shadow: none !important;
-}
-
-.vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit:hover,
-.vwrt-auth-card button.vwrt-auth-submit:hover,
-.vwrt-auth-card input[type="submit"].vwrt-auth-submit:hover {
-	opacity: 0.9 !important;
-	box-shadow: 0 6px 20px color-mix(in srgb, var(--vw-primary-color) 52%, transparent) !important;
-}
-
 html[data-vwrt-glass="low"] .vwrt-auth-card {
 	backdrop-filter: none;
 	-webkit-backdrop-filter: none;
 }
 
 /* Stage 1.12B: auth surface follows the same restrained glass system. */
-.vwrt-auth-card {
-	border-color: var(--vwrt-glass-border);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vwrt-glass-highlight) 82%, transparent), transparent 48%),
-		radial-gradient(circle at 18% 10%, color-mix(in srgb, var(--vwrt-violet-soft) 56%, transparent), transparent 42%),
-		var(--vwrt-glass-bg-strong);
-	box-shadow:
-		var(--vwrt-glass-inner-shadow),
-		0 28px 72px color-mix(in srgb, var(--vwrt-shadow-color) 22%, transparent);
-}
-
-.vwrt-auth-logo,
-.vwrt-auth-brand img {
-	filter: drop-shadow(0 16px 26px color-mix(in srgb, var(--vwrt-shadow-color) 24%, transparent));
-}
-
-.vwrt-auth-card input[type="text"],
-.vwrt-auth-card input[type="password"] {
-	border-color: var(--vwrt-glass-border);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vwrt-glass-highlight) 70%, transparent), transparent 78%),
-		var(--vwrt-neutral-control);
-	box-shadow: 0 1px 0 var(--vwrt-glass-highlight) inset;
-}
 
 .vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit,
 .vwrt-auth-card button.vwrt-auth-submit,
@@ -433,15 +369,6 @@ html[data-vwrt-glass="low"] .vwrt-auth-card {
 	width: min(680px, 100%);
 	min-height: 360px;
 	padding: 30px;
-	border-color: color-mix(in srgb, var(--vw-border) 96%, transparent);
-	border-radius: var(--vw-radius-panel);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 82%, transparent), transparent 48%),
-		radial-gradient(circle at 18% 10%, color-mix(in srgb, var(--vitra-violet-soft) 48%, transparent), transparent 42%),
-		var(--vw-surface-strong);
-	box-shadow:
-		var(--vw-inner-highlight),
-		var(--vw-shadow-floating);
 	backdrop-filter: blur(var(--vw-blur-panel)) saturate(122%);
 	-webkit-backdrop-filter: blur(var(--vw-blur-panel)) saturate(122%);
 }
@@ -451,7 +378,6 @@ html[data-vwrt-glass="low"] .vwrt-auth-card {
 	width: 100px;
 	max-width: 100px;
 	max-height: 100px;
-	filter: drop-shadow(0 16px 26px color-mix(in srgb, var(--vitra-shadow-color) 20%, transparent));
 }
 
 .vwrt-auth-title {
@@ -477,14 +403,6 @@ html[data-vwrt-glass="low"] .vwrt-auth-card {
 	box-sizing: border-box !important;
 	display: block !important;
 	margin: 0 !important;
-	min-height: 44px;
-	border-color: color-mix(in srgb, var(--vw-border) 96%, transparent);
-	border-radius: var(--vw-radius-md);
-	color: var(--vw-text);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 70%, transparent), transparent 78%),
-		var(--vw-material-field);
-	box-shadow: var(--vw-shadow-control);
 }
 
 .vwrt-auth-card input[type="text"]:focus,
@@ -496,21 +414,6 @@ html[data-vwrt-glass="low"] .vwrt-auth-card {
 	box-shadow:
 		var(--vw-shadow-control),
 		0 0 0 3px color-mix(in srgb, var(--vw-accent) 16%, transparent);
-}
-
-.vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit,
-.vwrt-auth-card button.vwrt-auth-submit,
-.vwrt-auth-card input[type="submit"].vwrt-auth-submit {
-	min-height: 46px;
-	border-color: color-mix(in srgb, var(--vw-accent) 24%, var(--vw-border));
-	color: var(--vw-accent-ink);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 82%, transparent), transparent 70%),
-		linear-gradient(135deg, var(--vw-material-primary), color-mix(in srgb, var(--vw-accent-soft) 42%, var(--vw-material-primary-hover)));
-	background-color: var(--vw-material-primary);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, var(--vw-highlight) 78%, transparent) inset,
-		0 14px 30px color-mix(in srgb, var(--vitra-shadow-color) 10%, transparent);
 }
 
 .vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit:hover,
@@ -527,18 +430,8 @@ html[data-vwrt-glass="low"] .vwrt-auth-card {
  * The shell gains richer diffusion without adding fixed overlays or transforms
  * that would interfere with LuCI modal positioning.
  */
-html.vitrawrt-ready,
-body.vwrt-shell-body {
-	color: var(--vw-text-main);
-	background:
-		radial-gradient(980px 680px at 10% -8%, color-mix(in srgb, var(--vw-bg-mesh-cyan) 78%, transparent), transparent 62%),
-		radial-gradient(860px 620px at 88% 4%, color-mix(in srgb, var(--vw-bg-mesh-violet) 72%, transparent), transparent 58%),
-		radial-gradient(720px 520px at 52% 102%, color-mix(in srgb, var(--vw-bg-mesh-aqua) 58%, transparent), transparent 64%),
-		linear-gradient(135deg, color-mix(in srgb, var(--vw-bg-base) 92%, #ffffff), var(--vw-bg-base));
-}
 
 #maincontent {
-	color: var(--vw-text-main);
 	background: transparent;
 }
 
@@ -548,7 +441,6 @@ body.vwrt-shell-body {
 #maincontent .cbi-map > h2,
 #maincontent .cbi-section > h3,
 #maincontent legend {
-	color: var(--vw-text-strong);
 	letter-spacing: 0;
 }
 
@@ -581,80 +473,25 @@ body.vwrt-shell-body {
 }
 
 .vwrt-auth-card {
-	border-color: var(--vw-border-medium);
 	border-radius: var(--vw-radius-modal);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 88%, transparent), transparent 46%),
-		radial-gradient(circle at 14% 2%, color-mix(in srgb, var(--vw-bg-mesh-cyan) 46%, transparent), transparent 42%),
-		radial-gradient(circle at 92% 10%, color-mix(in srgb, var(--vw-bg-mesh-violet) 34%, transparent), transparent 44%),
-		var(--vw-surface-glass-3);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
 }
 
 .vwrt-auth-card input[type="text"],
 .vwrt-auth-card input[type="password"] {
 	min-height: var(--vw-field-height);
-	border-color: var(--vw-field-border);
-	border-radius: var(--vw-radius-lg);
-	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 72%, transparent), transparent 72%),
-		var(--vw-field-bg);
-	box-shadow: var(--vw-shadow-control);
 }
 
 .vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit,
 .vwrt-auth-card button.vwrt-auth-submit,
 .vwrt-auth-card input[type="submit"].vwrt-auth-submit {
 	min-height: 48px;
-	border-color: color-mix(in srgb, var(--vw-accent) 24%, var(--vw-border-medium));
 	border-radius: var(--vw-radius-pill);
-	color: var(--vw-text-inverse);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 28%, transparent), transparent 66%),
-		linear-gradient(135deg, color-mix(in srgb, var(--vw-accent) 26%, #273847), color-mix(in srgb, var(--vw-cyan) 22%, #1d2d3a));
 	background-color: var(--vw-button-primary-solid);
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 32%, transparent) inset,
-		0 18px 34px color-mix(in srgb, var(--vw-cyan) 18%, transparent);
 }
 
 /* Stage 1.18 shell: richer reference-cascade atmosphere without layout
  * transforms or full-page filters that could disturb LuCI fixed modals.
  */
-html.vitrawrt-ready,
-body.vwrt-shell-body {
-	color: var(--vw-text-main);
-	background:
-		radial-gradient(1100px 720px at 7% -10%, color-mix(in srgb, var(--vw-glow-cyan) 86%, transparent), transparent 62%),
-		radial-gradient(900px 660px at 92% 2%, color-mix(in srgb, var(--vw-glow-violet) 82%, transparent), transparent 58%),
-		radial-gradient(760px 540px at 50% 105%, color-mix(in srgb, var(--vw-glow-aqua) 72%, transparent), transparent 64%),
-		linear-gradient(145deg, var(--vw-base-0), var(--vw-base-1) 54%, var(--vw-base-2));
-}
-
-#maincontent {
-	color: var(--vw-text-main);
-}
-
-#maincontent h1,
-#maincontent h2,
-#maincontent h3,
-#maincontent .cbi-map > h2,
-#maincontent .cbi-section > h3,
-#maincontent legend {
-	color: var(--vw-text-strong);
-	text-shadow: 0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 42%, transparent);
-}
-
-.vwrt-auth-card {
-	border-color: var(--vw-glass-border-strong);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 84%, transparent), transparent 42%),
-		radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--vw-glow-cyan) 56%, transparent), transparent 42%),
-		radial-gradient(circle at 92% 12%, color-mix(in srgb, var(--vw-glow-violet) 42%, transparent), transparent 46%),
-		var(--vw-modal-bg);
-	box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
-}
 
 .vwrt-auth-logo,
 .vwrt-auth-brand img {
@@ -663,26 +500,7 @@ body.vwrt-shell-body {
 
 .vwrt-auth-card input[type="text"],
 .vwrt-auth-card input[type="password"] {
-	border-color: var(--vw-field-border);
-	border-radius: var(--vw-radius-lg);
 	color: var(--vw-text-main);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 70%, transparent), transparent 72%),
-		var(--vw-field-bg);
-	box-shadow: var(--vw-shadow-control);
-}
-
-.vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit,
-.vwrt-auth-card button.vwrt-auth-submit,
-.vwrt-auth-card input[type="submit"].vwrt-auth-submit {
-	border-color: color-mix(in srgb, var(--vw-accent) 24%, var(--vw-glass-border));
-	color: var(--vw-text-inverse);
-	background:
-		linear-gradient(180deg, color-mix(in srgb, #ffffff 26%, transparent), transparent 62%),
-		linear-gradient(135deg, color-mix(in srgb, var(--vw-accent) 26%, var(--vw-button-primary-solid)), color-mix(in srgb, var(--vw-cyan) 22%, #152d38));
-	box-shadow:
-		0 1px 0 color-mix(in srgb, #ffffff 32%, transparent) inset,
-		0 18px 38px color-mix(in srgb, var(--vw-cyan) 18%, transparent);
 }
 
 /* Stage 1.19V shell: lighter Apple / VisionOS atmosphere.
