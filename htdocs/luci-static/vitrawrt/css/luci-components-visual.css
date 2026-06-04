@@ -5259,16 +5259,11 @@ body.vwrt-page-openclash #maincontent [id^="default_dashboard_"] {
 
 /* ── 6. OpenClash: Fix Sort and Edit table actions column layout ── */
 body.vwrt-page-openclash #maincontent .cbi-section-table .cbi-section-actions {
-	display: flex !important;
-	align-items: center !important;
-	justify-content: flex-end !important; /* Align to right */
-	gap: 6px !important; /* Add gap between buttons */
-	padding-right: 12px !important;
-}
-
-body.vwrt-page-openclash #maincontent .cbi-section-table .cbi-section-actions.th {
-	justify-content: flex-end !important; /* Align header text to right */
+	display: table-cell !important;
 	text-align: right !important;
+	vertical-align: middle !important;
+	white-space: nowrap !important;
+	padding-right: 12px !important;
 }
 
 body.vwrt-page-openclash #maincontent .cbi-section-table .cbi-button-up,
@@ -5288,7 +5283,8 @@ body.vwrt-page-openclash #maincontent .cbi-section-table .cbi-button-down {
 	font-size: 13px !important;
 	line-height: 1 !important;
 	box-shadow: 0 2px 6px rgba(0,0,0,0.04) !important;
-	margin: 0 !important; /* Reset margin since gap handles it */
+	margin: 0 4px !important; /* Margins instead of gap */
+	vertical-align: middle !important;
 }
 
 body.vwrt-page-openclash #maincontent .cbi-section-table .cbi-button-up:hover,
