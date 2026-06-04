@@ -5090,13 +5090,9 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 
 /* ── Shared Apple-pill geometry for ALL OpenClash action buttons ──────── */
 #_close_all_connection_btn,
-#_close_all_connection_btn > input,
 #_reload_firewall_btn,
-#_reload_firewall_btn > input,
 #_flush_dns_cache_btn,
-#_flush_dns_cache_btn > input,
 #_one_key_update_btn,
-#_one_key_update_btn > input,
 body[data-page^="admin-services-openclash"] .oc .card-actions > .dashboard-btn,
 body.vwrt-page-openclash #maincontent .oc .card-actions > .dashboard-btn {
 	border: 1px solid transparent !important;
@@ -5108,69 +5104,82 @@ body.vwrt-page-openclash #maincontent .oc .card-actions > .dashboard-btn {
 	text-shadow: none !important;
 	cursor: pointer !important;
 	transition: all 0.22s ease !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	overflow: hidden !important;
+}
+
+/* Reset inner <input> injected by JS to prevent double-layering */
+#_close_all_connection_btn > input,
+#_reload_firewall_btn > input,
+#_flush_dns_cache_btn > input,
+#_one_key_update_btn > input,
+body[data-page^="admin-services-openclash"] .oc .card-actions > .dashboard-btn > input,
+body.vwrt-page-openclash #maincontent .oc .card-actions > .dashboard-btn > input {
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	color: inherit !important;
+	font-size: inherit !important;
+	font-weight: inherit !important;
+	cursor: pointer !important;
+	width: 100% !important;
+	height: 100% !important;
+	outline: none !important;
 }
 
 /* ── 1. Quick Action buttons — Apple-pill with diagonal gradient ────────── */
 
 /* 关闭链接 → danger red */
-#_close_all_connection_btn,
-#_close_all_connection_btn > input,
-#_close_all_connection_btn > input[type="button"] {
+#_close_all_connection_btn {
 	color: #ffffff !important;
 	background: linear-gradient(135deg, #f56565, #e53e3e) !important;
 	background-color: #e53e3e !important;
 	box-shadow: 0 4px 14px rgba(229,62,62,0.4) !important;
 }
-#_close_all_connection_btn:hover,
-#_close_all_connection_btn > input:hover {
+#_close_all_connection_btn:hover {
 	background: linear-gradient(135deg, #fc8181, #e53e3e) !important;
 	box-shadow: 0 6px 20px rgba(229,62,62,0.5) !important;
 	transform: translateY(-1px) !important;
 }
 
 /* 重置防火墙 → warning amber */
-#_reload_firewall_btn,
-#_reload_firewall_btn > input,
-#_reload_firewall_btn > input[type="button"] {
+#_reload_firewall_btn {
 	color: #ffffff !important;
 	background: linear-gradient(135deg, #f6ad55, #dd6b20) !important;
 	background-color: #dd6b20 !important;
 	box-shadow: 0 4px 14px rgba(221,107,32,0.4) !important;
 }
-#_reload_firewall_btn:hover,
-#_reload_firewall_btn > input:hover {
+#_reload_firewall_btn:hover {
 	background: linear-gradient(135deg, #fbd38d, #dd6b20) !important;
 	box-shadow: 0 6px 20px rgba(221,107,32,0.5) !important;
 	transform: translateY(-1px) !important;
 }
 
 /* 刷新DNS缓存 → success green */
-#_flush_dns_cache_btn,
-#_flush_dns_cache_btn > input,
-#_flush_dns_cache_btn > input[type="button"] {
+#_flush_dns_cache_btn {
 	color: #ffffff !important;
 	background: linear-gradient(135deg, #51df93, #28c973) !important;
 	background-color: #38a169 !important;
 	box-shadow: 0 4px 14px rgba(40,201,115,0.4) !important;
 }
-#_flush_dns_cache_btn:hover,
-#_flush_dns_cache_btn > input:hover {
+#_flush_dns_cache_btn:hover {
 	background: linear-gradient(135deg, #68d391, #38a169) !important;
 	box-shadow: 0 6px 20px rgba(40,201,115,0.5) !important;
 	transform: translateY(-1px) !important;
 }
 
 /* 检查更新 → info blue */
-#_one_key_update_btn,
-#_one_key_update_btn > input,
-#_one_key_update_btn > input[type="button"] {
+#_one_key_update_btn {
 	color: #ffffff !important;
 	background: linear-gradient(135deg, #63b3ed, #3182ce) !important;
 	background-color: #3182ce !important;
 	box-shadow: 0 4px 14px rgba(49,130,206,0.4) !important;
 }
-#_one_key_update_btn:hover,
-#_one_key_update_btn > input:hover {
+#_one_key_update_btn:hover {
 	background: linear-gradient(135deg, #90cdf4, #3182ce) !important;
 	box-shadow: 0 6px 20px rgba(49,130,206,0.5) !important;
 	transform: translateY(-1px) !important;
