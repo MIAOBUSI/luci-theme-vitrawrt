@@ -5242,3 +5242,17 @@ body.vwrt-page-openclash #maincontent .config-upload-btn-large:hover {
 	box-shadow: 0 6px 20px rgba(40,201,115,0.55) !important;
 	transform: translateY(-1px) !important;
 }
+
+/* ── 5. OpenClash: Fix horizontal tiling for dashboard switch/update buttons ── */
+body[data-page^="admin-services-openclash"] [id^="switch_dashboard_"],
+body[data-page^="admin-services-openclash"] [id^="delete_dashboard_"],
+body[data-page^="admin-services-openclash"] [id^="default_dashboard_"],
+body.vwrt-page-openclash #maincontent [id^="switch_dashboard_"],
+body.vwrt-page-openclash #maincontent [id^="delete_dashboard_"],
+body.vwrt-page-openclash #maincontent [id^="default_dashboard_"] {
+	display: inline-block !important;
+	flex: 0 0 auto !important;
+	width: auto !important;
+	margin-right: 12px !important;
+	margin-bottom: 8px !important;
+}
