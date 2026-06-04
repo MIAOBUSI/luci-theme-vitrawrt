@@ -2781,12 +2781,7 @@ body.vwrt-page-plugin #maincontent .sub-card {
 		0 9px 22px color-mix(in srgb, var(--vw-shadow-color) 6%, transparent) !important;
 }
 
-body.vwrt-page-openclash #maincontent .action-btn,
-body.vwrt-page-openclash #maincontent .dashboard-btn,
-body.vwrt-page-openclash #maincontent .icon-btn,
 body.vwrt-page-openclash #maincontent .copy-btn,
-body.vwrt-page-openclash #maincontent .mode-tab,
-body.vwrt-page-openclash #maincontent .cbi-button-option,
 body.vwrt-page-openclash #maincontent .cancel-btn,
 body.vwrt-page-openclash #maincontent .upload-btn,
 
@@ -3408,10 +3403,7 @@ body.vwrt-page-openclash #maincontent .card-value {
 }
 
 body.vwrt-page-openclash #maincontent .megaphone-container,
-body.vwrt-page-openclash #maincontent .plugin-toggle-container,
-body.vwrt-page-openclash #maincontent .card-actions > *,
-body.vwrt-page-openclash #maincontent .card-controls > *,
-body.vwrt-page-openclash #maincontent .core-control-buttons > * {
+body.vwrt-page-openclash #maincontent .plugin-toggle-container {
 	border-color: color-mix(in srgb, var(--vw-border-soft) 46%, transparent);
 	color: var(--vw-accent-ink);
 	background:
@@ -3666,7 +3658,6 @@ body.vwrt-page-network #maincontent .cbi-section-table .tr.cbi-section-table-row
 #maincontent .btn-success,
 #maincontent .upload-btn,
 #maincontent .config-upload-btn-large,
-body.vwrt-page-openclash #maincontent .config-upload-btn-large,
 body.vwrt-page-mosdns #maincontent .cbi-button-add {
 	border-color: var(--vw-role-success-border);
 	color: var(--vw-role-success-text);
@@ -3708,8 +3699,6 @@ body.vwrt-page-mosdns #maincontent .cbi-button-add {
 #maincontent .cbi-button-action,
 #maincontent .check-update,
 #maincontent .refresh,
-body.vwrt-page-openclash #maincontent .action-btn,
-body.vwrt-page-openclash #maincontent .icon-btn,
 body.vwrt-page-mosdns #maincontent .cbi-button-action {
 	border-color: var(--vw-role-info-border);
 	color: var(--vw-role-info-text);
@@ -3843,8 +3832,6 @@ body.vwrt-page-mosdns #maincontent .cbi-tabmenu {
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-glass-highlight) 36%, transparent) inset;
 }
 
-body.vwrt-page-openclash #maincontent .mode-tab,
-body.vwrt-page-openclash #maincontent .cbi-button-option,
 body.vwrt-page-mosdns #maincontent .cbi-tabmenu a {
 	border-color: transparent;
 	background: transparent;
