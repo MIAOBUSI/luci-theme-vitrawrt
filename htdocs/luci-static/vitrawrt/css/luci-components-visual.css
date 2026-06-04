@@ -5194,13 +5194,26 @@ body.vwrt-page-openclash #maincontent .oc .card-actions > .dashboard-btn:hover {
 
 /* ── 3. Mode-tab radio buttons — active (checked) state ────────────────── */
 /* OpenClash uses: input[type="radio"]:checked + .cbi-button-option           */
-/* We override with higher-specificity selector so selected mode is visible   */
+/* Use solid saturated colors — NOT --vw-role-*-bg vars (those are 11% tints  */
+/* designed for tinted buttons with dark text, not for white-on-color).       */
 body[data-page^="admin-services-openclash"] .oc input[type="radio"]:checked + .cbi-button-option,
 body.vwrt-page-openclash #maincontent .oc input[type="radio"]:checked + .cbi-button-option {
-	background: var(--vw-role-info-bg) !important;
+	background: #3182ce !important;
+	background-image: linear-gradient(135deg, #4a90d9, #3182ce) !important;
 	color: #ffffff !important;
 	font-weight: 600 !important;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 3px 8px rgba(49,130,206,0.35) !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset, 0 3px 8px rgba(49,130,206,0.35) !important;
+}
+
+/* Non-selected mode tabs: ensure text is readable in both themes */
+body[data-page^="admin-services-openclash"] .oc .cbi-button-option,
+body.vwrt-page-openclash #maincontent .oc .cbi-button-option {
+	color: var(--vw-text-main) !important;
+}
+body[data-page^="admin-services-openclash"] .oc .cbi-button-option:hover,
+body.vwrt-page-openclash #maincontent .oc .cbi-button-option:hover {
+	background: rgba(49,130,206,0.12) !important;
+	color: var(--vw-text-main) !important;
 }
 
 /* ── 4. Config upload large button (添加配置文件) — success green ────────── */
@@ -5217,4 +5230,5 @@ body.vwrt-page-openclash #maincontent .config-upload-btn-large:hover {
 	background-color: #36d27f !important;
 	background-image: linear-gradient(135deg, #61e89e, #36d27f) !important;
 }
+
 
