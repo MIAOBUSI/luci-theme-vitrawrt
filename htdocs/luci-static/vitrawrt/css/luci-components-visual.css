@@ -5085,63 +5085,95 @@ body.apple-theme-v2 #modal_overlay > .modal:not(.uci-dialog):not(.cbi-modal):not
 }
 
 /* ── OpenClash Dashboard Button Unification ─────────────────────────────── */
-/* OpenClash defines ALL action colors as CSS custom properties on .oc with
-   NO !important — so we can override just the button-role vars without
-   touching text/background/border structural variables.                      */
+/*
+   Architecture notes (status.htm):
+   1. Quick action buttons: JS calls `element.innerHTML = '<input type="button"...>'`
+      on the outer `<button id="_close_all_connection_btn" class="dashboard-btn">`.
+      Result DOM: <button id="_xxx_btn"><input type="button" class="dashboard-btn"></button>
+      We need selectors that hit the outer <button> AND the inner <input>.
+      ID selectors (#id) give specificity 1-0-0 which beats OpenClash's 0-2-0.
 
-body[data-page^="admin-services-openclash"] .oc,
-body[data-page^="admin-services-openclash"] .oc[data-darkmode="true"],
-body[data-page^="admin-services-openclash"] .oc[data-darkmode="false"],
-body.vwrt-page-openclash #maincontent .oc {
-	/* ── Only override the ACTION COLOR variables, nothing structural ──
-	   These drive .dashboard-btn background-color: var(--primary-color)  */
-	--primary-color: var(--vw-role-info-bg);
-	--success-color: var(--vw-role-success-bg);
-	--success-dark:  color-mix(in srgb, var(--vw-role-success-bg) 80%, #000);
-	--error-color:   var(--vw-role-danger-bg);
-	--tip-color:     var(--vw-role-warning-bg);
-	--info-color:    var(--vw-role-info-bg);
-	/* Match border radius to theme pill style */
-	--radius-md:     var(--vw-radius-field);
-}
+   2. Mode-tab radio buttons: `<input type="radio"> + <label class="cbi-button-option">`.
+      Active state: `input[type="radio"]:checked + .cbi-button-option { background: var(--primary-color) }`.
+      We override this directly with high-specificity selectors.
 
-/* Base geometry override for all .dashboard-btn */
-body[data-page^="admin-services-openclash"] .oc .dashboard-btn,
-body.vwrt-page-openclash #maincontent .oc .dashboard-btn {
-	border-radius: var(--vw-radius-field) !important;
-	font-weight: 500 !important;
-	font-size: 13px !important;
+   3. We do NOT override --primary-color or --success-color on .oc — those vars
+      are used for colored text/links elsewhere and must stay as OpenClash defines them.
+*/
+
+/* ── 1. Quick Action buttons — direct ID-targeted colour override ──────── */
+/* Each outer <button> keeps its ID; the inner <input> also needs targeting  */
+
+/* 关闭链接 → danger red */
+#_close_all_connection_btn,
+#_close_all_connection_btn > input,
+#_close_all_connection_btn > input[type="button"] {
+	background: #e53e3e !important;
+	background-color: #e53e3e !important;
+	background-image: linear-gradient(180deg, rgba(255,255,255,0.12), transparent 70%) !important;
+	border: 1px solid transparent !important;
 	color: #ffffff !important;
-	text-shadow: none !important;
-	box-shadow:
-		0 1px 0 rgba(255, 255, 255, 0.15) inset,
-		0 4px 10px rgba(0, 0, 0, 0.18) !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 10px rgba(229,62,62,0.3) !important;
+}
+#_close_all_connection_btn:hover,
+#_close_all_connection_btn > input:hover {
+	background-color: #c53030 !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 6px 14px rgba(229,62,62,0.45) !important;
 }
 
-/* Quick Action buttons — per-slot semantic role colour via nth-child.
-   Slot order in DOM: 关闭链接(1) 重置防火墙(2) 刷新DNS缓存(3) 检查更新(4) */
-body[data-page^="admin-services-openclash"] .oc .quick-actions-buttons > *:nth-child(1),
-body.vwrt-page-openclash #maincontent .quick-actions-buttons > *:nth-child(1) {
-	background-color: var(--vw-role-danger-bg) !important;
-	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 70%) !important;
+/* 重置防火墙 → warning amber */
+#_reload_firewall_btn,
+#_reload_firewall_btn > input,
+#_reload_firewall_btn > input[type="button"] {
+	background: #dd6b20 !important;
+	background-color: #dd6b20 !important;
+	background-image: linear-gradient(180deg, rgba(255,255,255,0.12), transparent 70%) !important;
+	border: 1px solid transparent !important;
+	color: #ffffff !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 10px rgba(221,107,32,0.3) !important;
 }
-body[data-page^="admin-services-openclash"] .oc .quick-actions-buttons > *:nth-child(2),
-body.vwrt-page-openclash #maincontent .quick-actions-buttons > *:nth-child(2) {
-	background-color: var(--vw-role-warning-bg) !important;
-	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 70%) !important;
-}
-body[data-page^="admin-services-openclash"] .oc .quick-actions-buttons > *:nth-child(3),
-body.vwrt-page-openclash #maincontent .quick-actions-buttons > *:nth-child(3) {
-	background-color: var(--vw-role-success-bg) !important;
-	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 32%, transparent), transparent 70%) !important;
-}
-body[data-page^="admin-services-openclash"] .oc .quick-actions-buttons > *:nth-child(4),
-body.vwrt-page-openclash #maincontent .quick-actions-buttons > *:nth-child(4) {
-	background-color: var(--vw-role-info-bg) !important;
-	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 28%, transparent), transparent 70%) !important;
+#_reload_firewall_btn:hover,
+#_reload_firewall_btn > input:hover {
+	background-color: #c05621 !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 6px 14px rgba(221,107,32,0.45) !important;
 }
 
-/* Control panel links (Metacubexd, Zashboard) — neutral glass tone */
+/* 刷新DNS缓存 → success green */
+#_flush_dns_cache_btn,
+#_flush_dns_cache_btn > input,
+#_flush_dns_cache_btn > input[type="button"] {
+	background: #38a169 !important;
+	background-color: #38a169 !important;
+	background-image: linear-gradient(180deg, rgba(255,255,255,0.12), transparent 70%) !important;
+	border: 1px solid transparent !important;
+	color: #ffffff !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 10px rgba(56,161,105,0.3) !important;
+}
+#_flush_dns_cache_btn:hover,
+#_flush_dns_cache_btn > input:hover {
+	background-color: #2f855a !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 6px 14px rgba(56,161,105,0.45) !important;
+}
+
+/* 检查更新 → info blue */
+#_one_key_update_btn,
+#_one_key_update_btn > input,
+#_one_key_update_btn > input[type="button"] {
+	background: #3182ce !important;
+	background-color: #3182ce !important;
+	background-image: linear-gradient(180deg, rgba(255,255,255,0.12), transparent 70%) !important;
+	border: 1px solid transparent !important;
+	color: #ffffff !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 10px rgba(49,130,206,0.3) !important;
+}
+#_one_key_update_btn:hover,
+#_one_key_update_btn > input:hover {
+	background-color: #2b6cb0 !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 6px 14px rgba(49,130,206,0.45) !important;
+}
+
+/* ── 2. Control panel dashboard links (Metacubexd, Zashboard) ────────────── */
+/* Neutral glass with visible hover feedback                                  */
 body[data-page^="admin-services-openclash"] .oc .card-actions > .dashboard-btn,
 body.vwrt-page-openclash #maincontent .oc .card-actions > .dashboard-btn {
 	color: var(--vw-text-main) !important;
@@ -5149,9 +5181,29 @@ body.vwrt-page-openclash #maincontent .oc .card-actions > .dashboard-btn {
 	background-image: linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 26%, transparent), transparent 70%) !important;
 	border: 1px solid color-mix(in srgb, var(--vw-border-soft) 46%, transparent) !important;
 	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 20%, transparent) inset !important;
+	transition: all 0.18s ease !important;
+}
+body[data-page^="admin-services-openclash"] .oc .card-actions > .dashboard-btn:hover,
+body.vwrt-page-openclash #maincontent .oc .card-actions > .dashboard-btn:hover {
+	background-color: color-mix(in srgb, var(--vw-action-neutral-bg) 80%, var(--vw-text-main) 20%) !important;
+	border-color: color-mix(in srgb, var(--vw-border-soft) 70%, transparent) !important;
+	transform: translateY(-1px) !important;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+	cursor: pointer !important;
 }
 
-/* Config upload large button (添加配置文件) — success green */
+/* ── 3. Mode-tab radio buttons — active (checked) state ────────────────── */
+/* OpenClash uses: input[type="radio"]:checked + .cbi-button-option           */
+/* We override with higher-specificity selector so selected mode is visible   */
+body[data-page^="admin-services-openclash"] .oc input[type="radio"]:checked + .cbi-button-option,
+body.vwrt-page-openclash #maincontent .oc input[type="radio"]:checked + .cbi-button-option {
+	background: var(--vw-role-info-bg) !important;
+	color: #ffffff !important;
+	font-weight: 600 !important;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 3px 8px rgba(49,130,206,0.35) !important;
+}
+
+/* ── 4. Config upload large button (添加配置文件) — success green ────────── */
 body[data-page^="admin-services-openclash"] .oc .config-upload-btn-large,
 body.vwrt-page-openclash #maincontent .config-upload-btn-large {
 	border: 1px solid transparent !important;
@@ -5165,5 +5217,4 @@ body.vwrt-page-openclash #maincontent .config-upload-btn-large:hover {
 	background-color: #36d27f !important;
 	background-image: linear-gradient(135deg, #61e89e, #36d27f) !important;
 }
-
 
