@@ -12,7 +12,7 @@ npm-debug.log*
 *.ipk
 *.apk
 build/
-release/packages/
+release/
 frontend/dist/.vite/
 .cache/
 .vite/
@@ -26,12 +26,10 @@ artifacts/audit-output/
 docs/evidence/
 docs/evidence/pass*/
 docs/VITRAWRT_*PASS*.md
-release/*.tmp
 playwright-report/
 test-results/
 *.trace.zip
 router-*.json
-!release/router-installed-payload-final.json
 _dev_archive/
 .local/
 
