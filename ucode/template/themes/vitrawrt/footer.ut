@@ -3,16 +3,21 @@
  Licensed to the public under the Apache License 2.0.
 -#}
 
+{%
+	const luciProjectUrl = version.luciurl ?? '#';
+	const distroProjectUrl = version.disturl ?? '#';
+-%}
+
 		{% if (!blank_page): %}
 			</main>
 			<footer class="vwrt-footer">
 				<div class="vwrt-footer-inner">
 					<span>
-						Powered by
-						<a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">
+						{{ _('Powered by') }}
+						<a href="{{ entityencode(luciProjectUrl, true) }}" target="_blank" rel="noreferrer">
 							{{ version.luciname }} ({{ version.luciversion }})</a>
 						/
-						<a href="{{ entityencode(version.disturl ?? '#', true) }}" target="_blank" rel="noreferrer">
+						<a href="{{ entityencode(distroProjectUrl, true) }}" target="_blank" rel="noreferrer">
 							{{ version.distname }} {{ version.distversion }} ({{ version.distrevision }})</a>
 						{% if (lua_active): %}
 							/ {{ _('Lua compatibility mode active') }}

@@ -5,16 +5,18 @@
 
 {% include('header', { blank_page: true }) %}
 
-<div class="vwrt-auth-page">
-	<section class="vwrt-auth-card" aria-label="{{ _('Authorization Required') }}">
-		<div class="vwrt-auth-brand">
-			<img class="vwrt-auth-logo" src="{{ media }}/img/logo.svg" alt="">
-			<div>
-				<h1 class="vwrt-auth-title">VitraWrt</h1>
-				<p class="vwrt-auth-subtitle">璃境 LuCI</p>
-				<p class="vwrt-auth-kicker">OpenWrt Management Experience</p>
+{% const authCacheSuffix = '?v=1.41.90-r30'; %}
+
+	<div class="vwrt-auth-page">
+		<section class="vwrt-auth-card" aria-label="{{ _('Authorization Required') }}">
+			<div class="vwrt-auth-brand">
+				<img class="vwrt-auth-logo" src="{{ media }}/img/logo.svg{{ authCacheSuffix }}" alt="" width="64" height="64" decoding="async">
+				<div>
+					<h1 class="vwrt-auth-title">{{ _('VitraWrt') }}</h1>
+					<p class="vwrt-auth-subtitle">{{ _('璃境 LuCI') }}</p>
+					<p class="vwrt-auth-kicker">{{ _('OpenWrt Management Experience') }}</p>
+				</div>
 			</div>
-		</div>
 
 		{% if (auth_message): %}
 		<div class="alert-message{% if (auth_plugin): %} warning{% endif %}">
@@ -44,17 +46,17 @@
 					{% if (auth_fields): %}
 						{% for (let field in auth_fields): %}
 						<div class="cbi-value">
-							<label class="cbi-value-title" for="{{ field.name }}">{{ _(field.label ?? field.name) }}</label>
+							<label class="cbi-value-title" for="{{ entityencode(field.name, true) }}">{{ _(field.label ?? field.name) }}</label>
 							<div class="cbi-value-field">
 								<input
-									name="{{ field.name }}"
-									id="{{ field.name }}"
-									type="{{ field.type ?? 'text' }}"
-									{% if (field.placeholder): %}placeholder="{{ field.placeholder }}"{% endif %}
-									{% if (field.inputmode): %}inputmode="{{ field.inputmode }}"{% endif %}
-									{% if (field.pattern): %}pattern="{{ field.pattern }}"{% endif %}
-									{% if (field.maxlength): %}maxlength="{{ field.maxlength }}"{% endif %}
-									{% if (field.autocomplete): %}autocomplete="{{ field.autocomplete }}"{% endif %}
+									name="{{ entityencode(field.name, true) }}"
+									id="{{ entityencode(field.name, true) }}"
+									type="{{ entityencode(field.type ?? 'text', true) }}"
+									{% if (field.placeholder): %}placeholder="{{ entityencode(_(field.placeholder), true) }}"{% endif %}
+									{% if (field.inputmode): %}inputmode="{{ entityencode(field.inputmode, true) }}"{% endif %}
+									{% if (field.pattern): %}pattern="{{ entityencode(field.pattern, true) }}"{% endif %}
+									{% if (field.maxlength): %}maxlength="{{ entityencode(field.maxlength, true) }}"{% endif %}
+									{% if (field.autocomplete): %}autocomplete="{{ entityencode(field.autocomplete, true) }}"{% endif %}
 									{% if (field.required): %}required{% endif %}
 								>
 							</div>

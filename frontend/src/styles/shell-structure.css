@@ -1,0 +1,49 @@
+/*
+ * Vite-owned shell geometry validated on authenticated desktop and mobile
+ * routes. LuCI component geometry remains owned by Bootstrap and LuCI.
+ */
+#vwrt-app {
+	position: relative;
+	z-index: 1;
+	min-height: 100vh;
+}
+
+.vwrt-shell-aura {
+	display: none;
+	pointer-events: none;
+}
+
+#maincontent {
+	position: relative;
+	z-index: 1;
+	width: auto;
+	max-width: none;
+	min-height: calc(100vh - var(--vwrt-page-top) - var(--vwrt-page-bottom));
+	padding: var(--vwrt-page-top) 0 calc(var(--vwrt-page-bottom) + 10px);
+}
+
+.container {
+	width: auto;
+	max-width: none;
+}
+
+.vwrt-skip-link {
+	position: fixed;
+	top: 12px;
+	left: 50%;
+	z-index: calc(var(--vwrt-z-topbar) + 20);
+	padding: 10px 14px;
+	border-radius: var(--vwrt-radius-sm);
+	color: var(--vwrt-inverse-text);
+	background: var(--vwrt-accent);
+	transition: top var(--vwrt-transition-fast);
+}
+
+.vwrt-skip-link:not(:focus) {
+	top: -80px;
+}
+
+.vwrt-mobile-topbar,
+.vwrt-drawer-backdrop {
+	display: none;
+}

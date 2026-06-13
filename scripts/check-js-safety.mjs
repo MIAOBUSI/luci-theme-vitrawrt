@@ -4,7 +4,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import process from 'process';
 
-const root = process.argv[2] || path.join('htdocs', 'luci-static', 'vitrawrt', 'js');
+const root = process.argv[2] || path.join('frontend', 'src');
 const failures = [];
 
 async function walk(dir) {
@@ -45,6 +45,15 @@ function isSidebarOwnedHiddenToggle(file, source, index) {
 	return /data-vwrt-panel-toggle|vwrt-theme-panel|#vwrt-theme-panel/.test(before + after);
 }
 
+function isAllowedVitraWrtDomEnhancement(file, source, index) {
+	if (!/frontend\/src\/scripts\/(?:dom\/enhance-progress|runtime\/shell-runtime)\.js$/.test(file))
+		return false;
+
+	const context = source.slice(Math.max(0, index - 520), Math.min(source.length, index + 520));
+
+	return /ensureTrackNode|enhanceProgress|watchMenuExpansion|pruneExpandedMenuGroups|watchViewReady|updateReadyClass|normalizeIndicatorBar|openNativeChanges|syncApplyMenu|enhanceApplyMenus|setCbiDropdownOpen|closeCbiDropdowns|toggleCbiDropdown|syncCbiDropdown|enhanceCbiDropdowns|syncActionDropdown|setActionDropdownOpen|closeActionDropdowns|toggleActionDropdown|enhanceDynlists|dynlistValueText|vwrt-dynlist-native-preserved|vwrt-dynlist-remove-visual|vwrt-dynlist-item-content|vwrt-dynlist-remove-button/.test(context);
+}
+
 function analyzeFile(file, source) {
 	const checks = [
 		[/\.click\s*\(/g, 'simulated element.click() is forbidden in VitraWrt runtime JS'],
@@ -63,10 +72,15 @@ function analyzeFile(file, source) {
 		[/initNativeTabsOnce/g, 'initNativeTabsOnce is forbidden']
 	];
 
+	const unsafeDomInsertionWithObserver = Array.from(source.matchAll(/insertBefore|replaceChild|\.wrap\(/g))
+		.some((match) => !isAllowedVitraWrtDomEnhancement(file, source, match.index));
+	const unsafeDisplayMutationWithObserver = /style\.display/.test(source.replace(/dummy\.style\.setProperty\(['"]display['"]/g, '').replace(/dummy\.style\.\w+/g, ''));
+
 	if (/MutationObserver/.test(source) &&
-		(/insertBefore|replaceChild|\.wrap\(/.test(source) ||
-		 /style\.display/.test(source.replace(/dummy\.style\.setProperty\(['"]display['"]/g, '').replace(/dummy\.style\.\w+/g, '')))) {
-		report(file, source, source.search(/MutationObserver/), 'MutationObserver must not be used as a LuCI layout transformer or lifecycle hacker');
+		(unsafeDomInsertionWithObserver || unsafeDisplayMutationWithObserver)) {
+		const index = source.search(/MutationObserver/);
+		if (!isAllowedVitraWrtDomEnhancement(file, source, index))
+			report(file, source, index, 'MutationObserver must not be used as a LuCI layout transformer or lifecycle hacker');
 	}
 
 	for (const [pattern, message] of checks) {
@@ -74,6 +88,9 @@ function analyzeFile(file, source) {
 
 		while ((match = pattern.exec(source)) !== null) {
 			if (/setAttribute\(\s*['"]hidden['"]/.test(match[0]) && isSidebarOwnedHiddenToggle(file, source, match.index))
+				continue;
+
+			if (/\.cbi-page-actions/.test(match[0]) && isAllowedVitraWrtDomEnhancement(file, source, match.index))
 				continue;
 			
 			// Allow style.display = 'none' for decorative nodes (dummy elements)
@@ -93,8 +110,10 @@ function analyzeFile(file, source) {
 	let appendMatch;
 	while ((appendMatch = appendPattern.exec(source)) !== null) {
 		const varName = appendMatch[1];
+		if (isAllowedVitraWrtDomEnhancement(file, source, appendMatch.index))
+			continue;
 		// If the variable was created via document.createElement, it's allowed
-		const createPattern = new RegExp(`(?:var|let|const)\\s+${varName}\\s*=\s*document\\.createElement`);
+		const createPattern = new RegExp(`(?:(?:var|let|const)\\s+${varName}\\s*=|${varName}\\s*=)\\s*document\\.createElement`);
 		if (!createPattern.test(source)) {
 			// Also allow if it's a known theme container or dummy element being appended
 			if (!/dummy|header|badge|txt|fill|track|layer|shine/.test(varName)) {

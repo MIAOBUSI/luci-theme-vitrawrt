@@ -7,6 +7,7 @@ import process from 'process';
 const root = process.argv[2] || path.join('htdocs', 'luci-static', 'vitrawrt');
 const failures = [];
 const warnings = [];
+const loadedCssNames = new Set();
 const allowedPageScopes = [
 	'body.vwrt-page-startup',
 	'body.vwrt-page-processes',
@@ -19,7 +20,9 @@ const allowedPageScopes = [
 	'body.vwrt-page-mosdns',
 	'body.vwrt-page-plugin',
 	'body.vwrt-page-cpulimit',
+	'body.vwrt-page-repokeys',
 	'body.vwrt-page-network',
+	'body.vwrt-page-firewall',
 	'body.vwrt-page-system'
 ];
 
@@ -103,7 +106,8 @@ function warn(file, line, selector, message) {
 }
 
 function isPageScoped(selector) {
-	return allowedPageScopes.some((scope) => selector.includes(scope));
+	return allowedPageScopes.some((scope) => selector.includes(scope)) ||
+		/body:is\([^)]*\.vwrt-page-[^)]+\)/.test(selector);
 }
 
 function isAllowedCoreStateRule(file, selector) {
@@ -112,7 +116,7 @@ function isAllowedCoreStateRule(file, selector) {
 }
 
 function isAllowedVnstat2PanelRule(file, selector) {
-	return /luci-layout-exceptions\.css$/.test(file) &&
+	return /(?:luci-layout-exceptions|luci-pages)\.css$/.test(file) &&
 		selector.includes('body.vwrt-page-vnstat2') &&
 		selector.includes('.cbi-section[data-tab]');
 }
@@ -123,11 +127,20 @@ function isAllowedProcessTableGridRule(file, selector) {
 }
 
 function isLoadedCss(file) {
-	return /(?:tokens|light|dark|base|sidebar|luci-components-visual|luci-layout-exceptions|responsive)\.css$/.test(file);
+	return loadedCssNames.has(path.basename(file));
 }
 
 function isComponentVisualFile(file) {
-	return /luci-components-visual\.css$/.test(file);
+	return /(?:luci-components-visual|luci-components)\.css$/.test(file) && isLoadedCss(file);
+}
+
+function isViteBundle(file) {
+	return /vitrawrt-apple\.css$/.test(file) && isLoadedCss(file);
+}
+
+function isViteSourceStyle(file) {
+	const normalized = file.split(path.sep).join('/');
+	return normalized.includes('/frontend/src/styles/') && isLoadedCss(file);
 }
 
 function isProgressSelector(selector) {
@@ -167,6 +180,8 @@ function allowedComponentVisualProp(selector, prop, value) {
 	if (prop === 'width' && (selector.includes('.cbi-tabmenu') || selector.includes('.tabs')) && value === 'fit-content')
 		return true;
 	if (prop === 'display' && (selector.includes('.cbi-dynlist') || selector.includes('.cbi-dynlist-item') || selector.includes('.add-item')) && /^(inline-flex|flex)$/.test(value))
+		return true;
+	if (prop === 'display' && isAllowedVnstat2PanelRule('luci-pages.css', selector) && value === 'none')
 		return true;
 
 	if (prop === 'opacity' && selector.includes('.ifacebox') && selector.includes('.cbi-tooltip'))
@@ -244,6 +259,19 @@ function allowedComponentVisualProp(selector, prop, value) {
 
 function hasLuCIComponentSelector(selector) {
 	return /#maincontent|\.cbi|\.table|table|(^|[\s>+~,])tr(?=[:.#\[\s>+~,]|$)|(^|[\s>+~,])td(?=[:.#\[\s>+~,]|$)|(^|[\s>+~,])th(?=[:.#\[\s>+~,]|$)|\.btn|button|input|textarea|pre/.test(selector);
+}
+
+function isSidebarTooltipSelector(selector) {
+	return selector.includes('html.vwrt-sidebar-collapsed') &&
+		(selector.includes('::after') || selector.includes(':after')) &&
+		(
+			selector.includes('[data-vwrt-tooltip]') ||
+			selector.includes('[data-vwrt-control-tooltip]')
+		) &&
+		(
+			selector.includes('.vwrt-menu') ||
+			selector.includes('.vwrt-sidebar-actions')
+		);
 }
 
 function analyzeVisualRule(file, source, selector, decls, index) {
@@ -366,11 +394,11 @@ function analyzeComponentsVisualRule(file, source, selector, decls, index) {
 	for (const prop of forbiddenProps) {
 		const value = declValue(decls, prop);
 		if (value && !allowedComponentVisualProp(selector, prop, value))
-			report(file, line, selector, `luci-components-visual.css must not set ${prop}`);
+				report(file, line, selector, `component paint CSS must not set ${prop}`);
 	}
 
 	if (/select\s+option/.test(selector) || selectorHasElement(selector, 'option'))
-		report(file, line, selector, 'luci-components-visual.css must not style option elements');
+		report(file, line, selector, 'component paint CSS must not style option elements');
 
 	if ((selector.includes('.tabs') || selector.includes('.cbi-tabmenu') || selector.includes('.cbi-tab')) &&
 		((declValue(decls, 'display') && !/^(inline-flex|flex)$/.test(declValue(decls, 'display'))) || declValue(decls, 'visibility') || declValue(decls, 'position') || declValue(decls, 'z-index') || declValue(decls, 'pointer-events')))
@@ -398,7 +426,8 @@ function analyzeGlobalRule(file, source, selector, decls, index) {
 	const width = declValue(decls, 'width');
 	const marginTop = declValue(decls, 'margin-top');
 	const maxWidth = numericPx(declValue(decls, 'max-width'));
-	const unscopedGlobalPaint = !isPageScoped(selector) && !/success|danger|warning|progress|meter|iface|status/i.test(selector);
+	const tokenScope = /:root|html\[data-theme|html\[data-darkmode|html:not\(\[data-theme/.test(selector);
+	const unscopedGlobalPaint = !tokenScope && !isPageScoped(selector) && !/success|danger|warning|progress|meter|iface|status/i.test(selector);
 
 	if (!isLoadedCss(file))
 		return;
@@ -450,7 +479,7 @@ function analyzeGlobalRule(file, source, selector, decls, index) {
 	if (hasDecl(decls, 'table-layout', 'fixed') && !isPageScoped(selector))
 		report(file, line, selector, 'table-layout:fixed is only allowed in page-scoped exception rules');
 
-	if (hasDecl(decls, 'white-space', 'nowrap') && hasLuCIComponentSelector(selector) && !isPageScoped(selector) && !/sidebar\.css$/.test(file))
+	if (hasDecl(decls, 'white-space', 'nowrap') && hasLuCIComponentSelector(selector) && !isPageScoped(selector) && !/sidebar\.css$/.test(file) && !isSidebarTooltipSelector(selector))
 		report(file, line, selector, 'LuCI component white-space:nowrap is only allowed in page-scoped exception rules');
 
 	if (selector.includes('.btn') && hasDecl(decls, 'width', '100%'))
@@ -492,10 +521,10 @@ function analyzeGlobalRule(file, source, selector, decls, index) {
 	if (/\.tabs\s*\+\s*\*/.test(selector) && /margin/.test(decls) && !isPageScoped(selector))
 		report(file, line, selector, 'global .tabs + * margin rules are forbidden');
 
-	if (selector.includes('vwrt-page-vnstat2') && !selector.includes('body.vwrt-page-vnstat2'))
+	if (selector.includes('vwrt-page-vnstat2') && !isPageScoped(selector))
 		report(file, line, selector, 'vnStat2 spacing rules must be scoped with body.vwrt-page-vnstat2');
 
-	if (selector.includes('vwrt-page-packages') && !selector.includes('body.vwrt-page-packages'))
+	if (selector.includes('vwrt-page-packages') && !isPageScoped(selector))
 		report(file, line, selector, 'package action button rules must be scoped with body.vwrt-page-packages');
 
 	if (selector.includes('data-vwrt-control-tooltip') &&
@@ -531,8 +560,8 @@ function analyzeGlobalRule(file, source, selector, decls, index) {
 			if (/select\s+option/.test(selector))
 				report(file, line, selector, 'select option styling is forbidden in loaded CSS');
 		}
-		else if (selector.includes(token) && !/sidebar\.css$/.test(file) && !/luci-layout-exceptions\.css$/.test(file) && !isComponentVisualFile(file) && !isAllowedCoreStateRule(file, selector) && !isAllowedVnstat2PanelRule(file, selector))
-			report(file, line, selector, `${token} must not be styled in loaded Stage 1.12 CSS outside luci-components-visual.css`);
+			else if (selector.includes(token) && !/sidebar\.css$/.test(file) && !/luci-layout-exceptions\.css$/.test(file) && !isComponentVisualFile(file) && !isViteBundle(file) && !isViteSourceStyle(file) && !isAllowedCoreStateRule(file, selector) && !isAllowedVnstat2PanelRule(file, selector))
+				report(file, line, selector, `${token} must not be styled in loaded Stage 1.12 CSS outside luci-components-visual.css`);
 	}
 }
 
@@ -554,11 +583,27 @@ function analyzeCss(file, source) {
 	}
 }
 
-const files = await walk(root);
+const runtimeFiles = await walk(root);
+const viteSourceRoot = path.join(process.cwd(), 'frontend', 'src', 'styles');
+let viteSourceFiles = [];
+
+try {
+	viteSourceFiles = await walk(viteSourceRoot);
+	for (const file of viteSourceFiles)
+		loadedCssNames.add(path.basename(file));
+}
+catch (_) {}
+
+const files = runtimeFiles.concat(viteSourceFiles);
 const cascadePath = path.join(root, 'cascade.css');
+const viteCssPath = path.join(root, 'dist', 'vitrawrt-apple.css');
 
 try {
 	const cascade = await fs.readFile(cascadePath, 'utf8');
+	const imports = cascade.matchAll(/@import\s+url\(["']?([^"')]+\.css)(?:\?[^"')]*)?["']?\)/g);
+
+	for (const match of imports)
+		loadedCssNames.add(path.basename(match[1]));
 
 	if (/luci-visual\.css/.test(cascade))
 		failures.push({
@@ -577,6 +622,12 @@ try {
 				message: `${deprecated} is deprecated and must not be imported`
 			});
 	}
+}
+catch (_) {}
+
+try {
+	await fs.access(viteCssPath);
+	loadedCssNames.add(path.basename(viteCssPath));
 }
 catch (_) {}
 

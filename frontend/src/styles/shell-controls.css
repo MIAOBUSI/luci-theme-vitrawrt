@@ -1,0 +1,71 @@
+/*
+ * Theme-owned shell controls. LuCI CBI buttons remain styled in
+ * luci-components.css; this module only covers VitraWrt chrome controls.
+ */
+.vwrt-icon-button,
+.vwrt-text-button,
+.vwrt-theme-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 38px;
+	border: 1px solid var(--vwrt-border);
+	border-radius: 999px;
+	color: var(--vwrt-text);
+	background: var(--vwrt-surface-muted);
+	box-shadow: 0 1px 0 var(--vwrt-panel-highlight) inset;
+	cursor: pointer;
+	transition:
+		background var(--vwrt-transition-fast),
+		border-color var(--vwrt-transition-fast),
+		color var(--vwrt-transition-fast),
+		box-shadow var(--vwrt-transition-fast);
+}
+
+.vwrt-icon-button {
+	width: 42px;
+	padding: 0;
+}
+
+.vwrt-text-button,
+.vwrt-theme-button {
+	gap: 8px;
+	padding: 0 12px;
+}
+
+.vwrt-icon-button:hover,
+.vwrt-text-button:hover,
+.vwrt-theme-button:hover {
+	border-color: var(--vwrt-border-strong);
+	background: var(--vwrt-surface-hover);
+	box-shadow: var(--vwrt-shadow-sm);
+}
+
+.vwrt-bars,
+.vwrt-bars::before,
+.vwrt-bars::after {
+	display: block;
+	width: 18px;
+	height: 2px;
+	border-radius: 99px;
+	background: currentColor;
+	content: "";
+}
+
+.vwrt-bars {
+	position: relative;
+}
+
+.vwrt-bars::before,
+.vwrt-bars::after {
+	position: absolute;
+	left: 0;
+}
+
+.vwrt-bars::before {
+	top: -6px;
+}
+
+.vwrt-bars::after {
+	top: 6px;
+}

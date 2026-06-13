@@ -47,13 +47,49 @@ return baseclass.extend({
 			url
 		].join(' ').toLowerCase();
 
-		if (/(logout|exit|reboot|shutdown|power)/.test(haystack))
+		if (/(reboot|shutdown|power)/.test(haystack))
+			return 'reboot';
+
+		if (/(logout|exit)/.test(haystack))
 			return 'logout';
+
+		if (/(overview|概览|status\/overview)/.test(haystack))
+			return 'overview';
+
+		if (/(package|software|opkg|apk|软件包|packages)/.test(haystack))
+			return 'packages';
+
+		if (/(startup|init|启动项)/.test(haystack))
+			return 'startup';
+
+		if (/(process|进程)/.test(haystack))
+			return 'processes';
+
+		if (/(syslog|dmesg|kernel log|system log|log|日志)/.test(haystack))
+			return 'logs';
+
+		if (/(firewall|nftables|防火墙)/.test(haystack))
+			return 'firewall';
+
+		if (/(interfaces|interface|ifaces|网络接口|接口)/.test(haystack))
+			return 'interfaces';
+
+		if (/(dhcp|dns|dnsmasq)/.test(haystack))
+			return 'dhcp';
+
+		if (/(routes|route|routing|静态路由)/.test(haystack) && !/(vpn|proxy|passwall|openclash|tunnel)/.test(haystack))
+			return 'routes';
+
+		if (/(diagnostics|ping|traceroute|nslookup|诊断)/.test(haystack))
+			return 'diagnostics';
+
+		if (/(dropbear|ssh|authorized keys|authorized_keys)/.test(haystack))
+			return 'ssh';
 
 		if (/(wireless|wifi|wlan|radio)/.test(haystack))
 			return 'wireless';
 
-		if (/(vpn|proxy|passwall|openclash|tunnel|route)/.test(haystack))
+		if (/(vpn|proxy|passwall|openclash|tunnel)/.test(haystack))
 			return 'vpn';
 
 		if (/(nas|samba|ksmbd|nfs|share|storage|disk|mount)/.test(haystack))

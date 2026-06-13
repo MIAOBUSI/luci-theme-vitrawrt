@@ -1,0 +1,183 @@
+@layer components {
+	:where(#maincontent, .vwrt-auth-card) .vw-progress {
+		--vw-progress-fill: var(--vw-progress-neutral);
+		--vw-progress-fill-width: auto;
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		grid-template-areas:
+			"summary percent"
+			"meter meter";
+		grid-template-rows: minmax(16px, auto) 10px;
+		align-items: center;
+		gap: 5px 12px;
+		min-height: 28px;
+		padding: 0;
+		overflow: visible;
+		color: var(--vw-progress-meter-text) !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress::before {
+		display: none !important;
+		content: none !important;
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress__track {
+		position: relative;
+		z-index: 0;
+		grid-area: meter;
+		display: block;
+		width: 100% !important;
+		inline-size: 100% !important;
+		min-width: 0;
+		height: 10px;
+		overflow: hidden;
+		border-radius: var(--vw-radius-pill);
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 22%, transparent), transparent 68%),
+			var(--vw-progress-meter-bg);
+		box-shadow:
+			inset 0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 16%, transparent),
+			inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 28%, transparent);
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress__fill {
+		position: relative !important;
+		z-index: 1;
+		display: block;
+		max-width: 100%;
+		width: var(--vw-progress-fill-width, auto) !important;
+		height: 10px !important;
+		min-height: 0 !important;
+		border: 0 !important;
+		border-radius: var(--vw-radius-pill) !important;
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent 56%),
+			linear-gradient(90deg, color-mix(in srgb, var(--vw-progress-fill) 68%, white), var(--vw-progress-fill)) !important;
+		box-shadow:
+			0 0 10px var(--vw-progress-meter-glow),
+			inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+		transition: width var(--vw-duration-slow) var(--vw-ease-spring);
+	}
+
+	body.vwrt-page-packages #maincontent .vw-progress {
+		width: min(100%, 22rem);
+		min-width: min(100%, 11rem);
+	}
+
+	body.vwrt-page-packages #maincontent .vw-progress[data-vw-progress-variant="compact"] {
+		grid-template-columns: minmax(9rem, 1fr) auto;
+		width: min(100%, 18rem);
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress__summary {
+		z-index: 2;
+		grid-area: summary;
+		min-width: 0;
+		overflow: hidden;
+		color: var(--vw-progress-meter-summary);
+		font-size: 0.8rem;
+		font-weight: 620;
+		line-height: 1.2;
+		text-overflow: ellipsis;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress__percent {
+		z-index: 2;
+		grid-area: percent;
+		justify-self: end;
+		display: inline;
+		min-width: 2.7em;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		color: color-mix(in srgb, var(--vw-progress-fill) 72%, var(--vw-progress-meter-text));
+		background: transparent !important;
+		font-size: 0.82rem;
+		font-variant-numeric: tabular-nums;
+		font-weight: 760;
+		line-height: 1.2;
+		box-shadow: none !important;
+		text-shadow: var(--vw-liquid-text-protection);
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress[data-vw-progress-variant="compact"] {
+		grid-template-columns: minmax(52px, 1fr) auto;
+		grid-template-areas: "meter percent";
+		grid-template-rows: 9px;
+		min-height: 18px;
+		height: auto;
+		gap: 6px;
+		padding: 0;
+		border-radius: 0 !important;
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress[data-vw-progress-variant="compact"]::before {
+		display: none !important;
+		content: none !important;
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress[data-vw-progress-variant="compact"] .vw-progress__track,
+	:where(#maincontent, .vwrt-auth-card) .vw-progress[data-vw-progress-variant="compact"] .vw-progress__fill {
+		max-width: 100%;
+		height: 9px !important;
+		min-height: 0 !important;
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress[data-vw-progress-variant="compact"] .vw-progress__summary {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+	}
+
+	:where(#maincontent, .vwrt-auth-card) .vw-progress[data-vw-progress-variant="compact"] .vw-progress__percent {
+		position: relative;
+		grid-area: percent;
+		min-width: 2.2em;
+		font-size: 0.68rem;
+		line-height: 1;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+
+	:where(#maincontent, .vwrt-auth-card) [data-vw-progress-state="success"] {
+		--vw-progress-fill: var(--vw-progress-success);
+		--vw-progress-meter-glow: color-mix(in srgb, var(--vw-progress-success) 22%, transparent);
+	}
+
+	:where(#maincontent, .vwrt-auth-card) [data-vw-progress-state="warning"] {
+		--vw-progress-fill: var(--vw-progress-warning);
+		--vw-progress-meter-glow: color-mix(in srgb, var(--vw-progress-warning) 22%, transparent);
+	}
+
+	:where(#maincontent, .vwrt-auth-card) [data-vw-progress-state="danger"] {
+		--vw-progress-fill: var(--vw-progress-danger);
+		--vw-progress-meter-glow: color-mix(in srgb, var(--vw-progress-danger) 22%, transparent);
+	}
+
+	:where(#maincontent, .vwrt-auth-card) progress.vw-progress {
+		appearance: none;
+	}
+
+	:where(#maincontent, .vwrt-auth-card) progress.vw-progress::-webkit-progress-bar {
+		background: transparent;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:where(#maincontent, .vwrt-auth-card) .vw-progress__fill {
+			transition: none;
+		}
+	}
+}

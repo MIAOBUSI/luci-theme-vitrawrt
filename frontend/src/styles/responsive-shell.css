@@ -1,0 +1,216 @@
+@media (max-width: 1180px) {
+	:root {
+		--vitra-sidebar-gap: 20px;
+		--vitra-content-margin: 18px;
+		--vwrt-sidebar-gap: 20px;
+		--vwrt-content-gap: 18px;
+	}
+}
+
+@media (max-width: 900px) {
+	body {
+		background-attachment: scroll;
+	}
+
+	.vwrt-mobile-topbar {
+		position: fixed;
+		z-index: var(--vwrt-z-topbar);
+		top: 12px;
+		right: 12px;
+		left: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		min-height: var(--vwrt-topbar-height);
+		padding: 10px 12px;
+		border: 1px solid var(--vwrt-border);
+		border-radius: 24px;
+		background: var(--vwrt-surface-elevated);
+		box-shadow: var(--vwrt-shadow-lg);
+		backdrop-filter: blur(var(--vwrt-blur-soft)) saturate(130%);
+		-webkit-backdrop-filter: blur(var(--vwrt-blur-soft)) saturate(130%);
+	}
+
+	.vwrt-mobile-brand {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		min-width: 0;
+		color: var(--vwrt-text);
+		font-weight: 720;
+	}
+
+	.vwrt-mobile-brand img {
+		width: 34px;
+		height: 34px;
+	}
+
+	.vwrt-mobile-title {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.vwrt-drawer-backdrop {
+		position: fixed;
+		z-index: var(--vwrt-z-overlay);
+		inset: 0;
+		display: block;
+		pointer-events: none;
+		background: rgba(3, 8, 15, 0);
+		transition: background var(--vwrt-transition);
+	}
+
+	html.vwrt-drawer-open .vwrt-drawer-backdrop {
+		pointer-events: auto;
+		background: rgba(3, 8, 15, 0.38);
+	}
+
+	#vwrt-sidebar {
+		z-index: calc(var(--vwrt-z-overlay) + 2);
+		top: 88px;
+		bottom: 14px;
+		left: 14px;
+		width: min(326px, calc(100vw - 28px));
+		border-radius: 26px;
+		pointer-events: auto;
+		transform: translateX(calc(-100% - 22px));
+		transition: transform var(--vwrt-transition);
+	}
+
+	html.vwrt-drawer-open #vwrt-sidebar {
+		transform: translateX(0);
+	}
+
+	html.vwrt-drawer-open #vwrt-sidebar :is(a, button, input, select, textarea, [role="button"]) {
+		pointer-events: auto;
+	}
+
+	html.vwrt-sidebar-collapsed #vwrt-sidebar {
+		width: min(326px, calc(100vw - 28px));
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-brand-text,
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-status,
+	html.vwrt-sidebar-collapsed .vwrt-menu a span,
+	html.vwrt-sidebar-collapsed .vwrt-text-button span {
+		display: block;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu-row {
+		grid-template-columns: 1fr auto;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu a {
+		justify-content: flex-start;
+		padding-inline: 10px;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu-expander {
+		display: inline-block;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-action-row {
+		grid-template-columns: repeat(3, 42px);
+		justify-content: center;
+	}
+
+	#maincontent,
+	html.vwrt-sidebar-collapsed #maincontent {
+		margin: 0 12px;
+		padding-top: 98px;
+		padding-bottom: 34px;
+		max-width: none;
+	}
+
+	.vwrt-footer,
+	html.vwrt-sidebar-collapsed .vwrt-footer {
+		margin: 0 12px;
+		padding-bottom: 22px;
+	}
+
+	.vwrt-footer-inner {
+		display: grid;
+		gap: 8px;
+	}
+
+	.vwrt-auth-card {
+		grid-template-columns: minmax(0, 1fr) !important;
+		gap: 18px;
+		width: min(520px, 100%);
+		min-height: 0;
+	}
+
+	.vwrt-auth-brand,
+	.vwrt-auth-form {
+		grid-column: 1;
+	}
+
+	.vwrt-auth-brand {
+		justify-items: center;
+		text-align: center;
+	}
+
+	.vwrt-auth-logo,
+	.vwrt-auth-brand img {
+		width: clamp(48px, 12vh, 72px);
+		max-width: 24vw;
+		max-height: 72px;
+	}
+}
+
+@media (max-width: 560px) {
+	#maincontent h1 {
+		font-size: 23px;
+	}
+
+	#maincontent h2 {
+		font-size: 19px;
+	}
+
+	.vwrt-auth-page {
+		padding: 14px;
+	}
+
+	.vwrt-auth-card {
+		padding: 18px;
+		border-radius: var(--vwrt-radius-lg);
+	}
+
+	.vwrt-auth-logo,
+	.vwrt-auth-brand img {
+		width: clamp(46px, 11vh, 64px);
+		max-height: 64px;
+	}
+
+	.vwrt-auth-title {
+		font-size: 24px;
+	}
+
+	.vwrt-auth-subtitle,
+	.vwrt-auth-kicker {
+		font-size: 12px;
+		line-height: 1.35;
+	}
+
+	.vwrt-sidebar-actions {
+		margin-bottom: 12px;
+	}
+
+	.vwrt-theme-panel {
+		right: 10px;
+		left: 10px;
+	}
+}
+
+@media (min-width: 901px) {
+	html.vwrt-sidebar-collapsed #vwrt-sidebar {
+		width: var(--vw-sidebar-collapsed-width);
+		min-width: var(--vw-sidebar-collapsed-width);
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-actions.vitra-sidebar-controls {
+		width: 56px;
+		max-width: 56px;
+	}
+}

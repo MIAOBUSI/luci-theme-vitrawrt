@@ -1,0 +1,85 @@
+@layer components {
+	.vw-material-base {
+		background: var(--vw-surface);
+		border: 1px solid var(--vw-divider);
+		border-radius: var(--vw-radius-control);
+		box-shadow: var(--vw-shadow-control);
+		color: var(--vw-text-primary);
+	}
+
+	.vw-material-glass {
+		background: var(--vw-glass-surface);
+		border: 1px solid var(--vw-glass-border);
+		box-shadow: var(--vw-shadow-card);
+		-webkit-backdrop-filter: blur(var(--vw-blur-glass)) saturate(var(--vw-saturate-glass));
+		backdrop-filter: blur(var(--vw-blur-glass)) saturate(var(--vw-saturate-glass));
+	}
+
+	.vw-material-panel {
+		@apply vw-material-glass tw-rounded-vw-panel;
+	}
+
+	.vw-material-card {
+		@apply vw-material-glass tw-rounded-vw-card;
+	}
+
+	.vw-material-popover {
+		background: var(--vw-glass-surface-strong);
+		border: 1px solid var(--vw-glass-border);
+		border-radius: var(--vw-radius-card);
+		box-shadow: var(--vw-shadow-popover);
+		-webkit-backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+		backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+	}
+
+	.vw-material-modal {
+		background: var(--vw-glass-surface-strong);
+		border: 1px solid var(--vw-glass-border);
+		border-radius: var(--vw-radius-panel);
+		box-shadow: var(--vw-shadow-modal);
+		-webkit-backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+		backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+	}
+
+	.vw-material-sidebar {
+		background: var(--vw-glass-surface-strong);
+		border: 1px solid var(--vw-glass-border);
+		box-shadow: var(--vw-shadow-card);
+		-webkit-backdrop-filter: blur(var(--vw-blur-glass)) saturate(var(--vw-saturate-glass));
+		backdrop-filter: blur(var(--vw-blur-glass)) saturate(var(--vw-saturate-glass));
+	}
+
+	.vw-material-toolbar {
+		background: var(--vw-glass-surface);
+		border: 1px solid var(--vw-glass-border);
+		border-radius: var(--vw-radius-card);
+		box-shadow: var(--vw-shadow-control);
+		-webkit-backdrop-filter: blur(var(--vw-blur-glass)) saturate(var(--vw-saturate-glass));
+		backdrop-filter: blur(var(--vw-blur-glass)) saturate(var(--vw-saturate-glass));
+	}
+
+	.vw-material-control {
+		background: var(--vw-control-surface);
+		border: 1px solid var(--vw-control-border);
+		border-radius: var(--vw-radius-control);
+		box-shadow: var(--vw-shadow-control);
+		color: var(--vw-text-primary);
+	}
+
+	.vw-material-progress {
+		background: var(--vw-progress-track);
+		border: 1px solid var(--vw-divider);
+		border-radius: var(--vw-radius-pill);
+		box-shadow:
+			inset 0 1px 2px rgba(0, 0, 0, 0.08),
+			0 1px 0 rgba(255, 255, 255, 0.16);
+	}
+
+	.vw-material-input {
+		background: var(--vw-control-surface);
+		border: 1px solid var(--vw-control-border);
+		border-radius: var(--vw-radius-control);
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.035);
+		color: var(--vw-text-primary);
+	}
+}

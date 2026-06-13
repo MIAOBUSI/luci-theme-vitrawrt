@@ -1,0 +1,175 @@
+/*
+ * Theme-owned sidebar controls and theme panel geometry. Generic shell button
+ * styling lives in shell-controls.css; this module only places the sidebar
+ * control dock and popover.
+ */
+.vwrt-sidebar-actions {
+	position: relative;
+	display: grid;
+	gap: 9px;
+	margin: 0;
+	padding: 10px;
+	border: 1px solid var(--vwrt-border);
+	border-radius: 22px;
+}
+
+.vwrt-sidebar-action-row {
+	display: grid;
+	grid-template-columns: repeat(3, 42px);
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.vitra-sidebar-controls {
+	flex: 0 0 auto;
+}
+
+.vwrt-sidebar-actions.vitra-sidebar-controls {
+	margin-top: 14px;
+	padding: 10px;
+	border-radius: 24px;
+}
+
+.vwrt-sidebar-actions .vwrt-text-button,
+.vwrt-sidebar-actions .vwrt-icon-button {
+	min-height: 39px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 680;
+}
+
+.vwrt-sidebar-actions .vwrt-text-button {
+	justify-content: center;
+	width: 42px;
+	padding: 0;
+}
+
+.vwrt-sidebar-actions .vwrt-icon-button {
+	width: 42px;
+	padding: 0;
+}
+
+.vwrt-sidebar-actions [data-vwrt-theme-action="cycle"] {
+	position: relative;
+	overflow: hidden;
+}
+
+.vwrt-sidebar-actions .vwrt-icon-button [data-vwrt-theme-current] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+}
+
+.vwrt-control-label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+}
+
+.vwrt-sidebar-actions .vwrt-control-pill {
+	position: relative;
+	justify-content: center;
+	width: 42px;
+	padding: 0;
+	letter-spacing: 0;
+}
+
+.vwrt-sidebar-actions .vwrt-control-pill::after {
+	display: none;
+}
+
+.vwrt-sidebar-actions .vwrt-control-pill.is-open::after {
+	transform: rotate(225deg) translateY(-1px);
+}
+
+.vwrt-sidebar-actions .vwrt-control-icon {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.vwrt-theme-panel {
+	position: absolute;
+	right: 10px;
+	bottom: calc(100% + 10px);
+	left: 10px;
+	z-index: var(--vwrt-z-popover);
+	padding: 10px;
+	border-radius: 24px;
+}
+
+.vwrt-theme-panel[hidden] {
+	display: none;
+}
+
+.vwrt-theme-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 7px;
+}
+
+.vwrt-theme-button {
+	min-height: 36px;
+	padding: 0 8px;
+	font-size: 12px;
+	font-weight: 680;
+}
+
+.vwrt-glass-row {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto auto;
+	align-items: center;
+	gap: 8px;
+	margin-top: 9px;
+	padding-top: 9px;
+	color: var(--vwrt-text-muted);
+	font-size: 12px;
+}
+
+.vwrt-glass-row > span {
+	color: var(--vwrt-text-subtle);
+	font-size: 11px;
+	font-weight: 720;
+	text-transform: uppercase;
+}
+
+@media (min-width: 901px) {
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-actions.vitra-sidebar-controls {
+		align-self: center;
+		align-items: center;
+		width: 54px;
+		max-width: 54px;
+		margin: 12px auto 0;
+		padding: 7px;
+		border-radius: 24px;
+		box-sizing: border-box;
+		overflow: visible;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-action-row {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 7px;
+		width: 100%;
+		grid-template-columns: 1fr;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-actions .vwrt-text-button,
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-actions .vwrt-icon-button {
+		justify-content: center;
+		width: 40px;
+		min-width: 40px;
+		height: 40px;
+		min-height: 40px;
+		padding: 0;
+		border-radius: 16px;
+		box-sizing: border-box;
+	}
+}

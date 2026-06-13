@@ -1,0 +1,7 @@
+# kind|source|destination|mode
+file|htdocs/luci-static/resources/menu-vitrawrt.js|/www/luci-static/resources/menu-vitrawrt.js|0644
+file|htdocs/luci-static/vitrawrt/cascade.css|/www/luci-static/vitrawrt/cascade.css|0644
+tree|htdocs/luci-static/vitrawrt/dist|/www/luci-static/vitrawrt/dist|0644
+tree|htdocs/luci-static/vitrawrt/img|/www/luci-static/vitrawrt/img|0644
+tree|ucode/template/themes/vitrawrt|/usr/share/ucode/luci/template/themes/vitrawrt|0644
+file|root/etc/uci-defaults/30_luci-theme-vitrawrt|/etc/uci-defaults/30_luci-theme-vitrawrt|0755

@@ -7,6 +7,9 @@
 	import { getuid, getspnam } from 'luci.core';
 
 	const boardinfo = ubus.call('system', 'board');
+	const themeVersion = '1.41.90-r30';
+	const cacheSuffix = `?v=${themeVersion}`;
+	const homeUrl = dispatcher.build_url('admin/status/overview');
 
 	http.prepare_content('text/html; charset=UTF-8');
 -%}
@@ -17,52 +20,79 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="color-scheme" content="light dark">
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf7f2">
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f0e12">
 		<meta name="darkreader-lock">
 		<title>{{ striptags(`${boardinfo.hostname ?? '?'}${dispatched?.title ? ` | ${_(dispatched.title)}` : ''}`) }}</title>
-		<script src="{{ media }}/js/theme-mode.js?v=1.41.81-r1"></script>
-		<script src="{{ media }}/js/glass-quality.js?v=1.41.81-r1"></script>
+		<script>
+			(function() {
+				var root = document.documentElement;
+				var mode = 'system';
+				var glass = 'auto';
+				var prefersDark = false;
+				var supportsGlass = false;
+
+				try { mode = localStorage.getItem('vitrawrt.theme') || mode; } catch (e) {}
+				try { glass = localStorage.getItem('vitrawrt.glass') || glass; } catch (e) {}
+				try { prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) {}
+				try {
+					supportsGlass = CSS.supports('backdrop-filter', 'blur(1px)') ||
+						CSS.supports('-webkit-backdrop-filter', 'blur(1px)');
+				} catch (e) {}
+
+				if (mode !== 'light' && mode !== 'dark')
+					mode = 'system';
+
+				if (glass !== 'high' && glass !== 'low')
+					glass = 'auto';
+
+				root.setAttribute('data-theme-mode', mode);
+				root.setAttribute('data-theme', mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode);
+				root.setAttribute('data-vwrt-glass-pref', glass);
+				root.setAttribute('data-vwrt-glass', glass === 'low' || !supportsGlass ? 'low' : 'high');
+			})();
+		</script>
+		<link rel="stylesheet" href="{{ media }}/cascade.css{{ cacheSuffix }}">
 		{% if (node?.css): %}
 		<link rel="stylesheet" href="{{ resource }}/{{ node.css }}">
 		{% endif %}
 		{% if (css): %}
 		<style title="text/css">{{ css }}</style>
 		{% endif %}
-		<link rel="stylesheet" href="{{ media }}/cascade.css?v=1.41.81-r1">
-		<link rel="icon" href="{{ media }}/img/logo.svg?v=1.41.81-r1" sizes="any">
+		<link rel="stylesheet" type="text/css" href="{{ media }}/dist/vitrawrt-apple.css{{ cacheSuffix }}" />
 		<script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
-		<script src="{{ resource }}/cbi.js?v=1.41.81-r1"></script>
-		<script defer src="{{ media }}/js/sidebar.js?v=1.41.81-r1"></script>
-		<script defer src="{{ media }}/js/boot.js?v=1.41.81-r1"></script>
+		<script src="{{ resource }}/cbi.js{{ cacheSuffix }}"></script>
+		<script type="module" src="{{ media }}/dist/vitrawrt-motion.js{{ cacheSuffix }}"></script>
 	</head>
 
 	<body class="lang_{{ dispatcher.lang }} {{ blank_page ? 'vwrt-auth-body' : 'vwrt-shell-body' }} {{ entityencode(striptags(node?.title ?? ''), true) }}" data-page="{{ entityencode(join('-', ctx.request_path), true) }}">
 		{% if (!blank_page): %}
 		<a class="vwrt-skip-link" href="#maincontent">{{ _('Skip to content') }}</a>
 
-		<div id="vwrt-app">
+		<div id="vwrt-app" data-vwrt-version="{{ themeVersion }}">
 			<div class="vwrt-shell-aura" aria-hidden="true"></div>
 
 			<header class="vwrt-mobile-topbar" aria-label="{{ _('Navigation') }}">
 				<button class="vwrt-icon-button" type="button" data-vwrt-drawer-toggle aria-controls="vwrt-sidebar" aria-expanded="false" aria-label="{{ _('Open menu') }}">
 					<span class="vwrt-bars" aria-hidden="true"></span>
 				</button>
-				<a class="vwrt-mobile-brand" href="/">
-					<img src="{{ media }}/img/logo.svg" alt="">
-					<span class="vwrt-mobile-title">VitraWrt</span>
+				<a class="vwrt-mobile-brand" href="{{ homeUrl }}">
+					<img class="vwrt-brand-logo" src="{{ media }}/img/logo.svg{{ cacheSuffix }}" alt="" width="42" height="42" decoding="async">
+					<span class="vwrt-mobile-title">{{ _('VitraWrt') }}</span>
 				</a>
 				<button class="vwrt-text-button" type="button" data-vwrt-theme-action="cycle" aria-label="{{ _('Cycle color mode') }}">
-					<span data-vwrt-theme-current>System</span>
+					<span data-vwrt-theme-current>{{ _('System') }}</span>
 				</button>
 			</header>
 
 			<div class="vwrt-drawer-backdrop" data-vwrt-drawer-backdrop></div>
 
 			<aside id="vwrt-sidebar" aria-label="{{ _('Navigation') }}">
-				<a class="vwrt-sidebar-brand" href="/">
-					<img src="{{ media }}/img/logo.svg" alt="">
+				<a class="vwrt-sidebar-brand" href="{{ homeUrl }}">
+					<img class="vwrt-brand-logo" src="{{ media }}/img/logo.svg{{ cacheSuffix }}" alt="" width="42" height="42" decoding="async">
 					<span class="vwrt-brand-text">
-						<span class="vwrt-brand-name">VitraWrt</span>
-						<span class="vwrt-brand-subname">璃境</span>
+						<span class="vwrt-brand-name">{{ _('VitraWrt') }}</span>
+						<span class="vwrt-brand-subname">{{ _('璃境') }}</span>
 						<span class="vwrt-hostname">{{ striptags(boardinfo.hostname ?? '?') }}</span>
 					</span>
 				</a>
@@ -77,43 +107,49 @@
 				<div class="vwrt-sidebar-actions vitra-sidebar-controls">
 					<div class="vwrt-theme-panel" id="vwrt-theme-panel" hidden>
 						<div class="vwrt-theme-grid" role="group" aria-label="{{ _('Color mode') }}">
-							<button class="vwrt-theme-button" type="button" data-vwrt-theme-value="system">System</button>
-							<button class="vwrt-theme-button" type="button" data-vwrt-theme-value="light">Light</button>
-							<button class="vwrt-theme-button" type="button" data-vwrt-theme-value="dark">Dark</button>
+							<button class="vwrt-theme-button" type="button" data-vwrt-theme-value="system" data-vwrt-theme-label="{{ _('System') }}">{{ _('System') }}</button>
+							<button class="vwrt-theme-button" type="button" data-vwrt-theme-value="light" data-vwrt-theme-label="{{ _('Light') }}">{{ _('Light') }}</button>
+							<button class="vwrt-theme-button" type="button" data-vwrt-theme-value="dark" data-vwrt-theme-label="{{ _('Dark') }}">{{ _('Dark') }}</button>
 						</div>
 						<div class="vwrt-glass-row" role="group" aria-label="{{ _('Glass quality') }}">
-							<span>Glass</span>
-							<button class="vwrt-theme-button" type="button" data-vwrt-glass-value="auto">Auto</button>
-							<button class="vwrt-theme-button" type="button" data-vwrt-glass-value="low">Low</button>
+							<span>{{ _('Glass') }}</span>
+							<button class="vwrt-theme-button" type="button" data-vwrt-glass-value="auto">{{ _('Auto') }}</button>
+							<button class="vwrt-theme-button" type="button" data-vwrt-glass-value="high">{{ _('High') }}</button>
+							<button class="vwrt-theme-button" type="button" data-vwrt-glass-value="low">{{ _('Low') }}</button>
 						</div>
 					</div>
 
 					<div class="vwrt-sidebar-action-row">
 						<button class="vwrt-text-button vwrt-control-pill" type="button" data-vwrt-panel-toggle="#vwrt-theme-panel" data-vwrt-control-tooltip="{{ _('Theme settings') }}" aria-label="{{ _('Theme settings') }}" aria-expanded="false">
-							<span class="vwrt-control-label">Theme Settings</span>
+							<span class="vwrt-control-label">{{ _('Theme settings') }}</span>
 						</button>
-						<button class="vwrt-icon-button vwrt-control-icon" type="button" data-vwrt-sidebar-toggle data-vwrt-control-tooltip="{{ _('Collapse sidebar') }}" aria-label="{{ _('Collapse sidebar') }}" aria-pressed="false">
-							<span class="vwrt-control-label">Collapse</span>
+						<button class="vwrt-icon-button vwrt-control-icon" type="button" data-vwrt-sidebar-toggle data-vwrt-label-expanded="{{ _('Collapse') }}" data-vwrt-label-collapsed="{{ _('Expand') }}" data-vwrt-aria-expanded="{{ _('Collapse sidebar') }}" data-vwrt-aria-collapsed="{{ _('Expand sidebar') }}" data-vwrt-control-tooltip="{{ _('Collapse sidebar') }}" aria-label="{{ _('Collapse sidebar') }}" aria-pressed="false">
+							<span class="vwrt-control-label">{{ _('Collapse') }}</span>
 						</button>
 						<button class="vwrt-icon-button vwrt-control-icon" type="button" data-vwrt-theme-action="cycle" data-vwrt-control-tooltip="{{ _('Cycle color mode') }}" aria-label="{{ _('Cycle color mode') }}">
-							<span data-vwrt-theme-current>System</span>
+							<span data-vwrt-theme-current>{{ _('System') }}</span>
 						</button>
 					</div>
 				</div>
 			</aside>
 
 			<main id="maincontent" class="container vitra-page" tabindex="-1">
-			<div id="vwrt-indicators-bar">
+			<div id="vwrt-indicators-bar" data-vwrt-unsaved-label="{{ _('Unsaved Changes') }}" data-vwrt-unsaved-title="{{ _('Review pending configuration changes') }}">
+				<button class="vwrt-indicator-chip info" type="button" data-vwrt-refresh title="{{ _('Refresh the current page') }}">
+					<span class="vwrt-indicator-icon" aria-hidden="true"></span>
+					<span class="vwrt-indicator-text">{{ _('Refresh') }}</span>
+				</button>
+
 			{% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
 				<a class="vwrt-indicator-chip warning" href="{{ dispatcher.lookup("admin/system/admin") ? dispatcher.build_url("admin/system/admin") : '#' }}" title="{{ _('There is no password set on this router. Please configure a root password to protect the web interface.') }}">
-					<span class="vwrt-indicator-icon">⚠️</span>
+					<span class="vwrt-indicator-icon" aria-hidden="true"></span>
 					<span class="vwrt-indicator-text">{{ _('No password set!') }}</span>
 				</a>
 			{% endif %}
 
 			{% if (boardinfo.rootfs_type == "initramfs"): %}
 				<a class="vwrt-indicator-chip warning" href="{{ dispatcher.lookup("admin/system/flash") ? dispatcher.build_url("admin/system/flash") : '#' }}" title="{{ _('No changes to settings will be stored and are lost after rebooting. This mode should only be used to install a firmware upgrade') }}">
-					<span class="vwrt-indicator-icon">⚠️</span>
+					<span class="vwrt-indicator-icon" aria-hidden="true"></span>
 					<span class="vwrt-indicator-text">{{ _('System running in recovery (initramfs) mode.') }}</span>
 				</a>
 			{% endif %}

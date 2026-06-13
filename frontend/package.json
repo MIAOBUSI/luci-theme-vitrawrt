@@ -1,0 +1,23 @@
+{
+	"name": "luci-theme-vitrawrt",
+	"version": "1.41.90",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "vite build",
+		"dev": "vite build --watch",
+		"check:css": "cd .. && node scripts/check-css-safety.mjs",
+		"check:js": "cd .. && node scripts/check-js-safety.mjs",
+		"check:tokens": "cd .. && node scripts/check-token-coverage.mjs",
+		"verify": "npm run build && npm run check:tokens && npm run check:css && npm run check:js"
+	},
+	"dependencies": {
+		"gsap": "^3.12.5"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.4.21",
+		"postcss": "^8.5.6",
+		"tailwindcss": "^3.4.17",
+		"vite": "^7.2.6"
+	}
+}

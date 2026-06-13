@@ -1,0 +1,49 @@
+@layer components {
+	/*
+	 * Pass 10 component compatibility layer.
+	 *
+	 * Deliberately does not style buttons, dropdowns, tabs, modals, progress, or
+	 * material surfaces. Those now have single owners in luci-controls,
+	 * luci-forms, luci-tabs, luci-overlays, luci-progress, and luci-surfaces.
+	 */
+	body:not(.vwrt-dashboard-page) #maincontent :is(.label, .badge) {
+		min-height: 22px;
+		padding: 0 8px;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 70%, transparent);
+		border-radius: var(--vw-radius-pill);
+		color: var(--vw-text-secondary);
+		background: var(--vw-token-surface);
+		box-shadow: none;
+		font-size: 0.72rem;
+		font-weight: 720;
+		line-height: 1;
+		vertical-align: middle;
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent :is(.label.warning, .badge.warning, .alert-warning .label) {
+		color: var(--vw-warning);
+		background: var(--vw-warning-surface);
+		border-color: color-mix(in srgb, var(--vw-warning) 24%, transparent);
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent :is(.label.success, .badge.success, .label.notice, .badge.notice) {
+		color: var(--vw-success);
+		background: var(--vw-success-surface);
+		border-color: color-mix(in srgb, var(--vw-success) 22%, transparent);
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent :is(.ifacebadge, .ifacebadge > span, .ifacebadge .nowrap) {
+		color: var(--vw-text-secondary) !important;
+		background: var(--vw-token-surface) !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 76%, transparent) !important;
+		border-radius: var(--vw-radius-pill) !important;
+		box-shadow: none !important;
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent :is(code, kbd, samp) {
+		color: var(--vw-text-main);
+		background: var(--vw-material-inner-surface) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 72%, transparent);
+		border-radius: 7px;
+	}
+}

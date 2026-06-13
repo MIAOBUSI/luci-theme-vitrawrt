@@ -1,4 +1,0 @@
-/* Deprecated in Stage 1R8.
- * The only loaded LuCI hidden guard is [hidden] in base.css. This file is not
- * imported to avoid overriding LuCI runtime display state.
- */

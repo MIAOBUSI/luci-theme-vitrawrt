@@ -1,0 +1,668 @@
+@layer components {
+	#modal_overlay {
+		position: fixed;
+		inset: 0;
+		z-index: var(--vw-z-modal);
+		align-items: center;
+		justify-content: center;
+		padding: clamp(16px, 4vw, 34px);
+		background: color-mix(in srgb, var(--vw-background) 48%, transparent);
+		-webkit-backdrop-filter: blur(18px) saturate(130%);
+		backdrop-filter: blur(18px) saturate(130%);
+	}
+
+	#modal_overlay[style*="display: block"],
+	#modal_overlay[style*="display:block"],
+	#modal_overlay[style*="display: flex"],
+	#modal_overlay[style*="display:flex"] {
+		display: flex !important;
+	}
+
+	body[class~="modal-overlay-active"] #modal_overlay {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		overflow: hidden auto;
+	}
+
+	#modal_overlay .modal,
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]),
+	.cbi-tooltip {
+		color: var(--vw-text-main) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 40%, transparent), transparent 70%),
+			var(--vw-material-modal-surface) !important;
+		border: 1px solid var(--vw-material-border-strong) !important;
+		border-radius: var(--vw-radius-modal) !important;
+		box-shadow: var(--vw-material-shadow-raised) !important;
+		-webkit-backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover)) !important;
+		backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover)) !important;
+	}
+
+	#modal_overlay .modal {
+		width: min(720px, calc(100vw - 32px));
+		max-width: calc(100vw - 32px);
+		max-height: calc(100dvh - 48px);
+		margin: 0 !important;
+		padding: 18px;
+		overflow: auto;
+	}
+
+	#modal_overlay > .modal.alert-message:not(.spinning):not(.loading) {
+		width: fit-content;
+		min-width: min(18rem, calc(100vw - 32px));
+		max-width: min(32rem, calc(100vw - 32px));
+	}
+
+	#modal_overlay .modal :is(.modal-header, header),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.modal-header, header) {
+		padding: 0 0 12px;
+		border-bottom: 1px solid color-mix(in srgb, var(--vw-material-border) 70%, transparent);
+	}
+
+	#modal_overlay .modal :is(h1, h2, h3, h4, header, .modal-title),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(h1, h2, h3, h4, header, .modal-title) {
+		color: var(--vw-text-main) !important;
+		background: transparent !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 72%, transparent) !important;
+	}
+
+	#modal_overlay .modal :is(.modal-body, .cbi-section, .cbi-value),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.modal-body, .cbi-section, .cbi-value) {
+		background: transparent !important;
+		border-color: transparent !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	#modal_overlay .modal .cbi-value,
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) .cbi-value {
+		margin-block: 0 !important;
+		padding-block: var(--vw-cbi-value-padding-modal) !important;
+	}
+
+	#modal_overlay .modal .cbi-value-field > *,
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) .cbi-value-field > * {
+		margin-block: 0 !important;
+	}
+
+	#modal_overlay .modal :is(.cbi-map, .cbi-section-node, .panel, fieldset, table, .table, .cbi-section-table),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.cbi-map, .cbi-section-node, .panel, fieldset, table, .table, .cbi-section-table) {
+		color: var(--vw-text-main) !important;
+		background: transparent !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 18%, transparent) !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	#modal_overlay .modal :is(.alert-message, .uci-change-list, .uci-change-legend, .uci-change-legend-label, pre, code),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.alert-message, .uci-change-list, .uci-change-legend, .uci-change-legend-label, pre, code) {
+		color: var(--vw-text-main) !important;
+		background: color-mix(in srgb, var(--vw-material-inner-surface) 72%, transparent) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 24%, transparent) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: none !important;
+	}
+
+	#modal_overlay .modal :is(.cbi-value:hover, tr:hover, .tr:hover),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.cbi-value:hover, tr:hover, .tr:hover) {
+		background: var(--vw-form-row-hover) !important;
+	}
+
+	#modal_overlay > [role="dialog"] :is(
+		input[type="text"],
+		input[type="password"],
+		input[type="number"],
+		input[type="search"],
+		input[type="url"],
+		input[type="email"],
+		input:not([type]),
+		select,
+		textarea,
+		.cbi-input,
+		.cbi-input-text,
+		.cbi-input-password,
+		.cbi-input-select,
+		.cbi-dropdown:not(.btn):not(.cbi-button)
+	),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(
+		input[type="text"],
+		input[type="password"],
+		input[type="number"],
+		input[type="search"],
+		input[type="url"],
+		input[type="email"],
+		input:not([type]),
+		select,
+		textarea,
+		.cbi-input,
+		.cbi-input-text,
+		.cbi-input-password,
+		.cbi-input-select,
+		.cbi-dropdown:not(.btn):not(.cbi-button)
+	) {
+		min-height: var(--vw-field-height);
+		border: 1px solid var(--vw-field-border) !important;
+		border-radius: var(--vw-radius-field) !important;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-field-bg) !important;
+		box-shadow:
+			0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 28%, transparent) inset,
+			0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 3%, transparent) !important;
+	}
+
+	#modal_overlay .modal :is(input, select, textarea, .cbi-dropdown:not(.btn):not(.cbi-button)):hover,
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(input, select, textarea, .cbi-dropdown:not(.btn):not(.cbi-button)):hover {
+		background: var(--vw-field-bg-hover) !important;
+		border-color: var(--vw-control-border-hover) !important;
+	}
+
+	#modal_overlay .vwrt-modal-inline-controls,
+	#maincontent .vwrt-modal-inline-controls {
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: center;
+		column-gap: 14px;
+		row-gap: 12px;
+		width: 100%;
+	}
+
+	#modal_overlay .vwrt-modal-inline-controls > :is(
+		input[type="text"],
+		input[type="password"],
+		input[type="number"],
+		input[type="search"],
+		input[type="url"],
+		input[type="email"],
+		input:not([type]),
+		select,
+		textarea,
+		.cbi-input,
+		.cbi-input-text,
+		.cbi-input-password,
+		.cbi-input-select,
+		.cbi-dropdown:not(.btn):not(.cbi-button)
+	),
+	#maincontent .vwrt-modal-inline-controls > :is(
+		input[type="text"],
+		input[type="password"],
+		input[type="number"],
+		input[type="search"],
+		input[type="url"],
+		input[type="email"],
+		input:not([type]),
+		select,
+		textarea,
+		.cbi-input,
+		.cbi-input-text,
+		.cbi-input-password,
+		.cbi-input-select,
+		.cbi-dropdown:not(.btn):not(.cbi-button)
+	) {
+		flex: 1 1 min(18rem, 100%);
+		min-width: min(100%, 16rem);
+		margin: 0 !important;
+	}
+
+	#modal_overlay .vwrt-modal-inline-controls > :is(.cbi-dynlist, .control-group, .controls, .cbi-input-group),
+	#maincontent .vwrt-modal-inline-controls > :is(.cbi-dynlist, .control-group, .controls, .cbi-input-group) {
+		flex: 1 1 100%;
+		min-width: 0;
+		margin: 0 !important;
+	}
+
+	#modal_overlay .vwrt-modal-inline-group,
+	#maincontent .vwrt-modal-inline-group {
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: center;
+		column-gap: 14px !important;
+		row-gap: 12px !important;
+	}
+
+	#modal_overlay :is(.cbi-dynlist > .item, .cbi-dynlist > .cbi-dynlist-item, .cbi-dynlist > .add-item, .cbi-dynlist > .control-group),
+	#modal_overlay :is(.vwrt-modal-inline-controls, .vwrt-modal-inline-group) {
+		column-gap: 14px !important;
+	}
+
+	#modal_overlay .vwrt-modal-inline-group > *,
+	#maincontent .vwrt-modal-inline-group > * {
+		margin: 0 !important;
+	}
+
+	#modal_overlay .vwrt-modal-inline-controls > :is(.cbi-button, .btn, button, input[type="submit"], input[type="button"], input[type="reset"]),
+	#maincontent .vwrt-modal-inline-controls > :is(.cbi-button, .btn, button, input[type="submit"], input[type="button"], input[type="reset"]) {
+		flex: 0 0 auto;
+		align-self: center;
+		margin: 0 !important;
+	}
+
+	#modal_overlay > [role="dialog"] :is(
+		.vwrt-button-icon-only,
+		.vwrt-button-add-icon,
+		.cbi-button-add.vwrt-button-icon-only,
+		.cbi-button-remove.vwrt-button-icon-only,
+		.cbi-button-neutral.vwrt-button-icon-only
+	) {
+		display: inline-grid !important;
+		align-self: center;
+		place-items: center;
+		box-sizing: border-box;
+		width: var(--vw-control-height) !important;
+		min-width: var(--vw-control-height) !important;
+		height: var(--vw-control-height) !important;
+		min-height: var(--vw-control-height) !important;
+		padding: 0 !important;
+		overflow: visible;
+		font-size: 1rem;
+		line-height: 1 !important;
+		text-indent: 0;
+	}
+
+	#modal_overlay > [role="dialog"] :is(.cbi-dynlist > .item, .cbi-dynlist-item)::after {
+		align-self: center;
+		width: var(--vw-control-height);
+		height: var(--vw-control-height);
+		overflow: visible;
+	}
+
+	#modal_overlay .modal :is(.modal-footer, .button-row, .cbi-page-actions),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.modal-footer, .button-row, .cbi-page-actions) {
+		gap: var(--vw-inline-control-gap);
+		width: 100%;
+		padding-top: 14px;
+		border-top: 1px solid color-mix(in srgb, var(--vw-material-border) 70%, transparent);
+		background: transparent !important;
+		box-shadow: none !important;
+		text-align: right;
+	}
+
+	.vwrt-loading-apply,
+	.vwrt-loading-modal-local,
+	.vwrt-loading-viewport,
+	#view > :is(.spinning, .loading),
+	#maincontent > :is(.spinning, .loading),
+	#modal_overlay > [class~="modal"][class~="alert-message"]:is(.spinning, .loading),
+	#modal_overlay > [class~="modal"] :is(.spinning, .loading):not(button):not(.btn):not(.cbi-button):not(input),
+	#maincontent :is(.cbi-map, .cbi-section, .cbi-section-node) > p > :is(.spinning, .loading),
+	.vwrt-pass19-loading-fixture #view > :is(.spinning, .loading),
+	.vwrt-pass20-loading-fixture #view > :is(.spinning, .loading),
+	.vwrt-pass21-loading-fixture #view > :is(.spinning, .loading) {
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		inline-size: fit-content;
+		min-width: 13.5rem;
+		min-height: 64px;
+		max-width: min(100%, 24rem);
+		margin: 0;
+		padding: 14px 18px;
+		color: var(--vw-text-secondary) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 32%, transparent), transparent 72%),
+			var(--vw-material-modal-surface) !important;
+		border: 1px solid var(--vw-material-border-strong) !important;
+		border-radius: var(--vw-radius-modal) !important;
+		box-shadow: var(--vw-material-shadow-raised) !important;
+		text-align: left;
+		word-break: keep-all;
+		overflow-wrap: normal;
+		writing-mode: horizontal-tb;
+		-webkit-backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+		backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+	}
+
+	.vwrt-loading-modal-local,
+	#modal_overlay > [class~="modal"] :is(.spinning, .loading):not(button):not(.btn):not(.cbi-button):not(input):not([class~="modal"][class~="alert-message"]) {
+		display: flex !important;
+		position: relative !important;
+		inset: auto !important;
+		width: fit-content;
+		height: fit-content;
+		margin: auto !important;
+		transform: none !important;
+	}
+
+	#modal_overlay > .modal[role="dialog"]:not(.alert-message):has(> h4:empty + p:is(.spinning, .loading)),
+	#modal_overlay > .modal[role="dialog"]:not(.alert-message):has(> p:is(.spinning, .loading):only-child),
+	#modal_overlay > .modal[role="dialog"].vwrt-loading-only-parent:not(.alert-message) {
+		width: fit-content !important;
+		min-width: 0 !important;
+		max-width: calc(100vw - 32px) !important;
+		min-height: 0 !important;
+		height: fit-content !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: visible !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	#modal_overlay > .modal[role="dialog"]:not(.alert-message):has(> h4:empty + p:is(.spinning, .loading)) > p:is(.spinning, .loading),
+	#modal_overlay > .modal[role="dialog"]:not(.alert-message):has(> p:is(.spinning, .loading):only-child) > p:is(.spinning, .loading),
+	#modal_overlay > .modal[role="dialog"].vwrt-loading-only-parent:not(.alert-message) > p:is(.spinning, .loading) {
+		margin: 0 !important;
+	}
+
+	.vwrt-loading-apply,
+	#modal_overlay > [class~="modal"][class~="alert-message"]:is(.spinning, .loading) {
+		position: fixed !important;
+		inset: auto !important;
+		top: 50dvh !important;
+		left: 50vw !important;
+		right: auto !important;
+		bottom: auto !important;
+		width: fit-content !important;
+		min-width: min(13.5rem, calc(100vw - 32px));
+		max-width: min(24rem, calc(100vw - 32px));
+		margin: 0 !important;
+		transform: translate3d(-50%, -50%, 0) !important;
+	}
+
+	.vwrt-loading-viewport,
+	#view > :is(.spinning, .loading),
+	#maincontent > :is(.spinning, .loading),
+	#maincontent :is(.cbi-map, .cbi-section, .cbi-section-node) > p > :is(.spinning, .loading),
+	.vwrt-pass19-loading-fixture #view > :is(.spinning, .loading),
+	.vwrt-pass20-loading-fixture #view > :is(.spinning, .loading),
+	.vwrt-pass21-loading-fixture #view > :is(.spinning, .loading) {
+		position: fixed !important;
+		inset: auto !important;
+		left: var(--vwrt-loading-center-x, 50vw) !important;
+		top: 50vh !important;
+		right: auto !important;
+		bottom: auto !important;
+		margin: 0 !important;
+		transform: translate3d(-50%, -50%, 0) !important;
+		z-index: var(--vw-z-modal);
+	}
+
+	.vwrt-loading-viewport {
+		justify-self: center;
+	}
+
+	body:not(.vwrt-view-ready) :is(#maincontent, #view) {
+		transform: none !important;
+		filter: none !important;
+		perspective: none !important;
+	}
+
+	#view:has(> :is(.spinning, .loading)) {
+		transform: none !important;
+		filter: none !important;
+		perspective: none !important;
+	}
+
+	body:not(.vwrt-dashboard-page) #view :is(.cbi-map, .cbi-section, .cbi-section-node):has(.spinning, .loading):not(:has(
+		.cbi-value,
+		table,
+		canvas,
+		video,
+		img,
+		button,
+		input:not([type="hidden"]),
+		select,
+		textarea
+	)),
+	body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-map, .cbi-section, .cbi-section-node):has(.spinning, .loading):not(:has(
+		.cbi-value,
+		table,
+		canvas,
+		video,
+		img,
+		button,
+		input:not([type="hidden"]),
+		select,
+		textarea
+	)),
+	body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-map, .cbi-section, .cbi-section-node):has(> p > :is(.spinning, .loading)) > p {
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent [data-tab]:has(> p > em.spinning),
+	body:not(.vwrt-dashboard-page) #maincontent :is(.tab-pane, .tab-content, .panel):has(> p > em.spinning) {
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: visible !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	:is(#maincontent, #view, #modal_overlay) .vwrt-loading-only-parent,
+	body:not(.vwrt-dashboard-page) #maincontent #view .vwrt-loading-only-parent:is(.cbi-section, .cbi-section-node, .cbi-map, .panel, .tab-content) {
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: visible !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	:is(#maincontent, #view, #modal_overlay) .vwrt-loading-only-parent > :is(p, div),
+	body:not(.vwrt-dashboard-page) #maincontent #view .vwrt-loading-only-parent:is(.cbi-section, .cbi-section-node, .cbi-map, .panel, .tab-content) > :is(p, div) {
+		margin: 0 !important;
+		padding: 0 !important;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+
+	.vwrt-loading-apply::before,
+	.vwrt-loading-modal-local::before,
+	.vwrt-loading-viewport::before,
+	#view > :is(.spinning, .loading)::before,
+	#maincontent > :is(.spinning, .loading)::before,
+	#modal_overlay > [class~="modal"][class~="alert-message"]:is(.spinning, .loading)::before,
+	#modal_overlay > [class~="modal"] :is(.spinning, .loading):not(button):not(.btn):not(.cbi-button):not(input)::before,
+	#maincontent :is(.cbi-map, .cbi-section, .cbi-section-node) > p > :is(.spinning, .loading)::before,
+	.vwrt-pass19-loading-fixture #view > :is(.spinning, .loading)::before,
+	.vwrt-pass20-loading-fixture #view > :is(.spinning, .loading)::before,
+	.vwrt-pass21-loading-fixture #view > :is(.spinning, .loading)::before {
+		flex: 0 0 auto;
+		inline-size: 20px;
+		block-size: 20px;
+		padding: 0;
+		margin: 0;
+		border-radius: 50%;
+		background:
+			conic-gradient(from 18deg, color-mix(in srgb, var(--vw-accent) 76%, white), color-mix(in srgb, var(--vw-accent) 24%, transparent) 46%, transparent 74%),
+			color-mix(in srgb, var(--vw-progress-track) 62%, transparent);
+		content: "";
+		justify-self: center;
+		-webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+		mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+		box-shadow:
+			0 0 0 1px color-mix(in srgb, var(--vw-accent) 10%, transparent),
+			0 0 18px color-mix(in srgb, var(--vw-accent) 10%, transparent);
+		animation: vwrt-spinner-rotate 0.9s linear infinite;
+	}
+
+	#modal_overlay > [class~="modal"] :is(button, .btn, .cbi-button) > :is(.spinning, .loading) {
+		position: static !important;
+		inset: auto !important;
+		display: inline-grid !important;
+		place-items: center;
+		box-sizing: border-box;
+		inline-size: 16px !important;
+		min-width: 16px !important;
+		block-size: 16px !important;
+		min-height: 16px !important;
+		max-width: 16px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: visible !important;
+		color: currentColor !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		transform: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	#modal_overlay > [class~="modal"] :is(button, .btn, .cbi-button) > :is(.spinning, .loading)::before {
+		inline-size: 16px !important;
+		block-size: 16px !important;
+		margin: 0 !important;
+		box-shadow: none !important;
+	}
+
+	@media (min-width: 901px) {
+		:root:not(.vwrt-sidebar-collapsed) {
+			--vwrt-loading-center-x: calc((100vw + var(--vw-sidebar-width) + 24px) / 2);
+		}
+
+		:root.vwrt-sidebar-collapsed {
+			--vwrt-loading-center-x: calc((100vw + var(--vw-sidebar-collapsed-width) + 24px) / 2);
+		}
+	}
+
+	@media (max-width: 900px) {
+		:root {
+			--vwrt-loading-center-x: 50vw;
+		}
+	}
+
+	#maincontent :is(ul.dropdown-menu, .dropdown-menu),
+	#modal_overlay :is(ul.dropdown-menu, .dropdown-menu) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-surface) !important;
+		border: 1px solid var(--vw-material-border-strong) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: var(--vw-shadow-popover) !important;
+	}
+
+	#maincontent :is(ul.dropdown-menu, .dropdown-menu),
+	#modal_overlay :is(ul.dropdown-menu, .dropdown-menu) {
+		border-radius: var(--vw-radius-card) !important;
+	}
+
+	#maincontent :is(ul.dropdown-menu li, .dropdown-menu li),
+	#modal_overlay :is(ul.dropdown-menu li, .dropdown-menu li) {
+		min-height: 32px;
+		padding: 0 10px !important;
+		border-radius: 10px;
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+	}
+
+	#maincontent :is(ul.dropdown-menu li.active, .dropdown-menu li.active),
+	#modal_overlay :is(ul.dropdown-menu li.active, .dropdown-menu li.active) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-item-selected) !important;
+	}
+
+	#maincontent :is(ul.dropdown-menu li:hover, .dropdown-menu li:hover),
+	#modal_overlay :is(ul.dropdown-menu li:hover, .dropdown-menu li:hover) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-item-hover) !important;
+	}
+
+	#modal_overlay :is(.alert-message, .uci-change-list),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.alert-message, .uci-change-list) {
+		color: var(--vw-text-main) !important;
+		background: color-mix(in srgb, var(--vw-material-inner-surface) 9%, transparent) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 18%, transparent) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: none !important;
+	}
+
+	#modal_overlay :is(.uci-change-legend, .uci-change-legend-label, pre, code),
+	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.uci-change-legend, .uci-change-legend-label, pre, code) {
+		color: var(--vw-text-main) !important;
+		background: color-mix(in srgb, var(--vw-field-bg) 46%, transparent) !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 18%, transparent) !important;
+		border-radius: 12px !important;
+		box-shadow: none !important;
+	}
+
+	#modal_overlay > .modal:not(.spinning):not(.loading) > .alert-message,
+	#modal_overlay > .modal:not(.spinning):not(.loading) > .modal-body > .alert-message {
+		margin: 0 !important;
+		padding: 4px 0 !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	#modal_overlay .modal :is(.ifacebadge, .interface-status, .device-status) {
+		color: var(--vw-text-main) !important;
+		background: color-mix(in srgb, var(--vw-material-inner-surface) 54%, transparent) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 72%, transparent) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	#modal_overlay .modal :is(.ifacebadge, .interface-status, .device-status) :is(span, strong, small, label) {
+		color: inherit !important;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+
+	#modal_overlay .modal .ifacebadge img {
+		flex: 0 0 auto;
+		max-width: 32px;
+		max-height: 32px;
+		object-fit: contain;
+	}
+
+	@media (max-width: 640px) {
+		#modal_overlay {
+			padding: 12px;
+		}
+
+		#modal_overlay .modal {
+			width: min(720px, calc(100vw - 24px));
+			max-width: calc(100vw - 24px);
+			max-height: calc(100dvh - 24px);
+			padding: 16px;
+		}
+	}
+}
+
+@keyframes vwrt-spinner-rotate {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#modal_overlay > .alert-message:is(.spinning, .loading)::before,
+	#modal_overlay > [role="dialog"] :is(.spinning, .loading)::before,
+	#maincontent :is(.spinning, .loading)::before,
+	#view > :is(.spinning, .loading)::before,
+	.vwrt-pass21-loading-fixture #view > :is(.spinning, .loading)::before {
+		animation-duration: 1.8s;
+	}
+}

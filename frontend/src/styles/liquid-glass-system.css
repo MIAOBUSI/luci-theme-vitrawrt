@@ -1,0 +1,113 @@
+@layer components {
+	html.vitrawrt-ready,
+	body.vwrt-shell-body {
+		background: var(--vw-liquid-canvas);
+	}
+
+	#maincontent {
+		text-shadow: var(--vw-liquid-text-protection);
+	}
+
+	#maincontent :is(
+		.cbi-section,
+		.cbi-tabcontainer,
+		.cbi-map,
+		.panel,
+		.main-container,
+		.network-status-table,
+		.ifacebox,
+		.alert,
+		.alert-message,
+		.notice
+	) {
+		color: var(--vw-text-main) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight-edge) 62%, transparent), transparent 56%),
+			var(--vw-liquid-surface) !important;
+		border: 1px solid var(--vw-liquid-border) !important;
+		border-radius: var(--vw-radius-panel) !important;
+		box-shadow: var(--vw-liquid-shadow) !important;
+		-webkit-backdrop-filter: blur(var(--vw-blur-glass)) saturate(var(--vw-saturate-glass)) !important;
+		backdrop-filter: blur(var(--vw-blur-glass)) saturate(var(--vw-saturate-glass)) !important;
+	}
+
+	#maincontent :is(.cbi-section, .panel, .network-status-table, .ifacebox) > :is(.cbi-section, .panel) {
+		background: color-mix(in srgb, var(--vw-liquid-surface-strong) 72%, transparent) !important;
+	}
+
+	#maincontent :is(.ifacebox-head, .ifacebox-body, .ifacebox-network, .ifacebox .ifacebox-head) {
+		color: var(--vw-text-main) !important;
+		background: color-mix(in srgb, var(--vw-liquid-chip) 84%, transparent) !important;
+		border-color: var(--vw-liquid-border-soft) !important;
+	}
+
+	#maincontent :is(.ifacebadge, .ifacebadge > span, .ifacebadge .nowrap) {
+		color: var(--vw-text-secondary) !important;
+		background: color-mix(in srgb, var(--vw-liquid-chip) 72%, transparent) !important;
+		border-color: var(--vw-liquid-border-soft) !important;
+		text-shadow: var(--vw-liquid-text-protection);
+	}
+
+	#maincontent .ifacebadge strong {
+		color: var(--vw-text-main) !important;
+	}
+
+	#maincontent :is(.ifacebox, .network-status-table) :is(.ifacebox-head, .ifacebox-body) {
+		border-radius: calc(var(--vw-radius-card) - 4px);
+	}
+
+	#maincontent :is(.label, .badge, [class*="badge-"], [class*="label-"]) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 1.65em;
+		padding: 0.16em 0.62em;
+		border: 1px solid color-mix(in srgb, currentColor 18%, transparent) !important;
+		border-radius: var(--vw-radius-pill) !important;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-liquid-chip) !important;
+		box-shadow: var(--vw-liquid-control-shadow) !important;
+		font-weight: 680;
+		line-height: 1.15;
+		text-shadow: none;
+	}
+
+	#maincontent :is(.label-success, .badge-success, .label.notice, .badge.notice) {
+		color: var(--vw-success) !important;
+		background: var(--vw-success-surface) !important;
+	}
+
+	#maincontent :is(.label-warning, .badge-warning, .warning) {
+		color: var(--vw-warning) !important;
+		background: var(--vw-warning-surface) !important;
+	}
+
+	#maincontent :is(.label-danger, .badge-danger, .label-error, .badge-error, .error) {
+		color: var(--vw-danger) !important;
+		background: var(--vw-danger-surface) !important;
+	}
+
+	#maincontent :is(.alert, .alert-message, .notice) {
+		padding: 12px 14px;
+	}
+
+	#maincontent :is(.alert, .alert-message, .notice) a {
+		color: var(--vw-accent) !important;
+		font-weight: 680;
+	}
+
+	#maincontent hr {
+		border: 0;
+		border-top: 1px solid var(--vw-liquid-border-soft);
+	}
+
+	#maincontent :is(.left, .right, .center) {
+		text-shadow: inherit;
+	}
+
+	@media (max-width: 900px) {
+		#maincontent :is(.cbi-section, .cbi-map, .panel, .network-status-table, .ifacebox) {
+			border-radius: var(--vw-radius-card) !important;
+		}
+	}
+}

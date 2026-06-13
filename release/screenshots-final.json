@@ -1,0 +1,40 @@
+{
+  "auditDate": "2026-06-13",
+  "source": "current test router running the frozen theme payload",
+  "screenshotFiles": [
+    {
+      "path": "screenshots/login.png",
+      "dimensions": "1280x730",
+      "view": "login"
+    },
+    {
+      "path": "screenshots/forms.png",
+      "dimensions": "1280x720",
+      "view": "native LuCI system form"
+    },
+    {
+      "path": "screenshots/packages.png",
+      "dimensions": "1280x720",
+      "view": "native LuCI package table"
+    },
+    {
+      "path": "screenshots/dark-mode.png",
+      "dimensions": "1280x720",
+      "view": "dark mode"
+    },
+    {
+      "path": "screenshots/modal.png",
+      "dimensions": "1280x720",
+      "view": "native LuCI modal"
+    }
+  ],
+  "sensitiveFieldsChecked": true,
+  "sensitiveFieldsRedacted": [
+    "device identity",
+    "firmware build details",
+    "authentication warning",
+    "device-specific form values"
+  ],
+  "dashboardExcluded": true,
+  "readmeReferencesVerified": true
+}

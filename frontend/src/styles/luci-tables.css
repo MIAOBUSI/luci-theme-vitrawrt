@@ -1,0 +1,232 @@
+@layer components {
+	#maincontent :is(table, .table, .cbi-section-table) {
+		border-collapse: separate;
+		border-spacing: 0;
+		color: var(--vw-text-main);
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 24%, transparent), transparent 58%),
+			color-mix(in srgb, var(--vw-surface-glass-2) 54%, transparent);
+		border-color: var(--vw-border-hairline);
+		border-radius: var(--vw-radius-card);
+		box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 22%, transparent) inset;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(th, .th) {
+		padding: 10px 12px;
+		color: var(--vw-text-secondary);
+		background: var(--vw-table-head-surface);
+		border-bottom: 1px solid var(--vw-border-hairline);
+		font-size: 0.8rem;
+		font-weight: 760;
+		letter-spacing: 0;
+		text-transform: none;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(tr.table-titles, .tr.table-titles, tr.cbi-section-table-titles, .tr.cbi-section-table-titles, .cbi-section-table-titles) {
+		color: var(--vw-text-secondary) !important;
+		background: var(--vw-table-head-surface) !important;
+		border-color: var(--vw-border-hairline) !important;
+		box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--vw-border-hairline) 82%, transparent);
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(tr.table-titles, .tr.table-titles, tr.cbi-section-table-titles, .tr.cbi-section-table-titles, .cbi-section-table-titles) :is(td, th, .td, .th) {
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+		border-color: color-mix(in srgb, var(--vw-border-hairline) 72%, transparent) !important;
+		font-size: 0.8rem;
+		font-weight: 760;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(td, .td) {
+		padding: 9px 12px;
+		border-top: 1px solid color-mix(in srgb, var(--vw-border-hairline) 74%, transparent);
+		color: var(--vw-text-secondary);
+		line-height: 1.38;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(tbody tr, .tbody .tr, .cbi-section-table-row, .tr.cbi-section-table-row) {
+		background: var(--vw-table-row-surface) !important;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(.cbi-rowstyle-1, .tr.cbi-rowstyle-1, tr.cbi-rowstyle-1) {
+		background: var(--vw-table-row-surface) !important;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(.cbi-rowstyle-2, .tr.cbi-rowstyle-2, tr.cbi-rowstyle-2) {
+		background: var(--vw-table-row-alt-surface) !important;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(tbody tr, .tbody .tr, .cbi-section-table-row, .tr.cbi-section-table-row):hover {
+		background: var(--vw-table-row-hover-surface) !important;
+	}
+
+	html[data-theme="dark"] #maincontent :is(table, .table, .cbi-section-table) :is(tbody tr, .tbody .tr, .cbi-section-table-row, .tr.cbi-section-table-row):hover,
+	html[data-darkmode="true"] #maincontent :is(table, .table, .cbi-section-table) :is(tbody tr, .tbody .tr, .cbi-section-table-row, .tr.cbi-section-table-row):hover {
+		background: var(--vw-table-row-hover-surface) !important;
+	}
+
+	html[data-theme="dark"] #maincontent :is(tr:not(.table-titles):not(.cbi-section-table-titles), .tr:not(.table-titles):not(.cbi-section-table-titles), .cbi-rowstyle-1, .cbi-rowstyle-2):hover,
+	html[data-darkmode="true"] #maincontent :is(tr:not(.table-titles):not(.cbi-section-table-titles), .tr:not(.table-titles):not(.cbi-section-table-titles), .cbi-rowstyle-1, .cbi-rowstyle-2):hover {
+		background: var(--vw-table-row-hover-surface) !important;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(tr, .tr):first-child :is(td, .td) {
+		border-top-color: transparent;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(.cbi-button, .btn) {
+		min-height: 30px;
+		padding: 0 10px;
+		border-radius: var(--vw-radius-pill) !important;
+		font-size: 0.84rem;
+		font-weight: 650;
+	}
+
+	#maincontent .cbi-section-table :is(select, .cbi-input-select) {
+		min-height: 30px;
+		padding-inline: 8px;
+		border-radius: var(--vw-radius-field) !important;
+		font-size: 0.86rem;
+	}
+
+	#maincontent :is(code, kbd, samp) {
+		color: var(--vw-text-main);
+		background: var(--vw-material-inner-surface) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 72%, transparent);
+		border-radius: 7px;
+	}
+
+	#maincontent :is(.cbi-dropdown > ul > li[display]) {
+		background: var(--vw-material-inner-surface) !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 72%, transparent) !important;
+		color: var(--vw-text-main) !important;
+	}
+
+	@media (max-width: 900px) {
+		body:is(.vwrt-page-startup, .vwrt-page-processes, .vwrt-page-packages) #maincontent #view,
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection,
+		body.vwrt-page-overview #maincontent #view > .cbi-section > div {
+			border: 1px solid color-mix(in srgb, var(--vw-border-hairline) 86%, transparent);
+			border-radius: var(--vw-radius-card);
+			background: color-mix(in srgb, var(--vw-surface-glass-1) 36%, transparent);
+			box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 24%, transparent) inset;
+			scrollbar-width: thin;
+		}
+
+		body:is(.vwrt-page-startup, .vwrt-page-processes, .vwrt-page-packages) #maincontent table {
+			min-width: 590px;
+		}
+
+		body.vwrt-page-processes #maincontent table {
+			min-width: 660px;
+		}
+
+		body.vwrt-page-processes #maincontent table :is(td, .td):nth-child(3) {
+			max-width: 28rem;
+			overflow: hidden;
+			color: var(--vw-text-main);
+			font-family: var(--vw-font-mono);
+			font-size: 0.82rem;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		body:is(.vwrt-page-startup, .vwrt-page-processes, .vwrt-page-packages) #maincontent table :is(td, .td):last-child {
+			white-space: nowrap;
+		}
+
+		body:is(.vwrt-page-startup, .vwrt-page-processes, .vwrt-page-packages) #maincontent table :is(th, .th) {
+			background: color-mix(in srgb, var(--vw-surface-strong) 72%, transparent);
+		}
+
+		body.vwrt-page-packages #maincontent .controls {
+			justify-content: flex-start;
+			gap: 8px;
+			overflow: visible;
+		}
+
+		body.vwrt-page-packages #maincontent .controls > * {
+			flex: 1 1 17rem;
+			min-width: min(100%, 15rem);
+			gap: 6px;
+			white-space: normal;
+		}
+
+		body.vwrt-page-packages #maincontent .controls .control-group {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px;
+			width: 100%;
+			min-width: 0;
+		}
+
+		body.vwrt-page-packages #maincontent .controls .control-group > input {
+			flex: 1 1 11rem;
+			min-width: 0;
+		}
+
+		body.vwrt-page-packages #maincontent .controls .control-group > :is(.btn, .cbi-button) {
+			flex: 0 1 auto;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-section-table :is(td, .td, th, .th).cbi-section-actions {
+			width: auto !important;
+			min-width: min(100%, 10.5rem) !important;
+			white-space: normal !important;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-section-table .cbi-section-actions > div {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 6px;
+			min-width: 0;
+			max-width: 11.5rem;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-section-table .cbi-section-actions :is(.cbi-button, .btn) {
+			flex: 0 1 auto;
+			min-width: 0;
+			max-width: 100%;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table {
+			width: 100% !important;
+			min-width: 0 !important;
+			table-layout: fixed;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table :is(td, .td, th, .th) {
+			padding-inline: 6px;
+			white-space: normal !important;
+			word-break: normal;
+			overflow-wrap: anywhere;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table :is(td, .td, th, .th):first-child {
+			width: 34% !important;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table :is(td, .td, th, .th):nth-child(2) {
+			width: 42% !important;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table .cbi-section-actions {
+			width: 24% !important;
+			min-width: 0 !important;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table .cbi-section-actions > div {
+			justify-content: flex-end;
+			max-width: 100%;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table .cbi-section-actions :is(.cbi-button, .btn) {
+			min-height: 28px;
+			padding-inline: 7px;
+			font-size: 0.74rem;
+			line-height: 1;
+		}
+	}
+}

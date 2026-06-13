@@ -1,0 +1,206 @@
+/*
+ * Desktop shell-to-sidebar coupling. Keeping this in a dedicated late-loaded
+ * module fixes the collapsed rail offset without changing menu behavior.
+ */
+#vwrt-sidebar {
+	position: fixed;
+	z-index: var(--vwrt-z-sidebar);
+	top: var(--vwrt-sidebar-gap);
+	bottom: var(--vwrt-sidebar-gap);
+	left: var(--vwrt-sidebar-gap);
+	width: var(--vw-sidebar-width);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	padding: 18px;
+	border: 1px solid transparent;
+	border-radius: 32px;
+	color: var(--vw-text-main);
+	isolation: isolate;
+	backdrop-filter: blur(var(--vw-blur-panel)) saturate(126%);
+	-webkit-backdrop-filter: blur(var(--vw-blur-panel)) saturate(126%);
+}
+
+#vwrt-sidebar::before,
+#vwrt-sidebar::after {
+	position: absolute;
+	z-index: -1;
+	border-radius: inherit;
+	content: "";
+}
+
+#vwrt-sidebar::before {
+	inset: 0;
+}
+
+#vwrt-sidebar::after {
+	inset: 1px;
+	border: 1px solid transparent;
+	pointer-events: none;
+}
+
+.vwrt-sidebar-brand {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 13px;
+	min-height: 74px;
+	margin: 0 0 16px;
+	padding: 12px;
+	border: 1px solid transparent;
+	border-radius: 24px;
+	color: var(--vwrt-text);
+}
+
+.vwrt-sidebar-brand img {
+	flex: 0 0 auto;
+	width: 42px;
+	height: 42px;
+	border-radius: 0;
+}
+
+.vwrt-brand-text {
+	min-width: 0;
+}
+
+.vwrt-brand-name {
+	display: block;
+	font-size: 18px;
+	font-weight: 760;
+	line-height: 1.15;
+	white-space: nowrap;
+}
+
+.vwrt-brand-subname,
+.vwrt-hostname {
+	display: block;
+	overflow: hidden;
+	color: var(--vwrt-text-muted);
+	font-size: 12px;
+	line-height: 1.25;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.vwrt-hostname {
+	margin-top: 2px;
+}
+
+.vwrt-sidebar-status {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	margin: 0 0 16px;
+	padding: 10px 12px;
+	border: 1px solid var(--vwrt-border);
+	border-radius: 22px;
+	color: var(--vw-text-muted);
+	font-size: 12px;
+}
+
+.vwrt-status-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--vwrt-positive);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--vwrt-positive) 18%, transparent);
+}
+
+@media (min-width: 901px) {
+	:root {
+		--vwrt-content-sidebar-offset: calc(var(--vwrt-sidebar-width) + var(--vwrt-sidebar-gap) + 12px);
+	}
+
+	html.vwrt-sidebar-collapsed {
+		--vwrt-content-sidebar-offset: calc(var(--vwrt-sidebar-collapsed-width) + var(--vwrt-sidebar-gap) + 16px);
+	}
+
+	#maincontent,
+	.vwrt-footer {
+		margin-left: var(--vwrt-content-sidebar-offset);
+		margin-right: 12px;
+	}
+
+	html.vwrt-sidebar-collapsed #vwrt-sidebar {
+		width: var(--vw-sidebar-collapsed-width);
+		min-width: var(--vw-sidebar-collapsed-width);
+		padding: 12px 10px;
+		border-radius: 30px;
+		overflow: hidden;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-brand {
+		justify-content: center;
+		min-height: 54px;
+		margin-bottom: 12px;
+		padding: 8px;
+		border-radius: 20px;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-brand img {
+		width: 34px;
+		height: 34px;
+	}
+
+	html.vwrt-sidebar-collapsed #vitrawrt-sidebar-menu {
+		align-items: center;
+		padding: 0;
+	}
+
+	html.vwrt-sidebar-collapsed #vitrawrt-sidebar-menu::before {
+		margin: 0 0 9px;
+		font-size: 8px;
+		letter-spacing: 0.11em;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu.l1 {
+		align-items: center;
+		gap: 8px;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu.l1 > li,
+	html.vwrt-sidebar-collapsed .vwrt-menu.l1 > li > .vwrt-menu-row {
+		width: 50px;
+		max-width: 50px;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu.l1 > li > .vwrt-menu-row a {
+		justify-content: center;
+		min-height: 48px;
+		padding: 0;
+		border-radius: 19px;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-actions.vitra-sidebar-controls {
+		align-self: center;
+		width: 54px;
+		max-width: 54px;
+		margin: 12px auto 0;
+		padding: 7px;
+		border-radius: 24px;
+		box-sizing: border-box;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-action-row,
+	html.vwrt-sidebar-collapsed .vwrt-theme-popover,
+	html.vwrt-sidebar-collapsed .vwrt-glass-popover {
+		align-items: center;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-action-row {
+		flex-direction: column;
+		gap: 7px;
+		width: 100%;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-actions .vwrt-text-button,
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-actions .vwrt-icon-button {
+		width: 40px;
+		min-width: 40px;
+		height: 40px;
+		min-height: 40px;
+		padding: 0;
+		border-radius: 16px;
+	}
+}

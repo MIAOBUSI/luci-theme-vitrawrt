@@ -1,1 +1,0 @@
-sed -i '' -e 's/v=1\.41C-R15/v=1.41C-R16/g' /Users/nyakabeusu/Documents/GitHub/vitrawrt/luci-theme-vitrawrt/htdocs/luci-static/vitrawrt/cascade.css /Users/nyakabeusu/Documents/GitHub/vitrawrt/luci-theme-vitrawrt/luasrc/view/themes/vitrawrt/header.htm

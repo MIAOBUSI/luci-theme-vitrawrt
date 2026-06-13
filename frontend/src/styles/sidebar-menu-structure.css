@@ -1,0 +1,191 @@
+/*
+ * Vite-owned LuCI menu hierarchy. These rules preserve the menu adapter's
+ * nested list geometry without changing LuCI routing, expansion, or active
+ * state logic.
+ */
+#vitrawrt-sidebar-menu {
+	flex: 1 1 auto;
+	overflow: auto;
+	margin-inline: -4px;
+	padding: 2px 2px 0;
+	scrollbar-width: thin;
+}
+
+#vitrawrt-sidebar-menu::before {
+	display: block;
+	margin: 0 0 10px 8px;
+	color: color-mix(in srgb, var(--vw-text-muted) 70%, transparent);
+	content: "LUCI MENU";
+	font-size: 10px;
+	font-weight: 760;
+	letter-spacing: 0.16em;
+}
+
+.vwrt-menu,
+.vwrt-menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.vwrt-menu {
+	display: grid;
+	gap: 6px;
+}
+
+.vwrt-menu li {
+	position: relative;
+}
+
+.vwrt-menu-row {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 30px;
+	align-items: center;
+	gap: 4px;
+	border-radius: 19px;
+	transition:
+		background var(--vwrt-transition-fast),
+		box-shadow var(--vwrt-transition-fast),
+		transform var(--vwrt-transition-fast);
+}
+
+.vwrt-menu-row::before {
+	position: absolute;
+	top: 9px;
+	bottom: 9px;
+	left: 6px;
+	width: 2px;
+	border-radius: var(--vw-radius-pill);
+	background: transparent;
+	content: "";
+	transition:
+		background var(--vwrt-transition-fast),
+		box-shadow var(--vwrt-transition-fast);
+}
+
+.vwrt-menu a {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	min-width: 0;
+	min-height: 45px;
+	padding: 0 12px;
+	border: 1px solid transparent;
+	border-radius: 19px;
+	color: var(--vw-text-soft);
+	font-weight: 640;
+	line-height: 1.2;
+	transition:
+		border-color var(--vwrt-transition-fast),
+		background var(--vwrt-transition-fast),
+		color var(--vwrt-transition-fast);
+}
+
+.vwrt-menu a:hover {
+	color: var(--vw-text-main);
+}
+
+.vwrt-menu .l2 {
+	display: none;
+	margin: 6px 0 12px 17px;
+	padding-left: 11px;
+	border-left: 1px solid color-mix(in srgb, var(--vw-border-soft) 72%, transparent);
+}
+
+.vwrt-menu .expanded > .l2,
+.vwrt-menu .selected > .l2,
+.vwrt-menu .active > .l2 {
+	display: grid;
+	gap: 2px;
+}
+
+.vwrt-menu .l2 a {
+	min-height: 34px;
+	padding-right: 11px;
+	padding-left: 13px;
+	border-radius: 14px;
+	color: color-mix(in srgb, var(--vw-text-soft) 86%, transparent);
+	font-size: 0.88rem;
+	font-weight: 590;
+}
+
+.vwrt-menu .l2 a::before {
+	width: 5px;
+	height: 5px;
+	opacity: 0.35;
+}
+
+.vwrt-menu-expander {
+	width: 28px;
+	height: 28px;
+	margin-right: 3px;
+	border: 0;
+	border-radius: 12px;
+	color: var(--vwrt-text-muted);
+	background: transparent;
+	cursor: pointer;
+}
+
+.vwrt-menu-expander::before {
+	display: block;
+	content: "›";
+	transform: rotate(0deg);
+	transition: transform var(--vwrt-transition-fast);
+}
+
+.vwrt-menu .expanded > .vwrt-menu-row .vwrt-menu-expander::before,
+.vwrt-menu .selected > .vwrt-menu-row .vwrt-menu-expander::before,
+.vwrt-menu .active > .vwrt-menu-row .vwrt-menu-expander::before {
+	transform: rotate(90deg);
+}
+
+@media (min-width: 901px) {
+	html.vwrt-sidebar-collapsed .vwrt-brand-text,
+	html.vwrt-sidebar-collapsed .vwrt-sidebar-status,
+	html.vwrt-sidebar-collapsed .vwrt-menu-label,
+	html.vwrt-sidebar-collapsed .vwrt-menu-expander,
+	html.vwrt-sidebar-collapsed .vwrt-text-button span,
+	html.vwrt-sidebar-collapsed .vwrt-theme-panel {
+		display: none;
+	}
+
+	html.vwrt-sidebar-collapsed #vitrawrt-sidebar-menu {
+		overflow: auto;
+		margin-inline: 0;
+		padding: 0;
+	}
+
+	html.vwrt-sidebar-collapsed #vitrawrt-sidebar-menu::before {
+		margin: 0 0 9px;
+		color: color-mix(in srgb, var(--vw-text-soft) 70%, transparent);
+		content: "MENU";
+		font-size: 8px;
+		letter-spacing: 0.11em;
+		text-align: center;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu.l1 {
+		align-items: center;
+		gap: 8px;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu .l2,
+	html.vwrt-sidebar-collapsed .vwrt-menu .l3 {
+		display: none;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu-row {
+		grid-template-columns: 1fr;
+		border-radius: 18px;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu a {
+		justify-content: center;
+		padding-inline: 0;
+	}
+
+	html.vwrt-sidebar-collapsed .vwrt-menu-expander {
+		display: none;
+	}
+}

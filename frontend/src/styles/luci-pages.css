@@ -1,0 +1,318 @@
+@layer components {
+	body:is(
+		[data-page="admin-system-cpulimit"],
+		[data-page^="admin-services-AdGuardHome"],
+		[data-page^="admin-nas-nfs"],
+		[data-page^="admin-vpn-softethervpn"]
+	) #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
+		display: none !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
+	}
+
+	@media (max-width: 900px) {
+		body.vwrt-page-overview #maincontent #view > .cbi-section > div {
+			max-width: 100%;
+			overflow-x: auto;
+			overscroll-behavior-inline: contain;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection {
+			max-width: 100%;
+			overflow-x: auto;
+			overscroll-behavior-inline: contain;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		body:is(.vwrt-page-startup, .vwrt-page-processes, .vwrt-page-packages) #maincontent #view {
+			max-width: 100%;
+			overflow-x: auto;
+			overscroll-behavior-inline: contain;
+			-webkit-overflow-scrolling: touch;
+		}
+	}
+
+	body.vwrt-page-vnstat2 #maincontent .cbi-section[data-tab][data-tab-active="false"] {
+		display: none !important;
+	}
+
+	body.vwrt-page-vnstat2 #maincontent .cbi-section[data-tab]:not([data-tab-active="true"]) {
+		display: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	body.vwrt-page-vnstat2 #maincontent :is(
+		.cbi-section[data-tab][data-tab-active="true"],
+		.cbi-section-node-tabbed > [data-tab][data-tab-active="true"],
+		[data-tab][data-tab-active="true"].cbi-section,
+		[data-tab][data-tab-active="true"].cbi-section-node
+	) {
+		display: block !important;
+		min-height: 256px;
+		margin-top: 12px !important;
+	}
+
+	body.vwrt-page-vnstat2 #maincontent :is(.cbi-page-actions, .cbi-section-actions) {
+		position: static !important;
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 8px;
+		width: fit-content;
+		max-width: 100%;
+		margin: 12px 0 0 auto !important;
+	}
+
+	body.vwrt-page-collectd #maincontent :is(.cbi-tabmenu, .tabs) {
+		margin-bottom: 0 !important;
+	}
+
+	body.vwrt-page-collectd #maincontent .cbi-map-tabbed {
+		margin: 12px 0 0 !important;
+		padding: 0 !important;
+	}
+
+	body.vwrt-page-collectd #maincontent .cbi-map-tabbed > .cbi-section {
+		margin: 12px 0 0 !important;
+	}
+
+	body.vwrt-page-cpulimit #maincontent #view > :is(.cbi-page-actions, .cbi-section-actions):first-child {
+		float: none !important;
+		clear: both;
+		width: fit-content;
+		max-width: 100%;
+		margin: 0 0 14px auto !important;
+	}
+
+	body.vwrt-page-cpulimit #maincontent :is(.cbi-map, .cbi-section) > :is(.cbi-page-actions, .cbi-section-actions) {
+		display: flex !important;
+		justify-content: flex-end;
+		margin-left: auto !important;
+	}
+
+	body.vwrt-page-cpulimit #maincontent :is(.hidden.cbi-button-save, .hidden.cbi-button-apply, .hidden.cbi-button-reset) {
+		display: none !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
+	}
+
+	body.vwrt-page-cpulimit #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
+		display: none !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
+	}
+
+	body:is(.vwrt-page-nas, .vwrt-page-vpn, .vwrt-page-services) #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
+		display: none !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
+	}
+
+	body:is(.vwrt-page-nas, .vwrt-page-vpn, .vwrt-page-services) #maincontent #view > :is(.cbi-page-actions, .cbi-section-actions):first-child {
+		float: none !important;
+		clear: both;
+		width: fit-content;
+		max-width: 100%;
+		margin: 0 0 14px auto !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-section {
+		max-width: 100%;
+		overflow-x: auto;
+		overscroll-behavior-inline: contain;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-value:has(textarea),
+	body.vwrt-page-repokeys #maincontent .cbi-value:has(.cbi-input-textarea) {
+		display: block !important;
+		width: 100%;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-value > output {
+		display: block;
+		width: 100%;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-value > output > .cbi-section-node {
+		display: grid;
+		gap: 12px;
+		width: 100%;
+		max-width: 100%;
+		padding: 0 !important;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-value:has(textarea) > .cbi-value-title,
+	body.vwrt-page-repokeys #maincontent .cbi-value:has(.cbi-input-textarea) > .cbi-value-title {
+		display: block;
+		margin-block-end: 8px;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-value:has(textarea) > .cbi-value-field,
+	body.vwrt-page-repokeys #maincontent .cbi-value:has(.cbi-input-textarea) > .cbi-value-field {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 12px;
+		width: 100%;
+		max-width: 100%;
+	}
+
+	body.vwrt-page-repokeys #maincontent :is(textarea, .cbi-input-textarea) {
+		display: block !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		min-height: 8rem;
+		margin: 0 !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-value > output > .cbi-section-node > .right {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		margin-top: 12px;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-value > output > .cbi-section-node > .right > :is(button, .btn, .cbi-button, input[type="button"], input[type="submit"]) {
+		margin: 0 !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-value-field > :is(button, .btn, .cbi-button, input[type="button"], input[type="submit"]) {
+		justify-self: start;
+		margin: 0 !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-value:has(textarea) > .cbi-value-field > :is(button, .btn, .cbi-button, input[type="button"], input[type="submit"]),
+	body.vwrt-page-repokeys #maincontent .cbi-value:has(.cbi-input-textarea) > .cbi-value-field > :is(button, .btn, .cbi-button, input[type="button"], input[type="submit"]) {
+		margin-block-start: 12px !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent :is(.cbi-section-table, table, .table) {
+		width: 100% !important;
+		max-width: 100%;
+		table-layout: auto !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-section-table-row {
+		align-items: start;
+		gap: 12px;
+		width: 100%;
+		padding: 12px 0;
+		border: 0;
+		background: transparent;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-section-table-row > :is(.td, td, .cbi-section-table-cell) {
+		min-width: 0 !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-section-table-row > :is(.td, td, .cbi-section-table-cell):first-child {
+		width: 11rem !important;
+		max-width: 11rem !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-section-table-row > :is(.td, td, .cbi-section-table-cell):has(textarea),
+	body.vwrt-page-repokeys #maincontent .cbi-section-table-row > :is(.td, td, .cbi-section-table-cell):has(.cbi-input-textarea) {
+		width: auto !important;
+		max-width: none !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent .cbi-section-table-row > :is(.td, td, .cbi-section-table-cell):last-child,
+	body.vwrt-page-repokeys #maincontent .cbi-section-table-row > :is(.cbi-section-actions, .middle) {
+		width: 8.5rem !important;
+		max-width: 8.5rem !important;
+		justify-self: start;
+	}
+
+	body.vwrt-page-repokeys #maincontent :is(input[type="submit"][value="Delete"], .cbi-button-remove, .cbi-button-negative) {
+		width: auto !important;
+		max-width: 8rem !important;
+		min-width: 0 !important;
+		color: var(--vw-danger) !important;
+		background: color-mix(in srgb, var(--vw-danger) 26%, var(--vw-button-secondary-fill)) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-danger) 32%, transparent) !important;
+	}
+
+	body.vwrt-page-repokeys #maincontent :is(textarea[readonly], textarea:read-only, .cbi-input-textarea[readonly]) {
+		background: var(--vw-field-bg) !important;
+		color: var(--vw-text-main) !important;
+	}
+
+	@media (max-width: 760px) {
+		body.vwrt-page-repokeys #maincontent .cbi-section-table-row > :is(.td, td, .cbi-section-table-cell):first-child,
+		body.vwrt-page-repokeys #maincontent .cbi-section-table-row > :is(.td, td, .cbi-section-table-cell):last-child,
+		body.vwrt-page-repokeys #maincontent .cbi-section-table-row > :is(.cbi-section-actions, .middle) {
+			width: auto !important;
+			max-width: 100% !important;
+		}
+	}
+
+	body.vwrt-page-network #maincontent :is(
+		.cbi-section[data-tab][data-tab-active="false"],
+		.cbi-section-node-tabbed > [data-tab][data-tab-active="false"],
+		[data-tab][data-tab-active="false"].cbi-section,
+		[data-tab][data-tab-active="false"].cbi-section-node
+	) {
+		display: none !important;
+		margin-block: 0 !important;
+		padding-block: 0 !important;
+	}
+
+	body.vwrt-page-network #maincontent :is(
+		.cbi-section[data-tab][data-tab-active="true"],
+		.cbi-section-node-tabbed > [data-tab][data-tab-active="true"],
+		[data-tab][data-tab-active="true"].cbi-section,
+		[data-tab][data-tab-active="true"].cbi-section-node
+	) {
+		margin-top: 12px !important;
+	}
+
+	html[data-theme="dark"] body.vwrt-page-network #maincontent :is(
+		.ifacebox:hover,
+		.ifacebox.active,
+		.network-status-table tr:hover,
+		.cbi-section-table-row:hover,
+		.tr:hover,
+		.cbi-rowstyle-1:hover,
+		.cbi-rowstyle-2:hover,
+		.device-status:hover,
+		.interface-row:hover
+	),
+	html[data-darkmode="true"] body.vwrt-page-network #maincontent :is(
+		.ifacebox:hover,
+		.ifacebox.active,
+		.network-status-table tr:hover,
+		.cbi-section-table-row:hover,
+		.tr:hover,
+		.cbi-rowstyle-1:hover,
+		.cbi-rowstyle-2:hover,
+		.device-status:hover,
+		.interface-row:hover
+	) {
+		background: color-mix(in srgb, var(--vw-material-group-surface) 82%, rgba(255, 255, 255, 0.03)) !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 64%, transparent) !important;
+	}
+
+	html[data-theme="dark"] body.vwrt-page-network #maincontent :is(
+		.ifacebox:hover,
+		.ifacebox.active,
+		.network-status-table tr:hover,
+		.cbi-section-table-row:hover,
+		.tr:hover
+	) :is(.ifacebox-head, .ifacebox-body, .ifacebox-network, .td, td, .cbi-section-node, .cbi-value, .controls),
+	html[data-darkmode="true"] body.vwrt-page-network #maincontent :is(
+		.ifacebox:hover,
+		.ifacebox.active,
+		.network-status-table tr:hover,
+		.cbi-section-table-row:hover,
+		.tr:hover
+	) :is(.ifacebox-head, .ifacebox-body, .ifacebox-network, .td, td, .cbi-section-node, .cbi-value, .controls) {
+		background: transparent !important;
+	}
+}

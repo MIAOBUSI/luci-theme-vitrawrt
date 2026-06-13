@@ -1,0 +1,20 @@
+{
+  "auditDate": "2026-06-13",
+  "marker": "1.41.90-r30",
+  "manifestFile": "release/dev-payload.sha256",
+  "manifestCommand": "find htdocs ucode -type f | sort | xargs sha256sum",
+  "runtimeFileCount": 37,
+  "coreRuntimeHashes": {
+    "htdocs/luci-static/vitrawrt/cascade.css": "4c1a346ced158d869a1d4d826910e3fd63a9a6d83035eefe3b8a231566801797",
+    "htdocs/luci-static/vitrawrt/dist/vitrawrt-apple.css": "e361692864d1a87f710b98d208034392127670bf3026052f18c94f59748d9915",
+    "htdocs/luci-static/vitrawrt/dist/vitrawrt-motion.js": "58e71953edcf34969db8a572dc34856b3b10899acc2b2b4ccccd8881c14d4ceb",
+    "ucode/template/themes/vitrawrt/header.ut": "6828f35935a9deb5009143cceb34f09d76ae8c8ae7b8416f3bbd7b32a4770822"
+  },
+  "packageMetadataHashes": {
+    "Makefile": "118d3b618cbc7f6bb204e4e90e43c581b40583cf9dcfc46fce3689b8651bc7a6",
+    "root/etc/uci-defaults/30_luci-theme-vitrawrt": "da230599445e9692d4a719249d36a9173a21a04b03bc429ff855772010f256b4",
+    "packaging/runtime-files.txt": "465ea94d6c32810e11cf6016c1d752b62de6e6175d44f58aeaedd2cd753f3fb0",
+    "scripts/build-release-packages.sh": "605078aa42c5b44fbb52b43b82b5bd5466aafcd5daa075474f3434c49bf80f31"
+  },
+  "bridgeCssFileCount": 0
+}

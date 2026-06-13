@@ -1,0 +1,282 @@
+/*
+ * Auth/login ownership. This page is route-scoped by template classes and does
+ * not alter normal LuCI CBI form geometry outside the login shell.
+ */
+@layer components {
+	.vwrt-auth-body,
+	.vwrt-auth-page {
+		min-height: 100vh;
+	}
+
+	.vwrt-auth-page {
+		display: grid;
+		place-items: center;
+		padding: clamp(18px, 4vw, 42px);
+	}
+
+	.vwrt-auth-card,
+	.login .cbi-map,
+	.login .cbi-section {
+		border-color: color-mix(in srgb, var(--vw-liquid-border-soft) 78%, transparent);
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight) 52%, transparent), transparent 70%),
+			var(--vw-liquid-panel);
+		box-shadow: var(--vw-highlight-inner), var(--vw-shadow-card);
+	}
+
+	.vwrt-auth-card {
+		display: grid;
+		grid-template-columns: minmax(0, 248px) minmax(280px, 1fr);
+		gap: 30px;
+		width: min(680px, 100%);
+		min-height: 360px;
+		padding: 30px;
+		border: 1px solid var(--vwrt-border);
+		border-color: color-mix(in srgb, var(--vw-glass-border) 80%, transparent);
+		border-radius: var(--vw-radius-modal);
+		color: var(--vwrt-text);
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 62%, transparent), transparent 50%),
+			radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--vw-glow-cyan) 34%, transparent), transparent 46%),
+			radial-gradient(circle at 94% 8%, color-mix(in srgb, var(--vw-glow-violet) 28%, transparent), transparent 48%),
+			var(--vw-modal-bg);
+		box-shadow: var(--vw-highlight-inner), var(--vw-shadow-modal);
+		backdrop-filter: blur(var(--vw-blur-panel)) saturate(122%);
+		-webkit-backdrop-filter: blur(var(--vw-blur-panel)) saturate(122%);
+	}
+
+	.vwrt-auth-brand {
+		align-self: stretch;
+		display: grid;
+		align-content: center;
+		justify-items: start;
+		gap: 12px;
+		margin: 0;
+		padding: 4px 0;
+	}
+
+	.vwrt-auth-logo,
+	.vwrt-auth-brand img {
+		width: 100px;
+		height: auto;
+		max-width: 100px;
+		max-height: 100px;
+		filter: drop-shadow(0 18px 28px color-mix(in srgb, var(--vw-cyan) 18%, transparent));
+	}
+
+	.vwrt-auth-title {
+		margin: 0;
+		color: var(--vw-text);
+		font-size: 30px;
+		line-height: 1.15;
+		letter-spacing: 0;
+	}
+
+	.vwrt-auth-subtitle {
+		margin: 2px 0 0;
+		color: var(--vw-muted);
+		font-size: 15px;
+		font-weight: var(--vitra-font-weight-medium);
+	}
+
+	.vwrt-auth-kicker {
+		margin: 4px 0 0;
+		color: var(--vw-text-soft);
+		font-size: 12px;
+		line-height: 1.45;
+	}
+
+	.vwrt-auth-card form {
+		margin: 0;
+	}
+
+	.vwrt-auth-card > .alert-message {
+		grid-column: 1 / -1;
+		margin: 0;
+	}
+
+	.vwrt-auth-form {
+		grid-column: 2;
+		align-self: center;
+	}
+
+	.vwrt-auth-form.cbi-map,
+	.vwrt-auth-form .cbi-section,
+	.vwrt-auth-form .cbi-section-node {
+		margin: 0 !important;
+		padding: 0 !important;
+		border: 0 !important;
+		background: transparent !important;
+		box-shadow: none !important;
+	}
+
+	.vwrt-auth-form .cbi-value,
+	.vwrt-auth-form .cbi-value-title,
+	.vwrt-auth-form .cbi-value-field {
+		display: block !important;
+		width: 100% !important;
+		box-sizing: border-box !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		float: none !important;
+	}
+
+	.vwrt-auth-form .cbi-value-title {
+		text-align: left !important;
+	}
+
+	.vwrt-auth-form .cbi-value + .cbi-value {
+		margin-top: 16px !important;
+	}
+
+	.vwrt-auth-card label {
+		display: block;
+		margin: 0 0 8px;
+		color: var(--vw-text-main) !important;
+		font-weight: var(--vitra-font-weight-medium);
+	}
+
+	.vwrt-auth-card input[type="text"],
+	.vwrt-auth-card input[type="password"] {
+		display: block !important;
+		box-sizing: border-box !important;
+		width: 100% !important;
+		min-height: var(--vw-field-height);
+		margin: 0 !important;
+		padding: 0 14px;
+		border: 1px solid var(--vw-field-border) !important;
+		border-radius: var(--vw-radius-field);
+		color: var(--vw-text-main) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 52%, transparent), transparent 72%),
+			var(--vw-field-bg) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	.vwrt-auth-card input[type="text"]:focus,
+	.vwrt-auth-card input[type="password"]:focus {
+		border-color: color-mix(in srgb, var(--vw-accent) 34%, var(--vw-border)) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 82%, transparent), transparent 76%),
+			var(--vw-material-field-hover) !important;
+		box-shadow:
+			var(--vw-shadow-control),
+			0 0 0 3px color-mix(in srgb, var(--vw-accent) 16%, transparent) !important;
+	}
+
+	.vwrt-auth-card button,
+	.vwrt-auth-card input[type="submit"] {
+		width: 100%;
+		min-height: 46px;
+		margin-top: 22px;
+		border-radius: 999px;
+		font-weight: var(--vitra-font-weight-strong);
+	}
+
+	.vwrt-auth-submit,
+	button[type="submit"].vwrt-auth-submit,
+	.vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit,
+	.vwrt-auth-card button.vwrt-auth-submit,
+	.vwrt-auth-card input[type="submit"].vwrt-auth-submit {
+		min-height: 48px;
+		border-color: color-mix(in srgb, var(--vw-accent) 22%, var(--vw-glass-border)) !important;
+		border-radius: var(--vw-radius-pill);
+		color: var(--vw-accent-ink) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 58%, transparent), transparent 64%),
+			linear-gradient(135deg, color-mix(in srgb, var(--vw-accent) 12%, var(--vw-button-primary-bg)), var(--vw-button-primary-bg)) !important;
+		background-color: var(--vw-button-primary-solid);
+		box-shadow:
+			var(--vw-highlight-inner),
+			0 14px 30px color-mix(in srgb, var(--vw-cyan) 10%, transparent) !important;
+		text-shadow: none !important;
+	}
+
+	body .vwrt-auth-card :is(
+		button[type="submit"].vwrt-auth-submit,
+		input[type="submit"].vwrt-auth-submit,
+		.btn.cbi-button-positive.important.vwrt-auth-submit
+	).vwrt-button-has-text {
+		display: inline-flex !important;
+		inline-size: 100% !important;
+		min-inline-size: 100% !important;
+		min-height: 52px !important;
+		padding-inline: 22px !important;
+	}
+
+	.vwrt-auth-submit:hover,
+	button[type="submit"].vwrt-auth-submit:hover,
+	.vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit:hover,
+	.vwrt-auth-card button.vwrt-auth-submit:hover,
+	.vwrt-auth-card input[type="submit"].vwrt-auth-submit:hover {
+		border-color: color-mix(in srgb, var(--vw-accent) 32%, var(--vw-border)) !important;
+		color: var(--vw-accent-ink) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 86%, transparent), transparent 68%),
+			var(--vw-material-primary-hover) !important;
+		box-shadow:
+			var(--vw-highlight-inner),
+			0 16px 34px color-mix(in srgb, var(--vw-cyan) 12%, transparent) !important;
+	}
+
+	html[data-vwrt-glass="low"] .vwrt-auth-card {
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+	}
+
+	@media (max-width: 900px) {
+		.vwrt-auth-page {
+			align-items: center;
+			padding: 14px;
+		}
+
+		.vwrt-auth-card {
+			grid-template-columns: minmax(0, 1fr) !important;
+			gap: 18px;
+			width: min(520px, 100%);
+			min-height: 0;
+			padding: 22px;
+		}
+
+		.vwrt-auth-brand,
+		.vwrt-auth-form {
+			grid-column: 1 !important;
+		}
+
+		.vwrt-auth-brand {
+			align-content: start;
+			justify-items: center;
+			text-align: center;
+		}
+
+		.vwrt-auth-logo,
+		.vwrt-auth-brand img {
+			width: clamp(48px, 12vh, 72px);
+			max-width: 24vw;
+			max-height: 72px;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.vwrt-auth-card {
+			padding: 18px;
+			border-radius: var(--vwrt-radius-lg);
+		}
+
+		.vwrt-auth-logo,
+		.vwrt-auth-brand img {
+			width: clamp(46px, 11vh, 64px);
+			max-height: 64px;
+		}
+
+		.vwrt-auth-title {
+			font-size: 24px;
+		}
+
+		.vwrt-auth-subtitle,
+		.vwrt-auth-kicker {
+			font-size: 12px;
+			line-height: 1.35;
+		}
+	}
+}

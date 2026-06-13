@@ -1,0 +1,868 @@
+@layer base {
+	:root {
+		color-scheme: light dark;
+
+		--vw-background: #f5f5f7;
+		--vw-surface: rgba(255, 255, 255, 0.72);
+		--vw-surface-elevated: rgba(255, 255, 255, 0.88);
+		--vw-glass-surface: rgba(255, 255, 255, 0.42);
+		--vw-glass-surface-strong: rgba(255, 255, 255, 0.62);
+		--vw-glass-border: rgba(255, 255, 255, 0.58);
+		--vw-divider: rgba(60, 60, 67, 0.12);
+		--vw-row-hover: rgba(255, 255, 255, 0.38);
+
+		--vw-text-primary: #1d1d1f;
+		--vw-text-secondary: rgba(60, 60, 67, 0.78);
+		--vw-text-muted: rgba(60, 60, 67, 0.56);
+		--vw-accent: #007aff;
+		--vw-accent-surface: rgba(0, 122, 255, 0.12);
+		--vw-accent-surface-hover: rgba(0, 122, 255, 0.18);
+		--vw-success: #248a3d;
+		--vw-success-surface: rgba(52, 199, 89, 0.16);
+		--vw-warning: #a05a00;
+		--vw-warning-surface: rgba(255, 159, 10, 0.18);
+		--vw-danger: #d92d20;
+		--vw-danger-surface: rgba(255, 59, 48, 0.14);
+		--vw-info: #007aff;
+		--vw-focus-ring: rgba(0, 122, 255, 0.42);
+
+		--vw-control-surface: rgba(255, 255, 255, 0.5);
+		--vw-control-surface-hover: rgba(255, 255, 255, 0.68);
+		--vw-control-surface-active: rgba(255, 255, 255, 0.36);
+		--vw-control-border: rgba(60, 60, 67, 0.12);
+		--vw-control-border-hover: rgba(60, 60, 67, 0.2);
+		--vw-disabled-surface: rgba(120, 120, 128, 0.08);
+		--vw-disabled-text: rgba(60, 60, 67, 0.38);
+
+		--vw-tab-shell: rgba(255, 255, 255, 0.28);
+		--vw-tab-surface: rgba(255, 255, 255, 0.08);
+		--vw-tab-active: rgba(255, 255, 255, 0.78);
+
+		--vw-progress-track: rgba(118, 118, 128, 0.14);
+		--vw-progress-neutral: #0a84ff;
+		--vw-progress-success: #34c759;
+		--vw-progress-warning: #ff9f0a;
+		--vw-progress-danger: #ff453a;
+
+		--vw-liquid-canvas:
+			radial-gradient(900px 520px at 8% -6%, rgba(122, 200, 255, 0.16), transparent 62%),
+			radial-gradient(840px 520px at 86% 2%, rgba(185, 164, 255, 0.12), transparent 60%),
+			linear-gradient(145deg, rgba(250, 252, 255, 0.94), rgba(244, 247, 252, 0.9) 54%, rgba(248, 246, 255, 0.92));
+		--vw-liquid-surface: rgba(255, 255, 255, 0.38);
+		--vw-liquid-surface-strong: rgba(255, 255, 255, 0.56);
+		--vw-liquid-surface-raised: rgba(255, 255, 255, 0.72);
+		--vw-liquid-surface-solid: rgba(248, 250, 255, 0.94);
+		--vw-liquid-field: rgba(255, 255, 255, 0.58);
+		--vw-liquid-field-focus: rgba(255, 255, 255, 0.82);
+		--vw-liquid-chip: rgba(255, 255, 255, 0.48);
+		--vw-liquid-accent-wash: rgba(0, 122, 255, 0.1);
+		--vw-liquid-border: rgba(255, 255, 255, 0.5);
+		--vw-liquid-border-soft: rgba(60, 60, 67, 0.12);
+		--vw-liquid-highlight-edge: rgba(255, 255, 255, 0.74);
+		--vw-liquid-text-protection: 0 1px 0 rgba(255, 255, 255, 0.36);
+		--vw-liquid-shadow:
+			0 1px 2px rgba(0, 0, 0, 0.025),
+			0 16px 42px rgba(28, 36, 58, 0.07),
+			inset 0 1px 0 var(--vw-liquid-highlight-edge),
+			inset 0 -18px 34px rgba(255, 255, 255, 0.12);
+		--vw-liquid-shadow-strong:
+			0 1px 2px rgba(0, 0, 0, 0.035),
+			0 24px 58px rgba(28, 36, 58, 0.09),
+			inset 0 1px 0 var(--vw-liquid-highlight-edge);
+		--vw-liquid-control-shadow:
+			0 1px 2px rgba(0, 0, 0, 0.025),
+			0 8px 22px rgba(28, 36, 58, 0.055),
+			inset 0 1px 0 rgba(255, 255, 255, 0.62);
+		--vw-liquid-page-header-bg:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.28));
+		--vw-liquid-section-header-bg:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.08));
+		--vw-liquid-table-head: rgba(255, 255, 255, 0.52);
+		--vw-liquid-table-row: rgba(255, 255, 255, 0.26);
+		--vw-liquid-table-row-alt: rgba(255, 255, 255, 0.17);
+		--vw-material-canvas-surface: transparent;
+		--vw-material-primary-surface: rgba(255, 255, 255, 0.66);
+		--vw-material-section-surface: rgba(255, 255, 255, 0.5);
+		--vw-material-group-surface: rgba(255, 255, 255, 0.28);
+		--vw-material-inner-surface: rgba(255, 255, 255, 0.16);
+			--vw-material-floating-surface: rgba(255, 255, 255, 0.78);
+			--vw-material-modal-surface: rgba(255, 255, 255, 0.82);
+			--vw-token-surface: rgba(244, 246, 250, 0.88);
+			--vw-notice-surface: rgba(246, 248, 252, 0.92);
+			--vw-material-border: rgba(60, 60, 67, 0.12);
+		--vw-material-border-strong: rgba(60, 60, 67, 0.18);
+		--vw-material-edge-highlight: rgba(255, 255, 255, 0.72);
+		--vw-material-shadow-soft:
+			0 1px 2px rgba(0, 0, 0, 0.025),
+			0 14px 38px rgba(28, 36, 58, 0.06),
+			inset 0 1px 0 var(--vw-material-edge-highlight);
+		--vw-material-shadow-raised:
+			0 1px 2px rgba(0, 0, 0, 0.035),
+			0 22px 58px rgba(28, 36, 58, 0.085),
+			inset 0 1px 0 var(--vw-material-edge-highlight);
+		--vw-table-head-surface: rgba(247, 249, 253, 0.72);
+		--vw-table-row-surface: rgba(255, 255, 255, 0.23);
+		--vw-table-row-alt-surface: rgba(255, 255, 255, 0.14);
+		--vw-table-row-hover-surface: rgba(255, 255, 255, 0.28);
+		--vw-tab-track-surface: rgba(118, 118, 128, 0.12);
+		--vw-tab-item-surface: transparent;
+		--vw-tab-item-hover-surface: rgba(255, 255, 255, 0.36);
+		--vw-tab-item-active-surface: rgba(255, 255, 255, 0.86);
+		--vw-progress-track-surface: rgba(118, 118, 128, 0.16);
+		--vw-progress-chip-surface: rgba(255, 255, 255, 0.56);
+			--vw-button-secondary-fill: rgba(244, 246, 250, 0.96);
+			--vw-button-secondary-hover: rgba(255, 255, 255, 0.98);
+			--vw-button-secondary-active: rgba(229, 233, 241, 0.94);
+			--vw-button-primary-fill: #007aff;
+		--vw-button-primary-hover: #0a84ff;
+		--vw-button-primary-active: #0067d8;
+		--vw-button-primary-text: #ffffff;
+		--vw-split-divider: rgba(0, 35, 75, 0.22);
+		--vw-split-arrow: rgba(255, 255, 255, 0.94);
+		--vw-button-danger-fill: #f8e1e0;
+		--vw-button-danger-hover: #f4d2d0;
+		--vw-button-danger-text: #a9231b;
+		--vw-button-warning-fill: #f7ead2;
+		--vw-button-warning-hover: #f2dfbf;
+		--vw-button-warning-text: #77420a;
+			--vw-menu-surface: rgba(255, 255, 255, 0.92);
+			--vw-menu-item-hover: rgba(0, 122, 255, 0.1);
+			--vw-menu-item-selected: rgba(0, 122, 255, 0.14);
+			--vw-form-row-hover: rgba(255, 255, 255, 0.2);
+		--vw-progress-meter-bg: rgba(118, 118, 128, 0.16);
+		--vw-progress-meter-border: transparent;
+		--vw-progress-meter-text: var(--vw-text-primary);
+		--vw-progress-meter-summary: rgba(60, 60, 67, 0.62);
+		--vw-progress-meter-glow: rgba(10, 132, 255, 0.18);
+
+		--vw-radius-control: 10px;
+		--vw-radius-card: 16px;
+		--vw-radius-panel: 20px;
+			--vw-radius-pill: 999px;
+			--vw-control-height: 40px;
+			--vw-compact-control-height: 32px;
+			--vw-cbi-value-padding: 13px;
+			--vw-cbi-value-padding-modal: 11px;
+			--vw-cbi-value-gap: 2px;
+			--vw-cbi-description-gap: 7px;
+			--vw-inline-control-gap: 12px;
+			--vwrt-apply-label-width: 112px;
+
+		--vw-space-1: 0.25rem;
+		--vw-space-2: 0.5rem;
+		--vw-space-3: 0.75rem;
+		--vw-space-4: 1rem;
+		--vw-space-5: 1.25rem;
+		--vw-space-6: 1.5rem;
+
+		--vw-shadow-card:
+			0 1px 2px rgba(0, 0, 0, 0.03),
+			0 8px 28px rgba(0, 0, 0, 0.045),
+			inset 0 1px 0 rgba(255, 255, 255, 0.42);
+		--vw-shadow-control:
+			0 1px 2px rgba(0, 0, 0, 0.035),
+			0 5px 16px rgba(0, 0, 0, 0.04),
+			inset 0 1px 0 rgba(255, 255, 255, 0.34);
+		--vw-shadow-control-hover:
+			0 2px 4px rgba(0, 0, 0, 0.04),
+			0 8px 22px rgba(0, 0, 0, 0.055),
+			inset 0 1px 0 rgba(255, 255, 255, 0.42);
+		--vw-shadow-control-active:
+			0 1px 2px rgba(0, 0, 0, 0.04),
+			inset 0 1px 3px rgba(0, 0, 0, 0.08);
+		--vw-shadow-popover:
+			0 12px 40px rgba(0, 0, 0, 0.12),
+			0 2px 8px rgba(0, 0, 0, 0.06),
+			inset 0 1px 0 rgba(255, 255, 255, 0.38);
+		--vw-shadow-modal:
+			0 24px 72px rgba(0, 0, 0, 0.18),
+			0 3px 14px rgba(0, 0, 0, 0.08),
+			inset 0 1px 0 rgba(255, 255, 255, 0.34);
+		--vw-shadow-tab-active:
+			0 1px 2px rgba(0, 0, 0, 0.04),
+			0 5px 16px rgba(0, 0, 0, 0.07),
+			inset 0 1px 0 rgba(255, 255, 255, 0.48);
+
+		--vw-blur-glass: 14px;
+		--vw-blur-popover: 16px;
+		--vw-saturate-glass: 142%;
+		--vw-saturate-popover: 150%;
+
+		--vw-z-sidebar: 40;
+		--vw-z-toolbar: 50;
+		--vw-z-dropdown: 1000;
+		--vw-z-popover: 1100;
+		--vw-z-modal: 1200;
+		--vw-z-toast: 1300;
+
+		--vw-duration-fast: 120ms;
+		--vw-duration-standard: 220ms;
+		--vw-duration-slow: 360ms;
+		--vw-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+		--vw-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+		/*
+		 * Structural bridge vocabulary.
+		 *
+		 * sidebar.css remains loaded until an authenticated LuCI route matrix
+		 * and cascade-equivalence checks prove the remaining rail geometry can
+		 * move.
+		 * These aliases let those files consume the Vite-owned semantic system
+		 * without retaining separate light.css, dark.css, or tokens.css files.
+		 */
+		--vw-font-sans:
+			-apple-system,
+			BlinkMacSystemFont,
+			"SF Pro Text",
+			"Segoe UI",
+			sans-serif;
+		--vw-font-mono:
+			"SFMono-Regular",
+			Consolas,
+			"Liberation Mono",
+			monospace;
+		--vitra-font-size-md: 14px;
+		--vitra-font-weight-medium: 600;
+		--vitra-font-weight-strong: 720;
+		--vitra-line-height: 1.45;
+
+		--vw-radius-sm: 10px;
+		--vw-radius-field: var(--vw-radius-control);
+		--vw-radius-lg: 18px;
+		--vw-radius-modal: calc(var(--vw-radius-panel) + 6px);
+			--vw-field-height: 40px;
+		--vw-blur-panel: var(--vw-blur-glass);
+		--vw-blur-floating: var(--vw-blur-popover);
+		--vw-blur-sidebar: var(--vw-blur-glass);
+		--vw-sidebar-width: 284px;
+		--vw-sidebar-collapsed-width: 80px;
+		--vwrt-loading-center-x: calc((100vw + var(--vw-sidebar-width) + 24px) / 2);
+
+		--vw-bg-base: var(--vw-background);
+		--vw-bg: var(--vw-background);
+		--vw-base-0: color-mix(in srgb, var(--vw-background) 94%, var(--vw-surface-elevated));
+		--vw-base-1: color-mix(in srgb, var(--vw-background) 88%, var(--vw-surface));
+		--vw-base-2: color-mix(in srgb, var(--vw-background) 92%, var(--vw-accent-surface));
+		--vw-bg-atmosphere:
+			radial-gradient(
+				920px 620px at 10% -8%,
+				color-mix(in srgb, var(--vw-accent) 11%, transparent),
+				transparent 62%
+			),
+			radial-gradient(
+				860px 580px at 94% 0%,
+				color-mix(in srgb, #af9cff 10%, transparent),
+				transparent 60%
+			);
+		--vw-bg-mesh-1: color-mix(in srgb, var(--vw-accent) 12%, transparent);
+		--vw-bg-mesh-2: color-mix(in srgb, #8fd5ca 9%, transparent);
+		--vw-bg-mesh-c: color-mix(in srgb, #af9cff 9%, transparent);
+		--vw-bg-mesh-cyan: var(--vw-bg-mesh-1);
+		--vw-bg-mesh-aqua: var(--vw-bg-mesh-2);
+		--vw-bg-mesh-violet: var(--vw-bg-mesh-c);
+		--vw-glow-cyan: var(--vw-bg-mesh-cyan);
+		--vw-glow-aqua: var(--vw-bg-mesh-aqua);
+		--vw-glow-violet: var(--vw-bg-mesh-violet);
+
+		--vw-surface-glass-1: var(--vw-glass-surface);
+		--vw-surface-glass-2: var(--vw-surface);
+		--vw-surface-glass-3: var(--vw-glass-surface-strong);
+		--vw-surface-soft: var(--vw-surface);
+		--vw-surface-strong: var(--vw-surface-elevated);
+		--vw-surface-raised: var(--vw-surface-elevated);
+		--vw-surface-floating: var(--vw-glass-surface-strong);
+		--vw-surface-sunken: color-mix(in srgb, var(--vw-background) 76%, var(--vw-surface));
+		--vw-surface-control: var(--vw-control-surface);
+		--vw-surface-control-hover: var(--vw-control-surface-hover);
+		--vw-surface-control-active: var(--vw-control-surface-active);
+		--vw-surface-inner: color-mix(in srgb, var(--vw-control-surface) 72%, transparent);
+		--vw-glass-panel: var(--vw-surface-glass-2);
+		--vw-glass-inner: var(--vw-surface-sunken);
+
+		--vw-border-hairline: color-mix(in srgb, var(--vw-divider) 72%, transparent);
+		--vw-border-soft: var(--vw-divider);
+		--vw-border: var(--vw-control-border);
+		--vw-border-medium: var(--vw-control-border-hover);
+		--vw-border-strong: color-mix(in srgb, var(--vw-text-muted) 36%, transparent);
+		--vw-border-focus: var(--vw-focus-ring);
+		--vw-highlight-top: color-mix(in srgb, var(--vw-glass-border) 82%, transparent);
+		--vw-highlight: var(--vw-highlight-top);
+		--vw-glass-highlight: var(--vw-highlight-top);
+		--vw-highlight-inner:
+			inset 0 1px 0 color-mix(in srgb, var(--vw-glass-border) 74%, transparent),
+			inset 0 -10px 22px color-mix(in srgb, var(--vw-text-primary) 3%, transparent);
+		--vw-inner-highlight: var(--vw-highlight-inner);
+		--vw-separator: var(--vw-border-hairline);
+
+		--vw-text-strong: var(--vw-text-primary);
+		--vw-text-main: var(--vw-text-primary);
+		--vw-text: var(--vw-text-primary);
+		--vw-text-soft: var(--vw-text-secondary);
+		--vw-muted: var(--vw-text-muted);
+		--vw-accent-soft: var(--vw-accent-surface);
+		--vw-accent-strong: var(--vw-accent);
+		--vw-accent-ink: var(--vw-accent);
+		--vw-accent-calm: var(--vw-accent);
+		--vw-cyan: color-mix(in srgb, var(--vw-accent) 54%, #72cfcb);
+		--vw-violet: color-mix(in srgb, var(--vw-accent) 28%, #af9cff);
+
+		--vw-bg-element: var(--vw-control-surface);
+		--vw-primary-color: var(--vw-accent);
+		--vw-field-bg: var(--vw-control-surface);
+		--vw-field-bg-hover: var(--vw-control-surface-hover);
+		--vw-field-bg-focus: var(--vw-surface-elevated);
+		--vw-field-border: var(--vw-control-border);
+		--vw-button-bg: var(--vw-control-surface);
+		--vw-button-bg-hover: var(--vw-control-surface-hover);
+		--vw-button-primary-bg: var(--vw-accent-surface);
+		--vw-button-primary-hover: var(--vw-accent-surface-hover);
+		--vw-button-primary-solid: var(--vw-accent);
+		--vw-button-danger-bg: var(--vw-danger-surface);
+		--vw-modal-bg: var(--vw-glass-surface-strong);
+		--vw-sidebar-bg: var(--vw-glass-surface-strong);
+		--vw-sidebar-active-bg: var(--vw-accent-surface);
+		--vw-sidebar-hover-bg: var(--vw-control-surface-hover);
+		--vw-sidebar-row-active-bg: var(--vw-sidebar-active-bg);
+		--vw-sidebar-row-hover-bg: var(--vw-sidebar-hover-bg);
+
+		--vw-material-field-hover: var(--vw-control-surface-hover);
+		--vw-material-primary-hover: var(--vw-accent-surface-hover);
+		--vw-material-button: var(--vw-control-surface);
+		--vw-material-button-hover: var(--vw-control-surface-hover);
+		--vw-material-inset: var(--vw-surface-sunken);
+		--vw-shadow-soft: var(--vw-shadow-control);
+		--vw-shadow-panel: var(--vw-shadow-card);
+		--vw-shadow-floating: var(--vw-shadow-popover);
+		--vw-shadow-color: rgba(0, 0, 0, 0.24);
+		--vw-inner-dim: rgba(0, 0, 0, 0.1);
+
+		--vw-liquid-bg: var(--vw-bg-base);
+		--vw-liquid-atmosphere: var(--vw-bg-atmosphere);
+		--vw-liquid-panel: var(--vw-surface-glass-1);
+		--vw-liquid-control: var(--vw-button-bg);
+		--vw-liquid-control-hover: var(--vw-button-bg-hover);
+		--vw-liquid-border-soft: var(--vw-border-soft);
+		--vw-liquid-highlight: var(--vw-highlight-top);
+		--vw-action-primary-bg: var(--vw-button-primary-bg);
+		--vw-action-primary-hover: var(--vw-button-primary-hover);
+		--vw-action-primary-text: var(--vw-accent-ink);
+		--vw-action-primary-border: color-mix(in srgb, var(--vw-accent) 24%, transparent);
+		--vw-vision-sheen:
+			linear-gradient(
+				180deg,
+				color-mix(in srgb, var(--vw-highlight-top) 88%, transparent),
+				transparent
+			);
+		--vw-vision-sheen-inset:
+			inset 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 66%, transparent);
+
+		--vitra-accent-quiet: var(--vw-accent-surface);
+		--vitra-accent-strong: var(--vw-accent);
+		--vitra-bg-gradient-1: var(--vw-base-1);
+		--vitra-bg-gradient-2: var(--vw-base-2);
+		--vitra-bg-wash: var(--vw-bg-atmosphere);
+		--vitra-blur-soft: var(--vw-blur-glass);
+		--vitra-content-max: 1480px;
+		--vitra-focus-ring: 0 0 0 3px var(--vw-focus-ring);
+		--vitra-icon-active: var(--vw-accent);
+		--vitra-icon-muted: var(--vw-text-muted);
+		--vitra-inner-dim: var(--vw-inner-dim);
+		--vitra-inverse-text: #ffffff;
+		--vitra-line: var(--vw-divider);
+		--vitra-material-muted: var(--vw-control-surface-active);
+		--vitra-menu-active: var(--vw-sidebar-active-bg);
+		--vitra-menu-band: color-mix(in srgb, var(--vw-accent) 42%, transparent);
+		--vitra-neutral-control: var(--vw-control-surface);
+		--vitra-neutral-control-hover: var(--vw-control-surface-hover);
+		--vitra-page-top: 24px;
+		--vitra-page-bottom: 24px;
+		--vitra-selection-bg: var(--vw-accent-surface-hover);
+		--vitra-selection-text: var(--vw-text-primary);
+		--vitra-shadow-floating: var(--vw-shadow-popover);
+		--vitra-shadow-menu: var(--vw-shadow-control);
+		--vitra-shadow-sidebar: var(--vw-shadow-card);
+		--vitra-shadow-sm: var(--vw-shadow-control);
+		--vitra-shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.05);
+		--vitra-sidebar-gap: 24px;
+		--vitra-sidebar-rim: var(--vw-glass-border);
+		--vitra-sidebar-surface: var(--vw-sidebar-bg);
+		--vitra-sidebar-tint: var(--vw-accent-surface);
+		--vitra-surface-soft: var(--vw-surface-soft);
+		--vitra-text-subtle: var(--vw-text-muted);
+		--vitra-top-sheen: var(--vw-vision-sheen);
+		--vitra-topbar-height: 58px;
+		--vitra-violet-soft: color-mix(in srgb, var(--vw-violet) 14%, transparent);
+		--vitra-motion-base: var(--vw-duration-standard) var(--vw-ease-standard);
+		--vitra-motion-fast: var(--vw-duration-fast) var(--vw-ease-standard);
+		--vitra-z-overlay: 900;
+		--vitra-z-popover: var(--vw-z-popover);
+		--vitra-z-sidebar: var(--vw-z-sidebar);
+		--vitra-z-topbar: var(--vw-z-toolbar);
+
+		--vwrt-bg: var(--vw-bg);
+		--vwrt-bg-soft: var(--vitra-bg-gradient-1);
+		--vwrt-bg-muted: var(--vitra-bg-gradient-2);
+		--vwrt-bg-wash: var(--vitra-bg-wash);
+		--vwrt-glow-a: var(--vw-bg-mesh-1);
+		--vwrt-glow-b: var(--vw-bg-mesh-2);
+		--vwrt-glow-c: var(--vw-bg-mesh-c);
+		--vwrt-top-sheen: var(--vitra-top-sheen);
+		--vwrt-font-sans: var(--vw-font-sans);
+		--vwrt-font-mono: var(--vw-font-mono);
+		--vwrt-text: var(--vw-text);
+		--vwrt-text-muted: var(--vw-text-muted);
+		--vwrt-text-soft: var(--vw-text-soft);
+		--vwrt-text-subtle: var(--vitra-text-subtle);
+		--vwrt-inverse-text: var(--vitra-inverse-text);
+		--vwrt-selection-bg: var(--vitra-selection-bg);
+		--vwrt-selection-text: var(--vitra-selection-text);
+		--vwrt-accent: var(--vw-accent);
+		--vwrt-accent-soft: var(--vw-accent-soft);
+		--vwrt-accent-quiet: var(--vitra-accent-quiet);
+		--vwrt-accent-strong: var(--vitra-accent-strong);
+		--vwrt-accent-ink: var(--vw-accent-ink);
+		--vwrt-positive: var(--vw-success);
+		--vwrt-violet-soft: var(--vitra-violet-soft);
+		--vwrt-border: var(--vw-border);
+		--vwrt-border-strong: var(--vw-border-strong);
+		--vwrt-line: var(--vitra-line);
+		--vwrt-focus-ring: var(--vitra-focus-ring);
+		--vwrt-panel-highlight: var(--vw-highlight);
+		--vwrt-inner-dim: var(--vitra-inner-dim);
+		--vwrt-surface-muted: var(--vw-surface-soft);
+		--vwrt-surface-subtle: var(--vw-surface-soft);
+		--vwrt-surface-hover: var(--vw-material-field-hover);
+		--vwrt-surface-elevated: var(--vw-surface-strong);
+		--vwrt-surface-strong: var(--vw-surface-strong);
+		--vwrt-neutral-control: var(--vitra-neutral-control);
+		--vwrt-neutral-control-hover: var(--vitra-neutral-control-hover);
+		--vwrt-material-muted: var(--vitra-material-muted);
+		--vwrt-material-button: var(--vw-material-button);
+		--vwrt-material-button-hover: var(--vw-material-button-hover);
+		--vwrt-material-inner: var(--vw-surface-inner);
+		--vwrt-glass-bg: var(--vw-surface-glass-1);
+		--vwrt-glass-bg-subtle: var(--vw-surface-glass-2);
+		--vwrt-glass-bg-strong: var(--vw-surface-glass-3);
+		--vwrt-glass-border: var(--vw-glass-border);
+		--vwrt-glass-highlight: var(--vw-highlight);
+		--vwrt-glass-inner-shadow: var(--vw-inner-highlight);
+		--vwrt-glass-shadow: var(--vw-shadow-card);
+		--vwrt-glass-blur: var(--vw-blur-panel);
+		--vwrt-icon-active: var(--vitra-icon-active);
+		--vwrt-icon-muted: var(--vitra-icon-muted);
+		--vwrt-menu-active: var(--vitra-menu-active);
+		--vwrt-menu-band: var(--vitra-menu-band);
+		--vwrt-sidebar-surface: var(--vitra-sidebar-surface);
+		--vwrt-sidebar-rim: var(--vitra-sidebar-rim);
+		--vwrt-sidebar-tint: var(--vitra-sidebar-tint);
+		--vwrt-sidebar-width: var(--vw-sidebar-width);
+		--vwrt-sidebar-collapsed-width: var(--vw-sidebar-collapsed-width);
+		--vwrt-sidebar-gap: var(--vitra-sidebar-gap);
+		--vwrt-content-max: var(--vitra-content-max);
+		--vwrt-page-top: var(--vitra-page-top);
+		--vwrt-page-bottom: var(--vitra-page-bottom);
+		--vwrt-topbar-height: var(--vitra-topbar-height);
+		--vwrt-radius-sm: var(--vw-radius-sm);
+		--vwrt-radius-lg: var(--vw-radius-lg);
+		--vwrt-radius-2xl: var(--vw-radius-panel);
+		--vwrt-radius-sidebar: var(--vw-radius-panel);
+		--vwrt-blur-soft: var(--vw-blur-glass);
+		--vwrt-blur-sidebar: var(--vw-blur-sidebar);
+		--vwrt-blur-popover: var(--vw-blur-floating);
+		--vwrt-shadow-xs: var(--vitra-shadow-xs);
+		--vwrt-shadow-sm: var(--vitra-shadow-sm);
+		--vwrt-shadow-lg: var(--vitra-shadow-sidebar);
+		--vwrt-shadow-menu: var(--vitra-shadow-menu);
+		--vwrt-shadow-floating: var(--vitra-shadow-floating);
+		--vwrt-shadow-color: var(--vw-shadow-color);
+		--vwrt-transition: var(--vitra-motion-base);
+		--vwrt-transition-fast: var(--vitra-motion-fast);
+		--vwrt-z-sidebar: var(--vitra-z-sidebar);
+		--vwrt-z-overlay: var(--vitra-z-overlay);
+		--vwrt-z-topbar: var(--vitra-z-topbar);
+		--vwrt-z-popover: var(--vitra-z-popover);
+	}
+
+	html[data-theme="light"],
+	html[data-darkmode="false"] {
+		color-scheme: light;
+	}
+
+	html[data-theme="dark"],
+	html[data-darkmode="true"] {
+		color-scheme: dark;
+
+		--vw-background: #101014;
+		--vw-surface: rgba(28, 28, 30, 0.76);
+		--vw-surface-elevated: rgba(44, 44, 46, 0.88);
+		--vw-glass-surface: rgba(28, 28, 32, 0.54);
+		--vw-glass-surface-strong: rgba(44, 44, 48, 0.68);
+		--vw-glass-border: rgba(255, 255, 255, 0.11);
+		--vw-divider: rgba(255, 255, 255, 0.09);
+		--vw-row-hover: rgba(255, 255, 255, 0.075);
+
+		--vw-text-primary: #f5f5f7;
+		--vw-text-secondary: rgba(235, 235, 245, 0.76);
+		--vw-text-muted: rgba(235, 235, 245, 0.5);
+		--vw-accent: #0a84ff;
+		--vw-accent-surface: rgba(10, 132, 255, 0.16);
+		--vw-accent-surface-hover: rgba(10, 132, 255, 0.23);
+		--vw-success: #30d158;
+		--vw-success-surface: rgba(48, 209, 88, 0.16);
+		--vw-warning: #ffb340;
+		--vw-warning-surface: rgba(255, 159, 10, 0.18);
+		--vw-danger: #ff6961;
+		--vw-danger-surface: rgba(255, 69, 58, 0.16);
+		--vw-info: #64d2ff;
+		--vw-focus-ring: rgba(10, 132, 255, 0.5);
+
+		--vw-control-surface: rgba(255, 255, 255, 0.08);
+		--vw-control-surface-hover: rgba(255, 255, 255, 0.13);
+		--vw-control-surface-active: rgba(255, 255, 255, 0.06);
+		--vw-control-border: rgba(255, 255, 255, 0.11);
+		--vw-control-border-hover: rgba(255, 255, 255, 0.17);
+		--vw-disabled-surface: rgba(120, 120, 128, 0.08);
+		--vw-disabled-text: rgba(235, 235, 245, 0.3);
+
+		--vw-tab-shell: rgba(255, 255, 255, 0.06);
+		--vw-tab-surface: rgba(255, 255, 255, 0.035);
+		--vw-tab-active: rgba(58, 58, 62, 0.78);
+
+		--vw-progress-track: rgba(235, 235, 245, 0.13);
+		--vw-progress-neutral: #64d2ff;
+		--vw-progress-success: #30d158;
+		--vw-progress-warning: #ffb340;
+		--vw-progress-danger: #ff6961;
+
+		--vw-liquid-canvas:
+			radial-gradient(980px 620px at 6% -8%, rgba(10, 132, 255, 0.16), transparent 58%),
+			radial-gradient(780px 520px at 92% 2%, rgba(142, 122, 255, 0.13), transparent 58%),
+			linear-gradient(145deg, #101014, #15161d 52%, #111217);
+		--vw-liquid-surface: rgba(28, 28, 34, 0.56);
+		--vw-liquid-surface-strong: rgba(38, 38, 46, 0.72);
+		--vw-liquid-surface-raised: rgba(48, 48, 56, 0.82);
+		--vw-liquid-surface-solid: rgba(28, 28, 34, 0.96);
+		--vw-liquid-field: rgba(255, 255, 255, 0.095);
+		--vw-liquid-field-focus: rgba(255, 255, 255, 0.15);
+		--vw-liquid-chip: rgba(255, 255, 255, 0.085);
+		--vw-liquid-accent-wash: rgba(10, 132, 255, 0.16);
+		--vw-liquid-border: rgba(255, 255, 255, 0.13);
+		--vw-liquid-border-soft: rgba(255, 255, 255, 0.095);
+		--vw-liquid-highlight-edge: rgba(255, 255, 255, 0.12);
+		--vw-liquid-text-protection: 0 1px 1px rgba(0, 0, 0, 0.32);
+		--vw-liquid-shadow:
+			0 1px 2px rgba(0, 0, 0, 0.22),
+			0 18px 46px rgba(0, 0, 0, 0.28),
+			inset 0 1px 0 var(--vw-liquid-highlight-edge),
+			inset 0 -18px 34px rgba(0, 0, 0, 0.12);
+		--vw-liquid-shadow-strong:
+			0 1px 2px rgba(0, 0, 0, 0.26),
+			0 26px 64px rgba(0, 0, 0, 0.36),
+			inset 0 1px 0 var(--vw-liquid-highlight-edge);
+		--vw-liquid-control-shadow:
+			0 1px 2px rgba(0, 0, 0, 0.22),
+			0 8px 22px rgba(0, 0, 0, 0.2),
+			inset 0 1px 0 rgba(255, 255, 255, 0.12);
+		--vw-liquid-page-header-bg:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
+		--vw-liquid-section-header-bg:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015));
+		--vw-liquid-table-head: rgba(255, 255, 255, 0.09);
+		--vw-liquid-table-row: rgba(255, 255, 255, 0.035);
+		--vw-liquid-table-row-alt: rgba(255, 255, 255, 0.022);
+		--vw-material-canvas-surface: transparent;
+		--vw-material-primary-surface: rgba(26, 26, 32, 0.74);
+		--vw-material-section-surface: rgba(31, 31, 38, 0.6);
+		--vw-material-group-surface: rgba(255, 255, 255, 0.055);
+				--vw-material-inner-surface: rgba(255, 255, 255, 0.035);
+				--vw-material-floating-surface: rgba(42, 42, 50, 0.86);
+				--vw-material-modal-surface: rgba(34, 34, 42, 0.9);
+				--vw-token-surface: rgba(52, 52, 60, 0.68);
+				--vw-notice-surface: rgba(42, 42, 50, 0.88);
+		--vw-material-border: rgba(255, 255, 255, 0.1);
+		--vw-material-border-strong: rgba(255, 255, 255, 0.16);
+		--vw-material-edge-highlight: rgba(255, 255, 255, 0.13);
+		--vw-material-shadow-soft:
+			0 1px 2px rgba(0, 0, 0, 0.22),
+			0 16px 44px rgba(0, 0, 0, 0.22),
+			inset 0 1px 0 var(--vw-material-edge-highlight);
+		--vw-material-shadow-raised:
+			0 1px 2px rgba(0, 0, 0, 0.28),
+			0 24px 64px rgba(0, 0, 0, 0.34),
+			inset 0 1px 0 var(--vw-material-edge-highlight);
+		--vw-table-head-surface: rgba(255, 255, 255, 0.055);
+		--vw-table-row-surface: rgba(255, 255, 255, 0.032);
+		--vw-table-row-alt-surface: rgba(255, 255, 255, 0.052);
+		--vw-table-row-hover-surface: rgba(255, 255, 255, 0.048);
+		--vw-tab-track-surface: rgba(255, 255, 255, 0.065);
+		--vw-tab-item-surface: transparent;
+		--vw-tab-item-hover-surface: rgba(255, 255, 255, 0.085);
+		--vw-tab-item-active-surface: rgba(62, 62, 70, 0.9);
+		--vw-progress-track-surface: rgba(235, 235, 245, 0.14);
+		--vw-progress-chip-surface: rgba(255, 255, 255, 0.09);
+				--vw-button-secondary-fill: rgba(52, 52, 60, 0.92);
+				--vw-button-secondary-hover: rgba(64, 64, 72, 0.96);
+				--vw-button-secondary-active: rgba(42, 42, 50, 0.9);
+		--vw-button-primary-fill: #0a84ff;
+		--vw-button-primary-hover: #2f9bff;
+		--vw-button-primary-active: #0071db;
+		--vw-button-primary-text: #ffffff;
+		--vw-button-danger-fill: #542a2d;
+		--vw-button-danger-hover: #643034;
+		--vw-button-danger-text: #ffb3ad;
+		--vw-button-warning-fill: #4e3a22;
+		--vw-button-warning-hover: #5d4527;
+		--vw-button-warning-text: #ffd09a;
+				--vw-menu-surface: rgba(36, 36, 44, 0.94);
+				--vw-menu-item-hover: rgba(10, 132, 255, 0.16);
+				--vw-menu-item-selected: rgba(10, 132, 255, 0.2);
+				--vw-form-row-hover: rgba(255, 255, 255, 0.032);
+		--vw-progress-meter-bg: rgba(235, 235, 245, 0.11);
+		--vw-progress-meter-border: rgba(255, 255, 255, 0.11);
+		--vw-progress-meter-text: var(--vw-text-primary);
+		--vw-progress-meter-summary: rgba(235, 235, 245, 0.58);
+		--vw-progress-meter-glow: rgba(100, 210, 255, 0.22);
+
+		--vw-shadow-card:
+			0 1px 2px rgba(0, 0, 0, 0.22),
+			0 10px 32px rgba(0, 0, 0, 0.22),
+			inset 0 1px 0 rgba(255, 255, 255, 0.08);
+		--vw-shadow-control:
+			0 1px 2px rgba(0, 0, 0, 0.18),
+			0 6px 18px rgba(0, 0, 0, 0.16),
+			inset 0 1px 0 rgba(255, 255, 255, 0.08);
+		--vw-shadow-control-hover:
+			0 2px 5px rgba(0, 0, 0, 0.2),
+			0 9px 24px rgba(0, 0, 0, 0.18),
+			inset 0 1px 0 rgba(255, 255, 255, 0.12);
+		--vw-shadow-control-active:
+			0 1px 2px rgba(0, 0, 0, 0.2),
+			inset 0 1px 3px rgba(0, 0, 0, 0.22);
+		--vw-shadow-popover:
+			0 16px 48px rgba(0, 0, 0, 0.42),
+			0 2px 8px rgba(0, 0, 0, 0.24),
+			inset 0 1px 0 rgba(255, 255, 255, 0.08);
+		--vw-shadow-modal:
+			0 28px 84px rgba(0, 0, 0, 0.54),
+			0 4px 16px rgba(0, 0, 0, 0.28),
+			inset 0 1px 0 rgba(255, 255, 255, 0.08);
+		--vw-shadow-tab-active:
+			0 2px 8px rgba(0, 0, 0, 0.24),
+			0 8px 22px rgba(0, 0, 0, 0.18),
+			inset 0 1px 0 rgba(255, 255, 255, 0.12);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		html:not([data-theme="light"]):not([data-darkmode="false"]) {
+			color-scheme: dark;
+
+			--vw-background: #101014;
+			--vw-surface: rgba(28, 28, 30, 0.76);
+			--vw-surface-elevated: rgba(44, 44, 46, 0.88);
+			--vw-glass-surface: rgba(28, 28, 32, 0.54);
+			--vw-glass-surface-strong: rgba(44, 44, 48, 0.68);
+			--vw-glass-border: rgba(255, 255, 255, 0.11);
+			--vw-divider: rgba(255, 255, 255, 0.09);
+			--vw-row-hover: rgba(255, 255, 255, 0.075);
+			--vw-text-primary: #f5f5f7;
+			--vw-text-secondary: rgba(235, 235, 245, 0.76);
+			--vw-text-muted: rgba(235, 235, 245, 0.5);
+			--vw-accent: #0a84ff;
+			--vw-accent-surface: rgba(10, 132, 255, 0.16);
+			--vw-accent-surface-hover: rgba(10, 132, 255, 0.23);
+			--vw-success: #30d158;
+			--vw-success-surface: rgba(48, 209, 88, 0.16);
+			--vw-warning: #ffb340;
+			--vw-warning-surface: rgba(255, 159, 10, 0.18);
+			--vw-danger: #ff6961;
+			--vw-danger-surface: rgba(255, 69, 58, 0.16);
+			--vw-info: #64d2ff;
+			--vw-focus-ring: rgba(10, 132, 255, 0.5);
+			--vw-control-surface: rgba(255, 255, 255, 0.08);
+			--vw-control-surface-hover: rgba(255, 255, 255, 0.13);
+			--vw-control-surface-active: rgba(255, 255, 255, 0.06);
+			--vw-control-border: rgba(255, 255, 255, 0.11);
+			--vw-control-border-hover: rgba(255, 255, 255, 0.17);
+			--vw-disabled-surface: rgba(120, 120, 128, 0.08);
+			--vw-disabled-text: rgba(235, 235, 245, 0.3);
+			--vw-tab-shell: rgba(255, 255, 255, 0.06);
+			--vw-tab-surface: rgba(255, 255, 255, 0.035);
+			--vw-tab-active: rgba(58, 58, 62, 0.78);
+			--vw-progress-track: rgba(235, 235, 245, 0.13);
+			--vw-progress-neutral: #64d2ff;
+			--vw-progress-success: #30d158;
+			--vw-progress-warning: #ffb340;
+			--vw-progress-danger: #ff6961;
+			--vw-liquid-canvas:
+				radial-gradient(980px 620px at 6% -8%, rgba(10, 132, 255, 0.16), transparent 58%),
+				radial-gradient(780px 520px at 92% 2%, rgba(142, 122, 255, 0.13), transparent 58%),
+				linear-gradient(145deg, #101014, #15161d 52%, #111217);
+			--vw-liquid-surface: rgba(28, 28, 34, 0.56);
+			--vw-liquid-surface-strong: rgba(38, 38, 46, 0.72);
+			--vw-liquid-surface-raised: rgba(48, 48, 56, 0.82);
+			--vw-liquid-surface-solid: rgba(28, 28, 34, 0.96);
+			--vw-liquid-field: rgba(255, 255, 255, 0.095);
+			--vw-liquid-field-focus: rgba(255, 255, 255, 0.15);
+			--vw-liquid-chip: rgba(255, 255, 255, 0.085);
+			--vw-liquid-accent-wash: rgba(10, 132, 255, 0.16);
+			--vw-liquid-border: rgba(255, 255, 255, 0.13);
+			--vw-liquid-border-soft: rgba(255, 255, 255, 0.095);
+			--vw-liquid-highlight-edge: rgba(255, 255, 255, 0.12);
+			--vw-liquid-text-protection: 0 1px 1px rgba(0, 0, 0, 0.32);
+			--vw-liquid-shadow:
+				0 1px 2px rgba(0, 0, 0, 0.22),
+				0 18px 46px rgba(0, 0, 0, 0.28),
+				inset 0 1px 0 var(--vw-liquid-highlight-edge),
+				inset 0 -18px 34px rgba(0, 0, 0, 0.12);
+			--vw-liquid-shadow-strong:
+				0 1px 2px rgba(0, 0, 0, 0.26),
+				0 26px 64px rgba(0, 0, 0, 0.36),
+				inset 0 1px 0 var(--vw-liquid-highlight-edge);
+			--vw-liquid-control-shadow:
+				0 1px 2px rgba(0, 0, 0, 0.22),
+				0 8px 22px rgba(0, 0, 0, 0.2),
+				inset 0 1px 0 rgba(255, 255, 255, 0.12);
+			--vw-liquid-page-header-bg:
+				linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
+			--vw-liquid-section-header-bg:
+				linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015));
+			--vw-liquid-table-head: rgba(255, 255, 255, 0.09);
+			--vw-liquid-table-row: rgba(255, 255, 255, 0.035);
+			--vw-liquid-table-row-alt: rgba(255, 255, 255, 0.022);
+			--vw-material-canvas-surface: transparent;
+			--vw-material-primary-surface: rgba(26, 26, 32, 0.74);
+			--vw-material-section-surface: rgba(31, 31, 38, 0.6);
+			--vw-material-group-surface: rgba(255, 255, 255, 0.055);
+			--vw-material-inner-surface: rgba(255, 255, 255, 0.035);
+			--vw-material-floating-surface: rgba(42, 42, 50, 0.86);
+			--vw-material-modal-surface: rgba(34, 34, 42, 0.9);
+			--vw-token-surface: rgba(52, 52, 60, 0.68);
+			--vw-notice-surface: rgba(42, 42, 50, 0.88);
+			--vw-material-border: rgba(255, 255, 255, 0.1);
+			--vw-material-border-strong: rgba(255, 255, 255, 0.16);
+			--vw-material-edge-highlight: rgba(255, 255, 255, 0.13);
+			--vw-material-shadow-soft:
+				0 1px 2px rgba(0, 0, 0, 0.22),
+				0 16px 44px rgba(0, 0, 0, 0.22),
+				inset 0 1px 0 var(--vw-material-edge-highlight);
+			--vw-material-shadow-raised:
+				0 1px 2px rgba(0, 0, 0, 0.28),
+				0 24px 64px rgba(0, 0, 0, 0.34),
+				inset 0 1px 0 var(--vw-material-edge-highlight);
+			--vw-table-head-surface: rgba(255, 255, 255, 0.055);
+			--vw-table-row-surface: rgba(255, 255, 255, 0.032);
+			--vw-table-row-alt-surface: rgba(255, 255, 255, 0.052);
+			--vw-table-row-hover-surface: rgba(255, 255, 255, 0.048);
+			--vw-tab-track-surface: rgba(255, 255, 255, 0.065);
+			--vw-tab-item-surface: transparent;
+			--vw-tab-item-hover-surface: rgba(255, 255, 255, 0.085);
+			--vw-tab-item-active-surface: rgba(62, 62, 70, 0.9);
+			--vw-progress-track-surface: rgba(235, 235, 245, 0.14);
+			--vw-progress-chip-surface: rgba(255, 255, 255, 0.09);
+			--vw-button-secondary-fill: rgba(52, 52, 60, 0.92);
+			--vw-button-secondary-hover: rgba(64, 64, 72, 0.96);
+			--vw-button-secondary-active: rgba(42, 42, 50, 0.9);
+			--vw-button-primary-fill: #0a84ff;
+			--vw-button-primary-hover: #2f9bff;
+			--vw-button-primary-active: #0071db;
+			--vw-button-primary-text: #ffffff;
+			--vw-button-danger-fill: #542a2d;
+			--vw-button-danger-hover: #643034;
+			--vw-button-danger-text: #ffb3ad;
+			--vw-button-warning-fill: #4e3a22;
+			--vw-button-warning-hover: #5d4527;
+			--vw-button-warning-text: #ffd09a;
+			--vw-menu-surface: rgba(36, 36, 44, 0.94);
+			--vw-menu-item-hover: rgba(10, 132, 255, 0.16);
+			--vw-menu-item-selected: rgba(10, 132, 255, 0.2);
+			--vw-form-row-hover: rgba(255, 255, 255, 0.032);
+			--vw-progress-meter-bg: rgba(235, 235, 245, 0.11);
+			--vw-progress-meter-border: rgba(255, 255, 255, 0.11);
+			--vw-progress-meter-text: var(--vw-text-primary);
+			--vw-progress-meter-summary: rgba(235, 235, 245, 0.58);
+			--vw-progress-meter-glow: rgba(100, 210, 255, 0.22);
+			--vw-shadow-card:
+				0 1px 2px rgba(0, 0, 0, 0.22),
+				0 10px 32px rgba(0, 0, 0, 0.22),
+				inset 0 1px 0 rgba(255, 255, 255, 0.08);
+			--vw-shadow-control:
+				0 1px 2px rgba(0, 0, 0, 0.18),
+				0 6px 18px rgba(0, 0, 0, 0.16),
+				inset 0 1px 0 rgba(255, 255, 255, 0.08);
+			--vw-shadow-control-hover:
+				0 2px 5px rgba(0, 0, 0, 0.2),
+				0 9px 24px rgba(0, 0, 0, 0.18),
+				inset 0 1px 0 rgba(255, 255, 255, 0.12);
+			--vw-shadow-control-active:
+				0 1px 2px rgba(0, 0, 0, 0.2),
+				inset 0 1px 3px rgba(0, 0, 0, 0.22);
+			--vw-shadow-popover:
+				0 16px 48px rgba(0, 0, 0, 0.42),
+				0 2px 8px rgba(0, 0, 0, 0.24),
+				inset 0 1px 0 rgba(255, 255, 255, 0.08);
+			--vw-shadow-modal:
+				0 28px 84px rgba(0, 0, 0, 0.54),
+				0 4px 16px rgba(0, 0, 0, 0.28),
+				inset 0 1px 0 rgba(255, 255, 255, 0.08);
+			--vw-shadow-tab-active:
+				0 2px 8px rgba(0, 0, 0, 0.24),
+				0 8px 22px rgba(0, 0, 0, 0.18),
+				inset 0 1px 0 rgba(255, 255, 255, 0.12);
+		}
+	}
+
+	html[data-vwrt-glass="low"] {
+		--vw-glass-surface: var(--vw-surface);
+		--vw-glass-surface-strong: var(--vw-surface-elevated);
+		--vw-blur-glass: 0px;
+		--vw-blur-popover: 0px;
+		--vw-saturate-glass: 100%;
+		--vw-saturate-popover: 100%;
+	}
+
+	@media (prefers-reduced-transparency: reduce) {
+		:root {
+			--vw-glass-surface: var(--vw-surface);
+			--vw-glass-surface-strong: var(--vw-surface-elevated);
+			--vw-blur-glass: 0px;
+			--vw-blur-popover: 0px;
+			--vw-saturate-glass: 100%;
+			--vw-saturate-popover: 100%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:root {
+			--vw-duration-fast: 1ms;
+			--vw-duration-standard: 1ms;
+			--vw-duration-slow: 1ms;
+		}
+	}
+}
+
+@layer base {
+	@media (min-width: 1800px) and (min-resolution: 1.2dppx) {
+		:root {
+			--vitra-font-size-md: 15px;
+			--vw-control-height: 42px;
+			--vw-field-height: 42px;
+			--vw-text-secondary: rgba(60, 60, 67, 0.82);
+			--vw-text-muted: rgba(60, 60, 67, 0.64);
+			--vw-blur-glass: 12px;
+			--vw-blur-popover: 14px;
+		}
+
+		html:is([data-theme="dark"], [data-darkmode="true"]) {
+			--vw-text-secondary: rgba(235, 235, 245, 0.84);
+			--vw-text-muted: rgba(235, 235, 245, 0.66);
+		}
+	}
+
+	@media (min-width: 2400px) and (min-resolution: 1.2dppx) {
+		:root {
+			--vitra-font-size-md: 16px;
+			--vw-control-height: 44px;
+			--vw-field-height: 44px;
+		}
+	}
+}

@@ -1,0 +1,55 @@
+@layer components {
+	body.vwrt-page-syslog #maincontent #content_syslog,
+	body[data-page="admin-status-logs-dmesg"] #maincontent #content_syslog,
+	body[data-page="admin-status-logs-dmesg"] #maincontent #view {
+		color: var(--vw-text-secondary);
+	}
+
+	body.vwrt-page-syslog #maincontent #content_syslog > div,
+	body[data-page="admin-status-logs-dmesg"] #maincontent #content_syslog > div,
+	body[data-page="admin-status-logs-dmesg"] #maincontent #view > div {
+		margin-bottom: 12px;
+	}
+
+	body.vwrt-page-syslog #maincontent #content_syslog :is(label, input, select, button),
+	body[data-page="admin-status-logs-dmesg"] #maincontent #content_syslog :is(label, input, select, button),
+	body[data-page="admin-status-logs-dmesg"] #maincontent #view :is(label, input, select, button) {
+		margin-block: 3px;
+	}
+
+	body.vwrt-page-syslog #maincontent textarea#syslog,
+	body[data-page="admin-status-logs-dmesg"] #maincontent textarea,
+	body[data-page="admin-status-logs-dmesg"] #maincontent pre,
+	body.vwrt-page-syslog #maincontent pre {
+		max-width: 100%;
+		min-height: min(58vh, 640px);
+		padding: 14px 15px;
+		border: 1px solid color-mix(in srgb, var(--vw-border) 86%, transparent) !important;
+		border-radius: var(--vw-radius-card) !important;
+		color: var(--vw-text-main) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 20%, transparent), transparent 44%),
+			color-mix(in srgb, var(--vw-surface-sunken) 82%, transparent) !important;
+		box-shadow:
+			0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 22%, transparent) inset,
+			inset 0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 6%, transparent) !important;
+		font-family: var(--vw-font-mono);
+		font-size: 12px !important;
+		line-height: 1.55;
+		overflow: auto;
+		tab-size: 4;
+		white-space: pre;
+	}
+
+	@media (max-width: 900px) {
+		body.vwrt-page-syslog #maincontent textarea#syslog,
+		body[data-page="admin-status-logs-dmesg"] #maincontent textarea,
+		body[data-page="admin-status-logs-dmesg"] #maincontent pre,
+		body.vwrt-page-syslog #maincontent pre {
+			min-height: 62vh;
+			padding: 12px;
+			font-size: 11.5px !important;
+			line-height: 1.5;
+		}
+	}
+}

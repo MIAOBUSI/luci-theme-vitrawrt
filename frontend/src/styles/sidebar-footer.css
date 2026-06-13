@@ -1,0 +1,40 @@
+/*
+ * Shell footer compatibility formerly carried by sidebar.css. This is not
+ * sidebar behavior, but keeping it in a small shell module lets the final
+ * sidebar bridge retire cleanly.
+ */
+.vwrt-footer {
+	padding: 0 0 28px;
+	color: var(--vwrt-text-subtle);
+	font-size: 12px;
+}
+
+.vwrt-footer-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	max-width: var(--vwrt-content-max);
+}
+
+#modemenu {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#modemenu li,
+#modemenu div {
+	display: inline-flex;
+}
+
+#modemenu a {
+	color: var(--vwrt-text-muted);
+}
+
+#modemenu .active a {
+	color: var(--vwrt-accent-strong);
+}

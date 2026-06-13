@@ -1,0 +1,191 @@
+/*
+ * Final sidebar paint authority. Structure, menu disclosure and collapsed
+ * geometry remain separate so material changes cannot alter LuCI behavior.
+ */
+#vwrt-sidebar {
+	border-color: color-mix(in srgb, var(--vw-border-soft) 48%, transparent);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 24%, transparent), transparent 42%),
+		radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--vw-cyan) 3%, transparent), transparent 40%),
+		var(--vw-sidebar-bg);
+	box-shadow:
+		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 24%, transparent) inset,
+		0 14px 38px color-mix(in srgb, var(--vw-shadow-color) 11%, transparent);
+}
+
+#vwrt-sidebar::before {
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 72%, transparent), transparent 36%),
+		linear-gradient(135deg, transparent 48%, color-mix(in srgb, var(--vw-accent-soft) 34%, transparent) 100%);
+}
+
+#vwrt-sidebar::after {
+	border-color: color-mix(in srgb, var(--vw-border) 84%, transparent);
+	box-shadow:
+		0 0 0 1px color-mix(in srgb, var(--vw-highlight) 34%, transparent) inset,
+		0 22px 54px color-mix(in srgb, var(--vitra-inner-dim) 64%, transparent) inset;
+}
+
+.vwrt-sidebar-brand {
+	border-color: color-mix(in srgb, var(--vw-border-soft) 26%, transparent);
+	background: transparent;
+	box-shadow: none;
+}
+
+.vwrt-sidebar-status {
+	border-color: color-mix(in srgb, var(--vw-border-soft) 28%, transparent);
+	background: color-mix(in srgb, var(--vw-material-inset) 24%, transparent);
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 18%, transparent) inset;
+}
+
+.vwrt-menu.l1 > li > .vwrt-menu-row,
+.vwrt-menu .l2 > li > .vwrt-menu-row,
+.vwrt-menu .l3 > li > .vwrt-menu-row {
+	border: 1px solid transparent;
+	background: transparent;
+	box-shadow: none;
+}
+
+.vwrt-menu.l1 > li > .vwrt-menu-row:hover,
+.vwrt-menu .l2 > li > .vwrt-menu-row:hover,
+.vwrt-menu .l3 > li > .vwrt-menu-row:hover {
+	border-color: color-mix(in srgb, var(--vw-accent-calm) 12%, var(--vw-border-soft));
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 26%, transparent), transparent 70%),
+		var(--vw-sidebar-row-hover-bg);
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 24%, transparent) inset;
+}
+
+.vwrt-menu .selected > .vwrt-menu-row,
+.vwrt-menu .active > .vwrt-menu-row,
+html.vwrt-sidebar-collapsed .vwrt-menu .selected > .vwrt-menu-row,
+html.vwrt-sidebar-collapsed .vwrt-menu .active > .vwrt-menu-row {
+	border-color: color-mix(in srgb, var(--vw-accent-calm) 16%, var(--vw-border-soft));
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 30%, transparent), transparent 68%),
+		var(--vw-sidebar-row-active-bg);
+	box-shadow:
+		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 26%, transparent) inset,
+		0 7px 16px color-mix(in srgb, var(--vw-accent-calm) 4%, transparent);
+}
+
+.vwrt-menu .selected > .vwrt-menu-row::before,
+.vwrt-menu .active > .vwrt-menu-row::before {
+	background: color-mix(in srgb, var(--vw-accent) 36%, transparent);
+	box-shadow: none;
+}
+
+.vwrt-menu .selected > .vwrt-menu-row a,
+.vwrt-menu .active > .vwrt-menu-row a,
+.vwrt-menu .selected > .vwrt-menu-row .vwrt-menu-expander,
+.vwrt-menu .active > .vwrt-menu-row .vwrt-menu-expander,
+html.vwrt-sidebar-collapsed .vwrt-menu .selected > .vwrt-menu-row a,
+html.vwrt-sidebar-collapsed .vwrt-menu .active > .vwrt-menu-row a {
+	border-color: transparent;
+	background: transparent;
+	box-shadow: none;
+}
+
+.vwrt-menu-expander,
+.vwrt-menu-toggle,
+.vwrt-menu-chevron,
+.vwrt-menu-row:hover .vwrt-menu-expander,
+.vwrt-menu-row:hover .vwrt-menu-toggle,
+.vwrt-menu-row:hover .vwrt-menu-chevron {
+	border-color: transparent;
+	background: transparent;
+	box-shadow: none;
+}
+
+.vwrt-menu .l2 {
+	border-left-color: color-mix(in srgb, var(--vw-border-soft) 62%, transparent);
+	background: transparent;
+	box-shadow: none;
+}
+
+.vwrt-menu .l2 a,
+.vwrt-menu .l2 .vwrt-menu-row {
+	border-color: transparent;
+	background: transparent;
+	box-shadow: none;
+}
+
+.vwrt-menu .l2 .vwrt-menu-row {
+	border-radius: 14px;
+}
+
+.vwrt-sidebar-actions.vitra-sidebar-controls {
+	border-color: color-mix(in srgb, var(--vw-border-soft) 46%, transparent);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 26%, transparent), transparent 72%),
+		color-mix(in srgb, var(--vw-material-inset) 28%, transparent);
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 24%, transparent) inset;
+}
+
+.vwrt-sidebar-actions .vwrt-text-button,
+.vwrt-sidebar-actions .vwrt-icon-button {
+	border-color: color-mix(in srgb, var(--vw-border-soft) 52%, transparent);
+	color: var(--vw-text-soft);
+	background: color-mix(in srgb, var(--vw-liquid-control) 48%, transparent);
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 28%, transparent) inset;
+}
+
+.vwrt-sidebar-actions .vwrt-text-button:hover,
+.vwrt-sidebar-actions .vwrt-icon-button:hover,
+.vwrt-sidebar-actions .vwrt-text-button.is-open {
+	border-color: color-mix(in srgb, var(--vw-accent) 16%, var(--vw-border-soft));
+	color: var(--vw-text-main);
+	background: var(--vw-sidebar-row-hover-bg);
+}
+
+.vwrt-theme-panel {
+	border: 1px solid color-mix(in srgb, var(--vw-border) 82%, transparent);
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 70%, transparent), transparent 68%),
+		color-mix(in srgb, var(--vw-surface-glass-3) 88%, transparent);
+	box-shadow:
+		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 48%, transparent) inset,
+		0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 3%, transparent),
+		0 8px 28px color-mix(in srgb, var(--vw-shadow-color) 4.3%, transparent),
+		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 42%, transparent) inset;
+	backdrop-filter: blur(18px) saturate(150%);
+	-webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.vwrt-theme-button {
+	border-color: color-mix(in srgb, var(--vw-border-soft) 48%, transparent);
+	color: var(--vw-text-soft);
+	background: color-mix(in srgb, var(--vw-liquid-control) 50%, transparent);
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 30%, transparent) inset;
+}
+
+.vwrt-theme-button:hover,
+.vwrt-theme-button[aria-pressed="true"],
+.vwrt-theme-button.is-active {
+	border-color: color-mix(in srgb, var(--vw-accent) 18%, var(--vw-border-soft));
+	color: var(--vw-accent-ink);
+	background: var(--vw-sidebar-row-hover-bg);
+}
+
+html.vwrt-sidebar-collapsed .vwrt-sidebar-brand,
+html.vwrt-sidebar-collapsed .vwrt-sidebar-status {
+	background: transparent;
+	border-color: transparent;
+	box-shadow: none;
+}
+
+html.vwrt-sidebar-collapsed .vwrt-sidebar-actions.vitra-sidebar-controls {
+	border-color: color-mix(in srgb, var(--vw-border-soft) 54%, transparent);
+	background: color-mix(in srgb, var(--vw-liquid-panel) 30%, transparent);
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 28%, transparent) inset;
+}
+
+html.vwrt-sidebar-collapsed .vwrt-sidebar-actions .vwrt-text-button,
+html.vwrt-sidebar-collapsed .vwrt-sidebar-actions .vwrt-icon-button {
+	border-color: color-mix(in srgb, var(--vw-border-soft) 48%, transparent);
+	color: color-mix(in srgb, var(--vw-text-soft) 72%, transparent);
+	background: color-mix(in srgb, var(--vw-liquid-control) 44%, transparent);
+	box-shadow:
+		0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 48%, transparent) inset,
+		0 7px 16px color-mix(in srgb, var(--vw-shadow-color) 2.4%, transparent);
+}

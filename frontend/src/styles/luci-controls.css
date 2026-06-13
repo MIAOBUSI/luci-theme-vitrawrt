@@ -1,0 +1,1056 @@
+@layer components {
+	#maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]),
+	#modal_overlay :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]),
+	.vwrt-auth-card :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]) {
+		appearance: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		min-height: var(--vw-control-height);
+		min-width: max-content;
+		box-sizing: border-box;
+		padding: 0 17px;
+		border: 1px solid color-mix(in srgb, var(--vw-control-border) 88%, transparent) !important;
+		border-radius: var(--vw-radius-pill) !important;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-fill) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+		font: inherit;
+		font-size: 0.9rem;
+		font-weight: 690;
+		letter-spacing: 0;
+		line-height: 1;
+		text-align: center;
+		vertical-align: middle;
+		text-decoration: none !important;
+		text-shadow: none !important;
+		cursor: pointer;
+		transition:
+			background var(--vw-duration-standard) var(--vw-ease-standard),
+			border-color var(--vw-duration-standard) var(--vw-ease-standard),
+			box-shadow var(--vw-duration-standard) var(--vw-ease-standard),
+			color var(--vw-duration-standard) var(--vw-ease-standard),
+			transform var(--vw-duration-fast) var(--vw-ease-standard);
+	}
+
+	#maincontent :is(.cbi-button, .btn, button):hover,
+	#modal_overlay :is(.cbi-button, .btn, button):hover,
+	.vwrt-auth-card :is(.cbi-button, .btn, button):hover {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-hover) !important;
+		border-color: var(--vw-control-border-hover) !important;
+		box-shadow: var(--vw-shadow-control-hover) !important;
+	}
+
+	#maincontent :is(.cbi-button, .btn, button):active,
+	#modal_overlay :is(.cbi-button, .btn, button):active,
+	.vwrt-auth-card :is(.cbi-button, .btn, button):active {
+		background: var(--vw-button-secondary-active) !important;
+		box-shadow:
+			inset 0 1px 3px color-mix(in srgb, var(--vw-shadow-color) 13%, transparent),
+			0 1px 1px color-mix(in srgb, var(--vw-shadow-color) 4%, transparent) !important;
+		transform: translateY(1px);
+	}
+
+	#maincontent :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]),
+	#modal_overlay :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]) {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-primary-fill) 82%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	#maincontent :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]):hover,
+	#modal_overlay :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]):hover {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-hover) !important;
+		border-color: var(--vw-button-primary-hover) !important;
+	}
+
+	#maincontent :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]):active,
+	#modal_overlay :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]):active {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-active) !important;
+	}
+
+	#maincontent :is(.cbi-button-negative, .cbi-button-remove, .cbi-button-reset, .btn-danger, .btn.danger, .btn.cbi-button-negative, .btn.cbi-button-reset, .btn.cbi-button-remove, input[type="reset"]),
+	#modal_overlay :is(.cbi-button-negative, .cbi-button-remove, .cbi-button-reset, .btn-danger, .btn.danger, .btn.cbi-button-negative, .btn.cbi-button-reset, .btn.cbi-button-remove, input[type="reset"]) {
+		color: var(--vw-button-danger-text) !important;
+		background: var(--vw-button-danger-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-danger-text) 22%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	#maincontent :is(.cbi-button-negative, .cbi-button-remove, .cbi-button-reset, .btn-danger, .btn.danger, .btn.cbi-button-negative, .btn.cbi-button-reset, .btn.cbi-button-remove, input[type="reset"]):hover,
+	#modal_overlay :is(.cbi-button-negative, .cbi-button-remove, .cbi-button-reset, .btn-danger, .btn.danger, .btn.cbi-button-negative, .btn.cbi-button-reset, .btn.cbi-button-remove, input[type="reset"]):hover {
+		background: var(--vw-button-danger-hover) !important;
+		border-color: color-mix(in srgb, var(--vw-button-danger-text) 30%, transparent) !important;
+	}
+
+	#maincontent :is(.cbi-button-neutral, .cbi-button-link, .cbi-button-find, .btn-link),
+	#modal_overlay :is(.cbi-button-neutral, .cbi-button-link, .cbi-button-find, .btn-link) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-control-border) 86%, transparent) !important;
+	}
+
+	#maincontent :is(.cbi-button-warning, .btn-warning, .btn.warning),
+	#modal_overlay :is(.cbi-button-warning, .btn-warning, .btn.warning) {
+		color: var(--vw-button-warning-text) !important;
+		background: var(--vw-button-warning-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-warning-text) 22%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	#maincontent :is(.cbi-button-add, .btn.cbi-button-add),
+	#modal_overlay :is(.cbi-button-add, .btn.cbi-button-add) {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-primary-fill) 82%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	#maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-icon-only,
+	#modal_overlay :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-icon-only,
+	.vwrt-auth-card :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-icon-only {
+		justify-content: center;
+		width: var(--vw-control-height);
+		min-width: var(--vw-control-height);
+		padding-inline: 0 !important;
+		font-size: 1rem;
+		line-height: 1;
+	}
+
+	:is(#maincontent, #modal_overlay) :is(
+		.cbi-button-remove.vwrt-button-icon-only,
+		.btn.cbi-button-remove.vwrt-button-icon-only,
+		.vwrt-dynlist-delete.vwrt-button-icon-only
+	) {
+		position: relative;
+		color: var(--vw-button-danger-text) !important;
+		background: var(--vw-button-danger-fill) !important;
+		font-size: 0 !important;
+		line-height: 0 !important;
+		overflow: visible !important;
+	}
+
+	:is(#maincontent, #modal_overlay) :is(
+		.cbi-button-remove.vwrt-button-icon-only,
+		.btn.cbi-button-remove.vwrt-button-icon-only,
+		.vwrt-dynlist-delete.vwrt-button-icon-only
+	)::before {
+		position: absolute;
+		inset: 0;
+		width: 20px;
+		height: 20px;
+		margin: auto;
+		background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5 5l10 10M15 5 5 15' fill='none' stroke='%23a9231b' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / 20px 20px no-repeat;
+		content: "";
+		transform: none;
+		-webkit-mask: none;
+		mask: none;
+		pointer-events: none;
+	}
+
+	html:is([data-theme="dark"], [data-darkmode="true"]) :is(#maincontent, #modal_overlay) :is(
+		.cbi-button-remove.vwrt-button-icon-only,
+		.btn.cbi-button-remove.vwrt-button-icon-only,
+		.vwrt-dynlist-delete.vwrt-button-icon-only
+	)::before {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5 5l10 10M15 5 5 15' fill='none' stroke='%23ffb4ae' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
+	}
+
+	#maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-has-text,
+	#modal_overlay :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-has-text,
+	.vwrt-auth-card :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-has-text {
+		width: auto;
+		padding-inline: 17px;
+	}
+
+	#maincontent :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-add-icon,
+	#modal_overlay :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-add-icon {
+		width: var(--vw-control-height);
+		min-width: var(--vw-control-height);
+		padding-inline: 0 !important;
+	}
+
+	#maincontent :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-add-text,
+	#maincontent :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-has-text,
+	#maincontent :is(.cbi-button-add, .btn.cbi-button-add):not(.vwrt-button-icon-only),
+	#modal_overlay :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-add-text,
+	#modal_overlay :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-has-text,
+	#modal_overlay :is(.cbi-button-add, .btn.cbi-button-add):not(.vwrt-button-icon-only) {
+		width: auto;
+		min-width: max-content;
+		padding-inline: 20px !important;
+		border-radius: var(--vw-radius-pill) !important;
+	}
+
+	#maincontent :is(.cbi-button[disabled], .btn[disabled], button[disabled], .cbi-button-disabled, .btn.disabled),
+	#modal_overlay :is(.cbi-button[disabled], .btn[disabled], button[disabled], .cbi-button-disabled, .btn.disabled) {
+		color: var(--vw-disabled-text) !important;
+		background: var(--vw-disabled-surface) !important;
+		border-color: transparent !important;
+		box-shadow: none !important;
+		cursor: not-allowed;
+		transform: none;
+	}
+
+	#maincontent :is(.cbi-section-table, .table, table) :is(.cbi-button, .btn, button),
+	body.vwrt-page-packages #maincontent :is(.cbi-button, .btn, button, input[type="submit"]) {
+		min-height: var(--vw-compact-control-height);
+		padding: 0 12px;
+		font-size: 0.82rem;
+		line-height: 1;
+	}
+
+	body.vwrt-page-packages #maincontent :is(.controls, .control-group, .td, td) :is(.cbi-button, .btn, button, input[type="submit"]) {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 6px;
+		min-width: 0;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	#maincontent :is(.cbi-section-table, .table, table) :is(.cbi-button, .btn, button, input[type="submit"], input[type="button"], input[type="reset"]).vwrt-button-has-text,
+	body.vwrt-page-packages #maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="button"], input[type="reset"]).vwrt-button-has-text {
+		width: auto !important;
+		min-width: calc(var(--vw-control-height) + 18px);
+		padding-inline: 14px !important;
+	}
+
+	body.vwrt-page-packages #maincontent :is(.cbi-button-negative, .cbi-button-remove, .btn-danger) {
+		color: var(--vw-button-danger-text) !important;
+		background: var(--vw-button-danger-fill) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action {
+		position: relative;
+		display: inline-grid !important;
+		grid-template-columns: minmax(0, auto) 30px;
+		align-items: center;
+		justify-content: center;
+		gap: 0;
+		min-height: var(--vw-compact-control-height);
+		width: fit-content;
+		max-width: min(100%, 18rem);
+		padding: 0 !important;
+		overflow: visible !important;
+		border-radius: var(--vw-radius-pill) !important;
+		cursor: pointer;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > .vwrt-action-dropdown-current {
+		grid-column: 1;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		min-height: calc(var(--vw-compact-control-height) - 2px);
+		padding: 0 10px 0 13px;
+		overflow: hidden;
+		color: inherit;
+		font-weight: inherit;
+		line-height: 1;
+		text-align: center;
+		text-overflow: ellipsis;
+		pointer-events: none;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > :is(span.more, span.open, .more, .open, .cbi-dropdown-arrow, .dropdown-arrow) {
+		grid-column: 2;
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		min-width: 30px;
+		min-height: calc(var(--vw-compact-control-height) - 2px);
+		padding: 0;
+		color: inherit;
+		font-size: 0 !important;
+		line-height: 1;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > :is(span.more, span.open, .more, .open)::after {
+		color: currentColor;
+		font-size: 0.75rem;
+		content: "▾";
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > span.open {
+		display: none !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > div {
+		display: none;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul {
+		position: absolute !important;
+		z-index: var(--vw-z-popover);
+		top: calc(100% + 8px);
+		right: 0;
+		display: none !important;
+		gap: 4px;
+		min-width: max(100%, 13rem);
+		max-width: min(72vw, 18rem);
+		margin: 0 !important;
+		padding: 6px !important;
+		overflow: auto;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-surface) !important;
+		border: 1px solid var(--vw-material-border-strong) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: var(--vw-shadow-popover) !important;
+		list-style: none;
+		-webkit-backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+		backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+	}
+
+	body.vwrt-page-diagnostics :is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul {
+		right: auto;
+		left: 0;
+		min-width: max(100%, 13rem);
+		transform: translateX(0);
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action.vwrt-action-dropdown-open > ul,
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action:is([open], .open, .cbi-dropdown-open, [aria-expanded="true"]) > ul {
+		display: grid !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul > li {
+		display: flex !important;
+		align-items: center;
+		pointer-events: auto;
+		min-height: 34px;
+		margin: 0 !important;
+		padding: 0 10px !important;
+		border: 0 !important;
+		border-radius: 10px;
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+		font-weight: 640;
+		line-height: 1.15;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul > li:hover,
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul > li:focus {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-item-hover) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul > :is(li[selected], li[display="0"], li.selected) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-item-selected) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul > li:hover,
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul > li:focus,
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul > li.vwrt-action-dropdown-hover,
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul > li.vwrt-pass17-action-hover-target,
+	:is(#maincontent, #modal_overlay) .cbi-dropdown.cbi-button-action > ul > li.vwrt-pass17-hover {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-item-hover) !important;
+	}
+
+	#maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]):focus-visible,
+	#modal_overlay :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]):focus-visible {
+		outline: 0;
+		box-shadow:
+			0 0 0 3px var(--vw-focus-ring),
+			0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 8%, transparent) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 8px;
+		width: fit-content;
+		max-width: 100%;
+		margin-left: auto;
+		padding: 8px !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border-strong) 84%, transparent) !important;
+		border-radius: calc(var(--vw-radius-card) + 4px) !important;
+		background: var(--vw-notice-surface) !important;
+		box-shadow: var(--vw-material-shadow-raised) !important;
+		-webkit-backdrop-filter: blur(14px) saturate(132%);
+		backdrop-filter: blur(14px) saturate(132%);
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions :is(.cbi-button, .btn) {
+		margin: 0;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button {
+		display: inline-grid !important;
+		grid-template-columns: minmax(0, auto) 1px 36px;
+		align-items: stretch;
+		min-height: var(--vw-control-height);
+		min-width: max-content;
+		padding: 0 !important;
+		overflow: visible;
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-primary-fill) 82%, transparent) !important;
+		border-radius: var(--vw-radius-pill) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button::before {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: stretch;
+		width: 1px;
+		margin-block: 8px;
+		background: var(--vw-split-divider);
+		content: "";
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button > ul {
+		grid-column: 1;
+		position: static;
+		display: inline-flex !important;
+		align-items: center;
+		min-width: 0;
+		max-width: 13rem;
+		margin: 0;
+		padding: 0 14px !important;
+		overflow: hidden;
+		color: inherit !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: inherit !important;
+		box-shadow: none !important;
+		list-style: none;
+		pointer-events: auto;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button > ul > li {
+		display: none;
+		align-items: center;
+		min-height: calc(var(--vw-control-height) - 2px);
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden;
+		color: inherit !important;
+		background: transparent !important;
+		border: 0 !important;
+		font-weight: 720;
+		line-height: 1;
+		text-overflow: ellipsis;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button > ul > :is(li[selected], li[display="0"], li.selected) {
+		display: inline-flex;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button > span.more,
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button > span.open {
+		grid-column: 3;
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		min-height: calc(var(--vw-control-height) - 2px);
+		padding: 0;
+		color: inherit;
+		cursor: pointer;
+		user-select: none;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button > span.more {
+		font-size: 0;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button > span.more::after {
+		width: 12px;
+		height: 8px;
+		background: var(--vw-split-arrow);
+		content: "";
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px 8px no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px 8px no-repeat;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button > span.open {
+		display: none !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button > div {
+		display: none;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button:focus {
+		outline: 0;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button:is([open], [aria-expanded="true"], .is-open, .dropdown-open, .vwrt-apply-menu-open) > ul,
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button.vwrt-apply-menu-open > ul {
+		position: absolute;
+		right: 0;
+		bottom: calc(100% + 8px);
+		z-index: var(--vw-z-popover);
+		display: grid;
+		gap: 4px;
+		min-width: 190px;
+		max-width: min(72vw, 18rem);
+		padding: 6px !important;
+		overflow: visible;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-surface) !important;
+		border: 1px solid var(--vw-material-border-strong) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: var(--vw-shadow-popover) !important;
+		pointer-events: auto;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button:is([open], [aria-expanded="true"], .is-open, .dropdown-open, .vwrt-apply-menu-open) > ul > li,
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button.vwrt-apply-menu-open > ul > li {
+		display: flex;
+		align-items: center;
+		min-height: 34px;
+		padding: 0 10px !important;
+		border-radius: 10px;
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button:is([open], [aria-expanded="true"], .is-open, .dropdown-open, .vwrt-apply-menu-open) > ul > li:hover,
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button.vwrt-apply-menu-open > ul > li:hover {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-item-hover) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready {
+		position: relative;
+		display: inline-grid !important;
+		grid-template-columns: var(--vwrt-apply-label-width, 112px) 1px 31px;
+		grid-template-rows: var(--vw-control-height);
+		align-items: center;
+		min-height: var(--vw-control-height);
+		height: var(--vw-control-height);
+		min-width: 0;
+		width: calc(var(--vwrt-apply-label-width, 112px) + 33px);
+		max-width: min(100%, 12rem);
+		overflow: visible !important;
+		contain: layout;
+		transform-origin: 50% 50%;
+		isolation: isolate;
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-primary-fill) 82%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready::before {
+		position: absolute;
+		top: 50%;
+		right: 9.5px;
+		display: block !important;
+		width: 12px;
+		height: 8px;
+		margin: 0 !important;
+		background: var(--vw-split-arrow) !important;
+		content: "" !important;
+		transform: translateY(-50%) !important;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px 8px no-repeat !important;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px 8px no-repeat !important;
+		pointer-events: none;
+		z-index: 4;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready::after {
+		position: absolute;
+		top: 8px;
+		right: 31px;
+		bottom: 8px;
+		display: block !important;
+		width: 1px;
+		background: var(--vw-split-divider);
+		content: "" !important;
+		pointer-events: none;
+		z-index: 3;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready:hover {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-primary-fill) 82%, transparent) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready > .vwrt-apply-current {
+		grid-column: 1;
+		grid-row: 1;
+		align-self: stretch;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		max-width: 12rem;
+		height: var(--vw-control-height);
+		min-height: var(--vw-control-height);
+		padding: 0 11px 0 13px;
+		overflow: hidden;
+		color: inherit;
+		font-weight: 720;
+		line-height: 1;
+		text-overflow: ellipsis;
+		transform: none;
+		pointer-events: none;
+		z-index: 2;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready > ul {
+		position: absolute !important;
+		top: auto !important;
+		right: 0 !important;
+		bottom: calc(100% + 10px) !important;
+		left: 0 !important;
+		z-index: var(--vw-z-popover);
+		display: none !important;
+		grid-column: auto;
+		gap: 4px;
+		width: auto !important;
+		min-width: 0;
+		max-width: none;
+		height: auto !important;
+		margin: 0;
+		padding: 6px !important;
+		overflow: visible !important;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-surface) !important;
+		border: 1px solid var(--vw-material-border-strong) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: var(--vw-shadow-popover) !important;
+		list-style: none;
+		pointer-events: auto;
+		transform: none !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready.vwrt-apply-menu-open > ul {
+		display: grid !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready > ul > li {
+		display: flex !important;
+		align-items: center;
+		justify-content: flex-start;
+		min-height: 34px;
+		margin: 0 !important;
+		padding: 0 10px !important;
+		border: 0 !important;
+		border-radius: 10px;
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+		font-weight: 640;
+		line-height: 1.1;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready > ul > :is(li[selected], li[display="0"], li.selected) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-item-selected) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready > :is(
+		span.more,
+		span.open,
+		.more,
+		.open,
+		.cbi-dropdown-arrow,
+		.dropdown-arrow
+	):not(.vwrt-apply-arrow-owner) {
+		display: none !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready > .vwrt-apply-arrow-owner {
+		position: relative !important;
+		inset: auto !important;
+		top: auto !important;
+		right: auto !important;
+		bottom: auto !important;
+		left: auto !important;
+		grid-column: 3;
+		grid-row: 1;
+		align-self: stretch;
+		justify-self: stretch;
+		width: 31px;
+		min-width: 31px;
+		display: inline-grid !important;
+		place-items: center;
+		height: var(--vw-control-height);
+		min-height: var(--vw-control-height);
+		margin: 0 !important;
+		padding: 0 !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+		transform: none !important;
+		color: transparent !important;
+		font-size: 0 !important;
+		line-height: 0;
+		pointer-events: auto;
+		z-index: 5;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready > .vwrt-apply-arrow-owner::before {
+		display: none !important;
+	}
+
+	:is(#maincontent, #modal_overlay) .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready > .vwrt-apply-arrow-owner::after {
+		display: none !important;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo {
+		position: relative;
+		display: inline-grid !important;
+		grid-template-columns: var(--vwrt-apply-label-width, 112px) 1px 31px;
+		grid-template-rows: var(--vw-control-height);
+		align-items: center;
+		width: calc(var(--vwrt-apply-label-width, 112px) + 33px);
+		min-width: calc(var(--vwrt-apply-label-width, 112px) + 33px);
+		height: var(--vw-control-height);
+		min-height: var(--vw-control-height);
+		padding: 0 !important;
+		overflow: visible !important;
+		border-radius: var(--vw-radius-pill) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+		vertical-align: middle;
+		transform-origin: 50% 50%;
+		isolation: isolate;
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-primary-fill) 82%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo::before {
+		position: absolute;
+		top: 50%;
+		right: 9.5px;
+		display: block !important;
+		width: 12px;
+		height: 8px;
+		margin: 0 !important;
+		background: var(--vw-split-arrow) !important;
+		content: "" !important;
+		transform: translateY(-50%) !important;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px 8px no-repeat !important;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px 8px no-repeat !important;
+		pointer-events: none;
+		z-index: 4;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo:hover {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-primary-fill) 82%, transparent) !important;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > .vwrt-apply-current {
+		grid-column: 1;
+		grid-row: 1;
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		height: var(--vw-control-height);
+		margin: 0 !important;
+		padding: 0 12px !important;
+		overflow: hidden;
+		border: 0 !important;
+		background: transparent !important;
+		box-shadow: none !important;
+		color: inherit !important;
+		background: transparent !important;
+		border: 0 !important;
+		font-weight: 700;
+		line-height: 1;
+		text-overflow: ellipsis;
+		transform: none;
+		pointer-events: none;
+		z-index: 2;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > ul:not(.dropdown),
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > ul.preview {
+		display: none !important;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > :is(
+		span.more,
+		span.open,
+		.more,
+		.open,
+		.cbi-dropdown-arrow,
+		.dropdown-arrow
+	):not(.vwrt-apply-arrow-owner) {
+		display: none !important;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > .vwrt-apply-arrow-owner {
+		position: relative !important;
+		inset: auto !important;
+		top: auto !important;
+		right: auto !important;
+		bottom: auto !important;
+		left: auto !important;
+		grid-column: 3;
+		grid-row: 1;
+		display: inline-grid !important;
+		place-items: center;
+		align-self: stretch;
+		justify-self: stretch;
+		width: 31px;
+		min-width: 31px;
+		height: var(--vw-control-height);
+		margin: 0 !important;
+		padding: 0 !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+		transform: none !important;
+		color: inherit;
+		font-size: 0 !important;
+		line-height: 0;
+		cursor: pointer;
+		z-index: 5;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > .vwrt-apply-arrow-owner::before {
+		display: none !important;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > .vwrt-apply-arrow-owner::after {
+		display: none !important;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo::after {
+		position: absolute;
+		top: 8px;
+		right: 31px;
+		bottom: 8px;
+		width: 1px;
+		background: var(--vw-split-divider);
+		content: "";
+		pointer-events: none;
+		z-index: 2;
+	}
+
+	.vwrt-split-motion-surface {
+		display: none !important;
+	}
+
+	:is(
+		#maincontent .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready,
+		#modal_overlay .cbi-page-actions .cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready,
+		#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo
+	) > :is(.vwrt-apply-current, span.more, span.open, .vwrt-apply-arrow-hit) {
+		position: relative;
+		z-index: 2;
+	}
+
+	:is(#maincontent, #modal_overlay)
+	.cbi-page-actions
+	.cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready.vwrt-apply-menu-open > ul {
+		position: absolute !important;
+		top: auto !important;
+		right: -1px !important;
+		bottom: calc(100% + 10px) !important;
+		left: -1px !important;
+		z-index: var(--vw-z-popover) !important;
+		display: grid !important;
+		width: auto !important;
+		min-width: calc(100% + 2px) !important;
+		max-width: none !important;
+		height: auto !important;
+		margin: 0 !important;
+		transform: none !important;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > div {
+		display: none;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > ul.dropdown {
+		position: absolute !important;
+		top: auto !important;
+		right: -1px !important;
+		bottom: calc(100% + 10px) !important;
+		left: -1px !important;
+		display: grid !important;
+		gap: 4px;
+		width: auto !important;
+		min-width: calc(100% + 2px) !important;
+		max-width: none;
+		height: auto !important;
+		margin: 0 !important;
+		padding: 6px !important;
+		overflow: visible !important;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-surface) !important;
+		border: 1px solid var(--vw-material-border-strong) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: var(--vw-shadow-popover) !important;
+		list-style: none;
+		transform: none !important;
+		-webkit-backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+		backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > ul.dropdown > li {
+		display: flex !important;
+		align-items: center;
+		min-height: 36px;
+		margin: 0 !important;
+		padding: 0 11px !important;
+		border: 0 !important;
+		border-radius: 10px;
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+		font-weight: 640;
+		line-height: 1.15;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > ul.dropdown > li:is(:hover, :focus, .focus, .vwrt-cbi-dropdown-hover) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-item-hover) !important;
+	}
+
+	#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown.vwrt-modal-apply-combo > ul.dropdown > :is(li[selected], li[display="0"], li.selected) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-menu-item-selected) !important;
+	}
+
+	:is(#maincontent, #modal_overlay) :is(
+		button,
+		.btn,
+		.cbi-button,
+		input[type="button"],
+		input[type="submit"]
+	):not(input):is(.spinning, .loading, .vwrt-button-local-loading) {
+		position: relative !important;
+		inset: auto !important;
+		display: inline-grid !important;
+		grid-template-columns: 16px max-content;
+		align-items: center;
+		justify-content: center;
+		column-gap: 8px;
+		inline-size: auto !important;
+		min-width: 0;
+		margin: 0;
+		padding-inline: 12px 14px !important;
+		overflow: visible;
+		transform-origin: 50% 50%;
+	}
+
+	:is(#maincontent, #modal_overlay) :is(
+		button,
+		.btn,
+		.cbi-button,
+		input[type="button"],
+		input[type="submit"]
+	):not(input):is(.spinning, .loading, .vwrt-button-local-loading)::before {
+		position: static !important;
+		inset: auto !important;
+		display: block !important;
+		grid-column: 1;
+		grid-row: 1;
+		box-sizing: border-box;
+		inline-size: 16px !important;
+		block-size: 16px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		border: 0 !important;
+		border-radius: 50%;
+		background:
+			conic-gradient(from 18deg, color-mix(in srgb, currentColor 84%, transparent), color-mix(in srgb, currentColor 18%, transparent) 52%, transparent 76%) !important;
+		content: "" !important;
+		-webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+		mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+		box-shadow: none !important;
+		animation: vwrt-spinner-rotate 0.9s linear infinite;
+		pointer-events: none;
+	}
+
+	:is(#maincontent, #modal_overlay) :is(
+		button,
+		.btn,
+		.cbi-button
+	).vwrt-button-icon-only:is(.spinning, .loading, .vwrt-button-local-loading) {
+		grid-template-columns: 16px;
+		width: var(--vw-control-height) !important;
+		min-width: var(--vw-control-height) !important;
+		padding: 0 !important;
+		font-size: 0 !important;
+	}
+
+	:is(#maincontent, #modal_overlay) :is(
+		button,
+		.btn,
+		.cbi-button
+	) > :is(.spinning, .loading) {
+		position: static !important;
+		inset: auto !important;
+		display: inline-grid !important;
+		place-items: center;
+		box-sizing: border-box;
+		inline-size: 16px !important;
+		min-width: 16px !important;
+		block-size: 16px !important;
+		min-height: 16px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: visible !important;
+		color: currentColor !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		transform: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	:is(#maincontent, #modal_overlay) :is(
+		button,
+		.btn,
+		.cbi-button
+	) > :is(.spinning, .loading)::before {
+		inline-size: 16px !important;
+		block-size: 16px !important;
+		margin: 0 !important;
+		box-shadow: none !important;
+	}
+
+	:is(#maincontent, #modal_overlay) input:is(
+		[type="button"],
+		[type="submit"]
+	):is(.spinning, .loading, .vwrt-button-local-loading) {
+		position: relative !important;
+		inset: auto !important;
+		inline-size: auto !important;
+		padding-inline: 38px 14px !important;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='none' stroke='%23ffffff' stroke-opacity='.28' stroke-width='2'/%3E%3Cpath d='M8 2a6 6 0 0 1 6 6' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+		background-repeat: no-repeat !important;
+		background-position: 12px 50% !important;
+		background-size: 16px 16px !important;
+	}
+
+	@media (max-width: 900px) {
+		:is(#maincontent, #modal_overlay) .cbi-page-actions {
+			width: 100%;
+			justify-content: flex-start;
+		}
+
+		:is(#maincontent, #modal_overlay) .cbi-page-actions :is(.cbi-button, .btn, .cbi-dropdown.cbi-button) {
+			flex: 0 1 auto;
+			max-width: 100%;
+		}
+	}
+}
