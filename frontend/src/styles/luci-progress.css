@@ -1,6 +1,7 @@
 @layer components {
 	:where(#maincontent, .vwrt-auth-card) .vw-progress {
 		--vw-progress-fill: var(--vw-progress-neutral);
+		--vw-progress-fill-paint: var(--vw-progress-neutral-paint, var(--vw-progress-neutral));
 		--vw-progress-fill-width: auto;
 		position: relative;
 		display: grid;
@@ -8,7 +9,7 @@
 		grid-template-areas:
 			"summary percent"
 			"meter meter";
-		grid-template-rows: minmax(16px, auto) 10px;
+		grid-template-rows: minmax(16px, auto) 8px;
 		align-items: center;
 		gap: 5px 12px;
 		min-height: 28px;
@@ -36,15 +37,13 @@
 		width: 100% !important;
 		inline-size: 100% !important;
 		min-width: 0;
-		height: 10px;
+		height: 8px;
 		overflow: hidden;
 		border-radius: var(--vw-radius-pill);
-		background:
-			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 22%, transparent), transparent 68%),
-			var(--vw-progress-meter-bg);
+		background: var(--vw-progress-meter-bg);
 		box-shadow:
-			inset 0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 16%, transparent),
-			inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 28%, transparent);
+			inset 0 0 0 1px var(--vw-progress-meter-border),
+			inset 0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 6%, transparent);
 	}
 
 	:where(#maincontent, .vwrt-auth-card) .vw-progress__fill {
@@ -53,16 +52,14 @@
 		display: block;
 		max-width: 100%;
 		width: var(--vw-progress-fill-width, auto) !important;
-		height: 10px !important;
+		height: 8px !important;
 		min-height: 0 !important;
 		border: 0 !important;
 		border-radius: var(--vw-radius-pill) !important;
-		background:
-			linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent 56%),
-			linear-gradient(90deg, color-mix(in srgb, var(--vw-progress-fill) 68%, white), var(--vw-progress-fill)) !important;
+		background: var(--vw-progress-fill-paint) !important;
 		box-shadow:
-			0 0 10px var(--vw-progress-meter-glow),
-			inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+			0 3px 8px -5px var(--vw-progress-meter-glow),
+			inset 0 1px 0 color-mix(in srgb, #fff 20%, transparent) !important;
 		transition: width var(--vw-duration-slow) var(--vw-ease-spring);
 	}
 
@@ -83,7 +80,7 @@
 		overflow: hidden;
 		color: var(--vw-progress-meter-summary);
 		font-size: 0.8rem;
-		font-weight: 620;
+		font-weight: 500;
 		line-height: 1.2;
 		text-overflow: ellipsis;
 		background: transparent !important;
@@ -104,7 +101,7 @@
 		background: transparent !important;
 		font-size: 0.82rem;
 		font-variant-numeric: tabular-nums;
-		font-weight: 760;
+		font-weight: 560;
 		line-height: 1.2;
 		box-shadow: none !important;
 		text-shadow: var(--vw-liquid-text-protection);
@@ -113,7 +110,7 @@
 	:where(#maincontent, .vwrt-auth-card) .vw-progress[data-vw-progress-variant="compact"] {
 		grid-template-columns: minmax(52px, 1fr) auto;
 		grid-template-areas: "meter percent";
-		grid-template-rows: 9px;
+		grid-template-rows: 6px;
 		min-height: 18px;
 		height: auto;
 		gap: 6px;
@@ -129,7 +126,7 @@
 	:where(#maincontent, .vwrt-auth-card) .vw-progress[data-vw-progress-variant="compact"] .vw-progress__track,
 	:where(#maincontent, .vwrt-auth-card) .vw-progress[data-vw-progress-variant="compact"] .vw-progress__fill {
 		max-width: 100%;
-		height: 9px !important;
+		height: 6px !important;
 		min-height: 0 !important;
 	}
 
@@ -154,16 +151,19 @@
 
 	:where(#maincontent, .vwrt-auth-card) [data-vw-progress-state="success"] {
 		--vw-progress-fill: var(--vw-progress-success);
+		--vw-progress-fill-paint: var(--vw-progress-success-paint, var(--vw-progress-success));
 		--vw-progress-meter-glow: color-mix(in srgb, var(--vw-progress-success) 22%, transparent);
 	}
 
 	:where(#maincontent, .vwrt-auth-card) [data-vw-progress-state="warning"] {
 		--vw-progress-fill: var(--vw-progress-warning);
+		--vw-progress-fill-paint: var(--vw-progress-warning-paint, var(--vw-progress-warning));
 		--vw-progress-meter-glow: color-mix(in srgb, var(--vw-progress-warning) 22%, transparent);
 	}
 
 	:where(#maincontent, .vwrt-auth-card) [data-vw-progress-state="danger"] {
 		--vw-progress-fill: var(--vw-progress-danger);
+		--vw-progress-fill-paint: var(--vw-progress-danger-paint, var(--vw-progress-danger));
 		--vw-progress-meter-glow: color-mix(in srgb, var(--vw-progress-danger) 22%, transparent);
 	}
 
@@ -173,6 +173,22 @@
 
 	:where(#maincontent, .vwrt-auth-card) progress.vw-progress::-webkit-progress-bar {
 		background: transparent;
+	}
+
+	:where(#maincontent, .vwrt-auth-card) progress.vw-progress::-webkit-progress-value {
+		border-radius: var(--vw-radius-pill);
+		background: var(--vw-progress-fill-paint);
+		box-shadow:
+			0 3px 8px -5px var(--vw-progress-meter-glow),
+			inset 0 1px 0 color-mix(in srgb, #fff 20%, transparent);
+	}
+
+	:where(#maincontent, .vwrt-auth-card) progress.vw-progress::-moz-progress-bar {
+		border-radius: var(--vw-radius-pill);
+		background: var(--vw-progress-fill-paint);
+		box-shadow:
+			0 3px 8px -5px var(--vw-progress-meter-glow),
+			inset 0 1px 0 color-mix(in srgb, #fff 20%, transparent);
 	}
 
 	@media (prefers-reduced-motion: reduce) {

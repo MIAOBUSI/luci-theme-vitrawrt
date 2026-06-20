@@ -7,8 +7,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-theme-vitrawrt
-PKG_VERSION:=1.41.90
-PKG_RELEASE:=30
+PKG_VERSION:=1.42.0
+PKG_RELEASE:=1
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=VitraWrt contributors
 
@@ -164,6 +164,8 @@ flush_luci_cache
 exit 0
 endef
 
+# OpenWrt's package scanner requires this literal marker; luci.mk performs the call.
+# call BuildPackage
 LUCI_MK:=$(firstword $(wildcard $(TOPDIR)/feeds/luci/luci.mk $(TOPDIR)/package/feeds/luci/luci.mk ../../luci.mk))
 ifeq ($(LUCI_MK),)
   $(error Unable to find luci.mk. Run ./scripts/feeds update luci && ./scripts/feeds install luci-base, or place this package in a LuCI feed checkout.)

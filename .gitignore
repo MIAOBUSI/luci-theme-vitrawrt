@@ -32,6 +32,8 @@ test-results/
 router-*.json
 _dev_archive/
 .local/
+PRODUCT.md
+design-qa.md
 
 # Editor
 .vscode/

@@ -9,6 +9,48 @@ import { gsap } from 'gsap';
 	var COLLAPSE_KEY = 'vitrawrt.sidebar.collapsed';
 	var THEME_MODES = ['system', 'light', 'dark'];
 	var GLASS_MODES = ['auto', 'high', 'low'];
+	var NETWORK_ICON_BASE = '/luci-static/vitrawrt/img/network-icons/';
+	var NETWORK_ICON_MAP = {
+		'bridge.svg': { type: 'bridge', state: 'connected', portType: 'switch-port' },
+		'ethernet.svg': { type: 'ethernet', state: 'connected', portType: 'port-rj45' },
+		'ethernet_disabled.svg': { type: 'ethernet', state: 'disabled', portType: 'disabled-port' },
+		'port_down.svg': { type: 'port-rj45', state: 'disconnected', portType: 'port-rj45' },
+		'port_pse_down.svg': { type: 'port-rj45', state: 'disconnected', portType: 'port-rj45' },
+		'port_pse_up.svg': { type: 'port-rj45', state: 'connected', portType: 'port-rj45' },
+		'port_up.svg': { type: 'port-rj45', state: 'connected', portType: 'port-rj45' },
+		'switch.svg': { type: 'switch-port', state: 'connected', portType: 'switch-port' },
+		'switch_disabled.svg': { type: 'switch-port', state: 'disabled', portType: 'disabled-port' }
+	};
+	var NETWORK_ICON_FILES = {
+		lan: 'lan.svg',
+		wan: 'wan.svg',
+		bridge: 'bridge.svg',
+		vlan: 'vlan.svg',
+		ethernet: 'ethernet.svg',
+		wifi: 'wifi.svg',
+		loopback: 'loopback.svg',
+		tunnel: 'tunnel.svg',
+		vpn: 'vpn.svg',
+		wireguard: 'wireguard.svg',
+		openvpn: 'openvpn.svg',
+		pppoe: 'pppoe.svg',
+		'dhcp-client': 'dhcp-client.svg',
+		'static-address': 'static-address.svg',
+		'virtual-interface': 'virtual-interface.svg',
+		'unknown-interface': 'unknown-interface.svg',
+		'port-rj45': 'port-rj45.svg',
+		'port-sfp': 'port-sfp.svg',
+		'switch-port': 'switch-port.svg',
+		'trunk-port': 'trunk-port.svg',
+		'access-port': 'access-port.svg',
+		'uplink-port': 'uplink-port.svg',
+		'downlink-port': 'downlink-port.svg',
+		'cpu-port': 'cpu-port.svg',
+		'wireless-radio': 'wireless-radio.svg',
+		'virtual-port': 'virtual-port.svg',
+		'disabled-port': 'disabled-port.svg',
+		'unknown-port': 'unknown-port.svg'
+	};
 	var themeMedia = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 	var reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 	var menuObserver;
@@ -18,6 +60,7 @@ import { gsap } from 'gsap';
 	var changesIndicatorRefreshing = false;
 	var runtimeEnhanceQueued = false;
 	var activeDynlistDeleteMotion = null;
+	var networkModulePromise = null;
 	var supportsGlass = false;
 	var PRESS_SELECTOR = [
 		'button:not([disabled])',
@@ -29,13 +72,18 @@ import { gsap } from 'gsap';
 		'.vwrt-menu-row'
 	].join(',');
 	var HOVER_SELECTOR = [
-		'.cbi-button-action:not([disabled])',
-		'.cbi-button-apply:not([disabled])',
-		'.cbi-button-save:not([disabled])',
-		'.cbi-button-positive:not([disabled])',
-		'button:not([disabled])',
-		'a.btn',
-		'.cbi-button:not([disabled])',
+		'#maincontent button:not([disabled])',
+		'#maincontent .cbi-button:not([disabled])',
+		'#maincontent .btn:not([disabled])',
+		'#maincontent input[type="submit"]:not([disabled])',
+		'#maincontent input[type="button"]:not([disabled])',
+		'#maincontent input[type="reset"]:not([disabled])',
+		'#modal_overlay button:not([disabled])',
+		'#modal_overlay .cbi-button:not([disabled])',
+		'#modal_overlay .btn:not([disabled])',
+		'#modal_overlay input[type="submit"]:not([disabled])',
+		'#modal_overlay input[type="button"]:not([disabled])',
+		'#modal_overlay input[type="reset"]:not([disabled])',
 		'.vwrt-icon-button',
 		'.vwrt-text-button',
 		'.vwrt-theme-button',
@@ -45,6 +93,8 @@ import { gsap } from 'gsap';
 	var PAGE_CLASSES = [
 		'vwrt-page-overview',
 		'vwrt-page-network',
+		'vwrt-page-statistics',
+		'vwrt-page-collectd',
 		'vwrt-page-vnstat2',
 		'vwrt-page-system',
 		'vwrt-page-packages',
@@ -138,15 +188,20 @@ import { gsap } from 'gsap';
 	}
 
 	function applyThemeMode(mode, persist) {
+		var resolved;
+
 		if (!isValidThemeMode(mode))
 			mode = 'system';
 
 		if (persist)
 			writeStorage(THEME_KEY, mode);
 
+		resolved = resolveThemeMode(mode);
 		root.setAttribute('data-theme-mode', mode);
-		root.setAttribute('data-theme', resolveThemeMode(mode));
+		root.setAttribute('data-theme', resolved);
+		root.setAttribute('data-darkmode', resolved === 'dark' ? 'true' : 'false');
 		updateThemeControls(mode);
+		syncOpenClashTheme(mode);
 	}
 
 	function cycleThemeMode() {
@@ -154,6 +209,75 @@ import { gsap } from 'gsap';
 		var index = THEME_MODES.indexOf(mode);
 
 		applyThemeMode(THEME_MODES[(index + 1) % THEME_MODES.length], true);
+	}
+
+	function syncOpenClashTheme(mode) {
+		var oc;
+		var mapped;
+		var dark;
+
+		if (!document.body || !document.body.classList.contains('vwrt-page-openclash'))
+			return;
+
+		oc = document.querySelector('#maincontent .oc, .oc');
+		mapped = mode === 'system' ? 'auto' : mode;
+		dark = resolveThemeMode(mode) === 'dark';
+
+		writeStorage('oc-theme', mapped);
+
+		if (window.DarkModeDetector && typeof window.DarkModeDetector.init === 'function') {
+			try {
+				window.DarkModeDetector.init();
+			}
+			catch (e) {}
+		}
+
+		if (oc) {
+			oc.toggleAttribute('data-darkmode', dark);
+			oc.setAttribute('data-vwrt-theme-linked', 'true');
+		}
+
+		syncOpenClashLogTheme(dark ? 'dark' : 'light');
+	}
+
+	function syncOpenClashLogTheme(resolvedMode) {
+		var isLogPage;
+		var targets;
+		var mirrors;
+
+		isLogPage = document.body &&
+			document.body.classList.contains('vwrt-page-openclash') &&
+			(
+				document.body.getAttribute('data-page') === 'admin-services-openclash-log' ||
+				/\/admin\/services\/openclash\/log(?:$|[?#])/.test(window.location.href)
+			);
+
+		if (!isLogPage)
+			return;
+
+		root.setAttribute('data-darkmode', resolvedMode === 'dark' ? 'true' : 'false');
+
+		targets = document.querySelectorAll([
+			'#maincontent #tab',
+			'#maincontent #tab-header',
+			'#maincontent #tab-content',
+			'#maincontent #tab-content .dom',
+			'#maincontent #tab-content .CodeMirror.cm-s-log'
+		].join(','));
+		mirrors = document.querySelectorAll('#maincontent #tab-content .CodeMirror.cm-s-log');
+
+		targets.forEach(function(node) {
+			node.setAttribute('data-vwrt-theme', resolvedMode);
+			node.classList.toggle('vwrt-openclash-log-dark', resolvedMode === 'dark');
+			node.classList.toggle('vwrt-openclash-log-light', resolvedMode === 'light');
+		});
+
+		window.requestAnimationFrame(function() {
+			mirrors.forEach(function(node) {
+				if (node.CodeMirror && typeof node.CodeMirror.refresh === 'function')
+					node.CodeMirror.refresh();
+			});
+		});
 	}
 
 	function isValidGlassMode(value) {
@@ -342,7 +466,7 @@ import { gsap } from 'gsap';
 			document.body.classList.remove(cls);
 		});
 
-		if (/(^|\s)(admin\/)?status\/overview(\s|$)/.test(path))
+		if (/(^|\s)(admin\/)?status(?:\/overview)?(\s|$)/.test(path))
 			document.body.classList.add('vwrt-page-overview');
 
 		if (/(^|\s)(admin\/)?network(\/(?:network|routes|dhcp))?(\s|$)/.test(path))
@@ -356,6 +480,9 @@ import { gsap } from 'gsap';
 
 		if (/(^|\s)(admin\/)?statistics\/collectd(\s|$)/.test(path))
 			document.body.classList.add('vwrt-page-collectd');
+
+		if (/(^|\s)(admin\/)?statistics(?:\/(?:graphs|collectd))?(\s|$)/.test(path))
+			document.body.classList.add('vwrt-page-statistics');
 
 		if (/(^|\s)(admin\/)?services\/nlbw(?:\/|\s|$)/.test(path))
 			document.body.classList.add('vwrt-page-nlbw');
@@ -669,18 +796,553 @@ import { gsap } from 'gsap';
 		});
 	}
 
+	function classifyStatusPrompt(modal) {
+		var text = String(modal && modal.textContent || '').replace(/\s+/g, ' ').trim();
+
+		if (!text)
+			return null;
+		if (/Waiting for configuration to be applied|正在等待配置.*应用|正在应用配置/i.test(text))
+			return 'applying';
+		if (/Loading view|Loading data|正在载入视图|正在加载/i.test(text))
+			return 'loading';
+		if (/Session expired|authentication session expired|会话已过期|登录会话.*过期/i.test(text))
+			return 'session';
+		if (/No pending changes|There are no changes to apply|没有待应用的更改|没有待处理的更改/i.test(text))
+			return 'empty';
+
+		return null;
+	}
+
+	function enhanceStatusPrompts(rootNode) {
+		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+		var modals = [];
+
+		if (scope.matches && scope.matches('#modal_overlay > .modal, #modal_overlay > [role="dialog"]'))
+			modals.push(scope);
+
+		scope.querySelectorAll('#modal_overlay > .modal, #modal_overlay > [role="dialog"]').forEach(function(modal) {
+			modals.push(modal);
+		});
+
+		modals.forEach(function(modal) {
+			var kind = classifyStatusPrompt(modal);
+
+			modal.classList.remove(
+				'vwrt-status-prompt',
+				'vwrt-status-loading',
+				'vwrt-status-applying',
+				'vwrt-status-session',
+				'vwrt-status-empty'
+			);
+
+			if (!kind) {
+				modal.removeAttribute('data-vwrt-status-kind');
+				return;
+			}
+
+			modal.classList.add('vwrt-status-prompt', 'vwrt-status-' + kind);
+			modal.setAttribute('data-vwrt-status-kind', kind);
+		});
+	}
+
+	function enhanceNetworkIcons(rootNode) {
+		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+		var images = [];
+		var owners = [];
+		var selectors = [
+			'.ifacebadge',
+			'.ifacebox',
+			'.interface-status',
+			'.device-status',
+				'.network-status-table .tr',
+				'.network-status-table tr'
+			].join(',');
+
+		if (document.body && document.body.classList.contains('vwrt-dashboard-page'))
+			return;
+		if (!/(^|\s)(admin\/)?(?:status(?:\/overview)?|network\/(?:network|dhcp|routes|diagnostics))(\s|$)/.test(getPathText())) {
+			document.querySelectorAll('#maincontent .vwrt-network-glyph').forEach(function(glyph) {
+				glyph.remove();
+			});
+			document.querySelectorAll('#maincontent [data-vwrt-network-icon]').forEach(function(node) {
+				node.removeAttribute('data-vwrt-network-icon');
+				node.removeAttribute('data-vwrt-icon-type');
+				node.removeAttribute('data-vwrt-icon-state');
+				node.removeAttribute('data-vwrt-port-type');
+				if (node.matches('img')) {
+					node.classList.remove('vwrt-network-port-icon');
+					node.classList.remove('vwrt-network-source-icon');
+					node.style.removeProperty('--vwrt-network-icon-url');
+				}
+			});
+			return;
+		}
+
+		if (scope.matches && scope.matches('img'))
+			images.push(scope);
+
+		scope.querySelectorAll('img').forEach(function(image) {
+			images.push(image);
+		});
+
+		images.forEach(function(image) {
+			var current = image.getAttribute('src') || '';
+			var original = image.getAttribute('data-vwrt-network-icon-original') || current;
+			var match = original.match(/(?:^|\/)resources\/icons\/([^/?#]+\.svg)(?:[?#].*)?$/);
+			var meta = match && NETWORK_ICON_MAP[match[1]];
+			var target;
+
+			if (!meta)
+				return;
+
+			if (!image.hasAttribute('data-vwrt-network-icon-original'))
+				image.setAttribute('data-vwrt-network-icon-original', original);
+
+			applyNetworkMeta(image, meta);
+			image.classList.add('vwrt-network-port-icon');
+			image.setAttribute('aria-hidden', 'true');
+			image.classList.remove('vwrt-network-source-icon');
+			image.style.removeProperty('--vwrt-network-icon-url');
+			target = NETWORK_ICON_BASE + iconFile(meta.type);
+			if (current !== target)
+				image.setAttribute('src', target);
+		});
+
+		if (scope.matches && scope.matches(selectors))
+			owners.push(scope);
+
+		scope.querySelectorAll(selectors).forEach(function(owner) {
+			owners.push(owner);
+		});
+		owners = Array.from(new Set(owners));
+
+		cleanupNetworkTooltipGlyphs(scope);
+
+		owners.forEach(function(owner) {
+			var meta = getNetworkIconMeta(owner);
+			if (isNetworkTooltipNode(owner)) {
+				cleanupNetworkTooltipGlyphs(owner);
+				return;
+			}
+			if (!networkIconOwnerEligible(owner, meta)) {
+				clearNetworkIconOwner(owner);
+				return;
+			}
+			applyNetworkMeta(owner, meta);
+			ensureNetworkGlyph(owner, meta);
+			enhanceOverviewPortCard(owner);
+		});
+	}
+
+	function iconFile(type) {
+		return NETWORK_ICON_FILES[type] || NETWORK_ICON_FILES['unknown-interface'];
+	}
+
+	function compactNodeText(node) {
+		var clone;
+		var text = node && (node.getAttribute('data-device') ||
+			node.getAttribute('data-ifname') ||
+			node.getAttribute('data-value') ||
+			node.getAttribute('title') ||
+			'');
+
+		if (!text && node && node.cloneNode) {
+			clone = node.cloneNode(true);
+			clone.querySelectorAll('.cbi-tooltip').forEach(function(tooltip) {
+				tooltip.remove();
+			});
+			text = clone.textContent;
+		}
+
+		return String(text || '').replace(/\s+/g, ' ').trim();
+	}
+
+	function networkStateFromText(text, node) {
+		if (node && (node.matches('[disabled], .disabled') || node.getAttribute('aria-disabled') === 'true'))
+			return 'disabled';
+		if (/(?:missing|not present|不存在|缺失|error|failed|错误|失败)/i.test(text))
+			return 'error';
+		if (/(?:warning|warn|pending|待应用|警告)/i.test(text))
+			return 'warning';
+		if (/(?:disabled|down|disconnected|未连接|断开|关闭)/i.test(text))
+			return 'disconnected';
+		if (/(?:up|connected|running|已连接|运行|active)/i.test(text))
+			return 'connected';
+		return 'unknown';
+	}
+
+	function networkTypeFromText(text, node) {
+		var value = String(text || '').toLowerCase();
+		var cls = node && node.className ? String(node.className).toLowerCase() : '';
+		var haystack = value + ' ' + cls;
+
+		if (/(?:wireguard|\bwg\d*)/.test(haystack))
+			return 'wireguard';
+		if (/(?:openvpn|ovpn)/.test(haystack))
+			return 'openvpn';
+		if (/(?:pppoe|ppp)/.test(haystack))
+			return 'pppoe';
+		if (/(?:\blo\b|loopback)/.test(haystack))
+			return 'loopback';
+		if (/(?:wlan|wifi|wireless|radio|无线)/.test(haystack))
+			return node && node.matches && node.matches('.ifacebox') ? 'wireless-radio' : 'wifi';
+		if (/(?:tun|tap|tunnel|gre|6in4)/.test(haystack))
+			return 'tunnel';
+		if (/(?:vpn|softether|ipsec)/.test(haystack))
+			return 'vpn';
+		if (/(?:br-|bridge|网桥)/.test(haystack))
+			return 'bridge';
+		if (/(?:vlan|\beth\d+\.\d+|\.\d+\b)/.test(haystack))
+			return 'vlan';
+		if (/(?:\bwan\b|wwan|互联网|外网)/.test(haystack))
+			return 'wan';
+		if (/(?:\blan\b|内网|局域网)/.test(haystack))
+			return 'lan';
+		if (/(?:dhcp)/.test(haystack))
+			return 'dhcp-client';
+		if (/(?:static|静态)/.test(haystack))
+			return 'static-address';
+		if (/(?:alias|virtual|@)/.test(haystack))
+			return 'virtual-interface';
+		if (/(?:sfp|fiber|光)/.test(haystack))
+			return 'port-sfp';
+		if (/(?:switch)/.test(haystack))
+			return 'switch-port';
+		if (/(?:eth|enp|port)/.test(haystack))
+			return 'ethernet';
+		return 'unknown-interface';
+	}
+
+	function portTypeFromNetworkType(type, text) {
+		var value = String(text || '').toLowerCase();
+		if (/sfp|fiber|光/.test(value))
+			return 'port-sfp';
+		if (/trunk/.test(value))
+			return 'trunk-port';
+		if (/access/.test(value))
+			return 'access-port';
+		if (/uplink|wan/.test(value))
+			return 'uplink-port';
+		if (/downlink/.test(value))
+			return 'downlink-port';
+		if (/cpu|system/.test(value))
+			return 'cpu-port';
+		if (type === 'wifi' || type === 'wireless-radio')
+			return 'wireless-radio';
+		if (type === 'bridge' || type === 'lan' || type === 'switch-port')
+			return 'switch-port';
+		if (type === 'virtual-interface' || type === 'tunnel' || type === 'vpn' || type === 'wireguard' || type === 'openvpn')
+			return 'virtual-port';
+		if (type === 'unknown-interface')
+			return 'unknown-port';
+		return 'port-rj45';
+	}
+
+	function getNetworkIconMeta(node) {
+		var text = compactNodeText(node);
+		var type = networkTypeFromText(text, node);
+		var state = networkStateFromText(text, node);
+		return {
+			type: type,
+			state: state,
+			portType: portTypeFromNetworkType(type, text)
+		};
+	}
+
+		function applyNetworkMeta(node, meta) {
+			if (!node || !meta)
+				return;
+			node.setAttribute('data-vwrt-network-icon', 'true');
+		node.setAttribute('data-vwrt-icon-type', meta.type || 'unknown-interface');
+		node.setAttribute('data-vwrt-icon-state', meta.state || 'unknown');
+		if (meta.portType)
+				node.setAttribute('data-vwrt-port-type', meta.portType);
+		}
+
+		function isNetworkTooltipNode(node) {
+			return !!(node && node.closest && node.closest('.cbi-tooltip, .cbi-tooltip-container'));
+		}
+
+		function networkMedia(owner) {
+			return Array.prototype.find.call(owner.querySelectorAll('img[data-vwrt-network-icon]:not(.vwrt-network-glyph), svg[data-vwrt-network-icon]'), function(media) {
+				return !media.closest('.cbi-tooltip');
+			});
+		}
+
+		function networkIconOwnerEligible(owner, meta) {
+			if (meta && meta.type !== 'unknown-interface')
+				return true;
+			if (networkMedia(owner))
+				return true;
+			return owner.matches('.ifacebadge, .ifacebox, .interface-status, .device-status, .network-status-table .tr, .network-status-table tr');
+		}
+
+		function clearNetworkIconOwner(owner) {
+			owner.querySelectorAll(':scope > .vwrt-network-glyph').forEach(function(glyph) {
+				glyph.remove();
+			});
+			owner.removeAttribute('data-vwrt-network-icon');
+			owner.removeAttribute('data-vwrt-icon-type');
+			owner.removeAttribute('data-vwrt-icon-state');
+			owner.removeAttribute('data-vwrt-port-type');
+		}
+
+		function cleanupNetworkTooltipGlyphs(scope) {
+			var root = scope && scope.querySelectorAll ? scope : document;
+			var selector = '.cbi-tooltip-container > .vwrt-network-glyph, .cbi-tooltip > .vwrt-network-glyph, [data-vwrt-tooltip] > .vwrt-network-glyph';
+			var ownerSelector = '.cbi-tooltip-container[data-vwrt-network-icon], .cbi-tooltip[data-vwrt-network-icon], .cbi-tooltip [data-vwrt-network-icon], [data-vwrt-tooltip][data-vwrt-network-icon]';
+
+			if (root.matches && root.matches(selector))
+				root.remove();
+
+			root.querySelectorAll(selector).forEach(function(glyph) {
+				glyph.remove();
+			});
+
+			if (root.matches && root.matches(ownerSelector)) {
+				root.removeAttribute('data-vwrt-network-icon');
+				root.removeAttribute('data-vwrt-icon-type');
+				root.removeAttribute('data-vwrt-icon-state');
+				root.removeAttribute('data-vwrt-port-type');
+			}
+
+			root.querySelectorAll(ownerSelector).forEach(function(owner) {
+				owner.removeAttribute('data-vwrt-network-icon');
+				owner.removeAttribute('data-vwrt-icon-type');
+				owner.removeAttribute('data-vwrt-icon-state');
+				owner.removeAttribute('data-vwrt-port-type');
+			});
+		}
+
+		function ensureNetworkGlyph(owner, meta) {
+			var glyph;
+			var directMedia;
+			var directGlyphs;
+
+			if (!owner || owner.matches('img, svg, input, select, textarea, button, script, style'))
+				return;
+
+			directMedia = networkMedia(owner);
+			if (!directMedia && owner.matches('.ifacebox'))
+				directMedia = owner.querySelector(':scope > .ifacebox-body > img[data-vwrt-network-icon], :scope > .ifacebox-body > svg[data-vwrt-network-icon]');
+			directGlyphs = Array.from(owner.querySelectorAll(':scope > .vwrt-network-glyph'));
+
+			if (directMedia) {
+				directGlyphs.forEach(function(item) {
+					item.remove();
+				});
+				return;
+			}
+
+			glyph = directGlyphs[0];
+			directGlyphs.slice(1).forEach(function(item) {
+				item.remove();
+			});
+			if (!glyph) {
+				glyph = document.createElement('img');
+				glyph.className = 'vwrt-network-glyph';
+				glyph.setAttribute('aria-hidden', 'true');
+				owner.insertBefore(glyph, owner.firstChild);
+			}
+
+			applyNetworkMeta(glyph, meta);
+			glyph.setAttribute('src', NETWORK_ICON_BASE + iconFile(meta.type));
+			}
+
+	function overviewPortCard(card) {
+		return Boolean(
+			card &&
+			card.matches &&
+			card.matches('.ifacebox') &&
+			!card.closest('.network-status-table') &&
+			/(^|\s)(admin\/)?status(?:\/overview)?(\s|$)/.test(getPathText())
+		);
+	}
+
+	function directNodeText(node) {
+		var text = '';
+
+		Array.prototype.forEach.call(node && node.childNodes || [], function(child) {
+			if (child.nodeType === 3)
+				text += child.textContent;
+			else if (child.nodeType === 1 && child.tagName === 'BR')
+				text += '\n';
+		});
+
+		return text.trim();
+	}
+
+	function formatLinkSpeed(speed) {
+		var value = Number(speed);
+
+		if (!Number.isFinite(value) || value <= 0)
+			return null;
+		if (value >= 1000) {
+			value /= 1000;
+			return {
+				value: Number.isInteger(value) ? String(value) : value.toFixed(1).replace(/\.0$/, ''),
+				unit: 'GbE'
+			};
+		}
+
+		return { value: String(Math.round(value)), unit: 'MbE' };
+	}
+
+	function updatePortLinkSpeed(card, network) {
+		var name = card.querySelector(':scope > .ifacebox-head:not(.cbi-tooltip-container)');
+		var status = card.querySelector(':scope > .vwrt-port-status-primary');
+
+		if (!name || !status || !network || typeof network.getDevice !== 'function')
+			return;
+
+		Promise.resolve(network.getDevice(name.textContent.trim())).then(function(device) {
+			var current;
+			var speed;
+			var formatted;
+			var value;
+			var unit;
+
+			if (!card.isConnected || !device || typeof device.getSpeed !== 'function')
+				return;
+
+			speed = device.getSpeed();
+			formatted = formatLinkSpeed(speed) || { value: '—', unit: '' };
+			current = status.querySelector(':scope > .vwrt-port-link-speed');
+			if (!current) {
+				current = document.createElement('span');
+				current.className = 'vwrt-port-link-speed';
+				status.appendChild(current);
+			}
+
+			if (current.getAttribute('data-vwrt-speed') === (speed > 0 ? String(speed) : 'unknown'))
+				return;
+
+			current.replaceChildren();
+			value = document.createElement('strong');
+			unit = document.createElement('small');
+			value.textContent = formatted.value;
+			unit.textContent = formatted.unit;
+			current.append(value, unit);
+			current.setAttribute('data-vwrt-speed', speed > 0 ? String(speed) : 'unknown');
+		});
+	}
+
+	function refreshPortLinkSpeed(card) {
+		if (!window.L || typeof window.L.require !== 'function' || card.hasAttribute('data-vwrt-speed-pending'))
+			return;
+
+		card.setAttribute('data-vwrt-speed-pending', 'true');
+		if (!networkModulePromise)
+			networkModulePromise = Promise.resolve(window.L.require('network')).catch(function() { return null; });
+
+		networkModulePromise.then(function(network) {
+			if (card.isConnected)
+				updatePortLinkSpeed(card, network);
+		}).finally(function() {
+			card.removeAttribute('data-vwrt-speed-pending');
+		});
+	}
+
+	function enhancePortTraffic(card) {
+		var bodies = card.querySelectorAll(':scope > .ifacebox-body');
+		var traffic = bodies[bodies.length - 1];
+		var container = traffic && traffic.querySelector(':scope > .cbi-tooltip-container');
+		var text;
+		var rx;
+		var tx;
+
+		if (!container || container.classList.contains('vwrt-port-traffic'))
+			return;
+
+		text = directNodeText(container);
+		rx = text.match(/[▼▽↓]\s*([^\n]+)/);
+		tx = text.match(/[▲△↑]\s*([^\n]+)/);
+		if (!rx && !tx)
+			return;
+
+		Array.prototype.slice.call(container.childNodes).forEach(function(child) {
+			if (child.nodeType === 3 || (child.nodeType === 1 && child.tagName === 'BR'))
+				child.remove();
+		});
+
+		[
+			['rx', rx],
+			['tx', tx]
+		].forEach(function(entry) {
+			var match = entry[1];
+			var row;
+			var arrow;
+			var value;
+
+			if (!match)
+				return;
+			row = document.createElement('span');
+			arrow = document.createElement('span');
+			value = document.createElement('span');
+			row.className = 'vwrt-port-traffic-row';
+			row.setAttribute('data-direction', entry[0]);
+			arrow.className = 'vwrt-traffic-arrow';
+			arrow.setAttribute('aria-hidden', 'true');
+			value.textContent = match[1].trim();
+			row.append(arrow, value);
+			container.insertBefore(row, container.querySelector(':scope > .cbi-tooltip'));
+		});
+		container.classList.add('vwrt-port-traffic');
+	}
+
+	function enhanceOverviewPortCard(card) {
+		var status;
+		var state;
+		var directText;
+
+		if (!overviewPortCard(card))
+			return;
+
+		card.classList.add('vwrt-overview-port-card');
+		status = Array.prototype.find.call(card.querySelectorAll(':scope > .ifacebox-body'), function(body) {
+			return body.querySelector(':scope > img[data-vwrt-network-icon-original*="port_"], :scope > img[src*="port_"]');
+		});
+		if (status) {
+			status.classList.add('vwrt-port-status-primary');
+			state = status.querySelector(':scope > .vwrt-port-link-state');
+			if (!state) {
+				directText = directNodeText(status);
+				if (directText) {
+					Array.prototype.slice.call(status.childNodes).forEach(function(child) {
+						if (child.nodeType === 3 || (child.nodeType === 1 && child.tagName === 'BR'))
+							child.remove();
+					});
+					state = document.createElement('span');
+					state.className = 'vwrt-port-link-state';
+					state.textContent = directText;
+					status.appendChild(state);
+				}
+			}
+		}
+
+		enhancePortTraffic(card);
+		refreshPortLinkSpeed(card);
+	}
+
 	function updateReadyClass() {
 		if (!document.body)
 			return;
 
 		document.body.classList.toggle('vwrt-view-ready', viewReady());
 		enhanceLoadingStates(document);
+		enhanceStatusPrompts(document);
+		enhanceNetworkIcons(document);
 		setPageClasses();
 		normalizeIndicatorBar();
 		enhanceButtonKinds(document);
 		enhanceApplyMenus(document);
 		enhanceCbiDropdowns(document);
 		enhanceModalInlineControls(document);
+		enhanceMultiButtonFields(document);
+					enhancePlaceholderRows(document);
+					enhanceStatusPrompts(document);
+					enhanceNetworkIcons(document);
+					syncOpenClashTheme(readThemeMode());
 		enhanceWrappedInlineControls(document);
 		enhanceTabPanelStacks(document);
 		if (!dynlistEnhancementDisabled())
@@ -922,9 +1584,16 @@ import { gsap } from 'gsap';
 		if (!document.body || viewObserver)
 			return;
 
-		viewObserver = new MutationObserver(function() {
-			if (runtimeEnhanceQueued)
-				return;
+			viewObserver = new MutationObserver(function(mutations) {
+				mutations.forEach(function(mutation) {
+					mutation.addedNodes.forEach(function(node) {
+						if (node.nodeType === 1)
+							enhanceNetworkIcons(node);
+					});
+				});
+
+				if (runtimeEnhanceQueued)
+					return;
 
 			runtimeEnhanceQueued = true;
 			window.setTimeout(function() {
@@ -934,6 +1603,9 @@ import { gsap } from 'gsap';
 				enhanceApplyMenus(document);
 				enhanceCbiDropdowns(document);
 				enhanceModalInlineControls(document);
+				enhanceMultiButtonFields(document);
+				enhancePlaceholderRows(document);
+				syncOpenClashTheme(readThemeMode());
 				enhanceTabPanelStacks(document);
 				if (!dynlistEnhancementDisabled())
 					enhanceDynlists(document);
@@ -949,7 +1621,6 @@ import { gsap } from 'gsap';
 		var item;
 		var modalSave;
 		var rect;
-		var split;
 
 		if (!ev.target || !ev.target.closest)
 			return null;
@@ -967,15 +1638,6 @@ import { gsap } from 'gsap';
 				return item.querySelector(':scope > .vwrt-dynlist-delete-visual');
 		}
 
-		split = ev.target.closest(
-			'.cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready, ' +
-			'.cbi-dropdown.vwrt-modal-apply-combo'
-		);
-		if (split &&
-			!split.hasAttribute('open') &&
-			!split.classList.contains('vwrt-apply-menu-open'))
-			return split;
-
 		return null;
 	}
 
@@ -984,10 +1646,21 @@ import { gsap } from 'gsap';
 	}
 
 	function targetFromSelector(ev, selector) {
+		var target;
+		var hover = selector === HOVER_SELECTOR;
+
 		if (!ev.target || !ev.target.closest)
 			return null;
 
-		return ev.target.closest(selector);
+		target = ev.target.closest(selector);
+		if (target && target.matches && target.matches('.vwrt-openclash-nested-shell'))
+			return null;
+		if (!hover && target && target.matches && target.matches('.cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready, .cbi-dropdown.vwrt-modal-apply-combo, .vwrt-apply-combo'))
+			return null;
+		if (!hover && target && target.closest && target.closest('.vwrt-openclash-button-row'))
+			return null;
+
+		return target;
 	}
 
 	function isModalSaveMotionTarget(target) {
@@ -1010,8 +1683,8 @@ import { gsap } from 'gsap';
 			return;
 
 		gsap.to(target, {
-			scale: isModalSaveMotionTarget(target) ? 0.992 : 0.985,
-			y: isModalSaveMotionTarget(target) ? 0.5 : 1,
+			scale: 1,
+			y: 1,
 			duration: 0.14,
 			ease: 'power3.out',
 			overwrite: 'auto'
@@ -1027,8 +1700,8 @@ import { gsap } from 'gsap';
 		gsap.to(target, {
 			scale: 1,
 			y: 0,
-			duration: 0.48,
-			ease: 'elastic.out(1, 0.44)',
+			duration: 0.22,
+			ease: 'power3.out',
 			overwrite: 'auto',
 			clearProps: 'transform'
 		});
@@ -1041,10 +1714,10 @@ import { gsap } from 'gsap';
 			return;
 
 		gsap.to(target, {
-			scale: isModalSaveMotionTarget(target) ? 1.008 : 1.018,
-			y: isModalSaveMotionTarget(target) ? -0.5 : -1,
-			duration: 0.42,
-			ease: 'elastic.out(1, 0.62)',
+			scale: 1,
+			y: -1,
+			duration: 0.2,
+			ease: 'power3.out',
 			overwrite: 'auto'
 		});
 	}
@@ -1058,8 +1731,8 @@ import { gsap } from 'gsap';
 		gsap.to(target, {
 			scale: 1,
 			y: 0,
-			duration: 0.55,
-			ease: 'elastic.out(1, 0.48)',
+			duration: 0.22,
+			ease: 'power3.out',
 			overwrite: 'auto',
 			clearProps: 'transform'
 		});
@@ -1089,15 +1762,19 @@ import { gsap } from 'gsap';
 		var next;
 		var previous;
 
-		if (!motionAllowed())
-			return;
-
 		next = dynlistDeleteVisualAtPoint(ev);
 		if (next === activeDynlistDeleteMotion)
 			return;
 
 		previous = activeDynlistDeleteMotion;
 		activeDynlistDeleteMotion = next;
+		if (previous)
+			previous.classList.remove('vwrt-delete-hover');
+		if (next)
+			next.classList.add('vwrt-delete-hover');
+
+		if (!motionAllowed())
+			return;
 
 		if (previous && previous.isConnected) {
 			gsap.to(previous, {
@@ -1202,7 +1879,7 @@ import { gsap } from 'gsap';
 		else
 			return false;
 
-		normalizeApplyArrowOwner(menu, menu.hasAttribute('open'));
+		normalizeApplyArrowOwner(menu, false);
 		return true;
 	}
 
@@ -1244,6 +1921,25 @@ import { gsap } from 'gsap';
 		) || menu.querySelector(':scope > ul:not(.preview) > li');
 
 		return selected ? selected.textContent.replace(/\s+/g, ' ').trim() : '';
+	}
+
+	function selectedApplyMode(menu) {
+		var selected;
+		var input;
+		var value;
+
+		if (!menu)
+			return 'checked';
+
+		selected = menu.querySelector(
+			':scope > ul:not(.preview) > li[selected], ' +
+			':scope > ul:not(.preview) > li[display="0"], ' +
+			':scope > ul:not(.preview) > li.selected'
+		);
+		input = menu.querySelector(':scope input[type="hidden"]');
+		value = selected ? selected.getAttribute('data-value') : (input ? input.value : '0');
+
+		return String(value) === '1' ? 'force' : 'checked';
 	}
 
 	function updateApplyLabelWidth(menu) {
@@ -1332,7 +2028,8 @@ import { gsap } from 'gsap';
 			current.textContent = label;
 
 		updateApplyLabelWidth(menu);
-		menu.classList.add('vwrt-apply-split-ready');
+		menu.classList.add('vwrt-apply-split-ready', 'vwrt-apply-combo');
+		menu.setAttribute('data-vwrt-apply-mode', selectedApplyMode(menu));
 		menu.setAttribute('aria-haspopup', 'menu');
 		menu.setAttribute('aria-expanded', menu.classList.contains('vwrt-apply-menu-open') ? 'true' : 'false');
 	}
@@ -1355,21 +2052,43 @@ import { gsap } from 'gsap';
 		menu.querySelectorAll(':scope > .vwrt-split-motion-surface').forEach(function(node) {
 			node.remove();
 		});
-		normalizeApplyArrowOwner(menu, true);
+		normalizeApplyArrowOwner(menu, false);
 
 		label = selectedApplyLabel(menu) || 'Save & Apply';
 		if (current.textContent !== label)
 			current.textContent = label;
 
 		updateApplyLabelWidth(menu);
-		menu.classList.add('vwrt-modal-apply-combo');
+		menu.classList.add('vwrt-modal-apply-combo', 'vwrt-apply-combo');
+		menu.setAttribute('data-vwrt-apply-mode', selectedApplyMode(menu));
 		menu.setAttribute('aria-haspopup', 'menu');
 		menu.setAttribute('aria-expanded', menu.hasAttribute('open') ? 'true' : 'false');
 	}
 
+	function setApplyCurrentLabel(menu, label) {
+		var current;
+
+		if (!menu || !label)
+			return;
+
+		current = menu.querySelector(':scope > .vwrt-apply-current');
+		if (current)
+			current.textContent = String(label).replace(/\s+/g, ' ').trim();
+	}
+
 	function enhanceApplyMenus(rootNode) {
 		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
-		scope.querySelectorAll('.cbi-page-actions .cbi-dropdown.cbi-button-apply').forEach(syncApplyMenu);
+		scope.querySelectorAll('.cbi-page-actions .cbi-dropdown.cbi-button-apply').forEach(function(menu) {
+			syncApplyMenu(menu);
+			if (menu.dataset.vwrtApplyBound !== '1') {
+				menu.addEventListener('cbi-dropdown-change', function() {
+					window.setTimeout(function() {
+						syncApplyMenu(menu);
+					}, 0);
+				});
+				menu.dataset.vwrtApplyBound = '1';
+			}
+		});
 		scope.querySelectorAll('#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown').forEach(function(menu) {
 			var values = Array.prototype.map.call(menu.querySelectorAll(':scope > ul:not(.preview) > li[data-value]'), function(item) {
 				return item.getAttribute('data-value');
@@ -1717,6 +2436,42 @@ import { gsap } from 'gsap';
 		return false;
 	}
 
+	function enhanceButtonSemantic(button, label) {
+		if (!button || button.classList.contains('vwrt-indicator-chip'))
+			return;
+
+		button.classList.remove('vwrt-button-action', 'vwrt-button-danger', 'vwrt-button-neutral', 'vwrt-button-stop');
+
+		if (/(?:delete|remove|kill|terminate|删除|移除|终止|杀死)/i.test(label)) {
+			button.classList.add('vwrt-button-danger');
+			return;
+		}
+
+		if (/^(?:stop|停止|停用)$/i.test(label)) {
+			button.classList.add('vwrt-button-stop');
+			return;
+		}
+
+		if (/^(?:reset|重置|复位)$/i.test(label) || /(?:set to default|设为默认|默认)/i.test(label)) {
+			button.classList.add('vwrt-button-neutral');
+			return;
+		}
+
+		if (/(?:restart|edit|switch|update|refresh|reload|重启|重新启动|编辑|切换|更新|刷新)/i.test(label) && !/(?:delete|remove|删除|移除)/i.test(label))
+			button.classList.add('vwrt-button-action');
+	}
+
+	function openClashNestedSurface(button) {
+		return Boolean(
+			button &&
+			document.body &&
+			document.body.classList.contains('vwrt-page-openclash') &&
+			button.matches &&
+			button.matches('button') &&
+			button.querySelector(':scope > :is(input[type="button"], input[type="submit"], input[type="reset"], button, .btn, .cbi-button)')
+		);
+	}
+
 	function enhanceButtonKinds(rootNode) {
 		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
 		var selector = [
@@ -1744,11 +2499,28 @@ import { gsap } from 'gsap';
 			var label;
 			var iconOnly;
 			var addVariant;
+			var nestedShell;
 
 			if (!button || button.closest('.cbi-dropdown > ul'))
 				return;
 
+			nestedShell = openClashNestedSurface(button);
+			button.classList.toggle('vwrt-openclash-nested-shell', nestedShell);
+			if (nestedShell) {
+				button.classList.remove(
+					'vwrt-button-action',
+					'vwrt-button-danger',
+					'vwrt-button-neutral',
+					'vwrt-button-icon-only',
+					'vwrt-button-has-text',
+					'vwrt-button-add-icon',
+					'vwrt-button-add-text'
+				);
+				return;
+			}
+
 			label = buttonVisibleLabel(button);
+			enhanceButtonSemantic(button, label);
 			iconOnly = iconOnlyButton(button, label);
 			addVariant = button.matches('.cbi-button-add, .btn.cbi-button-add');
 
@@ -1779,6 +2551,85 @@ import { gsap } from 'gsap';
 			inlineChildren.forEach(function(node) {
 				if (node.matches('.control-group, .controls, .cbi-input-group, .add-item, .cbi-dynlist-row'))
 					node.classList.add('vwrt-modal-inline-group');
+			});
+		});
+	}
+
+	function enhanceMultiButtonFields(rootNode) {
+		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+
+		scope.querySelectorAll('#maincontent .cbi-value-field').forEach(function(field) {
+			var value = field.closest('.cbi-value');
+			var label = buttonVisibleLabel(value && value.querySelector('.cbi-value-title'));
+			var openclashDashboardActions = document.body &&
+				document.body.classList.contains('vwrt-page-openclash') &&
+				/^(?:切换（更新） .+ 版本|更新 .+ 版本|Switch\(Update\) .+ Version|Update .+ Version)$/.test(label);
+			var row = null;
+			var buttons = Array.prototype.filter.call(field.querySelectorAll('button, .cbi-button, .btn, input[type="submit"], input[type="button"], input[type="reset"]'), function(node) {
+				var computed = window.getComputedStyle(node);
+				var box = node.getBoundingClientRect();
+				return box.width > 1 && box.height > 1 && computed.getPropertyValue('display') !== 'none' && computed.getPropertyValue('visibility') !== 'hidden';
+			});
+			var owner = buttons.length > 1 ? buttons[0].parentElement : null;
+
+			if (field.parentElement && field.parentElement.closest('.cbi-value-field'))
+				return;
+
+			buttons.forEach(function(button, index) {
+				button.classList.remove('vwrt-field-button-1', 'vwrt-field-button-2', 'vwrt-field-button-3');
+				if (!openclashDashboardActions && index < 3)
+					button.classList.add('vwrt-field-button-' + (index + 1));
+			});
+
+			field.classList.toggle('vwrt-multi-button-field', buttons.length > 1);
+			field.classList.toggle('vwrt-openclash-action-field', openclashDashboardActions && buttons.length > 1);
+			if (value)
+				value.classList.toggle('vwrt-openclash-action-value', openclashDashboardActions && buttons.length > 1);
+
+			if (openclashDashboardActions) {
+				['switch_dashboard_', 'delete_dashboard_', 'default_dashboard_'].forEach(function(prefix, index) {
+					var wrapper = field.querySelector('[id^="' + prefix + '"]');
+					var button = wrapper && wrapper.querySelector('button, .cbi-button, .btn, input[type="submit"], input[type="button"], input[type="reset"]');
+
+					if (!wrapper || !button)
+						return;
+
+					wrapper.classList.add('vwrt-openclash-button-cell');
+					button.classList.add('vwrt-field-button-' + (index + 1));
+					row = row || wrapper.parentElement;
+				});
+			}
+
+			if (owner && owner !== field)
+				owner.classList.add('vwrt-multi-button-field');
+			if (openclashDashboardActions && row && row !== field)
+				row.classList.add('vwrt-openclash-button-row');
+		});
+	}
+
+	function enhancePlaceholderRows(rootNode) {
+		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+
+		scope.querySelectorAll('#maincontent table, #maincontent .table, #maincontent .cbi-section-table').forEach(function(table) {
+			var header = table.querySelector(':scope > thead > tr, :scope > .tr.table-titles, :scope > .cbi-section-table-titles, :scope tr:first-child');
+			var columns = header ? header.children.length : 0;
+
+			if (columns < 2)
+				return;
+
+			table.querySelectorAll(':scope tr, :scope > .tr, :scope > .cbi-section-table-row').forEach(function(row) {
+				var cells = Array.prototype.filter.call(row.children || [], function(cell) {
+					return cell.matches && cell.matches('td, th, .td');
+				});
+				var emptySpacer = cells.length && !buttonVisibleLabel(row) && !row.querySelector('input, select, textarea, button, .cbi-button, .btn, a[href]');
+
+				row.classList.toggle('vwrt-empty-table-spacer-row', Boolean(emptySpacer));
+
+				if (cells.length !== 1)
+					return;
+
+				cells[0].setAttribute('colspan', String(columns));
+				row.classList.add('vwrt-placeholder-span-row');
 			});
 		});
 	}
@@ -1883,6 +2734,17 @@ import { gsap } from 'gsap';
 			var actionDropdownItem = actionDropdown && ev.target.closest('.cbi-dropdown.cbi-button-action > ul > li');
 			var cbiDropdown = ev.target.closest('.cbi-dropdown:not(.btn):not(.cbi-button)');
 			var cbiDropdownItem = cbiDropdown && ev.target.closest('.cbi-dropdown:not(.btn):not(.cbi-button) > ul > li');
+			var ocThemeToggle = ev.target.closest('body.vwrt-page-openclash #maincontent .oc #theme-toggle');
+
+			if (ocThemeToggle) {
+				cycleThemeMode();
+				ev.preventDefault();
+				ev.stopPropagation();
+
+				if (ev.stopImmediatePropagation)
+					ev.stopImmediatePropagation();
+				return;
+			}
 
 			if (modalApplyMenu && !modalApplyItem && isApplyMenuArrow(ev, modalApplyMenu)) {
 				if (toggleNativeComboDropdown(modalApplyMenu)) {
@@ -1895,8 +2757,13 @@ import { gsap } from 'gsap';
 				return;
 			}
 
-			if (modalApplyItem)
+			if (modalApplyItem) {
+				setApplyCurrentLabel(modalApplyMenu, modalApplyItem.textContent);
+				window.setTimeout(function() {
+					syncModalApplyMenu(modalApplyMenu);
+				}, 0);
 				return;
+			}
 
 			if (actionDropdownItem && actionDropdown) {
 				window.setTimeout(function() {
@@ -2123,6 +2990,13 @@ import { gsap } from 'gsap';
 				applyGlassMode(readGlassMode(), false);
 			}
 		};
+
+		window.VitraWrtNetworkIcons = {
+			enhance: function(node) {
+				enhanceNetworkIcons(node || document);
+			},
+			meta: getNetworkIconMeta
+		};
 	}
 
 	function init() {
@@ -2133,7 +3007,7 @@ import { gsap } from 'gsap';
 		});
 
 		root.classList.add('vwrt-ready', 'vitrawrt-ready', 'vwrt-sidebar-ready', 'vwrt-gsap-ready');
-		root.dataset.vitrawrt = '1.41.90-r30';
+		root.dataset.vitrawrt = '1.42.0-r1';
 
 		if (document.body)
 			document.body.classList.add('vitrawrt-body');
@@ -2143,10 +3017,13 @@ import { gsap } from 'gsap';
 		applyGlassMode(readGlassMode(), false);
 		setCollapsed(readCollapsed());
 		setDrawer(false);
-		enhanceButtonKinds(document);
-		enhanceApplyMenus(document);
-		enhanceCbiDropdowns(document);
+			enhanceButtonKinds(document);
+			enhanceApplyMenus(document);
+			enhanceStatusPrompts(document);
+			enhanceNetworkIcons(document);
+			enhanceCbiDropdowns(document);
 		enhanceModalInlineControls(document);
+		enhanceMultiButtonFields(document);
 		enhanceWrappedInlineControls(document);
 		enhanceTabPanelStacks(document);
 		if (!dynlistEnhancementDisabled())

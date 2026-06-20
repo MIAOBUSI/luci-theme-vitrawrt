@@ -2,11 +2,25 @@
 	body:is(
 		[data-page="admin-system-cpulimit"],
 		[data-page^="admin-services-AdGuardHome"],
+		[data-page^="admin-services-openclash"],
 		[data-page^="admin-nas-nfs"],
-		[data-page^="admin-vpn-softethervpn"]
+		[data-page="admin-nas"],
+		[data-page="admin-vpn"],
+		[data-page^="admin-vpn-"]
 	) #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
+		position: absolute !important;
+		inset: auto !important;
+		width: 1px !important;
+		height: 1px !important;
+		min-width: 0 !important;
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		clip: rect(0 0 0 0) !important;
 		display: none !important;
 		visibility: hidden !important;
+		opacity: 0 !important;
 		pointer-events: none !important;
 	}
 
@@ -79,6 +93,17 @@
 		margin: 12px 0 0 !important;
 	}
 
+	body.vwrt-page-statistics #maincontent p.controls > span.nowrap {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		margin: 0 10px 8px 0;
+	}
+
+	body.vwrt-page-statistics #maincontent p.controls > span.nowrap > :is(select, .cbi-dropdown, button, .cbi-button) {
+		margin: 0 !important;
+	}
+
 	body.vwrt-page-cpulimit #maincontent #view > :is(.cbi-page-actions, .cbi-section-actions):first-child {
 		float: none !important;
 		clear: both;
@@ -106,8 +131,19 @@
 	}
 
 	body:is(.vwrt-page-nas, .vwrt-page-vpn, .vwrt-page-services) #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
+		position: absolute !important;
+		inset: auto !important;
+		width: 1px !important;
+		height: 1px !important;
+		min-width: 0 !important;
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		clip: rect(0 0 0 0) !important;
 		display: none !important;
 		visibility: hidden !important;
+		opacity: 0 !important;
 		pointer-events: none !important;
 	}
 
@@ -295,7 +331,7 @@
 		.device-status:hover,
 		.interface-row:hover
 	) {
-		background: color-mix(in srgb, var(--vw-material-group-surface) 82%, rgba(255, 255, 255, 0.03)) !important;
+		background: color-mix(in srgb, var(--vw-material-group-surface) 82%, transparent) !important;
 		border-color: color-mix(in srgb, var(--vw-material-border) 64%, transparent) !important;
 	}
 
@@ -314,5 +350,445 @@
 		.tr:hover
 	) :is(.ifacebox-head, .ifacebox-body, .ifacebox-network, .td, td, .cbi-section-node, .cbi-value, .controls) {
 		background: transparent !important;
+	}
+
+	body.vwrt-page-network #maincontent .cbi-section-table-row > :is(.td, td, .cbi-section-table-cell):first-child {
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	body.vwrt-page-network #maincontent .ifacebox {
+		display: inline-grid !important;
+		grid-template-rows: auto minmax(84px, auto);
+		justify-items: center;
+		width: max-content;
+		min-width: 150px;
+		max-width: 250px;
+		padding: 0 !important;
+		overflow: visible;
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	body.vwrt-page-network #maincontent .ifacebox .ifacebox-head {
+		box-sizing: border-box;
+		width: 100%;
+		min-height: 36px;
+		padding: 8px 14px !important;
+		border-bottom: 1px solid color-mix(in srgb, var(--vw-material-border) 62%, transparent) !important;
+		text-align: center;
+	}
+
+	body.vwrt-page-network #maincontent .ifacebox .ifacebox-body {
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 8px 10px;
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		min-height: 84px;
+		padding: 12px 14px 10px !important;
+	}
+
+	body.vwrt-page-network #maincontent .ifacebox .ifacebox-body > .cbi-tooltip-container {
+		position: relative;
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		cursor: help;
+	}
+
+	body.vwrt-page-network #maincontent .ifacebox .ifacebox-body > span:not(.cbi-tooltip-container):has(.cbi-tooltip-container) {
+		display: inline-flex !important;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		max-width: 160px;
+		min-height: 30px;
+		padding-inline-start: 10px;
+		border-inline-start: 1px solid color-mix(in srgb, var(--vw-material-border) 72%, transparent);
+		color: transparent;
+		font-size: 0;
+	}
+
+	body.vwrt-page-network #maincontent .ifacebox .ifacebox-body > span:not(.cbi-tooltip-container):has(.cbi-tooltip-container) > .cbi-tooltip-container {
+		position: relative;
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		width: 26px;
+		height: 30px;
+		color: var(--vw-network-icon-color);
+		font-size: 1rem;
+		cursor: help;
+	}
+
+	body.vwrt-page-network #maincontent .ifacebox .ifacebox-body > br {
+		display: none;
+	}
+
+	body.vwrt-page-network #maincontent .ifacebox .ifacebox-body > small {
+		display: block;
+		flex: 1 0 100%;
+		max-width: 100%;
+		overflow: hidden;
+		color: var(--vw-text-secondary);
+		font-size: 0.78rem;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+	}
+
+	body.vwrt-page-openclash #maincontent :is(.btn-text, .logo-text) {
+		color: var(--vw-text-secondary) !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .mihomo-link {
+		color: #005ecb !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .stat-value {
+		color: #006c45 !important;
+	}
+
+	html[data-theme="dark"] body.vwrt-page-openclash #maincontent .mihomo-link {
+		color: #64d2ff !important;
+	}
+
+	html[data-theme="dark"] body.vwrt-page-openclash #maincontent .stat-value {
+		color: #7ee787 !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab {
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab :is(#tab-header, #tab-content, .dom) {
+		background: transparent !important;
+		border-color: color-mix(in srgb, var(--vw-border) 72%, transparent) !important;
+		box-shadow: none !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab [data-vwrt-theme],
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab[data-vwrt-theme] {
+		transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab .cbi-tabmenu {
+		display: inline-flex;
+		gap: 6px;
+		padding: 4px;
+		border: 1px solid color-mix(in srgb, var(--vw-control-border) 86%, transparent);
+		border-radius: var(--vw-radius-pill);
+		background: var(--vw-tab-track-surface) !important;
+		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 24%, transparent);
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab :is(.cbi-tab, .cbi-tab-disabled) {
+		margin: 0 !important;
+		padding: 0 !important;
+		border: 0 !important;
+		background: transparent !important;
+		box-shadow: none !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab :is(.cbi-tab, .cbi-tab-disabled) > a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 30px;
+		padding: 0 14px !important;
+		border: 1px solid transparent !important;
+		border-radius: var(--vw-radius-pill);
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-fill) !important;
+		box-shadow: none !important;
+		font-size: 0.84rem;
+		font-weight: 500;
+		line-height: 1;
+		text-decoration: none !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab .cbi-tab > a {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: var(--vw-button-primary-border) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-surface-sunken) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-border) 82%, transparent);
+		border-radius: var(--vw-radius-card);
+		box-shadow: inset 0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 7%, transparent);
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log[data-vwrt-theme="light"],
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log.vwrt-openclash-log-light {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-surface-sunken) !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log[data-vwrt-theme="dark"],
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log.vwrt-openclash-log-dark {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-surface-sunken) !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log :is(.CodeMirror-scroll, .CodeMirror-sizer, .CodeMirror-lines, .CodeMirror-code, pre) {
+		color: var(--vw-text-main) !important;
+		background: transparent !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log :is(
+		.cm-log-string,
+		.cm-log-bracket,
+		.cm-log-number,
+		.cm-log-keyword,
+		.cm-log-property,
+		.cm-log-variable,
+		.cm-log-operator,
+		.cm-log-comment,
+		.cm-log-meta
+	) {
+		color: var(--vw-text-main) !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log :is(.CodeMirror-gutters, .CodeMirror-linenumber, .CodeMirror-gutter, .CodeMirror-activeline-gutter) {
+		color: var(--vw-text-muted) !important;
+		background: color-mix(in srgb, var(--vw-surface-sunken) 74%, transparent) !important;
+		border-color: color-mix(in srgb, var(--vw-border) 70%, transparent) !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log :is(.CodeMirror-activeline-background, .CodeMirror-selected) {
+		background: var(--vw-table-row-hover-surface) !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log .cm-log-timestamp {
+		color: var(--vw-accent) !important;
+		background: color-mix(in srgb, var(--vw-accent) 14%, transparent) !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .radio-button {
+		gap: 6px !important;
+		padding: 6px !important;
+		border: 1px solid color-mix(in srgb, var(--vw-control-border) 86%, transparent) !important;
+		border-radius: var(--vw-radius-pill) !important;
+		background: var(--vw-tab-track-surface) !important;
+		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 24%, transparent) !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .radio-button label {
+		border: 1px solid transparent !important;
+		border-radius: var(--vw-radius-pill) !important;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-fill) !important;
+		box-shadow: none !important;
+		font-weight: 500 !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .radio-button :is(input:checked + label, label.active, label.is-active) {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: var(--vw-button-primary-border) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-nested-shell {
+		min-width: 0 !important;
+		min-height: 0 !important;
+		width: auto !important;
+		height: auto !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		color: inherit !important;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+		transform: none !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-nested-shell > :is(input[type="button"], input[type="submit"], input[type="reset"], button, .btn, .cbi-button) {
+		inline-size: 100%;
+		block-size: 100%;
+		margin: 0 !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value {
+		display: grid !important;
+		grid-template-columns: 220px minmax(0, 1fr);
+		align-items: center;
+		column-gap: 10px;
+	}
+
+	body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value > .cbi-value-title {
+		width: 220px !important;
+		min-width: 220px !important;
+		box-sizing: border-box;
+		padding-inline-end: 0 !important;
+		text-align: right !important;
+		justify-self: end;
+	}
+
+	body.vwrt-page-openclash #maincontent .cbi-value-field.vwrt-openclash-action-field {
+		display: block !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		min-width: 0 !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row {
+		display: grid !important;
+		grid-template-columns: 180px 72px 112px;
+		align-items: center;
+		justify-content: start;
+		gap: 8px;
+		width: max-content;
+		max-width: 100%;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .cbi-value-field {
+		display: contents !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .vwrt-openclash-button-cell {
+		display: block !important;
+		min-width: 0 !important;
+		margin: 0 !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .vwrt-openclash-button-cell:nth-child(1) {
+		inline-size: 180px !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .vwrt-openclash-button-cell:nth-child(2) {
+		inline-size: 72px !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .vwrt-openclash-button-cell:nth-child(3) {
+		inline-size: 112px !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > [id^="switch_dashboard_"] {
+		inline-size: 180px !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > [id^="delete_dashboard_"] {
+		inline-size: 72px !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > [id^="default_dashboard_"] {
+		inline-size: 112px !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row :is(button, .btn, .cbi-button, input[type="button"], input[type="submit"], input[type="reset"]) {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		justify-self: stretch;
+		inline-size: 100% !important;
+		min-height: 36px !important;
+		min-width: 0 !important;
+		margin: 0 !important;
+		padding-inline: 8px !important;
+		font-size: 0.78rem !important;
+		font-weight: 500 !important;
+		text-align: center !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-button-danger:not(:disabled) {
+		color: var(--vw-button-danger-text) !important;
+		background: var(--vw-button-danger-fill) !important;
+		border-color: var(--vw-button-danger-border) !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-button-neutral:not(:disabled) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-control-border) 86%, transparent) !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-field-button-1 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-field-button-2 {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-field-button-3 {
+		grid-column: 3;
+		grid-row: 1;
+	}
+
+	@media (max-width: 760px) {
+		body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value {
+			grid-template-columns: minmax(0, 1fr);
+			row-gap: 8px;
+		}
+
+		body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value > .cbi-value-title {
+			width: auto !important;
+			min-width: 0 !important;
+		}
+
+		body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row {
+			grid-template-columns: minmax(0, 1fr);
+			inline-size: 100%;
+		}
+	}
+
+	html[data-theme="dark"] body.vwrt-page-nftables #maincontent :is(tr:hover, .tr:hover, tr.flash, .tr.flash),
+	html[data-theme="dark"] body.vwrt-page-openclash #maincontent :is(tr:hover, .tr:hover, tr.flash, .tr.flash, .vwrt-placeholder-span-row) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-table-row-hover-surface) !important;
+	}
+
+	html[data-theme="dark"] body:is(.vwrt-page-nftables, .vwrt-page-openclash) #maincontent :is(tr:hover, .tr:hover, tr.flash, .tr.flash, .vwrt-placeholder-span-row) > :is(td, th, .td) {
+		color: var(--vw-text-main) !important;
+		background: transparent !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-placeholder-span-row > :is(td, .td) {
+		width: auto !important;
+		text-align: center !important;
+		background: transparent !important;
+	}
+
+	body.vwrt-page-openclash #maincontent .vwrt-empty-table-spacer-row {
+		display: none !important;
+	}
+
+	body.vwrt-page-openclash #maincontent :is(.table, .cbi-section-table) > .vwrt-placeholder-span-row,
+	body.vwrt-page-openclash #maincontent :is(.table, .cbi-section-table) > .vwrt-placeholder-span-row:hover {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr) !important;
+		width: 100% !important;
+		background: transparent !important;
+	}
+
+	body.vwrt-page-openclash #maincontent :is(.table, .cbi-section-table) > .vwrt-placeholder-span-row > .td:only-child {
+		display: grid !important;
+		place-items: center !important;
+		box-sizing: border-box !important;
+		width: 100% !important;
+		max-width: none !important;
+		min-width: 0 !important;
+		padding-inline: 0 !important;
+		background: transparent !important;
+		text-align: center !important;
+	}
+
+	body.vwrt-page-vpn #maincontent :is(span, small, td, .td):not([class]) {
+		color: var(--vw-text-secondary) !important;
 	}
 }

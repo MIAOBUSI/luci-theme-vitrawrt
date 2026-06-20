@@ -82,6 +82,46 @@
 			0 0 0 3px color-mix(in srgb, var(--vw-accent) 16%, transparent) !important;
 	}
 
+	:where(#maincontent, #modal_overlay, .vwrt-auth-card) input[type="file"] {
+		box-sizing: border-box;
+		width: min(100%, 34rem);
+		min-height: var(--vw-field-height);
+		padding: 4px 12px 4px 4px;
+		border: 1px solid var(--vw-field-border) !important;
+		border-radius: var(--vw-radius-field) !important;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-field-bg) !important;
+		box-shadow:
+			0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 28%, transparent) inset,
+			0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 3%, transparent) !important;
+		font: inherit;
+		line-height: calc(var(--vw-field-height) - 10px);
+	}
+
+	:where(#maincontent, #modal_overlay, .vwrt-auth-card) input[type="file"]::file-selector-button {
+		min-height: calc(var(--vw-field-height) - 10px);
+		margin: 0 12px 0 0;
+		padding: 0 16px;
+		border: 1px solid color-mix(in srgb, var(--vw-control-border) 86%, transparent);
+		border-radius: calc(var(--vw-radius-field) - 2px);
+		color: var(--vw-text-main);
+		background: var(--vw-button-secondary-fill);
+		box-shadow: var(--vw-shadow-control);
+		font: inherit;
+		font-weight: 650;
+		letter-spacing: 0;
+	}
+
+	:where(#maincontent, #modal_overlay, .vwrt-auth-card) input[type="file"]:hover {
+		border-color: var(--vw-control-border-hover) !important;
+		background: var(--vw-field-bg-hover) !important;
+	}
+
+	:where(#maincontent, #modal_overlay, .vwrt-auth-card) input[type="file"]:hover::file-selector-button {
+		background: var(--vw-button-secondary-hover);
+		border-color: var(--vw-control-border-hover);
+	}
+
 	:where(#maincontent, .vwrt-auth-card) :is(select, .cbi-input-select) {
 		padding-inline-end: 32px;
 		background:
@@ -424,7 +464,7 @@
 		}
 
 	#maincontent .cbi-value:hover {
-		background: var(--vw-form-row-hover) !important;
+		background: transparent !important;
 	}
 
 	#maincontent .cbi-value-title {
@@ -544,7 +584,7 @@
 			justify-self: center;
 			width: 20px;
 			height: 20px;
-			background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5 5l10 10M15 5 5 15' fill='none' stroke='%23a9231b' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / 20px 20px no-repeat;
+			background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5 5l10 10M15 5 5 15' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / 20px 20px no-repeat;
 			content: "";
 			-webkit-mask: none;
 			mask: none;
@@ -552,7 +592,7 @@
 		}
 
 		html:is([data-theme="dark"], [data-darkmode="true"]) :is(#maincontent, #modal_overlay) :is(.cbi-dynlist > div.item, .cbi-dynlist-item)::before {
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5 5l10 10M15 5 5 15' fill='none' stroke='%23ffb4ae' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5 5l10 10M15 5 5 15' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
 		}
 
 		:is(#maincontent, #modal_overlay) :is(.cbi-dynlist > div.item, .cbi-dynlist-item)::after {
@@ -571,9 +611,7 @@
 			border-radius: var(--vw-radius-pill);
 			color: var(--vw-button-danger-text);
 			background: var(--vw-button-danger-fill);
-			box-shadow:
-				0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent),
-				inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 28%, transparent);
+			box-shadow: none;
 			content: "";
 			font-size: 0;
 			line-height: 0;
@@ -602,9 +640,7 @@
 			border: 1px solid color-mix(in srgb, var(--vw-danger) 24%, transparent);
 			border-radius: var(--vw-radius-pill);
 			background: var(--vw-button-danger-fill);
-			box-shadow:
-				0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent),
-				inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 28%, transparent);
+			box-shadow: none;
 			transform-origin: 50% 50%;
 			isolation: isolate;
 			pointer-events: none;
@@ -616,12 +652,18 @@
 			display: block;
 			width: 18px;
 			height: 18px;
-			background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M4 4l10 10M14 4 4 14' fill='none' stroke='%23a9231b' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px 18px no-repeat;
+			background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M4 4l10 10M14 4 4 14' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px 18px no-repeat;
 			content: "";
 		}
 
+		:is(#maincontent, #modal_overlay) .cbi-dynlist > :is(div.item, .cbi-dynlist-item) > .vwrt-dynlist-delete-visual.vwrt-delete-hover {
+			box-shadow:
+				0 5px 8px -5px var(--vw-button-danger-glow),
+				0 12px 14px -7px var(--vw-button-danger-glow) !important;
+		}
+
 		html:is([data-theme="dark"], [data-darkmode="true"]) :is(#maincontent, #modal_overlay) .cbi-dynlist > :is(div.item, .cbi-dynlist-item) > .vwrt-dynlist-delete-visual::before {
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M4 4l10 10M14 4 4 14' fill='none' stroke='%23ffb4ae' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M4 4l10 10M14 4 4 14' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 		}
 
 		:is(#maincontent, #modal_overlay) .cbi-dynlist :is(.vwrt-dynlist-remove-visual, .vwrt-dynlist-remove-button) {

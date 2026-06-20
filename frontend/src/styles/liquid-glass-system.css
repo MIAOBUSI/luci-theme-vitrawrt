@@ -41,14 +41,18 @@
 		border-color: var(--vw-liquid-border-soft) !important;
 	}
 
-	#maincontent :is(.ifacebadge, .ifacebadge > span, .ifacebadge .nowrap) {
+	#maincontent :is(
+		.ifacebadge:not(.cbi-tooltip),
+		.ifacebadge:not(.cbi-tooltip) > span,
+		.ifacebadge:not(.cbi-tooltip) .nowrap
+	) {
 		color: var(--vw-text-secondary) !important;
 		background: color-mix(in srgb, var(--vw-liquid-chip) 72%, transparent) !important;
 		border-color: var(--vw-liquid-border-soft) !important;
 		text-shadow: var(--vw-liquid-text-protection);
 	}
 
-	#maincontent .ifacebadge strong {
+	#maincontent .ifacebadge:not(.cbi-tooltip) strong {
 		color: var(--vw-text-main) !important;
 	}
 

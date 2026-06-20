@@ -62,7 +62,11 @@
 		box-shadow: none !important;
 	}
 
-	body:not(.vwrt-dashboard-page) #maincontent :is(.ifacebadge, .ifacebadge > span, .ifacebadge .nowrap) {
+	body:not(.vwrt-dashboard-page) #maincontent :is(
+		.ifacebadge:not(.cbi-tooltip),
+		.ifacebadge:not(.cbi-tooltip) > span,
+		.ifacebadge:not(.cbi-tooltip) .nowrap
+	) {
 		color: var(--vw-text-secondary) !important;
 		background: var(--vw-material-inner-surface) !important;
 		border-color: color-mix(in srgb, var(--vw-material-border) 80%, transparent) !important;

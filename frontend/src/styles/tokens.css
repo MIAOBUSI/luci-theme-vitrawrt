@@ -12,14 +12,14 @@
 		--vw-row-hover: rgba(255, 255, 255, 0.38);
 
 		--vw-text-primary: #1d1d1f;
-		--vw-text-secondary: rgba(60, 60, 67, 0.78);
-		--vw-text-muted: rgba(60, 60, 67, 0.56);
+		--vw-text-secondary: rgba(60, 60, 67, 0.88);
+		--vw-text-muted: rgba(60, 60, 67, 0.72);
 		--vw-accent: #007aff;
 		--vw-accent-surface: rgba(0, 122, 255, 0.12);
 		--vw-accent-surface-hover: rgba(0, 122, 255, 0.18);
 		--vw-success: #248a3d;
 		--vw-success-surface: rgba(52, 199, 89, 0.16);
-		--vw-warning: #a05a00;
+		--vw-warning: #784200;
 		--vw-warning-surface: rgba(255, 159, 10, 0.18);
 		--vw-danger: #d92d20;
 		--vw-danger-surface: rgba(255, 59, 48, 0.14);
@@ -43,6 +43,10 @@
 		--vw-progress-success: #34c759;
 		--vw-progress-warning: #ff9f0a;
 		--vw-progress-danger: #ff453a;
+		--vw-progress-neutral-paint: linear-gradient(90deg, #0a84ff, #64d2ff);
+		--vw-progress-success-paint: linear-gradient(90deg, #30d158, #64d2a6);
+		--vw-progress-warning-paint: linear-gradient(90deg, #ff9f0a, #ffd60a);
+		--vw-progress-danger-paint: linear-gradient(90deg, #ff453a, #ff375f);
 
 		--vw-liquid-canvas:
 			radial-gradient(900px 520px at 8% -6%, rgba(122, 200, 255, 0.16), transparent 62%),
@@ -111,20 +115,39 @@
 		--vw-progress-track-surface: rgba(118, 118, 128, 0.16);
 		--vw-progress-chip-surface: rgba(255, 255, 255, 0.56);
 			--vw-button-secondary-fill: rgba(244, 246, 250, 0.96);
-			--vw-button-secondary-hover: rgba(255, 255, 255, 0.98);
-			--vw-button-secondary-active: rgba(229, 233, 241, 0.94);
-			--vw-button-primary-fill: #007aff;
-		--vw-button-primary-hover: #0a84ff;
-		--vw-button-primary-active: #0067d8;
+			--vw-button-secondary-hover: var(--vw-button-secondary-fill);
+			--vw-button-secondary-active: var(--vw-button-secondary-fill);
+			--vw-button-primary-fill: #0a84ff;
+		--vw-button-primary-hover: var(--vw-button-primary-fill);
+		--vw-button-primary-active: var(--vw-button-primary-fill);
+		--vw-button-primary-border: transparent;
 		--vw-button-primary-text: #ffffff;
+		--vw-button-positive-fill: #34c759;
+		--vw-button-positive-hover: var(--vw-button-positive-fill);
+		--vw-button-positive-active: var(--vw-button-positive-fill);
+		--vw-button-positive-border: transparent;
+		--vw-button-force-fill: #ff9f0a;
+		--vw-button-force-border: transparent;
+		--vw-button-stop-fill: #ff6b52;
+		--vw-button-stop-hover: var(--vw-button-stop-fill);
+		--vw-button-stop-active: var(--vw-button-stop-fill);
+		--vw-button-stop-border: transparent;
+		--vw-button-stop-text: #ffffff;
 		--vw-split-divider: rgba(0, 35, 75, 0.22);
 		--vw-split-arrow: rgba(255, 255, 255, 0.94);
-		--vw-button-danger-fill: #f8e1e0;
-		--vw-button-danger-hover: #f4d2d0;
-		--vw-button-danger-text: #a9231b;
+		--vw-button-danger-fill: #ff3b30;
+		--vw-button-danger-hover: var(--vw-button-danger-fill);
+		--vw-button-danger-border: transparent;
+		--vw-button-danger-text: #ffffff;
 		--vw-button-warning-fill: #f7ead2;
-		--vw-button-warning-hover: #f2dfbf;
-		--vw-button-warning-text: #77420a;
+		--vw-button-warning-hover: var(--vw-button-warning-fill);
+		--vw-button-warning-text: #ffffff;
+		--vw-button-neutral-glow: rgba(60, 60, 67, 0.16);
+		--vw-button-primary-glow: rgba(10, 132, 255, 0.42);
+		--vw-button-positive-glow: rgba(48, 209, 88, 0.38);
+		--vw-button-force-glow: rgba(255, 159, 10, 0.42);
+		--vw-button-stop-glow: rgba(255, 98, 74, 0.4);
+		--vw-button-danger-glow: rgba(255, 69, 58, 0.38);
 			--vw-menu-surface: rgba(255, 255, 255, 0.92);
 			--vw-menu-item-hover: rgba(0, 122, 255, 0.1);
 			--vw-menu-item-selected: rgba(0, 122, 255, 0.14);
@@ -132,7 +155,7 @@
 		--vw-progress-meter-bg: rgba(118, 118, 128, 0.16);
 		--vw-progress-meter-border: transparent;
 		--vw-progress-meter-text: var(--vw-text-primary);
-		--vw-progress-meter-summary: rgba(60, 60, 67, 0.62);
+		--vw-progress-meter-summary: var(--vw-text-secondary);
 		--vw-progress-meter-glow: rgba(10, 132, 255, 0.18);
 
 		--vw-radius-control: 10px;
@@ -211,13 +234,17 @@
 		 * without retaining separate light.css, dark.css, or tokens.css files.
 		 */
 		--vw-font-sans:
-			-apple-system,
-			BlinkMacSystemFont,
-			"SF Pro Text",
+			system-ui,
 			"Segoe UI",
+			Roboto,
+			"Noto Sans",
+			"Helvetica Neue",
+			Arial,
 			sans-serif;
 		--vw-font-mono:
-			"SFMono-Regular",
+			ui-monospace,
+			"Cascadia Mono",
+			"Roboto Mono",
 			Consolas,
 			"Liberation Mono",
 			monospace;
@@ -502,8 +529,8 @@
 		--vw-row-hover: rgba(255, 255, 255, 0.075);
 
 		--vw-text-primary: #f5f5f7;
-		--vw-text-secondary: rgba(235, 235, 245, 0.76);
-		--vw-text-muted: rgba(235, 235, 245, 0.5);
+		--vw-text-secondary: rgba(235, 235, 245, 0.82);
+		--vw-text-muted: rgba(235, 235, 245, 0.62);
 		--vw-accent: #0a84ff;
 		--vw-accent-surface: rgba(10, 132, 255, 0.16);
 		--vw-accent-surface-hover: rgba(10, 132, 255, 0.23);
@@ -533,6 +560,10 @@
 		--vw-progress-success: #30d158;
 		--vw-progress-warning: #ffb340;
 		--vw-progress-danger: #ff6961;
+		--vw-progress-neutral-paint: linear-gradient(90deg, #0a84ff, #64d2ff);
+		--vw-progress-success-paint: linear-gradient(90deg, #30d158, #64d2a6);
+		--vw-progress-warning-paint: linear-gradient(90deg, #ff9f0a, #ffd60a);
+		--vw-progress-danger-paint: linear-gradient(90deg, #ff453a, #ff375f);
 
 		--vw-liquid-canvas:
 			radial-gradient(980px 620px at 6% -8%, rgba(10, 132, 255, 0.16), transparent 58%),
@@ -601,18 +632,37 @@
 		--vw-progress-track-surface: rgba(235, 235, 245, 0.14);
 		--vw-progress-chip-surface: rgba(255, 255, 255, 0.09);
 				--vw-button-secondary-fill: rgba(52, 52, 60, 0.92);
-				--vw-button-secondary-hover: rgba(64, 64, 72, 0.96);
-				--vw-button-secondary-active: rgba(42, 42, 50, 0.9);
+				--vw-button-secondary-hover: var(--vw-button-secondary-fill);
+				--vw-button-secondary-active: var(--vw-button-secondary-fill);
 		--vw-button-primary-fill: #0a84ff;
-		--vw-button-primary-hover: #2f9bff;
-		--vw-button-primary-active: #0071db;
+		--vw-button-primary-hover: var(--vw-button-primary-fill);
+		--vw-button-primary-active: var(--vw-button-primary-fill);
+		--vw-button-primary-border: transparent;
 		--vw-button-primary-text: #ffffff;
-		--vw-button-danger-fill: #542a2d;
-		--vw-button-danger-hover: #643034;
-		--vw-button-danger-text: #ffb3ad;
+		--vw-button-positive-fill: #30d158;
+		--vw-button-positive-hover: var(--vw-button-positive-fill);
+		--vw-button-positive-active: var(--vw-button-positive-fill);
+		--vw-button-positive-border: transparent;
+		--vw-button-force-fill: #ff9f0a;
+		--vw-button-force-border: transparent;
+		--vw-button-stop-fill: #ff6b52;
+		--vw-button-stop-hover: var(--vw-button-stop-fill);
+		--vw-button-stop-active: var(--vw-button-stop-fill);
+		--vw-button-stop-border: transparent;
+		--vw-button-stop-text: #ffffff;
+		--vw-button-danger-fill: #ff453a;
+		--vw-button-danger-hover: var(--vw-button-danger-fill);
+		--vw-button-danger-border: transparent;
+		--vw-button-danger-text: #ffffff;
 		--vw-button-warning-fill: #4e3a22;
-		--vw-button-warning-hover: #5d4527;
-		--vw-button-warning-text: #ffd09a;
+		--vw-button-warning-hover: var(--vw-button-warning-fill);
+		--vw-button-warning-text: #ffffff;
+		--vw-button-neutral-glow: rgba(255, 255, 255, 0.14);
+		--vw-button-primary-glow: rgba(100, 210, 255, 0.4);
+		--vw-button-positive-glow: rgba(48, 209, 88, 0.36);
+		--vw-button-force-glow: rgba(255, 179, 64, 0.4);
+		--vw-button-stop-glow: rgba(255, 98, 74, 0.4);
+		--vw-button-danger-glow: rgba(255, 105, 97, 0.36);
 				--vw-menu-surface: rgba(36, 36, 44, 0.94);
 				--vw-menu-item-hover: rgba(10, 132, 255, 0.16);
 				--vw-menu-item-selected: rgba(10, 132, 255, 0.2);
@@ -620,7 +670,7 @@
 		--vw-progress-meter-bg: rgba(235, 235, 245, 0.11);
 		--vw-progress-meter-border: rgba(255, 255, 255, 0.11);
 		--vw-progress-meter-text: var(--vw-text-primary);
-		--vw-progress-meter-summary: rgba(235, 235, 245, 0.58);
+		--vw-progress-meter-summary: rgba(235, 235, 245, 0.68);
 		--vw-progress-meter-glow: rgba(100, 210, 255, 0.22);
 
 		--vw-shadow-card:
@@ -665,8 +715,8 @@
 			--vw-divider: rgba(255, 255, 255, 0.09);
 			--vw-row-hover: rgba(255, 255, 255, 0.075);
 			--vw-text-primary: #f5f5f7;
-			--vw-text-secondary: rgba(235, 235, 245, 0.76);
-			--vw-text-muted: rgba(235, 235, 245, 0.5);
+			--vw-text-secondary: rgba(235, 235, 245, 0.82);
+			--vw-text-muted: rgba(235, 235, 245, 0.62);
 			--vw-accent: #0a84ff;
 			--vw-accent-surface: rgba(10, 132, 255, 0.16);
 			--vw-accent-surface-hover: rgba(10, 132, 255, 0.23);
@@ -693,6 +743,10 @@
 			--vw-progress-success: #30d158;
 			--vw-progress-warning: #ffb340;
 			--vw-progress-danger: #ff6961;
+			--vw-progress-neutral-paint: linear-gradient(90deg, #0a84ff, #64d2ff);
+			--vw-progress-success-paint: linear-gradient(90deg, #30d158, #64d2a6);
+			--vw-progress-warning-paint: linear-gradient(90deg, #ff9f0a, #ffd60a);
+			--vw-progress-danger-paint: linear-gradient(90deg, #ff453a, #ff375f);
 			--vw-liquid-canvas:
 				radial-gradient(980px 620px at 6% -8%, rgba(10, 132, 255, 0.16), transparent 58%),
 				radial-gradient(780px 520px at 92% 2%, rgba(142, 122, 255, 0.13), transparent 58%),
@@ -760,18 +814,37 @@
 			--vw-progress-track-surface: rgba(235, 235, 245, 0.14);
 			--vw-progress-chip-surface: rgba(255, 255, 255, 0.09);
 			--vw-button-secondary-fill: rgba(52, 52, 60, 0.92);
-			--vw-button-secondary-hover: rgba(64, 64, 72, 0.96);
-			--vw-button-secondary-active: rgba(42, 42, 50, 0.9);
+			--vw-button-secondary-hover: var(--vw-button-secondary-fill);
+			--vw-button-secondary-active: var(--vw-button-secondary-fill);
 			--vw-button-primary-fill: #0a84ff;
-			--vw-button-primary-hover: #2f9bff;
-			--vw-button-primary-active: #0071db;
+			--vw-button-primary-hover: var(--vw-button-primary-fill);
+			--vw-button-primary-active: var(--vw-button-primary-fill);
+			--vw-button-primary-border: transparent;
 			--vw-button-primary-text: #ffffff;
-			--vw-button-danger-fill: #542a2d;
-			--vw-button-danger-hover: #643034;
-			--vw-button-danger-text: #ffb3ad;
+			--vw-button-positive-fill: #30d158;
+			--vw-button-positive-hover: var(--vw-button-positive-fill);
+			--vw-button-positive-active: var(--vw-button-positive-fill);
+			--vw-button-positive-border: transparent;
+			--vw-button-force-fill: #ff9f0a;
+			--vw-button-force-border: transparent;
+			--vw-button-stop-fill: #ff6b52;
+			--vw-button-stop-hover: var(--vw-button-stop-fill);
+			--vw-button-stop-active: var(--vw-button-stop-fill);
+			--vw-button-stop-border: transparent;
+			--vw-button-stop-text: #ffffff;
+			--vw-button-danger-fill: #ff453a;
+			--vw-button-danger-hover: var(--vw-button-danger-fill);
+			--vw-button-danger-border: transparent;
+			--vw-button-danger-text: #ffffff;
 			--vw-button-warning-fill: #4e3a22;
-			--vw-button-warning-hover: #5d4527;
-			--vw-button-warning-text: #ffd09a;
+			--vw-button-warning-hover: var(--vw-button-warning-fill);
+			--vw-button-warning-text: #ffffff;
+			--vw-button-neutral-glow: rgba(255, 255, 255, 0.14);
+			--vw-button-primary-glow: rgba(100, 210, 255, 0.4);
+			--vw-button-positive-glow: rgba(48, 209, 88, 0.36);
+			--vw-button-force-glow: rgba(255, 179, 64, 0.4);
+			--vw-button-stop-glow: rgba(255, 98, 74, 0.4);
+			--vw-button-danger-glow: rgba(255, 105, 97, 0.36);
 			--vw-menu-surface: rgba(36, 36, 44, 0.94);
 			--vw-menu-item-hover: rgba(10, 132, 255, 0.16);
 			--vw-menu-item-selected: rgba(10, 132, 255, 0.2);
@@ -779,7 +852,7 @@
 			--vw-progress-meter-bg: rgba(235, 235, 245, 0.11);
 			--vw-progress-meter-border: rgba(255, 255, 255, 0.11);
 			--vw-progress-meter-text: var(--vw-text-primary);
-			--vw-progress-meter-summary: rgba(235, 235, 245, 0.58);
+			--vw-progress-meter-summary: rgba(235, 235, 245, 0.68);
 			--vw-progress-meter-glow: rgba(100, 210, 255, 0.22);
 			--vw-shadow-card:
 				0 1px 2px rgba(0, 0, 0, 0.22),
@@ -836,33 +909,6 @@
 			--vw-duration-fast: 1ms;
 			--vw-duration-standard: 1ms;
 			--vw-duration-slow: 1ms;
-		}
-	}
-}
-
-@layer base {
-	@media (min-width: 1800px) and (min-resolution: 1.2dppx) {
-		:root {
-			--vitra-font-size-md: 15px;
-			--vw-control-height: 42px;
-			--vw-field-height: 42px;
-			--vw-text-secondary: rgba(60, 60, 67, 0.82);
-			--vw-text-muted: rgba(60, 60, 67, 0.64);
-			--vw-blur-glass: 12px;
-			--vw-blur-popover: 14px;
-		}
-
-		html:is([data-theme="dark"], [data-darkmode="true"]) {
-			--vw-text-secondary: rgba(235, 235, 245, 0.84);
-			--vw-text-muted: rgba(235, 235, 245, 0.66);
-		}
-	}
-
-	@media (min-width: 2400px) and (min-resolution: 1.2dppx) {
-		:root {
-			--vitra-font-size-md: 16px;
-			--vw-control-height: 44px;
-			--vw-field-height: 44px;
 		}
 	}
 }

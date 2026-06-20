@@ -22,8 +22,7 @@
 		font-family: var(--vwrt-font-sans);
 		font-size: var(--vitra-font-size-md);
 		line-height: var(--vitra-line-height);
-		text-rendering: optimizeLegibility;
-		-webkit-font-smoothing: antialiased;
+		text-rendering: auto;
 	}
 
 	html.vitrawrt-ready,

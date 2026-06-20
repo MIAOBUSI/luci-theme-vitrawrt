@@ -1,0 +1,459 @@
+@layer components {
+	:root {
+		--vwrt-network-icon-url: url("../img/network-icons/unknown-interface.svg");
+		--vw-network-icon-size-sidebar: 18px;
+		--vw-network-icon-size-row: 28px;
+		--vw-network-icon-size-badge: 21px;
+		--vw-network-icon-color: color-mix(in srgb, var(--vw-text-main) 88%, var(--vw-text-secondary));
+		--vw-network-status-active: var(--vw-success);
+		--vw-network-status-muted: var(--vw-text-muted);
+		--vw-network-status-warning: var(--vw-warning);
+		--vw-network-status-danger: var(--vw-danger);
+		--vw-network-status-disabled: var(--vw-disabled-text);
+		--vw-network-port-surface: color-mix(in srgb, var(--vw-material-inner-surface) 76%, transparent);
+		--vw-network-port-hover: color-mix(in srgb, var(--vw-accent) 8%, var(--vw-material-inner-surface));
+		--vw-network-port-border: color-mix(in srgb, var(--vw-material-border) 78%, transparent);
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(
+		.ifacebadge:not(.cbi-tooltip),
+		.ifacebox,
+		.interface-status,
+		.device-status,
+		.network-status-table
+	) img:is(
+		[src*="resources/icons/bridge.svg"],
+		[src*="resources/icons/ethernet"],
+		[src*="resources/icons/port_"],
+		[src*="resources/icons/switch"]
+	) {
+		visibility: visible !important;
+		opacity: 1 !important;
+		object-fit: contain;
+		transition: none !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/bridge.svg"] {
+		content: url("../img/network-icons/bridge.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img:is(
+		[src*="resources/icons/ethernet.svg"],
+		[src*="resources/icons/port_up.svg"],
+		[src*="resources/icons/port_pse_up.svg"]
+	) {
+		content: url("../img/network-icons/port-rj45.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img:is(
+		[src*="resources/icons/ethernet_disabled.svg"],
+		[src*="resources/icons/port_down.svg"],
+		[src*="resources/icons/port_pse_down.svg"]
+	) {
+		content: url("../img/network-icons/disabled-port.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/switch"] {
+		content: url("../img/network-icons/switch-port.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) [data-vwrt-network-icon] {
+		--vwrt-network-state-color: var(--vw-network-status-muted);
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) [data-vwrt-icon-state="connected"] {
+		--vwrt-network-state-color: var(--vw-network-status-active);
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) [data-vwrt-icon-state="warning"] {
+		--vwrt-network-state-color: var(--vw-network-status-warning);
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) [data-vwrt-icon-state="error"] {
+		--vwrt-network-state-color: var(--vw-network-status-danger);
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) [data-vwrt-icon-state="disabled"],
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) [data-vwrt-icon-state="disconnected"] {
+		--vwrt-network-state-color: var(--vw-network-status-disabled);
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) .vwrt-network-glyph,
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img.vwrt-network-port-icon {
+		flex: 0 0 auto;
+		display: inline-block;
+		inline-size: var(--vw-network-icon-size-row);
+		block-size: var(--vw-network-icon-size-row);
+		color: var(--vw-network-icon-color);
+		vertical-align: middle;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) .vwrt-network-glyph:not(img) {
+		background: currentColor;
+		mask: var(--vwrt-network-icon-url) center / contain no-repeat;
+		-webkit-mask: var(--vwrt-network-icon-url) center / contain no-repeat;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img.vwrt-network-glyph,
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img.vwrt-network-port-icon {
+		visibility: visible !important;
+		opacity: 1 !important;
+		object-fit: contain;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(
+		.ifacebadge:not(.cbi-tooltip),
+		.ifacebox,
+		.interface-status,
+		.device-status,
+		.network-status-table
+	) img.vwrt-network-port-icon[data-vwrt-network-icon] {
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(.ifacebadge:not(.cbi-tooltip), .interface-status, .device-status) {
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 8px !important;
+		min-height: 28px !important;
+		padding: 4px 9px !important;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-network-port-surface) !important;
+		border: 1px solid var(--vw-network-port-border) !important;
+		border-radius: var(--vw-radius-pill) !important;
+		box-shadow:
+			0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 4%, transparent),
+			inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 24%, transparent) !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(.ifacebadge, .interface-status, .device-status) :is(.vwrt-network-glyph, img.vwrt-network-port-icon) {
+		inline-size: var(--vw-network-icon-size-badge);
+		block-size: var(--vw-network-icon-size-badge);
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent .ifacebox {
+		position: relative;
+		display: inline-grid !important;
+		grid-template-columns: minmax(0, 1fr);
+		align-items: center;
+		justify-items: center;
+		gap: 7px;
+		padding: 10px 11px !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 30%, transparent), transparent 68%),
+			var(--vw-network-port-surface) !important;
+		border: 1px solid var(--vw-network-port-border) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow:
+			0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 3%, transparent),
+			inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 24%, transparent) !important;
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent .ifacebox:is(:hover, .active) {
+		background: var(--vw-network-port-hover) !important;
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent .ifacebox > .vwrt-network-glyph,
+	body:not(.vwrt-dashboard-page) #maincontent .ifacebox :is(.ifacebox-body, .ifacebox-head) > .vwrt-network-glyph {
+		inline-size: 31px;
+		block-size: 31px;
+		margin-block: 1px;
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent .ifacebox :is(.ifacebox-head, .ifacebox-body, .ifacebox-network) {
+		display: grid !important;
+		justify-items: center;
+		gap: 4px;
+		min-width: 0;
+		color: var(--vw-text-main) !important;
+		background: transparent !important;
+		border-color: transparent !important;
+		box-shadow: none !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) .vwrt-cbi-dropdown-current > .vwrt-network-glyph,
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) .cbi-dropdown > ul > li > .vwrt-network-glyph {
+		inline-size: 18px;
+		block-size: 18px;
+		margin-inline-end: 7px;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(.cbi-tooltip, .cbi-tooltip-container, [data-vwrt-tooltip]) > .vwrt-network-glyph {
+		inline-size: 18px;
+		block-size: 18px;
+		margin-inline-end: 6px;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table {
+		display: grid !important;
+		grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+		gap: 12px;
+		padding: 10px !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 18%, transparent), transparent 64%),
+			color-mix(in srgb, var(--vw-material-inner-surface) 72%, transparent) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 62%, transparent) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 22%, transparent) !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox {
+		display: grid !important;
+		grid-template-rows: auto minmax(0, 1fr);
+		justify-items: stretch !important;
+		gap: 0 !important;
+		min-width: 0 !important;
+		width: 100% !important;
+		padding: 0 !important;
+		overflow: visible;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 20%, transparent), transparent 58%),
+			color-mix(in srgb, var(--vw-material-group-surface) 88%, transparent) !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 70%, transparent) !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .vwrt-network-glyph {
+		display: none !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .ifacebox-head {
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		min-height: 42px;
+		padding: 9px 14px !important;
+		color: var(--vw-text-main) !important;
+		background: color-mix(in srgb, var(--vw-material-inner-surface) 44%, transparent) !important;
+		border-bottom: 1px solid color-mix(in srgb, var(--vw-material-border) 68%, transparent) !important;
+		font-weight: 650;
+		text-align: center;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .ifacebox-body {
+		display: flex !important;
+		flex-direction: column;
+		align-items: stretch;
+		justify-items: stretch;
+		gap: 10px;
+		width: 100%;
+		min-width: 0;
+		padding: 16px 18px 14px !important;
+		color: var(--vw-text-main) !important;
+		text-align: start !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .ifacebox-body.left {
+		align-items: stretch !important;
+		justify-content: flex-start;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) {
+		box-sizing: border-box;
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: center !important;
+		justify-content: flex-start;
+		gap: 8px 10px !important;
+		width: 100%;
+		max-width: 100%;
+		min-height: 40px !important;
+		padding: 8px 12px !important;
+		white-space: normal !important;
+		overflow-wrap: anywhere;
+		text-align: start;
+		line-height: 1.28;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) :is(.vwrt-network-glyph, img.vwrt-network-port-icon) {
+		flex: 0 0 auto;
+		align-self: flex-start;
+		margin-block-start: 1px;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section > div > div[style*="grid-template-columns:repeat(auto-fit, minmax(100px"] {
+		box-sizing: border-box;
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: flex-start !important;
+		justify-content: center;
+		justify-items: initial !important;
+		gap: 12px;
+		width: fit-content;
+		max-width: 100%;
+		min-height: 0;
+		margin-inline: auto !important;
+		margin-bottom: 0 !important;
+		padding: 0;
+		text-align: center;
+		background: transparent;
+		border: 0;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card {
+		box-sizing: border-box;
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: repeat(5, auto);
+		align-content: center;
+		align-items: center;
+		justify-items: center;
+		align-self: flex-start;
+		gap: 5px;
+		width: 140px !important;
+		min-width: 140px;
+		height: auto !important;
+		min-height: 0;
+		margin: 0 !important;
+		overflow: visible;
+		padding: 12px !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 72%, transparent) !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-network-glyph {
+		display: none !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-head:not(.cbi-tooltip-container) {
+		grid-column: 1;
+		grid-row: 2;
+		align-self: center;
+		justify-self: center;
+		box-sizing: border-box;
+		justify-items: center;
+		width: auto;
+		min-height: 0;
+		padding: 0 !important;
+		margin: 0;
+		background: transparent !important;
+		border-bottom: 0 !important;
+		font-weight: 650 !important;
+		text-align: center;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-status-primary {
+		display: contents !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-status-primary > :is(
+		.vwrt-network-image-glyph,
+		img.vwrt-network-port-icon
+	) {
+		grid-column: 1;
+		grid-row: 1;
+		inline-size: 34px;
+		block-size: 34px;
+		margin: 0 0 2px;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-state {
+		grid-column: 1;
+		grid-row: 3;
+		color: var(--vwrt-network-state-color) !important;
+		font-size: 0.82rem;
+		font-weight: 520;
+		line-height: 1.2;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed {
+		grid-column: 1;
+		grid-row: 4;
+		display: inline-flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 3px;
+		min-height: 18px;
+		margin-top: 2px;
+		color: var(--vw-text-main);
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed > strong {
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed > small {
+		color: var(--vw-text-secondary);
+		font-size: 0.72rem;
+		font-weight: 520;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-head.cbi-tooltip-container {
+		position: absolute !important;
+		top: 11px;
+		right: 11px;
+		display: block !important;
+		width: 8px;
+		height: 8px;
+		min-height: 0;
+		padding: 0 !important;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-head.cbi-tooltip-container > .zonebadge {
+		width: 8px !important;
+		height: 8px !important;
+		opacity: 0 !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card::after {
+		position: absolute;
+		top: 11px;
+		right: 11px;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--vwrt-network-state-color);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--vwrt-network-state-color) 14%, transparent);
+		content: "";
+		pointer-events: none;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-body:last-child {
+		grid-column: 1;
+		grid-row: 5;
+		width: 100%;
+		min-height: 0;
+		margin-top: 6px;
+		padding: 8px 0 0 !important;
+		border-top: 1px solid color-mix(in srgb, var(--vw-material-border) 54%, transparent) !important;
+		text-align: center;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic {
+		display: grid;
+		grid-template-columns: max-content;
+		justify-content: center;
+		gap: 5px;
+		font-size: 0.8rem !important;
+		font-variant-numeric: tabular-nums;
+		line-height: 1.2;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic-row {
+		display: grid;
+		grid-template-columns: 14px max-content;
+		align-items: center;
+		gap: 7px;
+		color: var(--vw-text-main);
+		white-space: nowrap;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-traffic-arrow {
+		display: block;
+		width: 14px;
+		height: 14px;
+		background: currentColor;
+		mask: url("../img/network-icons/traffic-in.svg") center / contain no-repeat;
+		-webkit-mask: url("../img/network-icons/traffic-in.svg") center / contain no-repeat;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic-row[data-direction="tx"] .vwrt-traffic-arrow {
+		mask-image: url("../img/network-icons/traffic-out.svg");
+		-webkit-mask-image: url("../img/network-icons/traffic-out.svg");
+	}
+}

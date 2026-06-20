@@ -32,7 +32,11 @@
 		border-color: color-mix(in srgb, var(--vw-success) 22%, transparent);
 	}
 
-	body:not(.vwrt-dashboard-page) #maincontent :is(.ifacebadge, .ifacebadge > span, .ifacebadge .nowrap) {
+	body:not(.vwrt-dashboard-page) #maincontent :is(
+		.ifacebadge:not(.cbi-tooltip),
+		.ifacebadge:not(.cbi-tooltip) > span,
+		.ifacebadge:not(.cbi-tooltip) .nowrap
+	) {
 		color: var(--vw-text-secondary) !important;
 		background: var(--vw-token-surface) !important;
 		border-color: color-mix(in srgb, var(--vw-material-border) 76%, transparent) !important;

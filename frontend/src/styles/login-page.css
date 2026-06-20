@@ -178,17 +178,13 @@
 	.vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit,
 	.vwrt-auth-card button.vwrt-auth-submit,
 	.vwrt-auth-card input[type="submit"].vwrt-auth-submit {
+		--vw-button-hover-glow: var(--vw-button-primary-glow);
 		min-height: 48px;
-		border-color: color-mix(in srgb, var(--vw-accent) 22%, var(--vw-glass-border)) !important;
+		border-color: transparent !important;
 		border-radius: var(--vw-radius-pill);
-		color: var(--vw-accent-ink) !important;
-		background:
-			linear-gradient(180deg, color-mix(in srgb, var(--vw-glass-highlight) 58%, transparent), transparent 64%),
-			linear-gradient(135deg, color-mix(in srgb, var(--vw-accent) 12%, var(--vw-button-primary-bg)), var(--vw-button-primary-bg)) !important;
-		background-color: var(--vw-button-primary-solid);
-		box-shadow:
-			var(--vw-highlight-inner),
-			0 14px 30px color-mix(in srgb, var(--vw-cyan) 10%, transparent) !important;
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		box-shadow: none !important;
 		text-shadow: none !important;
 	}
 
@@ -209,14 +205,12 @@
 	.vwrt-auth-card .btn.cbi-button-positive.important.vwrt-auth-submit:hover,
 	.vwrt-auth-card button.vwrt-auth-submit:hover,
 	.vwrt-auth-card input[type="submit"].vwrt-auth-submit:hover {
-		border-color: color-mix(in srgb, var(--vw-accent) 32%, var(--vw-border)) !important;
-		color: var(--vw-accent-ink) !important;
-		background:
-			linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight) 86%, transparent), transparent 68%),
-			var(--vw-material-primary-hover) !important;
+		border-color: transparent !important;
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
 		box-shadow:
-			var(--vw-highlight-inner),
-			0 16px 34px color-mix(in srgb, var(--vw-cyan) 12%, transparent) !important;
+			0 6px 10px -6px var(--vw-button-primary-glow),
+			0 16px 22px -10px var(--vw-button-primary-glow) !important;
 	}
 
 	html[data-vwrt-glass="low"] .vwrt-auth-card {
