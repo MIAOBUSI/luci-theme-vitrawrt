@@ -5,7 +5,7 @@
 
 {% include('header', { blank_page: true }) %}
 
-{% const authCacheSuffix = '?v=1.42.0-r1'; %}
+{% const authCacheSuffix = '?v=1.42.1-r1'; %}
 
 	<div class="vwrt-auth-page">
 		<section class="vwrt-auth-card" aria-label="{{ _('Authorization Required') }}">

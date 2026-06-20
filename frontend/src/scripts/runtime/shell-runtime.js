@@ -11,7 +11,10 @@ import { gsap } from 'gsap';
 	var GLASS_MODES = ['auto', 'high', 'low'];
 	var NETWORK_ICON_BASE = '/luci-static/vitrawrt/img/network-icons/';
 	var NETWORK_ICON_MAP = {
+		'alias.svg': { type: 'virtual-interface', state: 'connected', portType: 'virtual-port' },
+		'alias_disabled.svg': { type: 'virtual-interface', state: 'disconnected', portType: 'virtual-port' },
 		'bridge.svg': { type: 'bridge', state: 'connected', portType: 'switch-port' },
+		'bridge_disabled.svg': { type: 'bridge', state: 'disconnected', portType: 'switch-port' },
 		'ethernet.svg': { type: 'ethernet', state: 'connected', portType: 'port-rj45' },
 		'ethernet_disabled.svg': { type: 'ethernet', state: 'disabled', portType: 'disabled-port' },
 		'port_down.svg': { type: 'port-rj45', state: 'disconnected', portType: 'port-rj45' },
@@ -19,7 +22,17 @@ import { gsap } from 'gsap';
 		'port_pse_up.svg': { type: 'port-rj45', state: 'connected', portType: 'port-rj45' },
 		'port_up.svg': { type: 'port-rj45', state: 'connected', portType: 'port-rj45' },
 		'switch.svg': { type: 'switch-port', state: 'connected', portType: 'switch-port' },
-		'switch_disabled.svg': { type: 'switch-port', state: 'disabled', portType: 'disabled-port' }
+		'switch_disabled.svg': { type: 'switch-port', state: 'disabled', portType: 'disabled-port' },
+		'tunnel.svg': { type: 'tunnel', state: 'connected', portType: 'virtual-port' },
+		'tunnel_disabled.svg': { type: 'tunnel', state: 'disconnected', portType: 'virtual-port' },
+		'vlan.svg': { type: 'vlan', state: 'connected', portType: 'virtual-port' },
+		'vlan_disabled.svg': { type: 'vlan', state: 'disconnected', portType: 'virtual-port' },
+		'vrf.svg': { type: 'virtual-interface', state: 'connected', portType: 'virtual-port' },
+		'vrf_disabled.svg': { type: 'virtual-interface', state: 'disconnected', portType: 'virtual-port' },
+		'wifi.svg': { type: 'wifi', state: 'connected', portType: 'wireless-radio' },
+		'wifi_disabled.svg': { type: 'wifi', state: 'disconnected', portType: 'wireless-radio' },
+		'wireguard.svg': { type: 'wireguard', state: 'connected', portType: 'virtual-port' },
+		'wireguard_disabled.svg': { type: 'wireguard', state: 'disconnected', portType: 'virtual-port' }
 	};
 	var NETWORK_ICON_FILES = {
 		lan: 'lan.svg',
@@ -1188,6 +1201,44 @@ import { gsap } from 'gsap';
 		return { value: String(Math.round(value)), unit: 'MbE' };
 	}
 
+	function renderPortLinkSpeed(status, speed, formatted) {
+		var current = status.querySelector(':scope > .vwrt-port-link-speed');
+		var value;
+		var unit;
+
+		if (!current) {
+			current = document.createElement('span');
+			current.className = 'vwrt-port-link-speed';
+			status.appendChild(current);
+		}
+
+		if (current.getAttribute('data-vwrt-speed') === speed)
+			return;
+
+		current.replaceChildren();
+		value = document.createElement('strong');
+		unit = document.createElement('small');
+		value.textContent = formatted.value;
+		unit.textContent = formatted.unit;
+		current.append(value, unit);
+		current.setAttribute('data-vwrt-speed', speed);
+	}
+
+	function nativePortSpeed(status) {
+		var text = Array.prototype.filter.call(status.childNodes, function(child) {
+			return child.nodeType === 3 || (child.nodeType === 1 && !child.matches('img, .vwrt-port-link-state, .vwrt-port-link-speed'));
+		}).map(function(child) {
+			return child.textContent;
+		}).join(' ').replace(/\s+/g, ' ').trim();
+		var match = text.match(/^([\d.]+)\s*(.*)$/);
+
+		return match ? { value: match[1], unit: match[2] } : null;
+	}
+
+	function portIsLinked(card) {
+		return card.getAttribute('data-vwrt-link-state') === 'connected';
+	}
+
 	function updatePortLinkSpeed(card, network) {
 		var name = card.querySelector(':scope > .ifacebox-head:not(.cbi-tooltip-container)');
 		var status = card.querySelector(':scope > .vwrt-port-status-primary');
@@ -1196,34 +1247,15 @@ import { gsap } from 'gsap';
 			return;
 
 		Promise.resolve(network.getDevice(name.textContent.trim())).then(function(device) {
-			var current;
 			var speed;
 			var formatted;
-			var value;
-			var unit;
 
-			if (!card.isConnected || !device || typeof device.getSpeed !== 'function')
+			if (!portIsLinked(card) || !device || typeof device.getSpeed !== 'function')
 				return;
 
 			speed = device.getSpeed();
 			formatted = formatLinkSpeed(speed) || { value: '—', unit: '' };
-			current = status.querySelector(':scope > .vwrt-port-link-speed');
-			if (!current) {
-				current = document.createElement('span');
-				current.className = 'vwrt-port-link-speed';
-				status.appendChild(current);
-			}
-
-			if (current.getAttribute('data-vwrt-speed') === (speed > 0 ? String(speed) : 'unknown'))
-				return;
-
-			current.replaceChildren();
-			value = document.createElement('strong');
-			unit = document.createElement('small');
-			value.textContent = formatted.value;
-			unit.textContent = formatted.unit;
-			current.append(value, unit);
-			current.setAttribute('data-vwrt-speed', speed > 0 ? String(speed) : 'unknown');
+			renderPortLinkSpeed(status, speed > 0 ? String(speed) : 'unknown', formatted);
 		});
 	}
 
@@ -1236,11 +1268,26 @@ import { gsap } from 'gsap';
 			networkModulePromise = Promise.resolve(window.L.require('network')).catch(function() { return null; });
 
 		networkModulePromise.then(function(network) {
-			if (card.isConnected)
+			if (portIsLinked(card))
 				updatePortLinkSpeed(card, network);
 		}).finally(function() {
 			card.removeAttribute('data-vwrt-speed-pending');
 		});
+	}
+
+	function enhancePortMembership(card) {
+		var membership = card.querySelector(':scope > .ifacebox-head.cbi-tooltip-container');
+		var text;
+		var role;
+
+		if (!membership)
+			return;
+
+		text = String(membership.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+		role = /(^|\W)wan(?:_6)?(\W|$)|wwan|互联网|外网/.test(text) ? 'wan' :
+			/(^|\W)lan(\W|$)|内网|局域网/.test(text) ? 'lan' : 'neutral';
+		membership.classList.add('vwrt-port-network-membership');
+		membership.setAttribute('data-vwrt-network-role', role);
 	}
 
 	function enhancePortTraffic(card) {
@@ -1291,9 +1338,11 @@ import { gsap } from 'gsap';
 	}
 
 	function enhanceOverviewPortCard(card) {
+		var icon;
+		var linked;
+		var nativeSpeed;
 		var status;
 		var state;
-		var directText;
 
 		if (!overviewPortCard(card))
 			return;
@@ -1304,23 +1353,31 @@ import { gsap } from 'gsap';
 		});
 		if (status) {
 			status.classList.add('vwrt-port-status-primary');
+			icon = status.querySelector(':scope > img[data-vwrt-network-icon-original*="port_"], :scope > img[src*="port_"]');
+			linked = icon && icon.getAttribute('data-vwrt-icon-state') === 'connected';
+			nativeSpeed = linked ? nativePortSpeed(status) : null;
+			card.setAttribute('data-vwrt-link-state', linked ? 'connected' : 'disconnected');
+
+			Array.prototype.slice.call(status.childNodes).forEach(function(child) {
+				if (child !== icon && !(child.nodeType === 1 && child.matches('.vwrt-port-link-state, .vwrt-port-link-speed')))
+					child.remove();
+			});
+
 			state = status.querySelector(':scope > .vwrt-port-link-state');
 			if (!state) {
-				directText = directNodeText(status);
-				if (directText) {
-					Array.prototype.slice.call(status.childNodes).forEach(function(child) {
-						if (child.nodeType === 3 || (child.nodeType === 1 && child.tagName === 'BR'))
-							child.remove();
-					});
-					state = document.createElement('span');
-					state.className = 'vwrt-port-link-state';
-					state.textContent = directText;
-					status.appendChild(state);
-				}
+				state = document.createElement('span');
+				state.className = 'vwrt-port-link-state';
+				status.appendChild(state);
 			}
+			state.textContent = typeof window._ === 'function' ? window._(linked ? 'Connected' : 'Disconnected') : (linked ? 'Connected' : 'Disconnected');
+			if (nativeSpeed)
+				renderPortLinkSpeed(status, 'native:' + nativeSpeed.value + nativeSpeed.unit, nativeSpeed);
+			else if (!status.querySelector(':scope > .vwrt-port-link-speed'))
+				renderPortLinkSpeed(status, 'unknown', { value: '—', unit: '' });
 		}
 
 		enhancePortTraffic(card);
+		enhancePortMembership(card);
 		refreshPortLinkSpeed(card);
 	}
 
@@ -3007,7 +3064,7 @@ import { gsap } from 'gsap';
 		});
 
 		root.classList.add('vwrt-ready', 'vitrawrt-ready', 'vwrt-sidebar-ready', 'vwrt-gsap-ready');
-		root.dataset.vitrawrt = '1.42.0-r1';
+		root.dataset.vitrawrt = '1.42.1-r1';
 
 		if (document.body)
 			document.body.classList.add('vitrawrt-body');

@@ -33,7 +33,10 @@
 		transition: none !important;
 	}
 
-	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/bridge.svg"] {
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img:is(
+		[src*="resources/icons/bridge.svg"],
+		[src*="resources/icons/bridge_disabled.svg"]
+	) {
 		content: url("../img/network-icons/bridge.svg") !important;
 	}
 
@@ -55,6 +58,30 @@
 
 	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/switch"] {
 		content: url("../img/network-icons/switch-port.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/alias"] {
+		content: url("../img/network-icons/virtual-interface.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/tunnel"] {
+		content: url("../img/network-icons/tunnel.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/vlan"] {
+		content: url("../img/network-icons/vlan.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/wifi"] {
+		content: url("../img/network-icons/wifi.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/wireguard"] {
+		content: url("../img/network-icons/wireguard.svg") !important;
+	}
+
+	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) img[src*="resources/icons/vrf"] {
+		content: url("../img/network-icons/virtual-interface.svg") !important;
 	}
 
 	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) [data-vwrt-network-icon] {
@@ -187,7 +214,8 @@
 
 	body.vwrt-page-overview #maincontent .network-status-table {
 		display: grid !important;
-		grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 560px));
+		justify-content: center;
 		gap: 12px;
 		padding: 10px !important;
 		background:
@@ -294,7 +322,7 @@
 		box-sizing: border-box;
 		display: grid !important;
 		grid-template-columns: minmax(0, 1fr);
-		grid-template-rows: repeat(5, auto);
+		grid-template-rows: repeat(6, auto);
 		align-content: center;
 		align-items: center;
 		justify-items: center;
@@ -349,10 +377,14 @@
 	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-state {
 		grid-column: 1;
 		grid-row: 3;
-		color: var(--vwrt-network-state-color) !important;
+		color: var(--vw-network-status-danger) !important;
 		font-size: 0.82rem;
 		font-weight: 520;
 		line-height: 1.2;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card[data-vwrt-link-state="connected"] .vwrt-port-link-state {
+		color: var(--vw-network-status-active) !important;
 	}
 
 	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed {
@@ -380,24 +412,40 @@
 		font-weight: 520;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-head.cbi-tooltip-container {
-		position: absolute !important;
-		top: 11px;
-		right: 11px;
-		display: block !important;
-		width: 8px;
-		height: 8px;
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership {
+		position: relative !important;
+		grid-column: 1;
+		grid-row: 6;
+		display: flex !important;
+		gap: 4px;
+		width: 100%;
+		height: 6px;
 		min-height: 0;
-		padding: 0 !important;
+		margin-top: 7px;
+		padding: 0 2px !important;
 		background: transparent !important;
 		border: 0 !important;
 		box-shadow: none !important;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-head.cbi-tooltip-container > .zonebadge {
-		width: 8px !important;
-		height: 8px !important;
-		opacity: 0 !important;
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership > .zonebadge {
+		flex: 1 1 0;
+		width: auto !important;
+		height: 5px !important;
+		border: 1px solid color-mix(in srgb, var(--vw-text-main) 12%, transparent);
+		border-radius: var(--vw-radius-pill);
+		opacity: 1 !important;
+		background: var(--vw-text-muted) !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership[data-vwrt-network-role="wan"] > .zonebadge {
+		background: var(--vw-danger) !important;
+		box-shadow: 0 0 7px color-mix(in srgb, var(--vw-danger) 42%, transparent);
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership[data-vwrt-network-role="lan"] > .zonebadge {
+		background: var(--vw-success) !important;
+		box-shadow: 0 0 7px color-mix(in srgb, var(--vw-success) 38%, transparent);
 	}
 
 	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card::after {
@@ -407,10 +455,15 @@
 		width: 8px;
 		height: 8px;
 		border-radius: 50%;
-		background: var(--vwrt-network-state-color);
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--vwrt-network-state-color) 14%, transparent);
+		background: var(--vw-network-status-danger);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--vw-network-status-danger) 14%, transparent);
 		content: "";
 		pointer-events: none;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card[data-vwrt-link-state="connected"]::after {
+		background: var(--vw-network-status-active);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--vw-network-status-active) 16%, transparent);
 	}
 
 	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-body:last-child {
@@ -455,5 +508,15 @@
 	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic-row[data-direction="tx"] .vwrt-traffic-arrow {
 		mask-image: url("../img/network-icons/traffic-out.svg");
 		-webkit-mask-image: url("../img/network-icons/traffic-out.svg");
+	}
+
+	body.vwrt-page-overview #maincontent table:is(#status_leases, #status_leases6) :is(th, td):last-child {
+		width: 8.5rem;
+		text-align: center !important;
+		vertical-align: middle;
+	}
+
+	body.vwrt-page-overview #maincontent table:is(#status_leases, #status_leases6) td:last-child > :is(button, .cbi-button, .btn) {
+		margin-inline: auto;
 	}
 }

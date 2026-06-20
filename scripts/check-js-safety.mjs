@@ -104,6 +104,13 @@ function analyzeFile(file, source) {
 			report(file, source, match.index, message);
 		}
 	}
+
+	if (/shell-runtime\.js$/.test(file)) {
+		const portSpeedBlock = source.match(/function updatePortLinkSpeed[\s\S]*?function enhancePortTraffic/);
+
+		if (portSpeedBlock && /card\.isConnected/.test(portSpeedBlock[0]))
+			report(file, source, source.indexOf('card.isConnected', source.indexOf('function updatePortLinkSpeed')), 'port link state must not use Node.isConnected');
+	}
 	
 	// Enhanced appendChild check: allow if it's appending newly created nodes
 	const appendPattern = /\.appendChild\(\s*([a-zA-Z0-9_]+)\s*\)/g;
