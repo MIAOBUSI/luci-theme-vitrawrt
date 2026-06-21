@@ -487,7 +487,7 @@
 		border: 1px solid color-mix(in srgb, var(--vw-control-border) 86%, transparent);
 		border-radius: var(--vw-radius-pill);
 		background: var(--vw-tab-track-surface) !important;
-		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 24%, transparent);
+		box-shadow: none;
 	}
 
 	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab :is(.cbi-tab, .cbi-tab-disabled) {
@@ -519,7 +519,7 @@
 		color: var(--vw-button-primary-text) !important;
 		background: var(--vw-button-primary-fill) !important;
 		border-color: var(--vw-button-primary-border) !important;
-		box-shadow: var(--vw-shadow-control) !important;
+		box-shadow: none !important;
 	}
 
 	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .CodeMirror.cm-s-log {
@@ -582,7 +582,7 @@
 		border: 1px solid color-mix(in srgb, var(--vw-control-border) 86%, transparent) !important;
 		border-radius: var(--vw-radius-pill) !important;
 		background: var(--vw-tab-track-surface) !important;
-		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 24%, transparent) !important;
+		box-shadow: none !important;
 	}
 
 	body.vwrt-page-openclash[data-page="admin-services-openclash-log"] #maincontent #tab-content .radio-button label {
@@ -598,7 +598,70 @@
 		color: var(--vw-button-primary-text) !important;
 		background: var(--vw-button-primary-fill) !important;
 		border-color: var(--vw-button-primary-border) !important;
-		box-shadow: var(--vw-shadow-control) !important;
+		box-shadow: none !important;
+	}
+
+	body[data-page^="admin-services-openclash"] #maincontent :is(select, .cbi-input-select, .cbi-dropdown:not(.btn):not(.cbi-button)) {
+		inline-size: max-content !important;
+		max-inline-size: 100%;
+	}
+
+	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) {
+		display: grid !important;
+		grid-template-columns: 220px minmax(0, 1fr);
+		align-items: center;
+		column-gap: 10px;
+	}
+
+	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > .cbi-value-title {
+		box-sizing: border-box;
+		width: 220px !important;
+		min-width: 220px !important;
+		padding-inline-end: 0 !important;
+		text-align: right !important;
+		justify-self: end;
+	}
+
+	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) {
+		display: grid !important;
+		grid-template-columns: 180px 72px 112px;
+		align-items: center;
+		justify-content: start;
+		gap: 8px !important;
+		width: max-content;
+		max-width: 100%;
+	}
+
+	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id^="switch_dashboard_"] {
+		inline-size: 180px !important;
+	}
+
+	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id^="delete_dashboard_"] {
+		inline-size: 72px !important;
+	}
+
+	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id^="default_dashboard_"] {
+		inline-size: 112px !important;
+	}
+
+	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id] {
+		display: block !important;
+		min-width: 0 !important;
+		margin: 0 !important;
+	}
+
+	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id] > :is(button, .btn, .cbi-button, input[type="button"], input[type="submit"], input[type="reset"]) {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		inline-size: 100% !important;
+		min-width: 0 !important;
+		min-height: 36px !important;
+		margin: 0 !important;
+		padding-inline: 8px !important;
+		font-size: 0.78rem !important;
+		font-weight: 500 !important;
+		text-align: center !important;
 	}
 
 	body.vwrt-page-openclash #maincontent .vwrt-openclash-nested-shell {
@@ -731,16 +794,19 @@
 	}
 
 	@media (max-width: 760px) {
+		body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]),
 		body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value {
 			grid-template-columns: minmax(0, 1fr);
 			row-gap: 8px;
 		}
 
+		body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > .cbi-value-title,
 		body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value > .cbi-value-title {
 			width: auto !important;
 			min-width: 0 !important;
 		}
 
+		body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]),
 		body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row {
 			grid-template-columns: minmax(0, 1fr);
 			inline-size: 100%;

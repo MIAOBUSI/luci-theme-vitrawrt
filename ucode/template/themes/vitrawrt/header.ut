@@ -7,7 +7,7 @@
 	import { getuid, getspnam } from 'luci.core';
 
 	const boardinfo = ubus.call('system', 'board');
-	const themeVersion = '1.42.1-r1';
+	const themeVersion = '1.42.2-r1';
 	const cacheSuffix = `?v=${themeVersion}`;
 	const homeUrl = dispatcher.build_url('admin/status/overview');
 

@@ -636,6 +636,26 @@ for (const file of files) {
 	analyzeCss(file, source);
 }
 
+const pagesCssPath = path.join(viteSourceRoot, 'luci-pages.css');
+
+try {
+	const pagesCss = await fs.readFile(pagesCssPath, 'utf8');
+	const networkCss = await fs.readFile(path.join(viteSourceRoot, 'luci-network-icons.css'), 'utf8');
+	const contractCss = `${pagesCss}\n${networkCss}`;
+	const contracts = [
+		[/body\[data-page\^="admin-services-openclash"\][\s\S]*?\.cbi-value:has\(\[id\^="switch_dashboard_"\]\)/, 'OpenClash external-control layout must work before runtime classes are added'],
+		[/body\.vwrt-page-overview[\s\S]*?\.network-status-table\s*\{[\s\S]*?display:\s*flex\s*!important/, 'overview upstream cards must use the compact flex layout'],
+		[/\.cbi-tab\s*>\s*a\s*\{[^}]*box-shadow:\s*none\s*!important/, 'OpenClash log tabs must stay flat'],
+		[/body\[data-page\^="admin-services-openclash"\][\s\S]*?:is\(select,\s*\.cbi-input-select,\s*\.cbi-dropdown/, 'OpenClash dropdowns must have a page-scoped intrinsic-width rule']
+	];
+
+	for (const [pattern, message] of contracts) {
+		if (!pattern.test(contractCss))
+			failures.push({ file: pagesCssPath, line: 1, selector: 'Pass 32 regression contract', message });
+	}
+}
+catch (_) {}
+
 for (const warning of warnings)
 	console.warn(`${warning.file}:${warning.line}: warning: ${warning.message} [${warning.selector}]`);
 

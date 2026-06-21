@@ -3064,7 +3064,7 @@ import { gsap } from 'gsap';
 		});
 
 		root.classList.add('vwrt-ready', 'vitrawrt-ready', 'vwrt-sidebar-ready', 'vwrt-gsap-ready');
-		root.dataset.vitrawrt = '1.42.1-r1';
+		root.dataset.vitrawrt = '1.42.2-r1';
 
 		if (document.body)
 			document.body.classList.add('vitrawrt-body');

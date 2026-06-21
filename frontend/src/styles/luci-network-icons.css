@@ -213,8 +213,9 @@
 	}
 
 	body.vwrt-page-overview #maincontent .network-status-table {
-		display: grid !important;
-		grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 560px));
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: stretch;
 		justify-content: center;
 		gap: 12px;
 		padding: 10px !important;
@@ -228,11 +229,13 @@
 
 	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox {
 		display: grid !important;
+		flex: 1 1 420px;
 		grid-template-rows: auto minmax(0, 1fr);
 		justify-items: stretch !important;
 		gap: 0 !important;
 		min-width: 0 !important;
-		width: 100% !important;
+		width: min(100%, 500px) !important;
+		max-width: 500px;
 		padding: 0 !important;
 		overflow: visible;
 		background:

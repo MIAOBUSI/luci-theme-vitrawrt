@@ -37,13 +37,13 @@ VitraWrt / 璃境是一个基于 Vite + TailwindCSS 构建的现代 LuCI 主题�
 opkg/ipk：
 
 ```sh
-opkg install /tmp/luci-theme-vitrawrt_1.42.1-r1_all.ipk
+opkg install /tmp/luci-theme-vitrawrt_1.42.2-r1_all.ipk
 ```
 
 apk：
 
 ```sh
-apk add --allow-untrusted /tmp/luci-theme-vitrawrt-1.42.1-r1.apk
+apk add --allow-untrusted /tmp/luci-theme-vitrawrt-1.42.2-r1.apk
 ```
 
 安装完成后，在 LuCI 的主题设置中选择 `VitraWrt`。必要时清理浏览器缓存并重新登录。
