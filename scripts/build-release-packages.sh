@@ -13,7 +13,7 @@ pkg_release="$(sed -n 's/^PKG_RELEASE:=//p' "$repo_root/Makefile" | head -n 1)"
 version="$pkg_version-r$pkg_release"
 
 [ -n "$pkg_version" ] && [ -n "$pkg_release" ]
-[ "$version" = "1.42.2-r1" ]
+[ "$version" = "1.43.0-r1" ]
 
 mkdir -p "$build_parent" "$package_dir"
 build_dir="$(mktemp -d "$build_parent/release-packaging.XXXXXX")"

@@ -13,7 +13,7 @@
 		backdrop-filter: none !important;
 	}
 
-		body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-section, .panel, .cbi-tabcontainer) {
+		body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-section, .panel) {
 			color: var(--vw-text-main) !important;
 			background: var(--vw-material-section-surface) !important;
 			border: 1px solid var(--vw-material-border) !important;
@@ -26,7 +26,12 @@
 			backdrop-filter: none !important;
 		}
 
-		body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-map, .cbi-section, .panel, .cbi-tabcontainer) :is(.cbi-section, .panel) {
+		body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-map, .cbi-section, .panel) > :is(.cbi-section, .panel):not(:has(> :is(
+			.cbi-tblsection,
+			.cbi-section-table,
+			table,
+			.table
+		))) {
 			background: color-mix(in srgb, var(--vw-material-group-surface) 54%, transparent) !important;
 			border-color: color-mix(in srgb, var(--vw-material-border) 38%, transparent) !important;
 			box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 18%, transparent) !important;
@@ -34,10 +39,41 @@
 			backdrop-filter: none !important;
 	}
 
-	body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-section-node, .cbi-map-tabbed, .cbi-tblsection, .network-status-table) {
+	body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-section, .panel) > :is(.cbi-section, .panel):has(> :is(
+		.cbi-tblsection,
+		.cbi-section-table,
+		table,
+		.table
+	)),
+	body:not(.vwrt-dashboard-page) #maincontent .cbi-tblsection {
+		padding: clamp(14px, 1.4vw, 22px) !important;
+		color: var(--vw-text-main) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 16%, transparent), transparent 66%),
+			color-mix(in srgb, var(--vw-material-section-surface) 82%, transparent) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 72%, transparent) !important;
+		border-radius: var(--vw-radius-panel) !important;
+		box-shadow:
+			0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 3%, transparent),
+			0 12px 30px color-mix(in srgb, var(--vw-shadow-color) 5%, transparent),
+			inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 18%, transparent) !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent .network-status-table {
 		background: color-mix(in srgb, var(--vw-material-inner-surface) 58%, transparent) !important;
 		border-color: color-mix(in srgb, var(--vw-material-border) 42%, transparent) !important;
 		border-radius: var(--vw-radius-card) !important;
+		box-shadow: none !important;
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
+	}
+
+	body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-tabcontainer, .cbi-map-tabbed, .cbi-section-node, .cbi-section-node-tabbed) {
+		color: inherit !important;
+		background: transparent !important;
+		border: 0 !important;
 		box-shadow: none !important;
 		-webkit-backdrop-filter: none !important;
 		backdrop-filter: none !important;
@@ -73,7 +109,7 @@
 		box-shadow: none !important;
 	}
 
-	body:not(.vwrt-dashboard-page) #maincontent :is(.alert, .alert-message, .notice) {
+	body:not(.vwrt-dashboard-page) #maincontent :is(.alert, .alert-message, .notice):not(.vwrt-status-prompt) {
 		background:
 			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 32%, transparent), transparent 70%),
 			var(--vw-material-group-surface) !important;
@@ -85,22 +121,4 @@
 		backdrop-filter: none !important;
 	}
 
-	body:not(.vwrt-dashboard-page) #maincontent :is(.modal, .cbi-modal, [role="dialog"]),
-	#modal_overlay .modal,
-	.cbi-tooltip {
-		background:
-			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 54%, transparent), transparent 68%),
-			var(--vw-material-modal-surface) !important;
-		border-color: var(--vw-material-border-strong) !important;
-		box-shadow: var(--vw-material-shadow-raised) !important;
-		-webkit-backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover)) !important;
-		backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover)) !important;
-	}
-
-	body:not(.vwrt-dashboard-page) #maincontent :is(.cbi-dropdown:not(.btn):not(.cbi-button) ul, ul.dropdown-menu, .dropdown-menu),
-	#modal_overlay :is(.cbi-dropdown:not(.btn):not(.cbi-button) ul, ul.dropdown-menu, .dropdown-menu) {
-		background: var(--vw-material-floating-surface) !important;
-		border-color: var(--vw-material-border-strong) !important;
-		box-shadow: var(--vw-shadow-popover) !important;
-	}
 }

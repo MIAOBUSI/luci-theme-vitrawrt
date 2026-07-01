@@ -110,6 +110,12 @@ function isPageScoped(selector) {
 		/body:is\([^)]*\.vwrt-page-[^)]+\)/.test(selector);
 }
 
+function isStructuredTableScoped(selector) {
+	return selector.includes('.vwrt-table-boolean-first') ||
+		selector.includes('.vwrt-table-has-actions') ||
+		selector.includes('.vwrt-table-many-columns');
+}
+
 function isAllowedCoreStateRule(file, selector) {
 	return /luci-layout-exceptions\.css$/.test(file) &&
 		/^#maincontent\s+\[data-tab-active="(?:true|false)"\]$/.test(selector.trim());
@@ -476,10 +482,10 @@ function analyzeGlobalRule(file, source, selector, decls, index) {
 	if (selector.includes('.cbi-section-table') && hasDecl(decls, 'display', 'block'))
 		report(file, line, selector, '.cbi-section-table display:block is forbidden');
 
-	if (hasDecl(decls, 'table-layout', 'fixed') && !isPageScoped(selector))
+	if (hasDecl(decls, 'table-layout', 'fixed') && !isPageScoped(selector) && !isStructuredTableScoped(selector))
 		report(file, line, selector, 'table-layout:fixed is only allowed in page-scoped exception rules');
 
-	if (hasDecl(decls, 'white-space', 'nowrap') && hasLuCIComponentSelector(selector) && !isPageScoped(selector) && !/sidebar\.css$/.test(file) && !isSidebarTooltipSelector(selector))
+	if (hasDecl(decls, 'white-space', 'nowrap') && hasLuCIComponentSelector(selector) && !isPageScoped(selector) && !isStructuredTableScoped(selector) && !/sidebar\.css$/.test(file) && !isSidebarTooltipSelector(selector))
 		report(file, line, selector, 'LuCI component white-space:nowrap is only allowed in page-scoped exception rules');
 
 	if (selector.includes('.btn') && hasDecl(decls, 'width', '100%'))
@@ -640,21 +646,29 @@ const pagesCssPath = path.join(viteSourceRoot, 'luci-pages.css');
 
 try {
 	const pagesCss = await fs.readFile(pagesCssPath, 'utf8');
-	const networkCss = await fs.readFile(path.join(viteSourceRoot, 'luci-network-icons.css'), 'utf8');
-	const contractCss = `${pagesCss}\n${networkCss}`;
-	const contracts = [
-		[/body\[data-page\^="admin-services-openclash"\][\s\S]*?\.cbi-value:has\(\[id\^="switch_dashboard_"\]\)/, 'OpenClash external-control layout must work before runtime classes are added'],
-		[/body\.vwrt-page-overview[\s\S]*?\.network-status-table\s*\{[\s\S]*?display:\s*flex\s*!important/, 'overview upstream cards must use the compact flex layout'],
-		[/\.cbi-tab\s*>\s*a\s*\{[^}]*box-shadow:\s*none\s*!important/, 'OpenClash log tabs must stay flat'],
-		[/body\[data-page\^="admin-services-openclash"\][\s\S]*?:is\(select,\s*\.cbi-input-select,\s*\.cbi-dropdown/, 'OpenClash dropdowns must have a page-scoped intrinsic-width rule']
-	];
+		const networkCss = await fs.readFile(path.join(viteSourceRoot, 'luci-network-icons.css'), 'utf8');
+		const contractCss = `${pagesCss}\n${networkCss}`;
+		const contracts = [
+			[/body\.vwrt-page-openclash[\s\S]*?#maincontent[\s\S]*?input\.cbi-button-apply[\s\S]*?var\(--vw-button-primary-fill\)/, 'OpenClash CBI action buttons must keep theme-token color without runtime layout classes'],
+			[/body\.vwrt-page-overview[\s\S]*?\.network-status-table\s*\{[\s\S]*?display:\s*flex\s*!important/, 'overview upstream cards must use the compact flex layout'],
+			[/\.cbi-tab\s*>\s*a\s*\{[^}]*box-shadow:\s*none\s*!important/, 'OpenClash log tabs must stay flat'],
+			[/body\[data-page\^="admin-services-openclash"\][\s\S]*?:is\(select,\s*\.cbi-input-select,\s*\.cbi-dropdown/, 'OpenClash dropdowns must have a page-scoped intrinsic-width rule']
+		];
+		const forbiddenContracts = [
+			[/body\[data-page\^="admin-services-openclash"\][\s\S]*?\.cbi-value:has\(\[id\^="switch_dashboard_"\]\)/, 'OpenClash external controls must not be re-laid out by theme CSS'],
+			[/\.vwrt-openclash-button-row/, 'OpenClash external controls must not depend on runtime layout classes']
+		];
 
-	for (const [pattern, message] of contracts) {
-		if (!pattern.test(contractCss))
-			failures.push({ file: pagesCssPath, line: 1, selector: 'Pass 32 regression contract', message });
+		for (const [pattern, message] of contracts) {
+			if (!pattern.test(contractCss))
+				failures.push({ file: pagesCssPath, line: 1, selector: 'Pass 32 regression contract', message });
+		}
+		for (const [pattern, message] of forbiddenContracts) {
+			if (pattern.test(contractCss))
+				failures.push({ file: pagesCssPath, line: 1, selector: 'Pass 32 regression contract', message });
+		}
 	}
-}
-catch (_) {}
+	catch (_) {}
 
 for (const warning of warnings)
 	console.warn(`${warning.file}:${warning.line}: warning: ${warning.message} [${warning.selector}]`);

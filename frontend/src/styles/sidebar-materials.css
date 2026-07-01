@@ -127,7 +127,7 @@ html.vwrt-sidebar-collapsed .vwrt-menu .active > .vwrt-menu-row a {
 	border-color: color-mix(in srgb, var(--vw-border-soft) 52%, transparent);
 	color: var(--vw-text-soft);
 	background: color-mix(in srgb, var(--vw-liquid-control) 48%, transparent);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 28%, transparent) inset;
+	box-shadow: none;
 }
 
 .vwrt-sidebar-actions .vwrt-text-button:hover,
@@ -136,6 +136,10 @@ html.vwrt-sidebar-collapsed .vwrt-menu .active > .vwrt-menu-row a {
 	border-color: color-mix(in srgb, var(--vw-accent) 16%, var(--vw-border-soft));
 	color: var(--vw-text-main);
 	background: var(--vw-sidebar-row-hover-bg);
+	box-shadow:
+		0 8px 12px -7px var(--vw-button-neutral-glow),
+		0 18px 24px -12px var(--vw-button-neutral-glow);
+	transform: translateY(-1px);
 }
 
 .vwrt-theme-panel {
@@ -156,7 +160,7 @@ html.vwrt-sidebar-collapsed .vwrt-menu .active > .vwrt-menu-row a {
 	border-color: color-mix(in srgb, var(--vw-border-soft) 48%, transparent);
 	color: var(--vw-text-soft);
 	background: color-mix(in srgb, var(--vw-liquid-control) 50%, transparent);
-	box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 30%, transparent) inset;
+	box-shadow: none;
 }
 
 .vwrt-theme-button:hover,
@@ -165,6 +169,9 @@ html.vwrt-sidebar-collapsed .vwrt-menu .active > .vwrt-menu-row a {
 	border-color: color-mix(in srgb, var(--vw-accent) 18%, var(--vw-border-soft));
 	color: var(--vw-accent-ink);
 	background: var(--vw-sidebar-row-hover-bg);
+	box-shadow:
+		0 8px 12px -7px var(--vw-button-primary-glow),
+		0 18px 24px -12px var(--vw-button-primary-glow);
 }
 
 html.vwrt-sidebar-collapsed .vwrt-sidebar-brand,

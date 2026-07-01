@@ -19,7 +19,7 @@
 		.alert,
 		.alert-message,
 		.notice
-	) {
+	):not(.vwrt-status-prompt) {
 		color: var(--vw-text-main) !important;
 		background:
 			linear-gradient(180deg, color-mix(in srgb, var(--vw-liquid-highlight-edge) 62%, transparent), transparent 56%),

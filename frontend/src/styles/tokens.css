@@ -142,7 +142,7 @@
 		--vw-button-warning-fill: #f7ead2;
 		--vw-button-warning-hover: var(--vw-button-warning-fill);
 		--vw-button-warning-text: #ffffff;
-		--vw-button-neutral-glow: rgba(60, 60, 67, 0.16);
+			--vw-button-neutral-glow: rgba(60, 60, 67, 0.36);
 		--vw-button-primary-glow: rgba(10, 132, 255, 0.42);
 		--vw-button-positive-glow: rgba(48, 209, 88, 0.38);
 		--vw-button-force-glow: rgba(255, 159, 10, 0.42);
@@ -169,7 +169,7 @@
 			--vw-cbi-value-gap: 2px;
 			--vw-cbi-description-gap: 7px;
 			--vw-inline-control-gap: 12px;
-			--vwrt-apply-label-width: 112px;
+				--vwrt-apply-label-width: 88px;
 
 		--vw-space-1: 0.25rem;
 		--vw-space-2: 0.5rem;
@@ -657,7 +657,7 @@
 		--vw-button-warning-fill: #4e3a22;
 		--vw-button-warning-hover: var(--vw-button-warning-fill);
 		--vw-button-warning-text: #ffffff;
-		--vw-button-neutral-glow: rgba(255, 255, 255, 0.14);
+			--vw-button-neutral-glow: rgba(255, 255, 255, 0.36);
 		--vw-button-primary-glow: rgba(100, 210, 255, 0.4);
 		--vw-button-positive-glow: rgba(48, 209, 88, 0.36);
 		--vw-button-force-glow: rgba(255, 179, 64, 0.4);
@@ -839,7 +839,7 @@
 			--vw-button-warning-fill: #4e3a22;
 			--vw-button-warning-hover: var(--vw-button-warning-fill);
 			--vw-button-warning-text: #ffffff;
-			--vw-button-neutral-glow: rgba(255, 255, 255, 0.14);
+			--vw-button-neutral-glow: rgba(255, 255, 255, 0.36);
 			--vw-button-primary-glow: rgba(100, 210, 255, 0.4);
 			--vw-button-positive-glow: rgba(48, 209, 88, 0.36);
 			--vw-button-force-glow: rgba(255, 179, 64, 0.4);

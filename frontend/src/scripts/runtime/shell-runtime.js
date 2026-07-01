@@ -106,10 +106,13 @@ import { gsap } from 'gsap';
 	var PAGE_CLASSES = [
 		'vwrt-page-overview',
 		'vwrt-page-network',
+		'vwrt-page-dhcp',
+		'vwrt-page-dns',
 		'vwrt-page-statistics',
 		'vwrt-page-collectd',
 		'vwrt-page-vnstat2',
 		'vwrt-page-system',
+		'vwrt-page-flash',
 		'vwrt-page-packages',
 		'vwrt-page-nlbw',
 		'vwrt-page-startup',
@@ -119,6 +122,7 @@ import { gsap } from 'gsap';
 		'vwrt-page-firewall',
 		'vwrt-page-nftables',
 		'vwrt-page-openclash',
+		'vwrt-page-easytier-status',
 		'vwrt-page-mosdns',
 		'vwrt-page-cpulimit',
 		'vwrt-page-nas',
@@ -222,6 +226,12 @@ import { gsap } from 'gsap';
 		var index = THEME_MODES.indexOf(mode);
 
 		applyThemeMode(THEME_MODES[(index + 1) % THEME_MODES.length], true);
+	}
+
+	function isOpenClashConfigPage() {
+		var page = document.body && document.body.getAttribute('data-page') || '';
+
+		return /^admin-services-openclash-(settings|overwrite|subscribe|config)(?:$|-)/.test(page);
 	}
 
 	function syncOpenClashTheme(mode) {
@@ -468,6 +478,53 @@ import { gsap } from 'gsap';
 		return parts.join(' ');
 	}
 
+	function easyTierStatusPage() {
+		var page = document.body && document.body.getAttribute('data-page') || '';
+		var path = getPathText();
+
+		return /^admin-vpn-easytier-status(?:-|$)/.test(page) ||
+			/(^|\s)(admin\/)?vpn\/easytier\/status(?:\/|\s|$)/.test(path);
+	}
+
+	function cleanupEasyTierNativeStatus(rootNode) {
+		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+
+		if (!easyTierStatusPage())
+			return;
+
+		scope.querySelectorAll('#maincontent :is(.vwrt-button-action, .vwrt-button-danger, .vwrt-button-neutral, .vwrt-button-stop, .vwrt-button-icon-only, .vwrt-button-has-text, .vwrt-button-add-icon, .vwrt-button-add-text, .vwrt-button-local-loading)').forEach(function(node) {
+			node.classList.remove(
+				'vwrt-button-action',
+				'vwrt-button-danger',
+				'vwrt-button-neutral',
+				'vwrt-button-stop',
+				'vwrt-button-icon-only',
+				'vwrt-button-has-text',
+				'vwrt-button-add-icon',
+				'vwrt-button-add-text',
+				'vwrt-button-local-loading'
+			);
+		});
+
+		scope.querySelectorAll('#maincontent :is(.vwrt-loading-viewport, .vwrt-loading-apply, .vwrt-loading-modal-local, .vwrt-loading-card-local, .vwrt-loading-card-host, .vwrt-loading-only-parent, .vwrt-loading-titled-modal, .vwrt-loading-titled-body, .vwrt-tab-panel-stack, .vwrt-tab-panel-menu, .vwrt-multi-button-field)').forEach(function(node) {
+			node.classList.remove(
+				'vwrt-loading-viewport',
+				'vwrt-loading-apply',
+				'vwrt-loading-modal-local',
+				'vwrt-loading-card-local',
+				'vwrt-loading-card-host',
+				'vwrt-loading-only-parent',
+				'vwrt-loading-titled-modal',
+				'vwrt-loading-titled-body',
+				'vwrt-tab-panel-stack',
+				'vwrt-tab-panel-menu',
+				'vwrt-multi-button-field'
+			);
+			node.style.removeProperty('--vwrt-tab-panel-menu-bottom');
+			node.removeAttribute('data-vwrt-loading-owner');
+		});
+	}
+
 	function setPageClasses() {
 		var path;
 
@@ -482,14 +539,23 @@ import { gsap } from 'gsap';
 		if (/(^|\s)(admin\/)?status(?:\/overview)?(\s|$)/.test(path))
 			document.body.classList.add('vwrt-page-overview');
 
-		if (/(^|\s)(admin\/)?network(\/(?:network|routes|dhcp))?(\s|$)/.test(path))
+		if (/(^|\s)(admin\/)?network(\/(?:network|routes|dhcp|dns))?(\s|$)/.test(path))
 			document.body.classList.add('vwrt-page-network');
+
+		if (/(^|\s)(admin\/)?network\/dhcp(\s|$)/.test(path))
+			document.body.classList.add('vwrt-page-dhcp');
+
+		if (/(^|\s)(admin\/)?network\/dns(\s|$)/.test(path))
+			document.body.classList.add('vwrt-page-dns');
 
 		if (/(^|\s)(admin\/)?status\/vnstat2(\/|\s|$)/.test(path))
 			document.body.classList.add('vwrt-page-vnstat2');
 
 		if (/(^|\s)(admin\/)?system\/system(\s|$)/.test(path))
 			document.body.classList.add('vwrt-page-system');
+
+		if (/(^|\s)(admin\/)?system\/(?:flash|mounts)(\s|$)/.test(path))
+			document.body.classList.add('vwrt-page-flash');
 
 		if (/(^|\s)(admin\/)?statistics\/collectd(\s|$)/.test(path))
 			document.body.classList.add('vwrt-page-collectd');
@@ -523,6 +589,9 @@ import { gsap } from 'gsap';
 
 		if (/(^|\s)(admin\/)?vpn(\/|\s|$)|openvpn|softether/.test(path))
 			document.body.classList.add('vwrt-page-vpn');
+
+		if (/(^|\s)(admin\/)?vpn\/easytier\/status(?:\/|\s|$)/.test(path))
+			document.body.classList.add('vwrt-page-easytier-status', 'vwrt-page-plugin');
 
 		if (/(^|\s)(admin\/)?services(\s|\/|$)/.test(path))
 			document.body.classList.add('vwrt-page-services');
@@ -726,11 +795,21 @@ import { gsap } from 'gsap';
 			return false;
 		};
 
+		if (easyTierStatusPage()) {
+			cleanupEasyTierNativeStatus(scope);
+			return;
+		}
+
 		document.querySelectorAll('[data-vwrt-loading-owner]').forEach(function(node) {
 			if (!node.matches(loadingSelector)) {
-				node.classList.remove('vwrt-loading-viewport', 'vwrt-loading-apply', 'vwrt-loading-modal-local');
+				node.classList.remove('vwrt-loading-viewport', 'vwrt-loading-apply', 'vwrt-loading-modal-local', 'vwrt-loading-card-local');
 				node.removeAttribute('data-vwrt-loading-owner');
 			}
+		});
+
+		document.querySelectorAll('.vwrt-loading-card-host').forEach(function(node) {
+			if (!node.querySelector('.vwrt-loading-card-local'))
+				node.classList.remove('vwrt-loading-card-host');
 		});
 
 		document.querySelectorAll('.vwrt-button-local-loading').forEach(function(control) {
@@ -748,23 +827,48 @@ import { gsap } from 'gsap';
 				node.classList.remove('vwrt-loading-only-parent');
 		});
 
+		document.querySelectorAll('.vwrt-loading-titled-modal').forEach(function(node) {
+			var titledSpinner = node.querySelector('.vwrt-loading-titled-body');
+			if (!titledSpinner)
+				node.classList.remove('vwrt-loading-titled-modal');
+		});
+
+		document.querySelectorAll('.vwrt-loading-titled-body').forEach(function(node) {
+			if (!node.matches(loadingSelector) || !node.closest('.vwrt-loading-titled-modal'))
+				node.classList.remove('vwrt-loading-titled-body');
+		});
+
 		scope.querySelectorAll(loadingSelector).forEach(function(spinner) {
 			var control = loadingControlRoot(spinner);
 			var parent;
 			var owner;
 			var ownerClass;
+			var cardHost = null;
+			var modalHost;
+			var titleNode;
 
 			if (control) {
 				control.classList.add('vwrt-button-local-loading');
-				spinner.classList.remove('vwrt-loading-viewport', 'vwrt-loading-apply', 'vwrt-loading-modal-local');
-				control.classList.remove('vwrt-loading-viewport', 'vwrt-loading-apply', 'vwrt-loading-modal-local');
+				spinner.classList.remove('vwrt-loading-viewport', 'vwrt-loading-apply', 'vwrt-loading-modal-local', 'vwrt-loading-card-local');
+				control.classList.remove('vwrt-loading-viewport', 'vwrt-loading-apply', 'vwrt-loading-modal-local', 'vwrt-loading-card-local');
 				spinner.removeAttribute('data-vwrt-loading-owner');
 				control.removeAttribute('data-vwrt-loading-owner');
 				return;
 			}
 
+			parent = spinner.parentElement;
+			while (parent && parent.id !== 'view' && parent.id !== 'maincontent' && parent.id !== 'modal_overlay') {
+				if (hasMaterial(parent) && meaningfulContent(parent, spinner)) {
+					cardHost = parent;
+					break;
+				}
+				parent = parent.parentElement;
+			}
+
 			if (spinner.matches('#modal_overlay > .modal.alert-message.spinning, #modal_overlay > .modal.alert-message.loading'))
 				owner = 'apply';
+			else if (cardHost)
+				owner = 'card';
 			else if (spinner.closest('#modal_overlay .modal'))
 				owner = 'modal';
 			else
@@ -772,30 +876,56 @@ import { gsap } from 'gsap';
 
 			ownerClass = owner === 'apply'
 				? 'vwrt-loading-apply'
+				: owner === 'card'
+					? 'vwrt-loading-card-local'
 				: owner === 'modal'
 					? 'vwrt-loading-modal-local'
 					: 'vwrt-loading-viewport';
 
 			if (spinner.getAttribute('data-vwrt-loading-owner') !== owner) {
-				spinner.classList.remove('vwrt-loading-viewport', 'vwrt-loading-apply', 'vwrt-loading-modal-local');
+				spinner.classList.remove('vwrt-loading-viewport', 'vwrt-loading-apply', 'vwrt-loading-modal-local', 'vwrt-loading-card-local');
 				spinner.classList.add(ownerClass);
 				spinner.setAttribute('data-vwrt-loading-owner', owner);
+			}
+
+			if (cardHost)
+				cardHost.classList.add('vwrt-loading-card-host');
+
+			modalHost = spinner.closest('#modal_overlay .modal[role="dialog"]');
+			titleNode = modalHost ? Array.prototype.find.call(modalHost.children || [], function(child) {
+				return child.matches && child.matches('h1, h2, h3, h4, .modal-title') && child.textContent && child.textContent.trim();
+			}) : null;
+
+				if (
+					modalHost &&
+					!modalHost.matches('.alert-message') &&
+					titleNode
+				) {
+					modalHost.classList.add('vwrt-loading-titled-modal');
+					modalHost.classList.remove('vwrt-loading-only-parent');
+					spinner.classList.add('vwrt-loading-titled-body');
+					spinner.classList.remove('vwrt-loading-modal-local', 'vwrt-loading-card-local', 'vwrt-loading-viewport');
+				} else {
+				if (modalHost)
+					modalHost.classList.remove('vwrt-loading-titled-modal');
+				spinner.classList.remove('vwrt-loading-titled-body');
 			}
 
 			if (spinner.closest('#modal_overlay')) {
 				if (owner === 'modal') {
 					parent = spinner.parentElement;
 					while (parent && parent.id !== 'modal_overlay') {
-						if (
-							parent.matches('.modal[role="dialog"]') &&
-							!parent.matches('.alert-message') &&
-							!meaningfulContent(parent, spinner)
-						)
-							parent.classList.add('vwrt-loading-only-parent');
-						else if (hasMaterial(parent) && !meaningfulContent(parent, spinner))
-							parent.classList.add('vwrt-loading-only-parent');
-						parent = parent.parentElement;
-					}
+							if (
+								parent.matches('.modal[role="dialog"]') &&
+								!parent.matches('.alert-message') &&
+								!parent.classList.contains('vwrt-loading-titled-modal') &&
+								!meaningfulContent(parent, spinner)
+							)
+								parent.classList.add('vwrt-loading-only-parent');
+							else if (!parent.classList.contains('vwrt-loading-titled-modal') && hasMaterial(parent) && !meaningfulContent(parent, spinner))
+								parent.classList.add('vwrt-loading-only-parent');
+							parent = parent.parentElement;
+						}
 				}
 				return;
 			}
@@ -814,48 +944,146 @@ import { gsap } from 'gsap';
 
 		if (!text)
 			return null;
-		if (/Waiting for configuration to be applied|正在等待配置.*应用|正在应用配置/i.test(text))
+		if (
+			modal.matches &&
+			modal.matches('#modal_overlay :is(.modal, [role="dialog"])') &&
+			modal.querySelector(':scope :is(input[type="checkbox"], input[type="radio"], textarea, select, table, pre, code, .cbi-map, .cbi-section, .uci-change-list, .uci-change-legend)')
+		)
+			return null;
+		if (/Changes have been reverted|Changes reverted|更改已被还原|配置更改已还原|更改已还原/i.test(text))
+			return 'restored';
+		if (/Configuration changes applied|Configuration has been applied|Changes applied|Content saved|配置更改已应用|配置已应用|更改已应用|内容已保存/i.test(text))
+			return 'success';
+		if (/Waiting for configuration to be applied|Applying configuration changes|Applying changes|正在等待配置.*应用|正在应用配置/i.test(text))
 			return 'applying';
 		if (/Loading view|Loading data|正在载入视图|正在加载/i.test(text))
 			return 'loading';
 		if (/Session expired|authentication session expired|会话已过期|登录会话.*过期/i.test(text))
 			return 'session';
+		if (/Unable to read uploaded backup archive|Unable to read uploaded backup|无法读取上传的备份归档|无法读取上传的备份|Upload failed|Backup restore failed|校验失败|验证失败|上传失败|读取失败|读取错误|Failed to|Invalid/i.test(text))
+			return 'warning';
 		if (/No pending changes|There are no changes to apply|没有待应用的更改|没有待处理的更改/i.test(text))
 			return 'empty';
 
 		return null;
 	}
 
+	function normalizeStatusPromptBody(modal) {
+		var existing = modal.querySelector(':scope > .vwrt-status-message');
+		var textNodes;
+		var firstText;
+		var message;
+		var text;
+
+		if (existing)
+			return existing;
+
+		textNodes = Array.prototype.filter.call(modal.childNodes || [], function(node) {
+			return node.nodeType === 3 && String(node.textContent || '').trim();
+		});
+
+		if (!textNodes.length)
+			return null;
+
+		firstText = textNodes[0];
+		message = document.createElement('span');
+		message.className = 'vwrt-status-message';
+		modal.insertBefore(message, firstText);
+
+		textNodes.forEach(function(node) {
+			text = String(node.textContent || '').replace(/\s+/g, ' ').trim();
+			if (text)
+				message.appendChild(document.createTextNode((message.textContent ? ' ' : '') + text));
+			node.remove();
+		});
+
+		return message;
+	}
+
 	function enhanceStatusPrompts(rootNode) {
 		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+		var statusKinds = [
+			'loading',
+			'applying',
+			'success',
+			'restored',
+			'session',
+			'warning',
+			'empty'
+		];
+		var statusClasses = ['vwrt-status-prompt', 'vwrt-status-compact', 'vwrt-status-has-action', 'vwrt-status-floating'].concat(
+			statusKinds.map(function(kind) {
+				return 'vwrt-status-' + kind;
+			})
+		);
+			var selector = [
+				'#modal_overlay .modal',
+				'#modal_overlay [role="dialog"]',
+				'#modal_overlay > .alert',
+				'#modal_overlay > .alert-message',
+				'#modal_overlay > .notice',
+				'body.vwrt-auth-body .vwrt-auth-page .alert',
+			'body.vwrt-auth-body .vwrt-auth-page .alert-message',
+			'body.vwrt-auth-body .vwrt-auth-page .notice',
+			'#maincontent .alert',
+			'#maincontent .alert-message',
+			'#maincontent .notice',
+			'#view .alert',
+			'#view .alert-message',
+			'#view .notice'
+		].join(', ');
 		var modals = [];
+		var hasFloatingPrompt = false;
 
-		if (scope.matches && scope.matches('#modal_overlay > .modal, #modal_overlay > [role="dialog"]'))
+		if (scope.matches && scope.matches(selector))
 			modals.push(scope);
 
-		scope.querySelectorAll('#modal_overlay > .modal, #modal_overlay > [role="dialog"]').forEach(function(modal) {
+		scope.querySelectorAll(selector).forEach(function(modal) {
 			modals.push(modal);
 		});
 
 		modals.forEach(function(modal) {
 			var kind = classifyStatusPrompt(modal);
+			var title;
+			var footer;
+			var body;
+			var compact;
+			var floating;
 
-			modal.classList.remove(
-				'vwrt-status-prompt',
-				'vwrt-status-loading',
-				'vwrt-status-applying',
-				'vwrt-status-session',
-				'vwrt-status-empty'
-			);
-
-			if (!kind) {
+			if (modal.parentElement && modal.parentElement.closest('.vwrt-status-prompt')) {
+				modal.classList.remove.apply(modal.classList, statusClasses);
 				modal.removeAttribute('data-vwrt-status-kind');
+				modal.removeAttribute('data-vwrt-status-layout');
 				return;
 			}
 
-			modal.classList.add('vwrt-status-prompt', 'vwrt-status-' + kind);
+			if (!kind) {
+				modal.classList.remove.apply(modal.classList, statusClasses);
+				modal.removeAttribute('data-vwrt-status-kind');
+				modal.removeAttribute('data-vwrt-status-layout');
+				return;
+			}
+
+			title = modal.querySelector(':scope > h1, :scope > h2, :scope > h3, :scope > h4, :scope > .modal-title');
+			footer = modal.querySelector(':scope > .button-row, :scope > .right, :scope > .modal-footer');
+			body = modal.querySelector(':scope > .vwrt-status-message, :scope > .alert-message, :scope > .modal-body, :scope > p') || normalizeStatusPromptBody(modal);
+			compact = !title && !!body;
+
+			floating = !modal.closest('#modal_overlay') && !modal.closest('.vwrt-auth-page');
+			hasFloatingPrompt = hasFloatingPrompt || floating;
+			modal.classList.add('vwrt-status-prompt');
+			statusKinds.forEach(function(name) {
+				modal.classList.toggle('vwrt-status-' + name, name === kind);
+			});
+			modal.classList.toggle('vwrt-status-compact', compact);
+			modal.classList.toggle('vwrt-status-has-action', !!footer);
+			modal.classList.toggle('vwrt-status-floating', floating);
 			modal.setAttribute('data-vwrt-status-kind', kind);
+			modal.setAttribute('data-vwrt-status-layout', compact ? 'compact' : 'stacked');
 		});
+
+		if (document.body)
+			document.body.classList.toggle('vwrt-status-freeze', hasFloatingPrompt);
 	}
 
 	function enhanceNetworkIcons(rootNode) {
@@ -1386,19 +1614,19 @@ import { gsap } from 'gsap';
 			return;
 
 		document.body.classList.toggle('vwrt-view-ready', viewReady());
+		setPageClasses();
 		enhanceLoadingStates(document);
 		enhanceStatusPrompts(document);
 		enhanceNetworkIcons(document);
-		setPageClasses();
 		normalizeIndicatorBar();
 		enhanceButtonKinds(document);
 		enhanceApplyMenus(document);
-		enhanceCbiDropdowns(document);
-		enhanceModalInlineControls(document);
-		enhanceMultiButtonFields(document);
+					enhanceCbiDropdowns(document);
+					enhanceModalInlineControls(document);
+					enhanceMultiButtonFields(document);
+					normalizeRepoKeyTables(document);
 					enhancePlaceholderRows(document);
-					enhanceStatusPrompts(document);
-					enhanceNetworkIcons(document);
+					enhanceStructuredTables(document);
 					syncOpenClashTheme(readThemeMode());
 		enhanceWrappedInlineControls(document);
 		enhanceTabPanelStacks(document);
@@ -1418,13 +1646,18 @@ import { gsap } from 'gsap';
 		var unsavedTitle;
 		var signature;
 
-		if (!bar)
-			return;
+	if (!bar)
+		return;
 
-		pendingCount = Number(bar.getAttribute('data-vwrt-pending-count') || 0);
-		indicators = bar.querySelector('#indicators');
-		if (!indicators)
-			return;
+	pendingCount = Number(bar.getAttribute('data-vwrt-pending-count') || 0);
+	indicators = bar.querySelector('#indicators');
+	if (!indicators)
+		return;
+
+	indicators.querySelectorAll('.vwrt-indicator-icon').forEach(function(icon) {
+		if (!icon.closest('.vwrt-indicator-chip'))
+			icon.remove();
+	});
 
 		hasRefresh = Boolean(bar.querySelector('[data-vwrt-refresh]'));
 		unsavedChip = bar.querySelector('.vwrt-unsaved-chip');
@@ -1658,11 +1891,13 @@ import { gsap } from 'gsap';
 				updateReadyClass();
 				enhanceButtonKinds(document);
 				enhanceApplyMenus(document);
-				enhanceCbiDropdowns(document);
-				enhanceModalInlineControls(document);
-				enhanceMultiButtonFields(document);
-				enhancePlaceholderRows(document);
-				syncOpenClashTheme(readThemeMode());
+			enhanceCbiDropdowns(document);
+			enhanceModalInlineControls(document);
+			enhanceMultiButtonFields(document);
+			normalizeRepoKeyTables(document);
+			enhancePlaceholderRows(document);
+			enhanceStructuredTables(document);
+			syncOpenClashTheme(readThemeMode());
 				enhanceTabPanelStacks(document);
 				if (!dynlistEnhancementDisabled())
 					enhanceDynlists(document);
@@ -1710,11 +1945,10 @@ import { gsap } from 'gsap';
 			return null;
 
 		target = ev.target.closest(selector);
-		if (target && target.matches && target.matches('.vwrt-openclash-nested-shell'))
+		if (target && easyTierStatusPage() && target.closest('#maincontent'))
 			return null;
+
 		if (!hover && target && target.matches && target.matches('.cbi-dropdown.cbi-button-apply.vwrt-apply-split-ready, .cbi-dropdown.vwrt-modal-apply-combo, .vwrt-apply-combo'))
-			return null;
-		if (!hover && target && target.closest && target.closest('.vwrt-openclash-button-row'))
 			return null;
 
 		return target;
@@ -1861,6 +2095,13 @@ import { gsap } from 'gsap';
 		var content = gsap.utils.toArray('#maincontent > :not(script):not(style)').slice(0, 12);
 		var targets = [sidebar, topbar].filter(Boolean).concat(content);
 
+		if (isOpenClashConfigPage()) {
+			content = content.filter(function(node) {
+				return !node.matches('form, .cbi-map');
+			});
+			targets = [sidebar, topbar].filter(Boolean).concat(content);
+		}
+
 		if (!targets.length || !motionAllowed())
 			return;
 
@@ -1901,7 +2142,7 @@ import { gsap } from 'gsap';
 	}
 
 	function closeApplyMenus(except) {
-		document.querySelectorAll('.cbi-dropdown.cbi-button-apply.vwrt-apply-menu-open').forEach(function(menu) {
+		document.querySelectorAll('.cbi-dropdown.vwrt-apply-combo.vwrt-apply-menu-open').forEach(function(menu) {
 			if (menu !== except) {
 				menu.classList.remove('vwrt-apply-menu-open');
 				menu.setAttribute('aria-expanded', 'false');
@@ -1999,9 +2240,23 @@ import { gsap } from 'gsap';
 		return String(value) === '1' ? 'force' : 'checked';
 	}
 
+	function isApplyChoiceDropdown(menu) {
+		var values;
+
+		if (!menu || !menu.matches || !menu.matches('.cbi-dropdown'))
+			return false;
+
+		values = Array.prototype.map.call(menu.querySelectorAll(':scope > ul:not(.preview) > li[data-value]'), function(item) {
+			return item.getAttribute('data-value');
+		});
+
+		return values.indexOf('0') > -1 && values.indexOf('1') > -1;
+	}
+
 	function updateApplyLabelWidth(menu) {
 		var items;
 		var style;
+		var current;
 		var canvas;
 		var context;
 		var width;
@@ -2012,7 +2267,8 @@ import { gsap } from 'gsap';
 		items = Array.prototype.map.call(menu.querySelectorAll(':scope > ul:not(.preview) > li'), function(item) {
 			return String(item.textContent || '').replace(/\s+/g, ' ').trim();
 		}).filter(Boolean);
-		style = window.getComputedStyle(menu);
+		current = menu.querySelector(':scope > .vwrt-apply-current');
+		style = window.getComputedStyle(current || menu);
 		canvas = document.createElement('canvas');
 		context = canvas.getContext('2d');
 
@@ -2027,7 +2283,7 @@ import { gsap } from 'gsap';
 		width = items.reduce(function(max, item) {
 			return Math.max(max, context.measureText(item).width);
 		}, 0);
-		width = Math.max(88, Math.min(124, Math.ceil(width + 24)));
+		width = Math.max(88, Math.min(128, Math.ceil(width + 12)));
 		menu.style.setProperty('--vwrt-apply-label-width', width + 'px');
 	}
 
@@ -2133,9 +2389,22 @@ import { gsap } from 'gsap';
 			current.textContent = String(label).replace(/\s+/g, ' ').trim();
 	}
 
+	function primeApplyComboLoading(menu) {
+		if (!menu)
+			return;
+
+		menu.classList.add('vwrt-button-local-loading');
+		menu.classList.remove('vwrt-apply-menu-open');
+		menu.setAttribute('aria-expanded', 'false');
+		menu.style.removeProperty('transform');
+
+		if (window.gsap && typeof window.gsap.set === 'function')
+			window.gsap.set(menu, { clearProps: 'transform' });
+	}
+
 	function enhanceApplyMenus(rootNode) {
 		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
-		scope.querySelectorAll('.cbi-page-actions .cbi-dropdown.cbi-button-apply').forEach(function(menu) {
+		scope.querySelectorAll('.cbi-page-actions .cbi-dropdown.cbi-button-apply, .cbi-dropdown.cbi-button-apply.vwrt-apply-combo').forEach(function(menu) {
 			syncApplyMenu(menu);
 			if (menu.dataset.vwrtApplyBound !== '1') {
 				menu.addEventListener('cbi-dropdown-change', function() {
@@ -2146,12 +2415,8 @@ import { gsap } from 'gsap';
 				menu.dataset.vwrtApplyBound = '1';
 			}
 		});
-		scope.querySelectorAll('#modal_overlay .modal.uci-dialog .button-row .cbi-dropdown').forEach(function(menu) {
-			var values = Array.prototype.map.call(menu.querySelectorAll(':scope > ul:not(.preview) > li[data-value]'), function(item) {
-				return item.getAttribute('data-value');
-			});
-
-			if (values.indexOf('0') > -1 && values.indexOf('1') > -1) {
+		scope.querySelectorAll('#modal_overlay .cbi-dropdown').forEach(function(menu) {
+			if (isApplyChoiceDropdown(menu)) {
 				syncModalApplyMenu(menu);
 				if (menu.dataset.vwrtModalApplyBound !== '1') {
 					menu.addEventListener('cbi-dropdown-change', function() {
@@ -2291,6 +2556,7 @@ import { gsap } from 'gsap';
 
 		open = dropdown.matches('[open], .open, .cbi-dropdown-open');
 		dropdown.classList.toggle('vwrt-cbi-dropdown-open', open);
+		markCbiDropdownHosts(dropdown, open);
 		dropdown.classList.add('vwrt-cbi-dropdown-ready');
 		dropdown.setAttribute('aria-haspopup', 'listbox');
 		dropdown.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -2308,6 +2574,40 @@ import { gsap } from 'gsap';
 		dropdown.addEventListener('cbi-dropdown-close', bindSync);
 		dropdown.addEventListener('cbi-dropdown-change', bindSync);
 		dropdown.dataset.vwrtCbiSyncBound = '1';
+	}
+
+	function markCbiDropdownHosts(dropdown, open) {
+		var node;
+		var hostSelector = [
+			'.cbi-value',
+			'.cbi-value-field',
+			'.cbi-section',
+			'.cbi-section-node',
+			'.cbi-tblsection',
+			'.cbi-section-table',
+			'.cbi-section-table-row',
+			'.cbi-section-table-cell',
+			'.table',
+			'.tr',
+			'.td',
+			'table',
+			'tbody',
+			'tr',
+			'td',
+			'th'
+		].join(',');
+
+		if (!dropdown || !dropdown.parentElement)
+			return;
+
+		node = dropdown.parentElement;
+		while (node && node !== document.body && node !== document.documentElement) {
+			if (node.matches && node.matches(hostSelector)) {
+				node.classList.add('vwrt-dropdown-host');
+				node.classList.toggle('vwrt-dropdown-open-host', !!open);
+			}
+			node = node.parentElement;
+		}
 	}
 
 	function enhanceCbiDropdowns(rootNode) {
@@ -2441,6 +2741,11 @@ import { gsap } from 'gsap';
 	function enhanceTabPanelStacks(rootNode) {
 		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
 
+		if (easyTierStatusPage()) {
+			cleanupEasyTierNativeStatus(scope);
+			return;
+		}
+
 		scope.querySelectorAll('#maincontent .cbi-tabmenu').forEach(function(menu) {
 			var tabNames = Array.prototype.map.call(menu.querySelectorAll(':scope > li[data-tab]'), function(tab) {
 				return tab.getAttribute('data-tab');
@@ -2518,14 +2823,13 @@ import { gsap } from 'gsap';
 			button.classList.add('vwrt-button-action');
 	}
 
-	function openClashNestedSurface(button) {
+	function openClashNativeButton(button) {
 		return Boolean(
 			button &&
 			document.body &&
 			document.body.classList.contains('vwrt-page-openclash') &&
-			button.matches &&
-			button.matches('button') &&
-			button.querySelector(':scope > :is(input[type="button"], input[type="submit"], input[type="reset"], button, .btn, .cbi-button)')
+			button.closest &&
+			button.closest('#maincontent')
 		);
 	}
 
@@ -2551,23 +2855,38 @@ import { gsap } from 'gsap';
 			'.vwrt-auth-card input[type="button"]',
 			'.vwrt-auth-card input[type="reset"]'
 		].join(', ');
+		var choiceWrapper = function(button) {
+			return Boolean(
+				button &&
+				button.matches &&
+				button.matches('label, .checkbox, .radio, .cbi-checkbox, .cbi-radio') &&
+				button.querySelector &&
+				button.querySelector('input[type="checkbox"], input[type="radio"]')
+			);
+		};
+
+		if (easyTierStatusPage()) {
+			cleanupEasyTierNativeStatus(scope);
+			return;
+		}
 
 		scope.querySelectorAll(selector).forEach(function(button) {
 			var label;
 			var iconOnly;
 			var addVariant;
-			var nestedShell;
 
 			if (!button || button.closest('.cbi-dropdown > ul'))
 				return;
 
-			nestedShell = openClashNestedSurface(button);
-			button.classList.toggle('vwrt-openclash-nested-shell', nestedShell);
-			if (nestedShell) {
+			if (openClashNativeButton(button))
+				return;
+
+			if (choiceWrapper(button)) {
 				button.classList.remove(
 					'vwrt-button-action',
 					'vwrt-button-danger',
 					'vwrt-button-neutral',
+					'vwrt-button-stop',
 					'vwrt-button-icon-only',
 					'vwrt-button-has-text',
 					'vwrt-button-add-icon',
@@ -2615,13 +2934,15 @@ import { gsap } from 'gsap';
 	function enhanceMultiButtonFields(rootNode) {
 		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
 
+		if (easyTierStatusPage()) {
+			cleanupEasyTierNativeStatus(scope);
+			return;
+		}
+
+		if (document.body && document.body.classList.contains('vwrt-page-openclash'))
+			return;
+
 		scope.querySelectorAll('#maincontent .cbi-value-field').forEach(function(field) {
-			var value = field.closest('.cbi-value');
-			var label = buttonVisibleLabel(value && value.querySelector('.cbi-value-title'));
-			var openclashDashboardActions = document.body &&
-				document.body.classList.contains('vwrt-page-openclash') &&
-				/^(?:切换（更新） .+ 版本|更新 .+ 版本|Switch\(Update\) .+ Version|Update .+ Version)$/.test(label);
-			var row = null;
 			var buttons = Array.prototype.filter.call(field.querySelectorAll('button, .cbi-button, .btn, input[type="submit"], input[type="button"], input[type="reset"]'), function(node) {
 				var computed = window.getComputedStyle(node);
 				var box = node.getBoundingClientRect();
@@ -2629,65 +2950,167 @@ import { gsap } from 'gsap';
 			});
 			var owner = buttons.length > 1 ? buttons[0].parentElement : null;
 
-			if (field.parentElement && field.parentElement.closest('.cbi-value-field'))
-				return;
+				if (field.parentElement && field.parentElement.closest('.cbi-value-field'))
+					return;
 
 			buttons.forEach(function(button, index) {
 				button.classList.remove('vwrt-field-button-1', 'vwrt-field-button-2', 'vwrt-field-button-3');
-				if (!openclashDashboardActions && index < 3)
+				if (index < 3)
 					button.classList.add('vwrt-field-button-' + (index + 1));
 			});
 
 			field.classList.toggle('vwrt-multi-button-field', buttons.length > 1);
-			field.classList.toggle('vwrt-openclash-action-field', openclashDashboardActions && buttons.length > 1);
-			if (value)
-				value.classList.toggle('vwrt-openclash-action-value', openclashDashboardActions && buttons.length > 1);
-
-			if (openclashDashboardActions) {
-				['switch_dashboard_', 'delete_dashboard_', 'default_dashboard_'].forEach(function(prefix, index) {
-					var wrapper = field.querySelector('[id^="' + prefix + '"]');
-					var button = wrapper && wrapper.querySelector('button, .cbi-button, .btn, input[type="submit"], input[type="button"], input[type="reset"]');
-
-					if (!wrapper || !button)
-						return;
-
-					wrapper.classList.add('vwrt-openclash-button-cell');
-					button.classList.add('vwrt-field-button-' + (index + 1));
-					row = row || wrapper.parentElement;
-				});
-			}
 
 			if (owner && owner !== field)
 				owner.classList.add('vwrt-multi-button-field');
-			if (openclashDashboardActions && row && row !== field)
-				row.classList.add('vwrt-openclash-button-row');
 		});
 	}
 
-	function enhancePlaceholderRows(rootNode) {
-		var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+		function enhancePlaceholderRows(rootNode) {
+			var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+			var placeholderPattern = /^(?:尚无任何配置|暂无(?:任何)?配置|没有已分配的租约|No (?:entries|data|configuration|leases|allocated leases)|There are no .+)$/i;
+			var isVisibleControl = function(control) {
+				var style;
+
+				if (!control)
+					return false;
+				if (control.matches && control.matches('input[type="hidden"], [hidden], .hidden'))
+					return false;
+
+				style = window.getComputedStyle ? window.getComputedStyle(control) : null;
+				if (style && (
+					style.getPropertyValue('display') === 'none' ||
+					style.getPropertyValue('visibility') === 'hidden' ||
+					Number(style.getPropertyValue('opacity')) === 0
+				))
+					return false;
+
+				return true;
+			};
 
 		scope.querySelectorAll('#maincontent table, #maincontent .table, #maincontent .cbi-section-table').forEach(function(table) {
 			var header = table.querySelector(':scope > thead > tr, :scope > .tr.table-titles, :scope > .cbi-section-table-titles, :scope tr:first-child');
-			var columns = header ? header.children.length : 0;
+			var headerCells = Array.prototype.filter.call(header && header.children || [], function(cell) {
+				return cell.matches && cell.matches('td, th, .td, .th, .cbi-section-table-cell');
+			});
+			var columns = headerCells.length;
 
 			if (columns < 2)
 				return;
 
 			table.querySelectorAll(':scope tr, :scope > .tr, :scope > .cbi-section-table-row').forEach(function(row) {
 				var cells = Array.prototype.filter.call(row.children || [], function(cell) {
-					return cell.matches && cell.matches('td, th, .td');
+					return cell.matches && cell.matches('td, th, .td, .th, .cbi-section-table-cell');
 				});
-				var emptySpacer = cells.length && !buttonVisibleLabel(row) && !row.querySelector('input, select, textarea, button, .cbi-button, .btn, a[href]');
+				var hasVisibleControls = Array.prototype.some.call(
+					row.querySelectorAll('input, select, textarea, button, .cbi-button, .btn, a[href]'),
+					isVisibleControl
+				);
+				var labeledCells = cells.map(function(cell) {
+					return {
+						cell: cell,
+						label: buttonVisibleLabel(cell)
+					};
+				}).filter(function(item) {
+					return item.label;
+				});
+				var placeholderItem = labeledCells.find(function(item) {
+					return placeholderPattern.test(item.label);
+				});
+				var placeholderRow = Boolean(placeholderItem);
+				var emptySpacer = cells.length && !buttonVisibleLabel(row) && !hasVisibleControls;
+				var spanColumns = Math.max(columns, cells.length);
+				var useNativeRow = row.tagName === 'TR';
+				var placeholderCell;
 
 				row.classList.toggle('vwrt-empty-table-spacer-row', Boolean(emptySpacer));
+				row.classList.toggle('vwrt-placeholder-row', Boolean(placeholderRow));
+				if (placeholderRow)
+					row.setAttribute('data-vwrt-placeholder-row', 'true');
+				else
+					row.removeAttribute('data-vwrt-placeholder-row');
 
-				if (cells.length !== 1)
+				if (!placeholderRow && row.dataset.vwrtPlaceholderOriginalHtml) {
+					row.innerHTML = row.dataset.vwrtPlaceholderOriginalHtml;
+					delete row.dataset.vwrtPlaceholderOriginalHtml;
+					cells = Array.prototype.filter.call(row.children || [], function(cell) {
+						return cell.matches && cell.matches('td, th, .td, .th, .cbi-section-table-cell');
+					});
+				}
+
+				if (placeholderRow && placeholderItem) {
+					if (!row.dataset.vwrtPlaceholderOriginalHtml)
+						row.dataset.vwrtPlaceholderOriginalHtml = row.innerHTML;
+
+					placeholderCell = document.createElement(useNativeRow ? 'td' : 'div');
+					placeholderCell.className = useNativeRow ?
+						'vwrt-placeholder-cell' :
+						'td cbi-section-table-cell vwrt-placeholder-cell';
+					placeholderCell.textContent = placeholderItem.label;
+
+					if (useNativeRow)
+						placeholderCell.setAttribute('colspan', String(Math.max(spanColumns, 1)));
+
+					row.replaceChildren(placeholderCell);
 					return;
-
-				cells[0].setAttribute('colspan', String(columns));
-				row.classList.add('vwrt-placeholder-span-row');
+				}
 			});
+			});
+		}
+
+		function normalizeRepoKeyTables(rootNode) {
+			var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+
+			if (!document.body || !document.body.classList.contains('vwrt-page-repokeys'))
+				return;
+
+			scope.querySelectorAll('#maincontent table.cbi-section-table[data-vwrt-repokey-table="true"]').forEach(function(table) {
+				table.removeAttribute('data-vwrt-repokey-table');
+				table.querySelectorAll(':scope > colgroup[data-vwrt-repokey-cols="true"], .vwrt-repokey-actions-head').forEach(function(node) {
+					node.remove();
+				});
+			});
+		}
+
+		function enhanceStructuredTables(rootNode) {
+			var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
+			var booleanHeaderPattern = /^(?:已?启用|启用|Enabled|Active|Status|状态|开关)$/i;
+
+		scope.querySelectorAll('#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table)').forEach(function(table) {
+			var header = table.querySelector(':scope > thead > tr, :scope > .tr.table-titles, :scope > .cbi-section-table-titles, :scope tr:first-child');
+			var headerCells = Array.prototype.filter.call(header && header.children || [], function(cell) {
+				return cell.matches && cell.matches('td, th, .td, .th, .cbi-section-table-cell');
+			});
+			var headerLabels = headerCells.map(function(cell) {
+				return buttonVisibleLabel(cell);
+			});
+			var rows = Array.prototype.filter.call(
+				table.querySelectorAll(':scope tr, :scope > .tr, :scope > .cbi-section-table-row'),
+				function(row) {
+					return row !== header;
+				}
+			);
+			var hasBooleanFirstColumn = Boolean(headerLabels[0] && booleanHeaderPattern.test(headerLabels[0])) ||
+				rows.some(function(row) {
+					var firstCell = Array.prototype.find.call(row.children || [], function(cell) {
+						return cell.matches && cell.matches('td, th, .td, .th, .cbi-section-table-cell');
+					});
+
+					return Boolean(firstCell && firstCell.querySelector('input[type="checkbox"], input[type="radio"], .cbi-checkbox, .cbi-radio'));
+				});
+			var hasActionColumn = rows.some(function(row) {
+				var cells = Array.prototype.filter.call(row.children || [], function(cell) {
+					return cell.matches && cell.matches('td, th, .td, .th, .cbi-section-table-cell');
+				});
+				var lastCell = cells[cells.length - 1];
+
+				return Boolean(lastCell && lastCell.querySelector('button, .cbi-button, .btn, input[type="submit"], input[type="button"], input[type="reset"], .cbi-section-actions'));
+			});
+			var hasManyColumns = headerCells.length >= 5;
+
+			table.classList.toggle('vwrt-table-boolean-first', hasBooleanFirstColumn && headerCells.length >= 2);
+			table.classList.toggle('vwrt-table-has-actions', hasActionColumn);
+			table.classList.toggle('vwrt-table-many-columns', hasManyColumns && hasActionColumn);
 		});
 	}
 
@@ -2783,8 +3206,8 @@ import { gsap } from 'gsap';
 		}, { passive: true });
 
 		document.addEventListener('click', function(ev) {
-			var modalApplyMenu = ev.target.closest('.cbi-dropdown.vwrt-modal-apply-combo');
-			var modalApplyItem = modalApplyMenu && ev.target.closest('.cbi-dropdown.vwrt-modal-apply-combo > ul > li');
+			var modalApplyMenu = ev.target.closest('#modal_overlay .cbi-dropdown');
+			var modalApplyItem;
 			var applyMenu = ev.target.closest('.cbi-dropdown.cbi-button-apply');
 			var applyItem = applyMenu && ev.target.closest('.cbi-dropdown.cbi-button-apply > ul > li');
 			var actionDropdown = ev.target.closest('.cbi-dropdown.cbi-button-action');
@@ -2803,6 +3226,14 @@ import { gsap } from 'gsap';
 				return;
 			}
 
+			if (modalApplyMenu && isApplyChoiceDropdown(modalApplyMenu)) {
+				syncModalApplyMenu(modalApplyMenu);
+				modalApplyItem = ev.target.closest('.cbi-dropdown.vwrt-modal-apply-combo > ul > li');
+			}
+			else {
+				modalApplyMenu = null;
+			}
+
 			if (modalApplyMenu && !modalApplyItem && isApplyMenuArrow(ev, modalApplyMenu)) {
 				if (toggleNativeComboDropdown(modalApplyMenu)) {
 					ev.preventDefault();
@@ -2811,6 +3242,11 @@ import { gsap } from 'gsap';
 					if (ev.stopImmediatePropagation)
 						ev.stopImmediatePropagation();
 				}
+				return;
+			}
+
+			if (modalApplyMenu && !modalApplyItem) {
+				primeApplyComboLoading(modalApplyMenu);
 				return;
 			}
 
@@ -2869,6 +3305,9 @@ import { gsap } from 'gsap';
 
 				if (ev.stopImmediatePropagation)
 					ev.stopImmediatePropagation();
+			}
+			else {
+				primeApplyComboLoading(applyMenu);
 			}
 		}, true);
 
@@ -3064,23 +3503,27 @@ import { gsap } from 'gsap';
 		});
 
 		root.classList.add('vwrt-ready', 'vitrawrt-ready', 'vwrt-sidebar-ready', 'vwrt-gsap-ready');
-		root.dataset.vitrawrt = '1.42.2-r1';
+		root.dataset.vitrawrt = '1.43.0-r1';
 
 		if (document.body)
 			document.body.classList.add('vitrawrt-body');
 
 		exposeApi();
 		applyThemeMode(readThemeMode(), false);
-		applyGlassMode(readGlassMode(), false);
-		setCollapsed(readCollapsed());
-		setDrawer(false);
+			applyGlassMode(readGlassMode(), false);
+			setCollapsed(readCollapsed());
+			setDrawer(false);
+			setPageClasses();
 			enhanceButtonKinds(document);
 			enhanceApplyMenus(document);
 			enhanceStatusPrompts(document);
-			enhanceNetworkIcons(document);
+		enhanceNetworkIcons(document);
 			enhanceCbiDropdowns(document);
-		enhanceModalInlineControls(document);
-		enhanceMultiButtonFields(document);
+			enhanceModalInlineControls(document);
+			enhanceMultiButtonFields(document);
+			normalizeRepoKeyTables(document);
+			enhancePlaceholderRows(document);
+			enhanceStructuredTables(document);
 		enhanceWrappedInlineControls(document);
 		enhanceTabPanelStacks(document);
 		if (!dynlistEnhancementDisabled())

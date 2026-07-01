@@ -246,7 +246,7 @@ export function initProgressEnhancement() {
 	if (observer)
 		return;
 
-	const scope = document.querySelector('#maincontent') || document.querySelector('#view') || document.body;
+	const scope = document.body;
 	if (!scope)
 		return;
 

@@ -3,18 +3,24 @@
 		border-collapse: separate;
 		border-spacing: 0;
 		color: var(--vw-text-main);
-		background:
-			linear-gradient(180deg, color-mix(in srgb, var(--vw-highlight-top) 24%, transparent), transparent 58%),
-			color-mix(in srgb, var(--vw-surface-glass-2) 54%, transparent);
-		border-color: var(--vw-border-hairline);
+		overflow: visible;
+		background: color-mix(in srgb, var(--vw-material-inner-surface) 34%, transparent) !important;
+		border: 1px solid var(--vw-border-hairline);
+		border-top-color: transparent;
 		border-radius: var(--vw-radius-card);
-		box-shadow: 0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 22%, transparent) inset;
+		box-shadow: none;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table) {
+		background: transparent !important;
+		border-color: color-mix(in srgb, var(--vw-border-hairline) 54%, transparent);
+		box-shadow: none;
 	}
 
 	#maincontent :is(table, .table, .cbi-section-table) :is(th, .th) {
 		padding: 10px 12px;
 		color: var(--vw-text-secondary);
-		background: var(--vw-table-head-surface);
+		background: transparent !important;
 		border-bottom: 1px solid var(--vw-border-hairline);
 		font-size: 0.8rem;
 		font-weight: 760;
@@ -22,14 +28,34 @@
 		text-transform: none;
 	}
 
-	#maincontent :is(table, .table, .cbi-section-table) :is(tr.table-titles, .tr.table-titles, tr.cbi-section-table-titles, .tr.cbi-section-table-titles, .cbi-section-table-titles) {
+	#maincontent :is(table, .table, .cbi-section-table) :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles
+	) {
 		color: var(--vw-text-secondary) !important;
-		background: var(--vw-table-head-surface) !important;
+		background: transparent !important;
 		border-color: var(--vw-border-hairline) !important;
 		box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--vw-border-hairline) 82%, transparent);
 	}
 
-	#maincontent :is(table, .table, .cbi-section-table) :is(tr.table-titles, .tr.table-titles, tr.cbi-section-table-titles, .tr.cbi-section-table-titles, .cbi-section-table-titles) :is(td, th, .td, .th) {
+	#maincontent :is(table, .table, .cbi-section-table) :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles
+	) :is(td, th, .td, .th, .cbi-section-table-cell) {
 		color: var(--vw-text-secondary) !important;
 		background: transparent !important;
 		border-color: color-mix(in srgb, var(--vw-border-hairline) 72%, transparent) !important;
@@ -37,11 +63,17 @@
 		font-weight: 760;
 	}
 
-	#maincontent :is(table, .table, .cbi-section-table) :is(td, .td) {
+	#maincontent :is(table, .table, .cbi-section-table) :is(td, .td, .cbi-section-table-cell) {
 		padding: 9px 12px;
 		border-top: 1px solid color-mix(in srgb, var(--vw-border-hairline) 74%, transparent);
 		color: var(--vw-text-secondary);
 		line-height: 1.38;
+	}
+
+	#maincontent :is(table, .table, .cbi-section-table) :is(td, th, .td, .th, .cbi-section-table-cell, .cbi-section-actions, .middle):has(:is(select, .cbi-input-select, .cbi-dropdown:not(.btn):not(.cbi-button))) {
+		position: relative;
+		z-index: 4;
+		overflow: visible !important;
 	}
 
 	#maincontent :is(table, .table, .cbi-section-table) :is(tbody tr, .tbody .tr, .cbi-section-table-row, .tr.cbi-section-table-row) {
@@ -70,11 +102,72 @@
 		background: var(--vw-table-row-hover-surface) !important;
 	}
 
-	#maincontent :is(table, .table, .cbi-section-table) :is(tr, .tr):first-child :is(td, .td) {
+	#maincontent :is(table, .table, .cbi-section-table) :is(tr, .tr, .cbi-section-table-row):first-child :is(td, .td, .cbi-section-table-cell) {
 		border-top-color: transparent;
 	}
 
-	#maincontent :is(table, .table, .cbi-section-table) :is(.cbi-button, .btn) {
+	#maincontent :is(table, .table, .cbi-section-table) .vwrt-empty-table-spacer-row {
+		display: none !important;
+	}
+
+	#maincontent table .vwrt-placeholder-row,
+	#maincontent table .vwrt-placeholder-row:hover {
+		background: var(--vw-table-row-surface) !important;
+		cursor: default !important;
+		pointer-events: none !important;
+	}
+
+	#maincontent table .vwrt-placeholder-row > :is(td, th, .td, .th, .cbi-section-table-cell).vwrt-placeholder-cell {
+		display: table-cell !important;
+		inline-size: auto !important;
+		min-inline-size: 0 !important;
+		padding: 18px 20px !important;
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+		border-top-color: transparent !important;
+		box-shadow: none !important;
+		font-style: italic;
+		text-align: center !important;
+		vertical-align: middle !important;
+	}
+
+	#maincontent :is(.table:not(table), .cbi-section-table:not(table)) .vwrt-placeholder-row,
+	#maincontent :is(.table:not(table), .cbi-section-table:not(table)) .vwrt-placeholder-row:hover {
+		position: relative !important;
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr) !important;
+		inline-size: 100% !important;
+		min-block-size: 64px !important;
+		overflow: hidden !important;
+		background: var(--vw-table-row-surface) !important;
+		cursor: default !important;
+		color: var(--vw-text-secondary) !important;
+		border-color: transparent !important;
+		box-shadow: none !important;
+		pointer-events: none !important;
+	}
+
+	#maincontent :is(.table:not(table), .cbi-section-table:not(table)) .vwrt-placeholder-row > .vwrt-placeholder-cell {
+		display: grid !important;
+		grid-column: 1 / -1 !important;
+		place-items: center !important;
+		box-sizing: border-box !important;
+		inline-size: 100% !important;
+		min-inline-size: 0 !important;
+		max-inline-size: none !important;
+		min-block-size: 64px !important;
+		padding: 18px 20px !important;
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+		border-color: transparent !important;
+		box-shadow: none !important;
+		font-style: italic;
+		text-align: center !important;
+		vertical-align: middle !important;
+		pointer-events: none !important;
+	}
+
+	body:not(.vwrt-page-openclash) #maincontent :is(table, .table, .cbi-section-table) :is(.cbi-button, .btn) {
 		min-height: 30px;
 		padding: 0 10px;
 		border-radius: var(--vw-radius-pill) !important;
@@ -84,7 +177,7 @@
 
 	#maincontent .cbi-section-table :is(select, .cbi-input-select) {
 		min-height: 30px;
-		padding-inline: 8px;
+		padding-inline: 8px 40px;
 		border-radius: var(--vw-radius-field) !important;
 		font-size: 0.86rem;
 	}
@@ -136,7 +229,7 @@
 		}
 
 		body:is(.vwrt-page-startup, .vwrt-page-processes, .vwrt-page-packages) #maincontent table :is(th, .th) {
-			background: color-mix(in srgb, var(--vw-surface-strong) 72%, transparent);
+			background: transparent !important;
 		}
 
 		body.vwrt-page-packages #maincontent .controls {
@@ -197,18 +290,18 @@
 			table-layout: fixed;
 		}
 
-		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table :is(td, .td, th, .th) {
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table :is(td, .td, th, .th, .cbi-section-table-cell) {
 			padding-inline: 6px;
 			white-space: normal !important;
 			word-break: normal;
 			overflow-wrap: anywhere;
 		}
 
-		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table :is(td, .td, th, .th):first-child {
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table :is(td, .td, th, .th, .cbi-section-table-cell):first-child {
 			width: 34% !important;
 		}
 
-		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table :is(td, .td, th, .th):nth-child(2) {
+		body:is(.vwrt-page-network, .vwrt-page-firewall) #maincontent .cbi-tblsection .cbi-section-table :is(td, .td, th, .th, .cbi-section-table-cell):nth-child(2) {
 			width: 42% !important;
 		}
 

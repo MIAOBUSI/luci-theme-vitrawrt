@@ -75,10 +75,76 @@
 		overflow: auto;
 	}
 
-	#modal_overlay > .modal.alert-message:not(.spinning):not(.loading) {
-		width: fit-content;
-		min-width: min(18rem, calc(100vw - 32px));
-		max-width: min(32rem, calc(100vw - 32px));
+	#modal_overlay > [role="dialog"]:empty {
+		display: none !important;
+		min-width: 0 !important;
+		min-height: 0 !important;
+		padding: 0 !important;
+		border: 0 !important;
+		background: transparent !important;
+		box-shadow: none !important;
+	}
+
+	#modal_overlay > [role="dialog"].cbi-modal {
+		display: flex !important;
+		flex-direction: column;
+		overflow: hidden !important;
+	}
+
+	#modal_overlay > [role="dialog"].cbi-modal > :is(h1, h2, h3, h4, .modal-title, .button-row, .modal-footer, .cbi-page-actions, .right) {
+		flex: 0 0 auto;
+	}
+
+	#modal_overlay > [role="dialog"].cbi-modal > :is(.cbi-map, .modal-body, .cbi-section, .cbi-section-node) {
+		flex: 1 1 auto;
+		min-height: 0;
+		min-width: 0;
+		overflow-x: hidden;
+		overflow-y: auto;
+		padding-inline-end: 2px;
+	}
+
+	#modal_overlay > [role="dialog"].alert-message:not(.spinning):not(.loading):not(.vwrt-status-prompt) {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr);
+		align-items: center;
+		justify-items: center;
+		gap: 14px;
+		width: min(30rem, calc(100vw - 32px)) !important;
+		min-width: min(20rem, calc(100vw - 32px));
+		max-width: min(30rem, calc(100vw - 32px));
+		min-height: 112px;
+		padding: 24px !important;
+		overflow: hidden !important;
+		border-radius: 22px !important;
+		text-align: center !important;
+	}
+
+	#modal_overlay > [role="dialog"].alert-message:not(.spinning):not(.loading):not(.vwrt-status-prompt) > :is(h1, h2, h3, h4, .modal-title) {
+		margin: 0 !important;
+		padding: 0 !important;
+		border: 0 !important;
+		font-size: 1rem !important;
+		font-weight: 620 !important;
+		line-height: 1.3 !important;
+	}
+
+	#modal_overlay > [role="dialog"].alert-message:not(.spinning):not(.loading):not(.vwrt-status-prompt) > :is(.alert-message, .modal-body, p) {
+		margin: 0 !important;
+		padding: 0 !important;
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+		font-size: 0.9rem;
+		line-height: 1.45;
+	}
+
+	#modal_overlay > [role="dialog"].alert-message:not(.spinning):not(.loading):not(.vwrt-status-prompt) > :is(.button-row, .modal-footer, .cbi-page-actions, .right) {
+		justify-self: end;
+		margin: 6px 0 0 !important;
+		padding: 0 !important;
+		border: 0 !important;
 	}
 
 	#modal_overlay .modal :is(.modal-header, header),
@@ -307,8 +373,12 @@
 		overflow: visible;
 	}
 
-	#modal_overlay .modal :is(.modal-footer, .button-row, .cbi-page-actions),
-	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.modal-footer, .button-row, .cbi-page-actions) {
+	#modal_overlay > [role="dialog"] > :is([class~="modal-footer"], .button-row, .cbi-page-actions, .right),
+	#maincontent :is(.cbi-modal, [role="dialog"]) > :is([class~="modal-footer"], .button-row, .cbi-page-actions, .right) {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: flex-end;
+		flex-wrap: wrap;
 		gap: var(--vw-inline-control-gap);
 		width: 100%;
 		padding-top: 14px;
@@ -318,13 +388,38 @@
 		text-align: right;
 	}
 
+	#modal_overlay > [role="dialog"].uci-dialog .uci-change-list + .button-row,
+	#maincontent :is(.cbi-modal, [role="dialog"]).uci-dialog .uci-change-list + .button-row {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+		gap: var(--vw-inline-control-gap);
+		width: 100%;
+		margin-top: 18px;
+		padding-top: 0;
+		border-top: 0 !important;
+		background: transparent !important;
+		box-shadow: none !important;
+		text-align: right;
+	}
+
+	#modal_overlay > [role="dialog"] > div[style*="display:flex"] > :is(.left, .right),
+	#maincontent :is(.cbi-modal, [role="dialog"]) > div[style*="display:flex"] > :is(.left, .right) {
+		padding-top: 0 !important;
+		border-top: 0 !important;
+		background: transparent !important;
+		box-shadow: none !important;
+	}
+
 	.vwrt-loading-apply,
+	.vwrt-loading-card-local,
 	.vwrt-loading-modal-local,
 	.vwrt-loading-viewport,
 	#view > :is(.spinning, .loading),
 	#maincontent > :is(.spinning, .loading),
 	#modal_overlay > [class~="modal"][class~="alert-message"]:is(.spinning, .loading),
-	#modal_overlay > [class~="modal"] :is(.spinning, .loading):not(button):not(.btn):not(.cbi-button):not(input),
+	#modal_overlay > [class~="modal"] :is(.spinning, .loading):not(.vwrt-loading-titled-body):not(button):not(.btn):not(.cbi-button):not(input),
 	#maincontent :is(.cbi-map, .cbi-section, .cbi-section-node) > p > :is(.spinning, .loading),
 	.vwrt-pass19-loading-fixture #view > :is(.spinning, .loading),
 	.vwrt-pass20-loading-fixture #view > :is(.spinning, .loading),
@@ -354,8 +449,38 @@
 		backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
 	}
 
-	.vwrt-loading-modal-local,
-	#modal_overlay > [class~="modal"] :is(.spinning, .loading):not(button):not(.btn):not(.cbi-button):not(input):not([class~="modal"][class~="alert-message"]) {
+	.vwrt-loading-card-host {
+		position: relative !important;
+		isolation: isolate;
+	}
+
+	.vwrt-loading-card-local {
+		position: absolute !important;
+		inset: auto !important;
+		left: 50% !important;
+		top: 50% !important;
+		right: auto !important;
+		bottom: auto !important;
+		width: fit-content !important;
+		max-width: min(22rem, calc(100% - 24px));
+		margin: 0 !important;
+		transform: translate3d(-50%, -50%, 0) !important;
+		z-index: 2;
+		pointer-events: none;
+	}
+
+	.vwrt-loading-card-local {
+		min-width: 10.75rem !important;
+		min-height: 56px !important;
+		padding: 12px 16px !important;
+		border-radius: var(--vw-radius-modal) !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 22%, transparent), transparent 68%),
+			color-mix(in srgb, var(--vw-material-inner-surface) 84%, var(--vw-material-modal-surface)) !important;
+		box-shadow: 0 12px 30px color-mix(in srgb, var(--vw-shadow-color) 9%, transparent) !important;
+	}
+
+	.vwrt-loading-modal-local {
 		display: flex !important;
 		position: fixed !important;
 		inset: auto !important;
@@ -366,6 +491,15 @@
 		height: fit-content;
 		margin: auto !important;
 		transform: translate3d(-50%, -50%, 0) !important;
+	}
+
+	.vwrt-loading-apply,
+	.vwrt-loading-modal-local,
+	.vwrt-loading-viewport {
+		min-width: 14.5rem !important;
+		min-height: 68px !important;
+		padding: 16px 20px !important;
+		border-radius: calc(var(--vw-radius-modal) + 2px) !important;
 	}
 
 	#modal_overlay > .modal[role="dialog"]:not(.alert-message):has(> h4:empty + p:is(.spinning, .loading)),
@@ -393,6 +527,72 @@
 		margin: 0 !important;
 	}
 
+		#modal_overlay > [role="dialog"] :is(label, .checkbox, .radio, .cbi-checkbox, .cbi-radio):not(.alert-message):has(input[type="checkbox"], input[type="radio"]) {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: flex-start !important;
+		gap: 10px;
+		width: fit-content !important;
+		max-width: 100% !important;
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		color: var(--vw-text-main) !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		text-align: left !important;
+		white-space: normal !important;
+	}
+
+		#modal_overlay > [role="dialog"] :is(label, .checkbox, .radio, .cbi-checkbox, .cbi-radio):not(.alert-message):has(input[type="checkbox"], input[type="radio"]) > :is(input[type="checkbox"], input[type="radio"]) {
+		flex: 0 0 auto;
+		margin: 2px 0 0 !important;
+	}
+
+		#modal_overlay > [role="dialog"] p > label.alert-message.danger:has(input[type="checkbox"]) {
+			display: inline-flex !important;
+			align-items: flex-start !important;
+			justify-content: flex-start !important;
+			gap: 10px;
+			width: fit-content !important;
+			max-width: 100% !important;
+			min-height: 0 !important;
+			margin: 4px 0 0 !important;
+			padding: 10px 12px !important;
+			color: var(--vw-danger) !important;
+			background: color-mix(in srgb, var(--vw-danger) 7%, transparent) !important;
+			border: 1px solid color-mix(in srgb, var(--vw-danger) 32%, transparent) !important;
+			border-radius: 14px !important;
+			box-shadow: none !important;
+			text-align: left !important;
+			white-space: normal !important;
+		}
+
+		#modal_overlay > [role="dialog"] p > label.alert-message.danger:has(input[type="checkbox"]) > :is(input[type="checkbox"], input[type="radio"]) {
+			-webkit-appearance: checkbox !important;
+			appearance: checkbox !important;
+			accent-color: var(--vw-danger) !important;
+			flex: 0 0 auto;
+			align-self: flex-start;
+			inline-size: 16px !important;
+			block-size: 16px !important;
+			margin: 2px 0 0 !important;
+			background: transparent !important;
+			border-color: color-mix(in srgb, var(--vw-danger) 55%, var(--vw-control-border)) !important;
+			box-shadow: none !important;
+			-webkit-backdrop-filter: none !important;
+			backdrop-filter: none !important;
+			filter: none !important;
+		}
+
+		#modal_overlay > [role="dialog"] p > label.alert-message.danger:has(input[type="checkbox"]) > input[type="checkbox"]::before,
+		#modal_overlay > [role="dialog"] p > label.alert-message.danger:has(input[type="checkbox"]) > input[type="checkbox"]::after {
+			display: none !important;
+			content: none !important;
+		}
+
 	.vwrt-loading-apply,
 	#modal_overlay > [class~="modal"][class~="alert-message"]:is(.spinning, .loading) {
 		position: fixed !important;
@@ -411,7 +611,6 @@
 	.vwrt-loading-viewport,
 	#view > :is(.spinning, .loading),
 	#maincontent > :is(.spinning, .loading),
-	#maincontent :is(.cbi-map, .cbi-section, .cbi-section-node) > p > :is(.spinning, .loading),
 	.vwrt-pass19-loading-fixture #view > :is(.spinning, .loading),
 	.vwrt-pass20-loading-fixture #view > :is(.spinning, .loading),
 	.vwrt-pass21-loading-fixture #view > :is(.spinning, .loading) {
@@ -514,12 +713,13 @@
 	}
 
 	.vwrt-loading-apply::before,
+	.vwrt-loading-card-local::before,
 	.vwrt-loading-modal-local::before,
 	.vwrt-loading-viewport::before,
 	#view > :is(.spinning, .loading)::before,
 	#maincontent > :is(.spinning, .loading)::before,
 	#modal_overlay > [class~="modal"][class~="alert-message"]:is(.spinning, .loading)::before,
-	#modal_overlay > [class~="modal"] :is(.spinning, .loading):not(button):not(.btn):not(.cbi-button):not(input)::before,
+	#modal_overlay > [class~="modal"] :is(.spinning, .loading):not(.vwrt-loading-titled-body):not(button):not(.btn):not(.cbi-button):not(input)::before,
 	#maincontent :is(.cbi-map, .cbi-section, .cbi-section-node) > p > :is(.spinning, .loading)::before,
 	.vwrt-pass19-loading-fixture #view > :is(.spinning, .loading)::before,
 	.vwrt-pass20-loading-fixture #view > :is(.spinning, .loading)::before,
@@ -625,7 +825,7 @@
 		background: var(--vw-menu-item-hover) !important;
 	}
 
-	#modal_overlay :is(.alert-message, .uci-change-list),
+	#modal_overlay > :is(.modal, [role="dialog"]:not(.alert-message)) :is(.alert-message:not(label):not(.vwrt-status-prompt), .uci-change-list),
 	#maincontent :is(.modal, .cbi-modal, [role="dialog"]) :is(.alert-message, .uci-change-list) {
 		color: var(--vw-text-main) !important;
 		background: color-mix(in srgb, var(--vw-material-inner-surface) 9%, transparent) !important;
@@ -655,95 +855,333 @@
 		backdrop-filter: none !important;
 	}
 
-	#modal_overlay .modal :is(.ifacebadge, .interface-status, .device-status) {
+	body:not(.vwrt-dashboard-page) #modal_overlay > [role="dialog"] :is(.ifacebadge:not(.cbi-tooltip), .interface-status, .device-status) {
+		display: inline-grid !important;
+		grid-template-columns: 20px minmax(0, 1fr);
+		align-items: start !important;
+		justify-items: start !important;
+		column-gap: 10px !important;
+		row-gap: 3px !important;
+		inline-size: min(100%, 21rem) !important;
+		max-inline-size: min(100%, 21rem) !important;
+		min-inline-size: 0 !important;
+		overflow: hidden;
+		padding: 10px 12px !important;
 		color: var(--vw-text-main) !important;
-		background: color-mix(in srgb, var(--vw-material-inner-surface) 54%, transparent) !important;
-		border: 1px solid color-mix(in srgb, var(--vw-material-border) 72%, transparent) !important;
-		border-radius: var(--vw-radius-card) !important;
+		background: color-mix(in srgb, var(--vw-material-inner-surface) 62%, transparent) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 78%, transparent) !important;
+		border-radius: 18px !important;
 		box-shadow: none !important;
 		-webkit-backdrop-filter: none !important;
 		backdrop-filter: none !important;
 	}
 
-	#modal_overlay .modal :is(.ifacebadge, .interface-status, .device-status) :is(span, strong, small, label) {
+	body:not(.vwrt-dashboard-page) #modal_overlay > [role="dialog"] :is(.ifacebadge:not(.cbi-tooltip), .interface-status, .device-status) :is(span, strong, small, label) {
+		min-width: 0;
+		max-width: 100%;
+		white-space: normal !important;
+		overflow-wrap: anywhere;
 		color: inherit !important;
 		background: transparent !important;
 		border: 0 !important;
 		box-shadow: none !important;
 	}
 
-	#modal_overlay .modal .ifacebadge img {
+	body:not(.vwrt-dashboard-page) #modal_overlay > [role="dialog"] :is(.ifacebadge:not(.cbi-tooltip), .interface-status, .device-status) > span {
+		display: block !important;
+		min-width: 0;
+	}
+
+	body:not(.vwrt-dashboard-page) #modal_overlay > [role="dialog"] :is(.ifacebadge:not(.cbi-tooltip), .interface-status, .device-status) .nowrap {
+		display: block !important;
+		white-space: normal !important;
+	}
+
+	body:not(.vwrt-dashboard-page) #modal_overlay > [role="dialog"] .ifacebadge img {
 		flex: 0 0 auto;
+		align-self: start;
 		max-width: 32px;
 		max-height: 32px;
 		object-fit: contain;
 	}
 
-	#modal_overlay > .modal.vwrt-status-prompt {
-		--vwrt-status-accent: var(--vw-info);
-		width: min(28rem, calc(100vw - 32px)) !important;
-		min-width: min(18rem, calc(100vw - 32px)) !important;
-		min-height: 0 !important;
-		height: auto !important;
-		margin: 0 !important;
-		padding: 18px 18px 18px 62px !important;
-		color: var(--vw-text-main) !important;
-		background:
-			var(--vwrt-status-icon) 20px 19px / 26px 26px no-repeat,
-			linear-gradient(180deg, color-mix(in srgb, var(--vwrt-status-accent) 7%, transparent), transparent 54%),
-			var(--vw-material-modal-surface) !important;
-		border: 1px solid color-mix(in srgb, var(--vwrt-status-accent) 26%, var(--vw-material-border-strong)) !important;
-		border-radius: var(--vw-radius-card) !important;
-		box-shadow: var(--vw-shadow-modal) !important;
-		text-align: left !important;
-	}
+			.vwrt-loading-titled-modal {
+				display: grid !important;
+				grid-template-rows: auto minmax(86px, 1fr);
+				grid-template-columns: minmax(0, 1fr);
+				align-items: stretch;
+				gap: 16px;
+				width: min(30rem, calc(100vw - 32px)) !important;
+				min-width: min(22rem, calc(100vw - 32px)) !important;
+				max-width: calc(100vw - 32px) !important;
+				min-height: 158px !important;
+				padding: 22px 24px 26px !important;
+				background:
+					linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 28%, transparent), transparent 70%),
+					var(--vw-material-modal-surface) !important;
+				border: 1px solid var(--vw-material-border-strong) !important;
+				border-radius: var(--vw-radius-modal) !important;
+				box-shadow: var(--vw-material-shadow-raised) !important;
+				-webkit-backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+				backdrop-filter: blur(var(--vw-blur-popover)) saturate(var(--vw-saturate-popover));
+			}
 
-	#modal_overlay > .modal.vwrt-status-loading {
-		--vwrt-status-icon: url("../img/status-icons/loading.svg");
-	}
+		.vwrt-loading-titled-modal > :is(h1, h2, h3, h4, .modal-title) {
+			margin: 0 !important;
+			padding: 0 !important;
+			border: 0 !important;
+			color: var(--vw-text-main) !important;
+			font-size: 1.04rem !important;
+			font-weight: 620 !important;
+			line-height: 1.3 !important;
+			letter-spacing: 0 !important;
+			text-align: left !important;
+		}
 
-	#modal_overlay > .modal.vwrt-status-applying {
-		--vwrt-status-accent: var(--vw-warning);
-		--vwrt-status-icon: url("../img/status-icons/applying.svg");
-	}
+		.vwrt-loading-titled-modal .vwrt-loading-titled-body {
+			position: static !important;
+			display: flex !important;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 12px;
+			width: 100% !important;
+			min-width: 0 !important;
+			min-height: 86px !important;
+			max-width: 100% !important;
+			margin: 0 auto !important;
+			padding: 0 !important;
+			color: var(--vw-text-secondary) !important;
+			background: transparent !important;
+			border: 0 !important;
+			border-radius: 0 !important;
+			box-shadow: none !important;
+			-webkit-backdrop-filter: none !important;
+			backdrop-filter: none !important;
+			text-align: center !important;
+			white-space: normal !important;
+			overflow-wrap: anywhere;
+			font-size: 0.92rem;
+			font-weight: 500;
+			line-height: 1.45;
+		}
 
-	#modal_overlay > .modal.vwrt-status-session {
-		--vwrt-status-accent: var(--vw-danger);
-		--vwrt-status-icon: url("../img/status-icons/session.svg");
-	}
+			.vwrt-loading-titled-modal .vwrt-loading-titled-body::before {
+				position: static !important;
+				flex: 0 0 auto;
+				justify-self: center;
+				align-self: center;
+				transform: none !important;
+				margin: 0;
+				inline-size: 22px !important;
+				block-size: 22px !important;
+				border: 0 !important;
+				border-radius: 50% !important;
+				background:
+					radial-gradient(circle closest-side, var(--vw-material-modal-surface) 60%, transparent 62%),
+					conic-gradient(from 0deg, var(--vw-accent) 0 27%, color-mix(in srgb, var(--vw-accent) 18%, transparent) 28% 100%) !important;
+				box-shadow: 0 0 0 1px color-mix(in srgb, var(--vw-accent) 12%, transparent) inset !important;
+				animation: vwrt-spinner-rotate 0.82s linear infinite !important;
+			}
 
-	#modal_overlay > .modal.vwrt-status-empty {
-		--vwrt-status-accent: var(--vw-success);
-		--vwrt-status-icon: url("../img/status-icons/empty.svg");
-	}
+		.vwrt-status-prompt {
+			display: grid !important;
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-areas:
+				"icon"
+				"title"
+				"body"
+				"action";
+			align-items: start;
+			justify-items: center;
+			justify-content: center;
+			gap: 8px;
+			width: min(26rem, calc(100vw - 32px)) !important;
+			min-width: min(19rem, calc(100vw - 32px)) !important;
+			min-height: 148px !important;
+			height: auto !important;
+			margin: 0 !important;
+			padding: 26px 28px 22px !important;
+			overflow: hidden !important;
+			color: var(--vw-text-main) !important;
+			background: color-mix(in srgb, var(--vw-material-modal-surface) 96%, var(--vw-background)) !important;
+			border: 1px solid var(--vw-material-border-strong) !important;
+			border-radius: 18px !important;
+			box-shadow:
+				0 24px 48px color-mix(in srgb, var(--vw-shadow-color) 18%, transparent),
+				0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 22%, transparent) inset !important;
+			text-align: center !important;
+		}
 
-	#modal_overlay > .modal.vwrt-status-prompt > :is(h1, h2, h3, h4, .modal-title) {
-		margin: 0 !important;
-		padding: 0 !important;
-		border: 0 !important;
-		font-size: 1rem !important;
-		font-weight: 600 !important;
-		line-height: 1.3 !important;
-	}
+		.vwrt-status-prompt.vwrt-status-floating {
+			position: fixed !important;
+			inset: auto !important;
+			top: 50dvh !important;
+			left: 50vw !important;
+			right: auto !important;
+			bottom: auto !important;
+			transform: translate3d(-50%, -50%, 0) !important;
+			z-index: 2147483000 !important;
+			isolation: isolate;
+			pointer-events: auto;
+		}
 
-	#modal_overlay > .modal.vwrt-status-prompt > :is(.alert-message, .modal-body, p) {
-		margin: 0 !important;
-		padding: 0 !important;
-		color: var(--vw-text-secondary) !important;
-		background: transparent !important;
-		border: 0 !important;
-		box-shadow: none !important;
-		font-size: 0.88rem;
-		line-height: 1.45;
-	}
+		.vwrt-status-prompt::before {
+			content: "";
+			grid-area: icon;
+			inline-size: 24px;
+			block-size: 24px;
+			align-self: center;
+			justify-self: center;
+			margin-block-end: 2px;
+			background-color: var(--vwrt-status-icon-color, var(--vw-text-main));
+			-webkit-mask: var(--vwrt-status-icon) center / 24px 24px no-repeat;
+			mask: var(--vwrt-status-icon) center / 24px 24px no-repeat;
+		}
 
-	#modal_overlay > .modal.vwrt-status-prompt > :is(.button-row, .right, .modal-footer) {
-		margin: 8px 0 0 !important;
-		padding: 0 !important;
-		border: 0 !important;
-	}
+		.vwrt-status-loading {
+			--vwrt-status-icon: url("../img/status-icons/loading.svg");
+			--vwrt-status-icon-color: var(--vw-text-secondary);
+		}
 
-	@media (max-width: 640px) {
+		.vwrt-status-applying {
+			--vwrt-status-icon: url("../img/status-icons/applying.svg");
+			--vwrt-status-icon-color: var(--vw-warning);
+		}
+
+		.vwrt-status-success,
+		.vwrt-status-empty {
+			--vwrt-status-icon: url("../img/status-icons/empty.svg");
+			--vwrt-status-icon-color: var(--vw-success);
+		}
+
+		.vwrt-status-restored {
+			--vwrt-status-icon: url("../img/status-icons/empty.svg");
+			--vwrt-status-icon-color: color-mix(in srgb, var(--vw-accent) 76%, var(--vw-text-main));
+		}
+
+		.vwrt-status-session {
+			--vwrt-status-icon: url("../img/status-icons/session.svg");
+			--vwrt-status-icon-color: var(--vw-danger);
+		}
+
+		.vwrt-status-warning {
+			--vwrt-status-icon: url("../img/status-icons/session.svg");
+			--vwrt-status-icon-color: var(--vw-warning);
+		}
+
+		.vwrt-status-prompt > :is(h1, h2, h3, h4, .modal-title) {
+			grid-area: title;
+			justify-self: center;
+			margin: 0 !important;
+			padding: 0 !important;
+			border: 0 !important;
+			background: transparent !important;
+			color: var(--vw-text-main) !important;
+			font-size: 1.02rem !important;
+			font-weight: 620 !important;
+			line-height: 1.3 !important;
+			text-align: center !important;
+		}
+
+		.vwrt-status-prompt > :is(.vwrt-status-message, .alert-message, .modal-body, p) {
+			grid-area: body;
+			justify-self: center;
+			margin: 0 !important;
+			padding: 0 !important;
+			max-width: 30ch;
+			overflow-wrap: break-word;
+			color: var(--vw-text-secondary) !important;
+			background: transparent !important;
+			border: 0 !important;
+			box-shadow: none !important;
+			font-size: 0.9rem;
+			line-height: 1.45;
+			text-align: center !important;
+		}
+
+		.vwrt-status-prompt > :is(.vwrt-status-message, .alert-message):only-child {
+			color: var(--vw-text-main) !important;
+			font-size: 0.98rem !important;
+			font-weight: 560 !important;
+			line-height: 1.4 !important;
+		}
+
+		.vwrt-status-prompt > :is(.button-row, .right, .modal-footer) {
+			grid-area: action;
+			align-self: end;
+			align-items: center !important;
+			justify-content: flex-end !important;
+			width: auto;
+			margin: 10px 0 0 !important;
+			padding: 0 !important;
+			border: 0 !important;
+			justify-self: end;
+		}
+
+		.vwrt-status-prompt :is(svg, img, .icon, .alert-icon, [class*="icon-"]):first-child {
+			inline-size: 0 !important;
+			block-size: 0 !important;
+			min-inline-size: 0 !important;
+			min-block-size: 0 !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			border: 0 !important;
+			opacity: 0 !important;
+			overflow: hidden !important;
+		}
+
+		.vwrt-status-prompt :is(.alert-icon, [class*="icon-"], .icon) {
+			background: transparent !important;
+			border: 0 !important;
+			box-shadow: none !important;
+		}
+
+		.vwrt-status-prompt.vwrt-status-compact {
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-areas:
+				"icon"
+				"body"
+				"action";
+			width: min(25rem, calc(100vw - 32px)) !important;
+			min-width: min(18rem, calc(100vw - 32px)) !important;
+			min-height: 132px !important;
+			padding: 26px 28px 22px !important;
+		}
+
+		.vwrt-status-prompt.vwrt-status-compact:not(.vwrt-status-has-action) {
+			grid-template-areas:
+				"icon"
+				"body";
+			min-height: 112px !important;
+		}
+
+		body.vwrt-status-freeze::before {
+			display: none !important;
+			content: none !important;
+		}
+
+		body.vwrt-status-freeze #maincontent {
+			position: relative;
+			z-index: 2147482988;
+		}
+
+		body.vwrt-status-freeze #maincontent::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			z-index: 2147482990;
+			pointer-events: auto;
+			background: color-mix(in srgb, var(--vw-background) 34%, transparent);
+			-webkit-backdrop-filter: blur(14px) saturate(118%);
+			backdrop-filter: blur(14px) saturate(118%);
+		}
+
+		body.vwrt-status-freeze {
+			overflow: hidden;
+		}
+
+		@media (max-width: 640px) {
 		#modal_overlay {
 			padding: 12px;
 		}

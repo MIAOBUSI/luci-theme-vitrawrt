@@ -47,6 +47,368 @@
 		}
 	}
 
+	body.vwrt-page-overview #maincontent .network-status-table {
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: stretch;
+		justify-content: center;
+		gap: 12px;
+		padding: 10px !important;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 18%, transparent), transparent 64%),
+			color-mix(in srgb, var(--vw-material-inner-surface) 72%, transparent) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 62%, transparent) !important;
+		border-radius: var(--vw-radius-card) !important;
+		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 22%, transparent) !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox {
+		display: grid !important;
+		flex: 1 1 20rem;
+		grid-template-rows: auto minmax(0, 1fr);
+		justify-items: stretch !important;
+		gap: 0 !important;
+		min-width: min(100%, 20rem) !important;
+		width: auto !important;
+		max-width: calc((100% - 36px) / 4) !important;
+		padding: 0 !important;
+		overflow: visible;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 20%, transparent), transparent 58%),
+			color-mix(in srgb, var(--vw-material-group-surface) 88%, transparent) !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 70%, transparent) !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .vwrt-network-glyph {
+		display: none !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .ifacebox-head {
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		min-height: 42px;
+		padding: 9px 14px !important;
+		color: var(--vw-text-main) !important;
+		background: color-mix(in srgb, var(--vw-material-inner-surface) 44%, transparent) !important;
+		border-bottom: 1px solid color-mix(in srgb, var(--vw-material-border) 68%, transparent) !important;
+		font-weight: 650;
+		text-align: center;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .ifacebox-body {
+		display: flex !important;
+		flex-direction: column;
+		align-items: stretch;
+		justify-items: stretch;
+		gap: 10px;
+		width: 100%;
+		min-width: 0;
+		padding: 16px 18px 14px !important;
+		color: var(--vw-text-main) !important;
+		text-align: start !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .ifacebox-body.left {
+		align-items: stretch !important;
+		justify-content: flex-start;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) {
+		box-sizing: border-box;
+		display: grid !important;
+		grid-template-columns: 20px minmax(0, 1fr);
+		align-items: start !important;
+		justify-content: flex-start;
+		gap: 6px 12px !important;
+		width: 100%;
+		max-width: 100%;
+		min-height: 0 !important;
+		padding: 10px 14px !important;
+		background: color-mix(in srgb, var(--vw-material-inner-surface) 74%, transparent) !important;
+		border: 1px solid color-mix(in srgb, var(--vw-material-border) 80%, transparent) !important;
+		border-radius: calc(var(--vw-radius-card) - 2px) !important;
+		box-shadow: none !important;
+		white-space: normal !important;
+		overflow-wrap: anywhere;
+		text-align: start;
+		line-height: 1.28;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) > span {
+		display: flex !important;
+		flex-direction: column;
+		gap: 0;
+		min-width: 0;
+		color: var(--vw-text-secondary) !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		padding: 0 !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) > span > br {
+		display: none !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) .nowrap {
+		display: block !important;
+		min-height: 0 !important;
+		padding: 0 !important;
+		color: inherit !important;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		white-space: normal !important;
+	}
+
+	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) :is(.vwrt-network-glyph, img.vwrt-network-port-icon) {
+		flex: 0 0 auto;
+		align-self: center;
+		margin-block-start: 0;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section > div > div[style*="grid-template-columns:repeat(auto-fit, minmax(100px"] {
+		box-sizing: border-box;
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: flex-start !important;
+		justify-content: center;
+		justify-items: initial !important;
+		gap: 12px;
+		width: fit-content;
+		max-width: 100%;
+		min-height: 0;
+		margin-inline: auto !important;
+		margin-bottom: 0 !important;
+		padding: 0;
+		text-align: center;
+		background: transparent;
+		border: 0;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card {
+		box-sizing: border-box;
+		display: grid !important;
+		position: relative;
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: repeat(6, auto);
+		align-content: center;
+		align-items: center;
+		justify-items: center;
+		align-self: flex-start;
+		gap: 5px;
+		width: 140px !important;
+		min-width: 140px;
+		height: auto !important;
+		min-height: 0;
+		margin: 0 !important;
+		overflow: visible;
+		padding: 12px !important;
+		border-color: color-mix(in srgb, var(--vw-material-border) 72%, transparent) !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card:is(:hover, .active) {
+		background: var(--vw-network-port-hover) !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-network-glyph {
+		display: none !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-head:not(.cbi-tooltip-container) {
+		display: grid !important;
+		grid-column: 1;
+		grid-row: 2;
+		align-self: center;
+		justify-self: center;
+		box-sizing: border-box;
+		justify-items: center;
+		width: auto;
+		min-height: 0;
+		padding: 0 !important;
+		margin: 0;
+		background: transparent !important;
+		border-bottom: 0 !important;
+		font-weight: 650 !important;
+		text-align: center;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-status-primary {
+		display: contents !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-status-primary > :is(
+		.vwrt-network-image-glyph,
+		img.vwrt-network-port-icon
+	) {
+		grid-column: 1;
+		grid-row: 1;
+		inline-size: 34px;
+		block-size: 34px;
+		margin: 0 0 2px;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-state {
+		grid-column: 1;
+		grid-row: 3;
+		color: var(--vw-network-status-danger) !important;
+		font-size: 0.82rem;
+		font-weight: 520;
+		line-height: 1.2;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card[data-vwrt-link-state="connected"] .vwrt-port-link-state {
+		color: var(--vw-network-status-active) !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed {
+		grid-column: 1;
+		grid-row: 4;
+		display: inline-flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 3px;
+		min-height: 18px;
+		margin-top: 2px;
+		color: var(--vw-text-main);
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed > strong {
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed > small {
+		color: var(--vw-text-secondary);
+		font-size: 0.72rem;
+		font-weight: 520;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership {
+		position: relative !important;
+		grid-column: 1;
+		grid-row: 6;
+		display: flex !important;
+		gap: 4px;
+		width: 100%;
+		height: 6px;
+		min-height: 0;
+		margin-top: 7px;
+		padding: 0 2px !important;
+		background: transparent !important;
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership > .zonebadge {
+		flex: 1 1 0;
+		width: auto !important;
+		height: 5px !important;
+		border: 1px solid color-mix(in srgb, var(--vw-text-main) 12%, transparent);
+		border-radius: var(--vw-radius-pill);
+		opacity: 1 !important;
+		background: var(--vw-text-muted) !important;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership[data-vwrt-network-role="wan"] > .zonebadge {
+		background: var(--vw-danger) !important;
+		box-shadow: 0 0 7px color-mix(in srgb, var(--vw-danger) 42%, transparent);
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership[data-vwrt-network-role="lan"] > .zonebadge {
+		background: var(--vw-success) !important;
+		box-shadow: 0 0 7px color-mix(in srgb, var(--vw-success) 38%, transparent);
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card::after {
+		position: absolute;
+		top: 11px;
+		right: 11px;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--vw-network-status-danger);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--vw-network-status-danger) 14%, transparent);
+		content: "";
+		pointer-events: none;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card[data-vwrt-link-state="connected"]::after {
+		background: var(--vw-network-status-active);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--vw-network-status-active) 16%, transparent);
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-body:last-child {
+		grid-column: 1;
+		grid-row: 5;
+		width: 100%;
+		min-height: 0;
+		margin-top: 6px;
+		padding: 8px 0 0 !important;
+		border-top: 1px solid color-mix(in srgb, var(--vw-material-border) 54%, transparent) !important;
+		text-align: center;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic {
+		display: grid;
+		grid-template-columns: max-content;
+		justify-content: center;
+		gap: 5px;
+		font-size: 0.8rem !important;
+		font-variant-numeric: tabular-nums;
+		line-height: 1.2;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic-row {
+		display: grid;
+		grid-template-columns: 14px max-content;
+		align-items: center;
+		gap: 7px;
+		color: var(--vw-text-main);
+		white-space: nowrap;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-traffic-arrow {
+		display: block;
+		width: 14px;
+		height: 14px;
+		background: currentColor;
+		mask: url("../img/network-icons/traffic-in.svg") center / contain no-repeat;
+		-webkit-mask: url("../img/network-icons/traffic-in.svg") center / contain no-repeat;
+	}
+
+	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic-row[data-direction="tx"] .vwrt-traffic-arrow {
+		mask-image: url("../img/network-icons/traffic-out.svg");
+		-webkit-mask-image: url("../img/network-icons/traffic-out.svg");
+	}
+
+	body.vwrt-page-overview #maincontent table:is(#status_leases, #status_leases6) :is(th, td):last-child {
+		width: 8.5rem;
+		text-align: center !important;
+		vertical-align: middle;
+	}
+
+	body.vwrt-page-overview #maincontent table:is(#status_leases, #status_leases6) td:last-child > :is(button, .cbi-button, .btn) {
+		margin-inline: auto;
+	}
+
+	@media (max-width: 1800px) {
+		body.vwrt-page-overview #maincontent .network-status-table > .ifacebox {
+			max-width: calc((100% - 24px) / 3) !important;
+		}
+	}
+
+	@media (max-width: 1320px) {
+		body.vwrt-page-overview #maincontent .network-status-table > .ifacebox {
+			max-width: calc((100% - 12px) / 2) !important;
+		}
+	}
+
 	body.vwrt-page-vnstat2 #maincontent .cbi-section[data-tab][data-tab-active="false"] {
 		display: none !important;
 	}
@@ -93,15 +455,86 @@
 		margin: 12px 0 0 !important;
 	}
 
-	body.vwrt-page-statistics #maincontent p.controls > span.nowrap {
-		display: inline-flex;
+	body.vwrt-page-statistics #maincontent p.controls {
+		display: flex !important;
+		flex-wrap: wrap;
 		align-items: center;
-		gap: 8px;
-		margin: 0 10px 8px 0;
+		gap: 8px 12px;
+		margin: 0 0 14px !important;
+		white-space: normal;
+	}
+
+	body.vwrt-page-statistics #maincontent p.controls > span.nowrap {
+		display: contents !important;
+		margin: 0 !important;
 	}
 
 	body.vwrt-page-statistics #maincontent p.controls > span.nowrap > :is(select, .cbi-dropdown, button, .cbi-button) {
+		flex: 0 0 auto;
 		margin: 0 !important;
+	}
+
+	body.vwrt-page-statistics #maincontent p.controls > span.nowrap > .cbi-dropdown:not(.btn):not(.cbi-button) {
+		max-inline-size: min(100%, 18rem) !important;
+	}
+
+	body.vwrt-page-easytier-status #maincontent .et-tabs-container {
+		display: flex !important;
+		align-items: center !important;
+		min-block-size: 52px;
+		block-size: auto !important;
+		padding: 6px 10px !important;
+		overflow: visible;
+	}
+
+	body.vwrt-page-easytier-status #maincontent .et-tabs-container > .cbi-tabmenu:empty,
+	body.vwrt-page-easytier-status #maincontent .et-tabs-container > .cbi-tabmenu:not(:has(> li)) {
+		display: none !important;
+		inline-size: 0 !important;
+		block-size: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		border: 0 !important;
+		background: transparent !important;
+		box-shadow: none !important;
+	}
+
+	body.vwrt-page-easytier-status #maincontent .et-tabs {
+		display: flex !important;
+		flex-wrap: wrap;
+		align-items: center !important;
+		justify-content: flex-start;
+		gap: 8px;
+		inline-size: auto;
+		max-inline-size: 100%;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	body.vwrt-page-easytier-status #maincontent :is(.et-tabs .et-tab, .et-restart-btn, .et-refresh-btn) {
+		--vwrt-button-fill: var(--vw-button-primary-fill);
+		--vwrt-button-text: var(--vw-button-primary-text);
+		--vwrt-button-border: var(--vw-button-primary-border);
+		--vw-button-hover-glow: var(--vw-button-primary-glow);
+		display: inline-flex !important;
+		flex: 0 0 auto !important;
+		align-items: center !important;
+		justify-content: center !important;
+		min-block-size: 38px !important;
+		padding-block: 0 !important;
+		padding-inline: 14px !important;
+		border: 1px solid var(--vwrt-button-border) !important;
+		border-radius: var(--vw-radius-pill) !important;
+		color: var(--vwrt-button-text) !important;
+		background: var(--vwrt-button-fill) !important;
+		box-shadow: none;
+	}
+
+	body.vwrt-page-easytier-status #maincontent .et-tabs .et-tab:not(.active) {
+		--vwrt-button-fill: var(--vw-button-secondary-fill);
+		--vwrt-button-text: var(--vw-text-main);
+		--vwrt-button-border: var(--vw-control-border);
+		--vw-button-hover-glow: var(--vw-button-neutral-glow);
 	}
 
 	body.vwrt-page-cpulimit #maincontent #view > :is(.cbi-page-actions, .cbi-section-actions):first-child {
@@ -130,7 +563,7 @@
 		pointer-events: none !important;
 	}
 
-	body:is(.vwrt-page-nas, .vwrt-page-vpn, .vwrt-page-services) #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
+	body:is(.vwrt-page-nas, .vwrt-page-vpn, .vwrt-page-services):not(.vwrt-page-openclash) #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
 		position: absolute !important;
 		inset: auto !important;
 		width: 1px !important;
@@ -147,7 +580,7 @@
 		pointer-events: none !important;
 	}
 
-	body:is(.vwrt-page-nas, .vwrt-page-vpn, .vwrt-page-services) #maincontent #view > :is(.cbi-page-actions, .cbi-section-actions):first-child {
+	body:is(.vwrt-page-nas, .vwrt-page-vpn, .vwrt-page-services):not(.vwrt-page-openclash) #maincontent #view > :is(.cbi-page-actions, .cbi-section-actions):first-child {
 		float: none !important;
 		clear: both;
 		width: fit-content;
@@ -370,6 +803,10 @@
 		text-align: center;
 	}
 
+	body.vwrt-page-network #maincontent .ifacebox:is(:hover, .active) {
+		background: var(--vw-network-port-hover) !important;
+	}
+
 	body.vwrt-page-network #maincontent .ifacebox .ifacebox-head {
 		box-sizing: border-box;
 		width: 100%;
@@ -448,11 +885,70 @@
 	}
 
 	body.vwrt-page-openclash #maincontent .mihomo-link {
-		color: #005ecb !important;
+		color: var(--vw-accent) !important;
 	}
 
 	body.vwrt-page-openclash #maincontent .stat-value {
-		color: #006c45 !important;
+		color: var(--vw-success) !important;
+	}
+
+	body.vwrt-page-openclash #maincontent :is(
+		input.cbi-button-apply,
+		input.cbi-button-save,
+		input.cbi-button-positive,
+		button.cbi-button-apply,
+		button.cbi-button-save,
+		button.cbi-button-positive,
+		.btn.cbi-button-apply,
+		.btn.cbi-button-save,
+		.btn.cbi-button-positive
+	):not(:disabled):not([disabled]) {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: var(--vw-button-primary-border) !important;
+		background-image: none !important;
+		text-shadow: none !important;
+		box-shadow: none !important;
+	}
+
+	body.vwrt-page-openclash #maincontent :is(
+		input.cbi-button-reset,
+		input.cbi-button-negative,
+		input.cbi-button-remove,
+		button.cbi-button-reset,
+		button.cbi-button-negative,
+		button.cbi-button-remove,
+		.btn.cbi-button-reset,
+		.btn.cbi-button-negative,
+		.btn.cbi-button-remove
+	):not(:disabled):not([disabled]) {
+		color: var(--vw-button-danger-text) !important;
+		background: var(--vw-button-danger-fill) !important;
+		border-color: var(--vw-button-danger-border) !important;
+		background-image: none !important;
+		text-shadow: none !important;
+		box-shadow: none !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-settings"] #maincontent .cbi-value-field:has(> div[style*="display: flex"] > [id^="switch_dashboard_"]) {
+		margin-inline-start: 8px !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-settings"] #maincontent .cbi-value-field:has(> div[style*="display: flex"] > [id^="switch_dashboard_"]) > div[style*="display: flex"] {
+		gap: 8px !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-settings"] #maincontent .cbi-value-field > div[style*="display: flex"] > :is([id^="switch_dashboard_"], [id^="delete_dashboard_"], [id^="default_dashboard_"]) {
+		flex: 0 0 auto !important;
+		inline-size: auto !important;
+		width: auto !important;
+		min-inline-size: 0 !important;
+		margin-inline-start: 0 !important;
+		padding-block: 0 !important;
+	}
+
+	body.vwrt-page-openclash[data-page="admin-services-openclash-settings"] #maincontent .cbi-value-field > div[style*="display: flex"] > :is([id^="switch_dashboard_"], [id^="delete_dashboard_"], [id^="default_dashboard_"]) > :is(input, button, .btn, .cbi-button) {
+		margin-inline: 0 !important;
 	}
 
 	html[data-theme="dark"] body.vwrt-page-openclash #maincontent .mihomo-link {
@@ -602,231 +1098,18 @@
 	}
 
 	body[data-page^="admin-services-openclash"] #maincontent :is(select, .cbi-input-select, .cbi-dropdown:not(.btn):not(.cbi-button)) {
-		inline-size: max-content !important;
-		max-inline-size: 100%;
-	}
-
-	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) {
-		display: grid !important;
-		grid-template-columns: 220px minmax(0, 1fr);
-		align-items: center;
-		column-gap: 10px;
-	}
-
-	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > .cbi-value-title {
-		box-sizing: border-box;
-		width: 220px !important;
-		min-width: 220px !important;
-		padding-inline-end: 0 !important;
-		text-align: right !important;
-		justify-self: end;
-	}
-
-	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) {
-		display: grid !important;
-		grid-template-columns: 180px 72px 112px;
-		align-items: center;
-		justify-content: start;
-		gap: 8px !important;
-		width: max-content;
-		max-width: 100%;
-	}
-
-	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id^="switch_dashboard_"] {
-		inline-size: 180px !important;
-	}
-
-	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id^="delete_dashboard_"] {
-		inline-size: 72px !important;
-	}
-
-	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id^="default_dashboard_"] {
-		inline-size: 112px !important;
-	}
-
-	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id] {
-		display: block !important;
-		min-width: 0 !important;
-		margin: 0 !important;
-	}
-
-	body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]) > [id] > :is(button, .btn, .cbi-button, input[type="button"], input[type="submit"], input[type="reset"]) {
-		display: inline-flex !important;
-		align-items: center !important;
-		justify-content: center !important;
-		inline-size: 100% !important;
-		min-width: 0 !important;
-		min-height: 36px !important;
-		margin: 0 !important;
-		padding-inline: 8px !important;
-		font-size: 0.78rem !important;
-		font-weight: 500 !important;
-		text-align: center !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-nested-shell {
-		min-width: 0 !important;
-		min-height: 0 !important;
-		width: auto !important;
-		height: auto !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		color: inherit !important;
-		background: transparent !important;
-		border: 0 !important;
-		box-shadow: none !important;
-		transform: none !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-nested-shell > :is(input[type="button"], input[type="submit"], input[type="reset"], button, .btn, .cbi-button) {
-		inline-size: 100%;
-		block-size: 100%;
-		margin: 0 !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value {
-		display: grid !important;
-		grid-template-columns: 220px minmax(0, 1fr);
-		align-items: center;
-		column-gap: 10px;
-	}
-
-	body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value > .cbi-value-title {
-		width: 220px !important;
-		min-width: 220px !important;
-		box-sizing: border-box;
-		padding-inline-end: 0 !important;
-		text-align: right !important;
-		justify-self: end;
-	}
-
-	body.vwrt-page-openclash #maincontent .cbi-value-field.vwrt-openclash-action-field {
-		display: block !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		min-width: 0 !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row {
-		display: grid !important;
-		grid-template-columns: 180px 72px 112px;
-		align-items: center;
-		justify-content: start;
-		gap: 8px;
-		width: max-content;
-		max-width: 100%;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .cbi-value-field {
-		display: contents !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .vwrt-openclash-button-cell {
-		display: block !important;
-		min-width: 0 !important;
-		margin: 0 !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .vwrt-openclash-button-cell:nth-child(1) {
-		inline-size: 180px !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .vwrt-openclash-button-cell:nth-child(2) {
-		inline-size: 72px !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > .vwrt-openclash-button-cell:nth-child(3) {
-		inline-size: 112px !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > [id^="switch_dashboard_"] {
-		inline-size: 180px !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > [id^="delete_dashboard_"] {
-		inline-size: 72px !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row > [id^="default_dashboard_"] {
-		inline-size: 112px !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row :is(button, .btn, .cbi-button, input[type="button"], input[type="submit"], input[type="reset"]) {
-		display: inline-flex !important;
-		align-items: center !important;
-		justify-content: center !important;
-		justify-self: stretch;
-		inline-size: 100% !important;
-		min-height: 36px !important;
-		min-width: 0 !important;
-		margin: 0 !important;
-		padding-inline: 8px !important;
-		font-size: 0.78rem !important;
-		font-weight: 500 !important;
-		text-align: center !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-button-danger:not(:disabled) {
-		color: var(--vw-button-danger-text) !important;
-		background: var(--vw-button-danger-fill) !important;
-		border-color: var(--vw-button-danger-border) !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-button-neutral:not(:disabled) {
-		color: var(--vw-text-main) !important;
-		background: var(--vw-button-secondary-fill) !important;
-		border-color: color-mix(in srgb, var(--vw-control-border) 86%, transparent) !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-field-button-1 {
-		grid-column: 1;
-		grid-row: 1;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-field-button-2 {
-		grid-column: 2;
-		grid-row: 1;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row .vwrt-field-button-3 {
-		grid-column: 3;
-		grid-row: 1;
-	}
-
-	@media (max-width: 760px) {
-		body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]),
-		body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value {
-			grid-template-columns: minmax(0, 1fr);
-			row-gap: 8px;
-		}
-
-		body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > .cbi-value-title,
-		body.vwrt-page-openclash #maincontent .cbi-value.vwrt-openclash-action-value > .cbi-value-title {
-			width: auto !important;
-			min-width: 0 !important;
-		}
-
-		body[data-page^="admin-services-openclash"] #maincontent .cbi-value:has([id^="switch_dashboard_"]) > :has(> [id^="switch_dashboard_"]),
-		body.vwrt-page-openclash #maincontent .vwrt-openclash-button-row {
-			grid-template-columns: minmax(0, 1fr);
-			inline-size: 100%;
-		}
+		max-inline-size: 100% !important;
+		min-inline-size: 0 !important;
 	}
 
 	html[data-theme="dark"] body.vwrt-page-nftables #maincontent :is(tr:hover, .tr:hover, tr.flash, .tr.flash),
-	html[data-theme="dark"] body.vwrt-page-openclash #maincontent :is(tr:hover, .tr:hover, tr.flash, .tr.flash, .vwrt-placeholder-span-row) {
+	html[data-theme="dark"] body.vwrt-page-openclash #maincontent :is(tr:hover, .tr:hover, tr.flash, .tr.flash, .vwrt-placeholder-row) {
 		color: var(--vw-text-main) !important;
 		background: var(--vw-table-row-hover-surface) !important;
 	}
 
-	html[data-theme="dark"] body:is(.vwrt-page-nftables, .vwrt-page-openclash) #maincontent :is(tr:hover, .tr:hover, tr.flash, .tr.flash, .vwrt-placeholder-span-row) > :is(td, th, .td) {
+	html[data-theme="dark"] body:is(.vwrt-page-nftables, .vwrt-page-openclash) #maincontent :is(tr:hover, .tr:hover, tr.flash, .tr.flash, .vwrt-placeholder-row) > :is(td, th, .td, .cbi-section-table-cell) {
 		color: var(--vw-text-main) !important;
-		background: transparent !important;
-	}
-
-	body.vwrt-page-openclash #maincontent .vwrt-placeholder-span-row > :is(td, .td) {
-		width: auto !important;
-		text-align: center !important;
 		background: transparent !important;
 	}
 
@@ -834,27 +1117,8 @@
 		display: none !important;
 	}
 
-	body.vwrt-page-openclash #maincontent :is(.table, .cbi-section-table) > .vwrt-placeholder-span-row,
-	body.vwrt-page-openclash #maincontent :is(.table, .cbi-section-table) > .vwrt-placeholder-span-row:hover {
-		display: grid !important;
-		grid-template-columns: minmax(0, 1fr) !important;
-		width: 100% !important;
-		background: transparent !important;
-	}
-
-	body.vwrt-page-openclash #maincontent :is(.table, .cbi-section-table) > .vwrt-placeholder-span-row > .td:only-child {
-		display: grid !important;
-		place-items: center !important;
-		box-sizing: border-box !important;
-		width: 100% !important;
-		max-width: none !important;
-		min-width: 0 !important;
-		padding-inline: 0 !important;
-		background: transparent !important;
-		text-align: center !important;
-	}
-
 	body.vwrt-page-vpn #maincontent :is(span, small, td, .td):not([class]) {
 		color: var(--vw-text-secondary) !important;
 	}
+
 }

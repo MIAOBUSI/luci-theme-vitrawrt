@@ -71,9 +71,17 @@
 			line-height: 1;
 		}
 
-		#maincontent .cbi-title > h3 > :is(.label, .badge, [data-indicator="poll-status"]) {
+		#maincontent .cbi-title > h3 > :is(.label, .badge) {
 			margin-left: auto !important;
 			align-self: center;
+		}
+
+		#maincontent :is(.cbi-title > h3, .cbi-section > h3, fieldset > legend) > [data-indicator="poll-status"] {
+			position: static !important;
+			inset: auto !important;
+			margin-left: auto !important;
+			align-self: center;
+			flex: 0 0 auto;
 		}
 
 		#vwrt-indicators-bar {
@@ -139,7 +147,7 @@
 			pointer-events: none !important;
 		}
 
-		#maincontent :is(#uci-apply, #applyreboot-section, .uci-change-list, .alert-message[data-command], .alert[data-command]) {
+		#maincontent :is(#uci-apply, #applyreboot-section, .uci-change-list, .alert-message[data-command]:not(.vwrt-status-prompt), .alert[data-command]:not(.vwrt-status-prompt)) {
 			margin-left: auto;
 			width: fit-content;
 			max-width: min(100%, 38rem);

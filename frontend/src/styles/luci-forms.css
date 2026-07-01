@@ -132,15 +132,24 @@
 	#maincontent :is(select, .cbi-input-select),
 	#modal_overlay :is(select, .cbi-input-select) {
 		appearance: none;
+		inline-size: auto;
+		width: auto;
+		min-inline-size: min(100%, 10rem);
+		max-inline-size: 100%;
+		field-sizing: content;
+		box-sizing: border-box;
+		padding: 0 40px 0 12px;
+		text-overflow: ellipsis;
 		border-radius: var(--vw-radius-field) !important;
 		background:
-			linear-gradient(45deg, transparent 50%, var(--vw-text-muted) 50%) right 14px center / 6px 6px no-repeat,
+			linear-gradient(45deg, transparent 50%, var(--vw-text-muted) 50%) right 16px center / 6px 6px no-repeat,
 			var(--vw-field-bg) !important;
 	}
 
 	#maincontent .cbi-dropdown:not(.btn):not(.cbi-button),
 	#modal_overlay .cbi-dropdown:not(.btn):not(.cbi-button) {
 		position: relative;
+		z-index: 3;
 		display: inline-grid !important;
 		grid-template-columns: minmax(0, 1fr) 28px;
 		grid-template-rows: var(--vw-field-height);
@@ -157,6 +166,89 @@
 		box-shadow:
 			0 1px 0 color-mix(in srgb, var(--vw-highlight-top) 22%, transparent) inset,
 			0 1px 2px color-mix(in srgb, var(--vw-shadow-color) 3%, transparent) !important;
+	}
+
+	#maincontent :is(.cbi-value-field, .cbi-section-table-cell, .middle):has(.cbi-dropdown:not(.btn):not(.cbi-button)),
+	#modal_overlay :is(.cbi-value-field, .cbi-section-table-cell, .middle):has(.cbi-dropdown:not(.btn):not(.cbi-button)) {
+		overflow: visible !important;
+	}
+
+	#maincontent .vwrt-dropdown-host,
+	#modal_overlay .vwrt-dropdown-host {
+		overflow: visible !important;
+	}
+
+	#maincontent .vwrt-dropdown-open-host,
+	#modal_overlay .vwrt-dropdown-open-host {
+		position: relative;
+		z-index: var(--vw-z-dropdown);
+	}
+
+	#maincontent :is(.cbi-value-field, .cbi-section-table-cell, .middle) .cbi-dropdown:not(.btn):not(.cbi-button),
+	#modal_overlay :is(.cbi-value-field, .cbi-section-table-cell, .middle) .cbi-dropdown:not(.btn):not(.cbi-button) {
+		display: inline-grid !important;
+		inline-size: auto !important;
+		width: auto !important;
+		min-inline-size: min(100%, 12rem) !important;
+		max-inline-size: 100% !important;
+		justify-self: start;
+	}
+
+	#maincontent :is(
+		.table,
+		.cbi-section-table,
+		.tbody,
+		.tr,
+		.td,
+		.th,
+		.cbi-section-table-row,
+		.cbi-section-table-cell,
+		.cbi-tblsection
+	):has(.cbi-dropdown:not(.btn):not(.cbi-button)),
+	#modal_overlay :is(
+		.table,
+		.cbi-section-table,
+		.tbody,
+		.tr,
+		.td,
+		.th,
+		.cbi-section-table-row,
+		.cbi-section-table-cell,
+		.cbi-tblsection
+	):has(.cbi-dropdown:not(.btn):not(.cbi-button)) {
+		overflow: visible !important;
+	}
+
+	#maincontent :is(.cbi-value, .cbi-value-field):has(.cbi-dropdown:not(.btn):not(.cbi-button):is([open], .open, .cbi-dropdown-open, .vwrt-cbi-dropdown-open, [aria-expanded="true"])),
+	#modal_overlay :is(.cbi-value, .cbi-value-field):has(.cbi-dropdown:not(.btn):not(.cbi-button):is([open], .open, .cbi-dropdown-open, .vwrt-cbi-dropdown-open, [aria-expanded="true"])) {
+		position: relative;
+		z-index: var(--vw-z-dropdown);
+	}
+
+	#maincontent :is(
+		.table,
+		.cbi-section-table,
+		.tbody,
+		.tr,
+		.td,
+		.th,
+		.cbi-section-table-row,
+		.cbi-section-table-cell,
+		.cbi-tblsection
+	):has(.cbi-dropdown:not(.btn):not(.cbi-button):is([open], .open, .cbi-dropdown-open, .vwrt-cbi-dropdown-open, [aria-expanded="true"])),
+	#modal_overlay :is(
+		.table,
+		.cbi-section-table,
+		.tbody,
+		.tr,
+		.td,
+		.th,
+		.cbi-section-table-row,
+		.cbi-section-table-cell,
+		.cbi-tblsection
+	):has(.cbi-dropdown:not(.btn):not(.cbi-button):is([open], .open, .cbi-dropdown-open, .vwrt-cbi-dropdown-open, [aria-expanded="true"])) {
+		overflow: visible !important;
+		z-index: var(--vw-z-dropdown);
 	}
 
 	#maincontent .cbi-dropdown:not(.btn):not(.cbi-button) > :is(span.more, .more, .cbi-dropdown-arrow, .dropdown-arrow),
@@ -244,7 +336,7 @@
 		min-width: 0;
 		max-width: 100%;
 		overflow: hidden;
-		padding-inline-end: 0;
+		padding-inline-end: 8px;
 		color: var(--vw-text-main);
 		line-height: 1.25;
 		text-overflow: ellipsis;
@@ -346,13 +438,16 @@
 	#maincontent .cbi-dropdown:not(.btn):not(.cbi-button):is([open], .open, .cbi-dropdown-open, .vwrt-cbi-dropdown-open, [aria-expanded="true"]) > ul,
 	#modal_overlay .cbi-dropdown:not(.btn):not(.cbi-button):is([open], .open, .cbi-dropdown-open, .vwrt-cbi-dropdown-open, [aria-expanded="true"]) > ul {
 		position: absolute;
-		z-index: var(--vw-z-dropdown);
+		z-index: calc(var(--vw-z-dropdown) + 1);
 		top: calc(100% + 8px);
-		right: 0;
 		left: 0;
+		right: auto;
 		display: grid;
+		inline-size: max-content;
+		width: max-content;
 		gap: 4px;
 		min-width: max(100%, 14rem);
+		max-inline-size: min(calc(100vw - 32px), 42rem);
 		max-height: min(52vh, 24rem);
 		padding: 6px !important;
 		overflow: auto;
