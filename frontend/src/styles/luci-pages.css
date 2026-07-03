@@ -1,31 +1,6 @@
 @layer components {
-	body:is(
-		[data-page="admin-system-cpulimit"],
-		[data-page^="admin-services-AdGuardHome"],
-		[data-page^="admin-services-openclash"],
-		[data-page^="admin-nas-nfs"],
-		[data-page="admin-nas"],
-		[data-page="admin-vpn"],
-		[data-page^="admin-vpn-"]
-	) #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
-		position: absolute !important;
-		inset: auto !important;
-		width: 1px !important;
-		height: 1px !important;
-		min-width: 0 !important;
-		min-height: 0 !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		overflow: hidden !important;
-		clip: rect(0 0 0 0) !important;
-		display: none !important;
-		visibility: hidden !important;
-		opacity: 0 !important;
-		pointer-events: none !important;
-	}
-
 	@media (max-width: 900px) {
-		body.vwrt-page-overview #maincontent #view > .cbi-section > div {
+		body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent #view > .cbi-section > div {
 			max-width: 100%;
 			overflow-x: auto;
 			overscroll-behavior-inline: contain;
@@ -47,30 +22,31 @@
 		}
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table {
 		display: flex !important;
 		flex-wrap: wrap;
 		align-items: stretch;
 		justify-content: center;
-		gap: 12px;
-		padding: 10px !important;
-		background:
-			linear-gradient(180deg, color-mix(in srgb, var(--vw-material-edge-highlight) 18%, transparent), transparent 64%),
-			color-mix(in srgb, var(--vw-material-inner-surface) 72%, transparent) !important;
-		border: 1px solid color-mix(in srgb, var(--vw-material-border) 62%, transparent) !important;
-		border-radius: var(--vw-radius-card) !important;
-		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--vw-material-edge-highlight) 22%, transparent) !important;
+		gap: 7px;
+		max-width: 100%;
+		padding: 0 !important;
+		overflow: visible;
+		background: transparent !important;
+		border: 0 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox {
 		display: grid !important;
-		flex: 1 1 20rem;
+		flex: 1 1 calc((100% - 21px) / 4);
 		grid-template-rows: auto minmax(0, 1fr);
 		justify-items: stretch !important;
 		gap: 0 !important;
-		min-width: min(100%, 20rem) !important;
+		min-width: min(100%, 14rem) !important;
 		width: auto !important;
-		max-width: calc((100% - 36px) / 4) !important;
+		max-width: calc((100% - 21px) / 4) !important;
+		margin: 0 !important;
 		padding: 0 !important;
 		overflow: visible;
 		background:
@@ -79,52 +55,83 @@
 		border-color: color-mix(in srgb, var(--vw-material-border) 70%, transparent) !important;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .vwrt-network-glyph {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox > .vwrt-network-glyph {
 		display: none !important;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .ifacebox-head {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox > .ifacebox-head {
 		display: flex !important;
 		align-items: center;
 		justify-content: center;
-		min-height: 42px;
-		padding: 9px 14px !important;
+		min-height: 28px;
+		padding: 4px 8px !important;
 		color: var(--vw-text-main) !important;
 		background: color-mix(in srgb, var(--vw-material-inner-surface) 44%, transparent) !important;
 		border-bottom: 1px solid color-mix(in srgb, var(--vw-material-border) 68%, transparent) !important;
-		font-weight: 650;
+		font-weight: 600;
 		text-align: center;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .ifacebox-body {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox > .ifacebox-body {
+		box-sizing: border-box;
 		display: flex !important;
 		flex-direction: column;
 		align-items: stretch;
 		justify-items: stretch;
-		gap: 10px;
+		gap: 4px;
 		width: 100%;
 		min-width: 0;
-		padding: 16px 18px 14px !important;
+		padding: 5px 7px 6px !important;
 		color: var(--vw-text-main) !important;
 		text-align: start !important;
+		line-height: 1.2;
+		white-space: normal !important;
+		overflow-wrap: anywhere;
+		word-break: normal;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table > .ifacebox > .ifacebox-body.left {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox > .ifacebox-body > br,
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox > .ifacebox-body > span > br {
+		display: none !important;
+	}
+
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox > .ifacebox-body > span {
+		display: block !important;
+		min-width: 0;
+		max-width: 100%;
+		margin: 0 !important;
+		padding: 0 !important;
+		line-height: 1.2;
+	}
+
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox > .ifacebox-body .nowrap {
+		display: block !important;
+		min-width: 0;
+		max-width: 100%;
+		line-height: 1.2;
+		overflow: hidden;
+		white-space: nowrap !important;
+		text-overflow: ellipsis;
+		overflow-wrap: normal;
+		word-break: normal;
+	}
+
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox > .ifacebox-body.left {
 		align-items: stretch !important;
 		justify-content: flex-start;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) {
 		box-sizing: border-box;
 		display: grid !important;
-		grid-template-columns: 20px minmax(0, 1fr);
-		align-items: start !important;
+		grid-template-columns: 15px minmax(0, 1fr);
+		align-items: center !important;
 		justify-content: flex-start;
-		gap: 6px 12px !important;
+		gap: 1px 5px !important;
 		width: 100%;
 		max-width: 100%;
 		min-height: 0 !important;
-		padding: 10px 14px !important;
+		padding: 4px 6px !important;
 		background: color-mix(in srgb, var(--vw-material-inner-surface) 74%, transparent) !important;
 		border: 1px solid color-mix(in srgb, var(--vw-material-border) 80%, transparent) !important;
 		border-radius: calc(var(--vw-radius-card) - 2px) !important;
@@ -132,14 +139,15 @@
 		white-space: normal !important;
 		overflow-wrap: anywhere;
 		text-align: start;
-		line-height: 1.28;
+		line-height: 1.1;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) > span {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) > span {
 		display: flex !important;
 		flex-direction: column;
 		gap: 0;
 		min-width: 0;
+		line-height: 1.1;
 		color: var(--vw-text-secondary) !important;
 		background: transparent !important;
 		border: 0 !important;
@@ -148,29 +156,39 @@
 		padding: 0 !important;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) > span > br {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) > span > br {
 		display: none !important;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) .nowrap {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) .nowrap {
 		display: block !important;
 		min-height: 0 !important;
+		min-width: 0;
+		max-width: 100%;
 		padding: 0 !important;
+		overflow: hidden;
 		color: inherit !important;
 		background: transparent !important;
 		border: 0 !important;
 		border-radius: 0 !important;
 		box-shadow: none !important;
-		white-space: normal !important;
+		white-space: nowrap !important;
+		text-overflow: ellipsis;
+		overflow-wrap: normal;
 	}
 
-	body.vwrt-page-overview #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) :is(.vwrt-network-glyph, img.vwrt-network-port-icon) {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table :is(.ifacebox-body, .ifacebadge:not(.cbi-tooltip)) .nowrap + .nowrap {
+		margin-top: 2px;
+	}
+
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table .ifacebadge:not(.cbi-tooltip) :is(.vwrt-network-glyph, img.vwrt-network-port-icon) {
 		flex: 0 0 auto;
 		align-self: center;
 		margin-block-start: 0;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section > div > div[style*="grid-template-columns:repeat(auto-fit, minmax(100px"] {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section div[style*="grid-template-columns"][style*="minmax(70px"]:has(> .vwrt-overview-port-card),
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section div[style*="grid-template-columns"][style*="minmax(100px"]:has(> .vwrt-overview-port-card) {
 		box-sizing: border-box;
 		display: flex !important;
 		flex-wrap: wrap;
@@ -178,7 +196,7 @@
 		justify-content: center;
 		justify-items: initial !important;
 		gap: 12px;
-		width: fit-content;
+		width: 100%;
 		max-width: 100%;
 		min-height: 0;
 		margin-inline: auto !important;
@@ -189,7 +207,7 @@
 		border: 0;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card {
 		box-sizing: border-box;
 		display: grid !important;
 		position: relative;
@@ -201,7 +219,8 @@
 		align-self: flex-start;
 		gap: 5px;
 		width: 140px !important;
-		min-width: 140px;
+		min-width: 140px !important;
+		max-width: 140px !important;
 		height: auto !important;
 		min-height: 0;
 		margin: 0 !important;
@@ -210,15 +229,15 @@
 		border-color: color-mix(in srgb, var(--vw-material-border) 72%, transparent) !important;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card:is(:hover, .active) {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card:is(:hover, .active) {
 		background: var(--vw-network-port-hover) !important;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-network-glyph {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-network-glyph {
 		display: none !important;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-head:not(.cbi-tooltip-container) {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-head:not(.cbi-tooltip-container) {
 		display: grid !important;
 		grid-column: 1;
 		grid-row: 2;
@@ -236,11 +255,11 @@
 		text-align: center;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-status-primary {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-status-primary {
 		display: contents !important;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-status-primary > :is(
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-status-primary > :is(
 		.vwrt-network-image-glyph,
 		img.vwrt-network-port-icon
 	) {
@@ -251,7 +270,7 @@
 		margin: 0 0 2px;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-state {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-state {
 		grid-column: 1;
 		grid-row: 3;
 		color: var(--vw-network-status-danger) !important;
@@ -260,11 +279,11 @@
 		line-height: 1.2;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card[data-vwrt-link-state="connected"] .vwrt-port-link-state {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card[data-vwrt-link-state="connected"] .vwrt-port-link-state {
 		color: var(--vw-network-status-active) !important;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed {
 		grid-column: 1;
 		grid-row: 4;
 		display: inline-flex;
@@ -278,18 +297,18 @@
 		line-height: 1;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed > strong {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed > strong {
 		font-size: 1rem;
 		font-weight: 600;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed > small {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-link-speed > small {
 		color: var(--vw-text-secondary);
 		font-size: 0.72rem;
 		font-weight: 520;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership {
 		position: relative !important;
 		grid-column: 1;
 		grid-row: 6;
@@ -305,7 +324,7 @@
 		box-shadow: none !important;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership > .zonebadge {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership > .zonebadge {
 		flex: 1 1 0;
 		width: auto !important;
 		height: 5px !important;
@@ -315,17 +334,17 @@
 		background: var(--vw-text-muted) !important;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership[data-vwrt-network-role="wan"] > .zonebadge {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership[data-vwrt-network-role="wan"] > .zonebadge {
 		background: var(--vw-danger) !important;
 		box-shadow: 0 0 7px color-mix(in srgb, var(--vw-danger) 42%, transparent);
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership[data-vwrt-network-role="lan"] > .zonebadge {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card > .vwrt-port-network-membership[data-vwrt-network-role="lan"] > .zonebadge {
 		background: var(--vw-success) !important;
 		box-shadow: 0 0 7px color-mix(in srgb, var(--vw-success) 38%, transparent);
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card::after {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card::after {
 		position: absolute;
 		top: 11px;
 		right: 11px;
@@ -338,12 +357,12 @@
 		pointer-events: none;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card[data-vwrt-link-state="connected"]::after {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card[data-vwrt-link-state="connected"]::after {
 		background: var(--vw-network-status-active);
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--vw-network-status-active) 16%, transparent);
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-body:last-child {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card > .ifacebox-body:last-child {
 		grid-column: 1;
 		grid-row: 5;
 		width: 100%;
@@ -354,7 +373,7 @@
 		text-align: center;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic {
 		display: grid;
 		grid-template-columns: max-content;
 		justify-content: center;
@@ -364,7 +383,7 @@
 		line-height: 1.2;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic-row {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic-row {
 		display: grid;
 		grid-template-columns: 14px max-content;
 		align-items: center;
@@ -373,7 +392,7 @@
 		white-space: nowrap;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-traffic-arrow {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-traffic-arrow {
 		display: block;
 		width: 14px;
 		height: 14px;
@@ -382,30 +401,141 @@
 		-webkit-mask: url("../img/network-icons/traffic-in.svg") center / contain no-repeat;
 	}
 
-	body.vwrt-page-overview #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic-row[data-direction="tx"] .vwrt-traffic-arrow {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent > #view > .cbi-section .vwrt-overview-port-card .vwrt-port-traffic-row[data-direction="tx"] .vwrt-traffic-arrow {
 		mask-image: url("../img/network-icons/traffic-out.svg");
 		-webkit-mask-image: url("../img/network-icons/traffic-out.svg");
 	}
 
-	body.vwrt-page-overview #maincontent table:is(#status_leases, #status_leases6) :is(th, td):last-child {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent table:is(#status_leases, #status_leases6) :is(th, td):last-child {
 		width: 8.5rem;
 		text-align: center !important;
 		vertical-align: middle;
 	}
 
-	body.vwrt-page-overview #maincontent table:is(#status_leases, #status_leases6) td:last-child > :is(button, .cbi-button, .btn) {
+	body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent table:is(#status_leases, #status_leases6) td:last-child > :is(button, .cbi-button, .btn) {
 		margin-inline: auto;
 	}
 
-	@media (max-width: 1800px) {
-		body.vwrt-page-overview #maincontent .network-status-table > .ifacebox {
-			max-width: calc((100% - 24px) / 3) !important;
-		}
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section {
+		box-sizing: border-box;
+		max-width: 100%;
+		min-width: 0;
+		min-inline-size: 0;
+		overflow-wrap: anywhere;
 	}
 
-	@media (max-width: 1320px) {
-		body.vwrt-page-overview #maincontent .network-status-table > .ifacebox {
-			max-width: calc((100% - 12px) / 2) !important;
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > :is(p, table) {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 100%;
+		margin: 0;
+		white-space: normal;
+		overflow-wrap: anywhere;
+		word-break: normal;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > p {
+		padding: 4px 0 0 !important;
+		line-height: 1.28;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > p > br {
+		display: none;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > p:has(> :is(input[type="button"], input[type="submit"], button, .btn, .cbi-button)) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 10px;
+		min-width: 0;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > p:has(> :is(input[type="button"], input[type="submit"], button, .btn, .cbi-button)) > br {
+		display: none;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > p:has(> :is(input[type="button"], input[type="submit"], button, .btn, .cbi-button)) > :is(em, b, strong, span, a) {
+		flex: 1 1 100%;
+		min-width: 0;
+		max-width: 100%;
+		white-space: normal;
+		overflow-wrap: anywhere;
+		word-break: normal;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > p:has(> :is(input[type="button"], input[type="submit"], button, .btn, .cbi-button)) > :is(input[type="button"], input[type="submit"], button, .btn, .cbi-button) {
+		flex: 0 1 auto;
+		max-width: 100%;
+		margin: 0 !important;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > table {
+		width: 100%;
+		max-width: 100%;
+		table-layout: auto;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > table :is(td, th) {
+		min-width: 0;
+		max-width: 100%;
+		white-space: normal !important;
+		overflow-wrap: anywhere;
+		word-break: normal;
+		vertical-align: middle;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > table td > :is(a, b, strong, em, span) {
+		display: inline-block;
+		min-width: 0;
+		max-width: 100%;
+		white-space: normal;
+		overflow-wrap: anywhere;
+		word-break: normal;
+		vertical-align: middle;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > table td > :is(a[href^="http://"], a[href^="https://"]) {
+		word-break: break-all;
+	}
+
+	body:is(.vwrt-page-overview, .vwrt-page-plugin, .vwrt-page-services, [data-page="admin-status-overview"], [data-page^="admin-services-"]) #maincontent fieldset.cbi-section > table td > :is(input[type="button"], input[type="submit"], button, .btn, .cbi-button) {
+		max-width: 100%;
+		margin: 4px 6px 4px 0 !important;
+		vertical-align: middle;
+	}
+
+	body[data-page^="admin-services-lucky"] #maincontent fieldset.cbi-section > table {
+		table-layout: fixed;
+	}
+
+	body[data-page^="admin-services-lucky"] #maincontent fieldset.cbi-section > table :is(td, th):first-child {
+		width: 32%;
+		max-width: 16rem;
+	}
+
+	body[data-page^="admin-services-lucky"] #maincontent :is(#_luckyAdminLink, #_luckyAdminOpen, #_luckyLoginInfo) {
+		min-width: 0;
+		max-width: 100%;
+		white-space: normal !important;
+		overflow-wrap: anywhere;
+		word-break: normal;
+	}
+
+	body[data-page^="admin-services-lucky"] #maincontent :is(#_luckyAdminLink, #_luckyAdminOpen, #_luckyLoginInfo) :is(a, b, strong, span) {
+		display: inline-block;
+		min-width: 0;
+		max-width: 100%;
+		white-space: normal !important;
+		overflow-wrap: anywhere;
+		word-break: break-word;
+	}
+
+	@media (max-width: 900px) {
+		body:is(.vwrt-page-overview, [data-page="admin-status-overview"]) #maincontent .network-status-table > .ifacebox {
+			flex: 1 1 min(100%, 20rem);
+			min-width: min(100%, 18rem) !important;
+			max-width: 100% !important;
 		}
 	}
 
@@ -549,35 +679,6 @@
 		display: flex !important;
 		justify-content: flex-end;
 		margin-left: auto !important;
-	}
-
-	body.vwrt-page-cpulimit #maincontent :is(.hidden.cbi-button-save, .hidden.cbi-button-apply, .hidden.cbi-button-reset) {
-		display: none !important;
-		visibility: hidden !important;
-		pointer-events: none !important;
-	}
-
-	body.vwrt-page-cpulimit #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
-		display: none !important;
-		visibility: hidden !important;
-		pointer-events: none !important;
-	}
-
-	body:is(.vwrt-page-nas, .vwrt-page-vpn, .vwrt-page-services):not(.vwrt-page-openclash) #maincontent :is(button.hidden, input.hidden, .btn.hidden, .cbi-button.hidden) {
-		position: absolute !important;
-		inset: auto !important;
-		width: 1px !important;
-		height: 1px !important;
-		min-width: 0 !important;
-		min-height: 0 !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		overflow: hidden !important;
-		clip: rect(0 0 0 0) !important;
-		display: none !important;
-		visibility: hidden !important;
-		opacity: 0 !important;
-		pointer-events: none !important;
 	}
 
 	body:is(.vwrt-page-nas, .vwrt-page-vpn, .vwrt-page-services):not(.vwrt-page-openclash) #maincontent #view > :is(.cbi-page-actions, .cbi-section-actions):first-child {
@@ -783,11 +884,6 @@
 		.tr:hover
 	) :is(.ifacebox-head, .ifacebox-body, .ifacebox-network, .td, td, .cbi-section-node, .cbi-value, .controls) {
 		background: transparent !important;
-	}
-
-	body.vwrt-page-network #maincontent .cbi-section-table-row > :is(.td, td, .cbi-section-table-cell):first-child {
-		text-align: center;
-		vertical-align: middle;
 	}
 
 	body.vwrt-page-network #maincontent .ifacebox {

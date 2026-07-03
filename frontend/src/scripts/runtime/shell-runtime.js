@@ -2092,31 +2092,18 @@ import { gsap } from 'gsap';
 	function animateEntrance() {
 		var sidebar = document.querySelector('#vwrt-sidebar');
 		var topbar = document.querySelector('.vwrt-mobile-topbar');
-		var content = gsap.utils.toArray('#maincontent > :not(script):not(style)').slice(0, 12);
-		var targets = [sidebar, topbar].filter(Boolean).concat(content);
-
-		if (isOpenClashConfigPage()) {
-			content = content.filter(function(node) {
-				return !node.matches('form, .cbi-map');
-			});
-			targets = [sidebar, topbar].filter(Boolean).concat(content);
-		}
+		var targets = [sidebar, topbar].filter(Boolean);
 
 		if (!targets.length || !motionAllowed())
 			return;
 
 		gsap.fromTo(targets, {
-			autoAlpha: 0,
-			y: 10,
-			scale: 0.992
+			y: 4
 		}, {
-			autoAlpha: 1,
 			y: 0,
-			scale: 1,
-			duration: 0.58,
-			stagger: 0.035,
+			duration: 0.26,
 			ease: 'power3.out',
-			clearProps: 'transform,visibility,opacity'
+			clearProps: 'transform'
 		});
 	}
 
@@ -2804,6 +2791,18 @@ import { gsap } from 'gsap';
 
 		button.classList.remove('vwrt-button-action', 'vwrt-button-danger', 'vwrt-button-neutral', 'vwrt-button-stop');
 
+		if (button.matches('.cbi-button-apply, .cbi-button-save, .cbi-button-positive, input[type="submit"]'))
+			return;
+
+		if (button.matches('.cbi-button-action, .cbi-button-add, .btn-primary, .btn.primary'))
+			return;
+
+		if (button.matches('.cbi-button-negative, .cbi-button-remove, .cbi-button-reset, .btn-danger, .btn.danger, input[type="reset"]'))
+			return;
+
+		if (button.matches('.cbi-button-warning, .btn-warning, .btn.warning'))
+			return;
+
 		if (/(?:delete|remove|kill|terminate|删除|移除|终止|杀死)/i.test(label)) {
 			button.classList.add('vwrt-button-danger');
 			return;
@@ -3084,12 +3083,31 @@ import { gsap } from 'gsap';
 			var headerLabels = headerCells.map(function(cell) {
 				return buttonVisibleLabel(cell);
 			});
+			var lastHeaderCell = headerCells[headerCells.length - 1];
 			var rows = Array.prototype.filter.call(
 				table.querySelectorAll(':scope tr, :scope > .tr, :scope > .cbi-section-table-row'),
 				function(row) {
 					return row !== header;
 				}
 			);
+			var visibleActionControls = function(cell) {
+				return Array.prototype.filter.call(
+					cell ? cell.querySelectorAll('button, .cbi-button, .btn, input[type="submit"], input[type="button"], input[type="reset"]') : [],
+					function(control) {
+						var style;
+
+						if (!control || control.matches('input[type="hidden"], [hidden], .hidden'))
+							return false;
+
+						style = window.getComputedStyle ? window.getComputedStyle(control) : null;
+						return !(style && (
+							style.getPropertyValue('display') === 'none' ||
+							style.getPropertyValue('visibility') === 'hidden' ||
+							Number(style.getPropertyValue('opacity')) === 0
+						));
+					}
+				);
+			};
 			var hasBooleanFirstColumn = Boolean(headerLabels[0] && booleanHeaderPattern.test(headerLabels[0])) ||
 				rows.some(function(row) {
 					var firstCell = Array.prototype.find.call(row.children || [], function(cell) {
@@ -3106,10 +3124,42 @@ import { gsap } from 'gsap';
 
 				return Boolean(lastCell && lastCell.querySelector('button, .cbi-button, .btn, input[type="submit"], input[type="button"], input[type="reset"], .cbi-section-actions'));
 			});
+			var hasWideActions = rows.some(function(row) {
+				var cells = Array.prototype.filter.call(row.children || [], function(cell) {
+					return cell.matches && cell.matches('td, th, .td, .th, .cbi-section-table-cell');
+				});
+				var lastCell = cells[cells.length - 1];
+				var controls = visibleActionControls(lastCell);
+
+				return Boolean(
+					lastCell &&
+					(
+						lastCell.querySelector('.drag-handle') ||
+						controls.length >= 3
+					)
+				);
+			});
+			var hasActionSlot = Boolean(
+				headerCells.length >= 2 &&
+				(
+					hasActionColumn ||
+					(lastHeaderCell && !buttonVisibleLabel(lastHeaderCell))
+				)
+			);
+			var hasVisualFirstColumn = rows.some(function(row) {
+				var firstCell = Array.prototype.find.call(row.children || [], function(cell) {
+					return cell.matches && cell.matches('td, th, .td, .th, .cbi-section-table-cell');
+				});
+
+				return Boolean(firstCell && firstCell.querySelector('.ifacebadge, .ifacebox, .zonebadge, .vwrt-network-glyph, .vwrt-network-image-glyph, img'));
+			});
 			var hasManyColumns = headerCells.length >= 5;
 
 			table.classList.toggle('vwrt-table-boolean-first', hasBooleanFirstColumn && headerCells.length >= 2);
+			table.classList.toggle('vwrt-table-visual-first', hasVisualFirstColumn && !hasBooleanFirstColumn && headerCells.length >= 2);
 			table.classList.toggle('vwrt-table-has-actions', hasActionColumn);
+			table.classList.toggle('vwrt-table-action-slot', hasActionSlot);
+			table.classList.toggle('vwrt-table-wide-actions', hasWideActions);
 			table.classList.toggle('vwrt-table-many-columns', hasManyColumns && hasActionColumn);
 		});
 	}
@@ -3503,7 +3553,7 @@ import { gsap } from 'gsap';
 		});
 
 		root.classList.add('vwrt-ready', 'vitrawrt-ready', 'vwrt-sidebar-ready', 'vwrt-gsap-ready');
-		root.dataset.vitrawrt = '1.43.0-r1';
+		root.dataset.vitrawrt = '1.50.0-r1';
 
 		if (document.body)
 			document.body.classList.add('vitrawrt-body');
@@ -3536,11 +3586,10 @@ import { gsap } from 'gsap';
 		bindEvents();
 		installSystemListeners();
 
-		if (motionAllowed()) {
-			enhancePointerMotion();
-			animateEntrance();
-			watchPanels();
-		}
+			if (motionAllowed()) {
+				enhancePointerMotion();
+				watchPanels();
+			}
 
 		window.setTimeout(updateReadyClass, 600);
 		window.setTimeout(refreshNativeChangesIndicator, 900);

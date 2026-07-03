@@ -1,25 +1,25 @@
 @layer components {
-		#maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]):not(.vwrt-apply-combo),
-		#modal_overlay :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]):not(.vwrt-apply-combo),
-		.vwrt-auth-card :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]) {
-			--vw-button-hover-glow: var(--vw-button-neutral-glow);
-			--vwrt-button-text: var(--vw-text-main);
-			--vwrt-button-fill: var(--vw-button-secondary-fill);
-			--vwrt-button-border: color-mix(in srgb, var(--vw-control-border) 88%, transparent);
-			appearance: none;
-			display: inline-flex;
-			align-items: center;
+	#maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]):not(.vwrt-apply-combo),
+	#modal_overlay :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]):not(.vwrt-apply-combo),
+	.vwrt-auth-card :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]) {
+		--vw-button-hover-glow: var(--vw-button-neutral-glow);
+		--vwrt-button-text: var(--vw-text-main);
+		--vwrt-button-fill: var(--vw-button-secondary-fill);
+		--vwrt-button-border: color-mix(in srgb, var(--vw-control-border) 88%, transparent);
+		appearance: none;
+		display: inline-flex;
+		align-items: center;
 		justify-content: center;
 		gap: 8px;
 		min-height: var(--vw-control-height);
 		min-width: max-content;
 		box-sizing: border-box;
 		padding: 0 14px;
-			border: 1px solid var(--vwrt-button-border) !important;
-			border-radius: var(--vw-radius-pill) !important;
-			color: var(--vwrt-button-text) !important;
-			background: var(--vwrt-button-fill) !important;
-			box-shadow: none !important;
+		border: 1px solid var(--vwrt-button-border) !important;
+		border-radius: var(--vw-radius-pill) !important;
+		color: var(--vwrt-button-text) !important;
+		background: var(--vwrt-button-fill) !important;
+		box-shadow: none !important;
 		font: inherit;
 		font-size: 0.85rem;
 		font-weight: 500;
@@ -38,40 +38,150 @@
 			transform var(--vw-duration-fast) var(--vw-ease-standard);
 	}
 
-		.vwrt-auth-card :is(.cbi-button, .btn, button):hover {
-			color: var(--vwrt-button-text) !important;
-			background: var(--vwrt-button-fill) !important;
-			border-color: var(--vwrt-button-border) !important;
-			box-shadow:
-				0 8px 12px -7px var(--vw-button-hover-glow, var(--vw-button-neutral-glow)),
-				0 18px 24px -12px var(--vw-button-hover-glow, var(--vw-button-neutral-glow)) !important;
-		}
+	#maincontent :is(.cbi-button, .btn, button):not(.vwrt-apply-combo):hover,
+	#modal_overlay :is(.cbi-button, .btn, button):not(.vwrt-apply-combo):hover,
+	.vwrt-auth-card :is(.cbi-button, .btn, button):hover {
+		color: var(--vwrt-button-text) !important;
+		background: var(--vwrt-button-fill) !important;
+		border-color: var(--vwrt-button-border) !important;
+		box-shadow:
+			0 8px 12px -7px var(--vw-button-hover-glow, var(--vw-button-neutral-glow)),
+			0 18px 24px -12px var(--vw-button-hover-glow, var(--vw-button-neutral-glow)) !important;
+	}
 
 	#maincontent :is(.cbi-button, .btn, button):not(.vwrt-apply-combo):active,
-		#modal_overlay :is(.cbi-button, .btn, button):not(.vwrt-apply-combo):active,
-		.vwrt-auth-card :is(.cbi-button, .btn, button):active {
-			background: var(--vwrt-button-fill) !important;
-			box-shadow: none !important;
+	#modal_overlay :is(.cbi-button, .btn, button):not(.vwrt-apply-combo):active,
+	.vwrt-auth-card :is(.cbi-button, .btn, button):active {
+		background: var(--vwrt-button-fill) !important;
+		box-shadow: none !important;
 		transform: translateY(1px);
 	}
 
-		#maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-icon-only,
-	#modal_overlay :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-icon-only,
-	.vwrt-auth-card :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-icon-only {
+	:is(#maincontent, #modal_overlay) :is(
+		button.hidden,
+		input.hidden,
+		.btn.hidden,
+		.cbi-button.hidden
+	) {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+	}
+
+	#maincontent :is(input[type="button"], .button):not(.cbi-button):not(.btn),
+	#modal_overlay :is(input[type="button"], .button):not(.cbi-button):not(.btn) {
+		--vw-button-hover-glow: var(--vw-button-neutral-glow);
+		appearance: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		min-height: var(--vw-control-height);
+		min-width: max-content;
+		box-sizing: border-box;
+		padding: 0 14px;
+		border: 1px solid color-mix(in srgb, var(--vw-control-border) 88%, transparent) !important;
+		border-radius: var(--vw-radius-pill) !important;
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-fill) !important;
+		box-shadow: none !important;
+		font: inherit;
+		font-size: 0.85rem;
+		font-weight: 500;
+		letter-spacing: 0;
+		line-height: 1;
+		text-align: center;
+		vertical-align: middle;
+		text-decoration: none !important;
+		text-shadow: none !important;
+		cursor: pointer;
+	}
+
+	#maincontent :is(input[type="button"], .button):not(.cbi-button):not(.btn):hover,
+	#modal_overlay :is(input[type="button"], .button):not(.cbi-button):not(.btn):hover {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-hover) !important;
+		border-color: var(--vw-control-border-hover) !important;
+		box-shadow:
+			0 8px 12px -7px var(--vw-button-hover-glow, var(--vw-button-neutral-glow)),
+			0 18px 24px -12px var(--vw-button-hover-glow, var(--vw-button-neutral-glow)) !important;
+	}
+
+	#maincontent :is(input[type="button"], .button):not(.cbi-button):not(.btn):active,
+	#modal_overlay :is(input[type="button"], .button):not(.cbi-button):not(.btn):active {
+		background: var(--vw-button-secondary-active) !important;
+		box-shadow: none !important;
+		transform: translateY(1px);
+	}
+
+	#maincontent :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]),
+	#modal_overlay :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]) {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-primary-fill) 82%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	#maincontent :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]):hover,
+	#modal_overlay :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]):hover {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-hover) !important;
+		border-color: var(--vw-button-primary-hover) !important;
+	}
+
+	#maincontent :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]):active,
+	#modal_overlay :is(.cbi-button-action, .cbi-button-apply, .cbi-button-save, .cbi-button-positive, .btn-primary, .btn.primary, input[type="submit"]):active {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-active) !important;
+	}
+
+	#maincontent :is(.cbi-button-negative, .cbi-button-remove, .cbi-button-reset, .btn-danger, .btn.danger, .btn.cbi-button-negative, .btn.cbi-button-reset, .btn.cbi-button-remove, input[type="reset"]),
+	#modal_overlay :is(.cbi-button-negative, .cbi-button-remove, .cbi-button-reset, .btn-danger, .btn.danger, .btn.cbi-button-negative, .btn.cbi-button-reset, .btn.cbi-button-remove, input[type="reset"]) {
+		color: var(--vw-button-danger-text) !important;
+		background: var(--vw-button-danger-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-danger-text) 22%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	#maincontent :is(.cbi-button-negative, .cbi-button-remove, .cbi-button-reset, .btn-danger, .btn.danger, .btn.cbi-button-negative, .btn.cbi-button-reset, .btn.cbi-button-remove, input[type="reset"]):hover,
+	#modal_overlay :is(.cbi-button-negative, .cbi-button-remove, .cbi-button-reset, .btn-danger, .btn.danger, .btn.cbi-button-negative, .btn.cbi-button-reset, .btn.cbi-button-remove, input[type="reset"]):hover {
+		background: var(--vw-button-danger-hover) !important;
+		border-color: color-mix(in srgb, var(--vw-button-danger-text) 30%, transparent) !important;
+	}
+
+	#maincontent :is(.cbi-button-neutral, .cbi-button-link, .cbi-button-find, .btn-link),
+	#modal_overlay :is(.cbi-button-neutral, .cbi-button-link, .cbi-button-find, .btn-link) {
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-control-border) 86%, transparent) !important;
+	}
+
+	#maincontent :is(.cbi-button-warning, .btn-warning, .btn.warning),
+	#modal_overlay :is(.cbi-button-warning, .btn-warning, .btn.warning) {
+		color: var(--vw-button-warning-text) !important;
+		background: var(--vw-button-warning-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-warning-text) 22%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	#maincontent :is(.cbi-button-add, .btn.cbi-button-add),
+	#modal_overlay :is(.cbi-button-add, .btn.cbi-button-add) {
+		color: var(--vw-button-primary-text) !important;
+		background: var(--vw-button-primary-fill) !important;
+		border-color: color-mix(in srgb, var(--vw-button-primary-fill) 82%, transparent) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+	}
+
+	#maincontent :is(.cbi-button, .btn, button, input[type="button"], input[type="submit"], input[type="reset"], .button).vwrt-button-icon-only,
+	#modal_overlay :is(.cbi-button, .btn, button, input[type="button"], input[type="submit"], input[type="reset"], .button).vwrt-button-icon-only,
+	.vwrt-auth-card :is(.cbi-button, .btn, button, input[type="button"], input[type="submit"], input[type="reset"], .button).vwrt-button-icon-only {
 		justify-content: center;
 		width: var(--vw-control-height);
 		min-width: var(--vw-control-height);
 		padding-inline: 0 !important;
 		font-size: 1rem;
 		line-height: 1;
-	}
-
-	:is(#maincontent, #modal_overlay) :is(
-		.cbi-button-add.vwrt-button-icon-only,
-		.cbi-button-remove.vwrt-button-icon-only,
-		.vwrt-dynlist-delete.vwrt-button-icon-only
-	) {
-		box-shadow: none !important;
 	}
 
 	:is(#maincontent, #modal_overlay) :is(
@@ -94,10 +204,10 @@
 	)::before {
 		position: absolute;
 		inset: 0;
-		width: 18px;
-		height: 18px;
+		width: 20px;
+		height: 20px;
 		margin: auto;
-		background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M4 4l10 10M14 4 4 14' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center / 18px 18px no-repeat;
+		background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5 5l10 10M15 5 5 15' fill='none' stroke='%23a9231b' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / 20px 20px no-repeat;
 		content: "";
 		transform: none;
 		-webkit-mask: none;
@@ -110,15 +220,13 @@
 		.btn.cbi-button-remove.vwrt-button-icon-only,
 		.vwrt-dynlist-delete.vwrt-button-icon-only
 	)::before {
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M4 4l10 10M14 4 4 14' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M5 5l10 10M15 5 5 15' fill='none' stroke='%23ffb4ae' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
 	}
 
-			#maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-has-text:not(.vwrt-apply-combo),
-		#modal_overlay :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-has-text:not(.vwrt-apply-combo),
-	.vwrt-auth-card :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]).vwrt-button-has-text {
+	#maincontent :is(.cbi-button, .btn, button, input[type="button"], input[type="submit"], input[type="reset"], .button).vwrt-button-has-text,
+	#modal_overlay :is(.cbi-button, .btn, button, input[type="button"], input[type="submit"], input[type="reset"], .button).vwrt-button-has-text,
+	.vwrt-auth-card :is(.cbi-button, .btn, button, input[type="button"], input[type="submit"], input[type="reset"], .button).vwrt-button-has-text {
 		width: auto;
-		padding-inline: 17px;
-		font-weight: 500 !important;
 	}
 
 	#maincontent :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-add-icon,
@@ -131,10 +239,8 @@
 	}
 
 	#maincontent :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-add-text,
-	#maincontent :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-has-text,
 	#maincontent :is(.cbi-button-add, .btn.cbi-button-add):not(.vwrt-button-icon-only),
 	#modal_overlay :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-add-text,
-	#modal_overlay :is(.cbi-button-add, .btn.cbi-button-add).vwrt-button-has-text,
 	#modal_overlay :is(.cbi-button-add, .btn.cbi-button-add):not(.vwrt-button-icon-only) {
 		width: auto;
 		min-width: max-content;
@@ -142,8 +248,8 @@
 		border-radius: var(--vw-radius-pill) !important;
 	}
 
-	#maincontent :is(.cbi-button[disabled], .btn[disabled], button[disabled], .cbi-button-disabled, .btn.disabled),
-	#modal_overlay :is(.cbi-button[disabled], .btn[disabled], button[disabled], .cbi-button-disabled, .btn.disabled) {
+	#maincontent :is(.cbi-button[disabled], .btn[disabled], .button[disabled], button[disabled], input[disabled], .cbi-button-disabled, .btn.disabled),
+	#modal_overlay :is(.cbi-button[disabled], .btn[disabled], .button[disabled], button[disabled], input[disabled], .cbi-button-disabled, .btn.disabled) {
 		color: var(--vw-disabled-text) !important;
 		background: var(--vw-disabled-surface) !important;
 		border-color: transparent !important;
@@ -168,13 +274,6 @@
 		min-width: 0;
 		text-align: center;
 		vertical-align: middle;
-	}
-
-	#maincontent :is(.cbi-section-table, .table, table) :is(.cbi-button, .btn, button, input[type="submit"], input[type="button"], input[type="reset"]).vwrt-button-has-text,
-	body.vwrt-page-packages #maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="button"], input[type="reset"]).vwrt-button-has-text {
-		width: auto !important;
-		min-width: calc(var(--vw-control-height) + 18px);
-		padding-inline: 14px !important;
 	}
 
 	body.vwrt-page-packages #maincontent :is(.cbi-button-negative, .cbi-button-remove, .btn-danger) {
@@ -315,8 +414,8 @@
 		background: var(--vw-menu-item-hover) !important;
 	}
 
-	#maincontent :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]):focus-visible,
-	#modal_overlay :is(.cbi-button, .btn, button, input[type="submit"], input[type="reset"]):focus-visible {
+	#maincontent :is(.cbi-button, .btn, .button, button, input[type="button"], input[type="submit"], input[type="reset"]):focus-visible,
+	#modal_overlay :is(.cbi-button, .btn, .button, button, input[type="button"], input[type="submit"], input[type="reset"]):focus-visible {
 		outline: 0;
 		box-shadow:
 			0 0 0 3px var(--vw-focus-ring),
@@ -944,10 +1043,10 @@
 	}
 
 		:is(#maincontent, #modal_overlay) .vwrt-apply-combo:is(.spinning, .loading, .vwrt-button-local-loading) {
-			--vwrt-apply-loading-slot: 24px;
-				grid-template-columns: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 28px) 0 0 !important;
-				width: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 28px) !important;
-				min-width: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 28px) !important;
+			--vwrt-apply-loading-slot: 30px;
+				grid-template-columns: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 32px) 0 0 !important;
+				width: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 32px) !important;
+				min-width: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 32px) !important;
 			transform: none !important;
 		}
 
@@ -1009,17 +1108,17 @@
 			transform-origin: 50% 100%;
 		}
 	}
-}
+
+	}
 
 @layer utilities {
-	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(
-		.cbi-button,
-		.btn,
-		button,
-		input[type="button"],
-		input[type="submit"],
-		input[type="reset"]
-	):not(.vwrt-apply-combo):not([disabled]):not(.cbi-button-disabled):not(.btn.disabled) {
+		body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(
+			.cbi-button,
+			.btn,
+			button,
+			input[type="submit"],
+			input[type="reset"]
+		):not(.vwrt-apply-combo):not([disabled]):not(.cbi-button-disabled):not(.btn.disabled) {
 		color: var(--vwrt-button-text, var(--vw-text-main)) !important;
 		background: var(--vwrt-button-fill, var(--vw-button-secondary-fill)) !important;
 		border-color: var(--vwrt-button-border, color-mix(in srgb, var(--vw-control-border) 86%, transparent)) !important;
@@ -1103,28 +1202,26 @@
 		--vwrt-button-border: var(--vw-button-danger-border);
 	}
 
-	body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(
-		.cbi-button,
-		.btn,
-		button,
-		input[type="button"],
-		input[type="submit"],
-		input[type="reset"]
-	):not(.vwrt-apply-combo):not([disabled]):not(.cbi-button-disabled):not(.btn.disabled):is(:hover, :active) {
+		body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(
+			.cbi-button,
+			.btn,
+			button,
+			input[type="submit"],
+			input[type="reset"]
+		):not(.vwrt-apply-combo):not([disabled]):not(.cbi-button-disabled):not(.btn.disabled):is(:hover, :active) {
 		color: var(--vwrt-button-text, var(--vw-text-main)) !important;
 		background: var(--vwrt-button-fill, var(--vw-button-secondary-fill)) !important;
 		border-color: var(--vwrt-button-border, color-mix(in srgb, var(--vw-control-border) 86%, transparent)) !important;
 		background-image: none !important;
 	}
 
-		body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(
-			.cbi-button,
-			.btn,
-			button,
-			input[type="button"],
-			input[type="submit"],
-			input[type="reset"]
-		):not(.vwrt-apply-combo):not([disabled]):not(.cbi-button-disabled):not(.btn.disabled):hover {
+			body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) :is(
+				.cbi-button,
+				.btn,
+				button,
+				input[type="submit"],
+				input[type="reset"]
+			):not(.vwrt-apply-combo):not([disabled]):not(.cbi-button-disabled):not(.btn.disabled):hover {
 		box-shadow:
 			0 8px 12px -7px var(--vw-button-hover-glow, var(--vw-button-neutral-glow)),
 			0 18px 24px -12px var(--vw-button-hover-glow, var(--vw-button-neutral-glow)) !important;
@@ -1247,10 +1344,10 @@
 	}
 
 		body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) .vwrt-apply-combo:is(.spinning, .loading, .vwrt-button-local-loading) {
-			--vwrt-apply-loading-slot: 24px;
-			grid-template-columns: minmax(0, calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 28px)) 0 0 !important;
-			inline-size: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 28px) !important;
-			min-inline-size: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 28px) !important;
+			--vwrt-apply-loading-slot: 30px;
+			grid-template-columns: minmax(0, calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 32px)) 0 0 !important;
+			inline-size: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 32px) !important;
+			min-inline-size: calc(var(--vwrt-apply-label-width, 88px) + var(--vwrt-apply-loading-slot) + 32px) !important;
 		}
 
 		body:not(.vwrt-dashboard-page) :is(#maincontent, #modal_overlay) .vwrt-apply-combo:is(.spinning, .loading, .vwrt-button-local-loading) > .vwrt-apply-current {

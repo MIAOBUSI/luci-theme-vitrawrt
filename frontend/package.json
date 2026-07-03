@@ -1,6 +1,6 @@
 {
 	"name": "luci-theme-vitrawrt",
-	"version": "1.43.0",
+	"version": "1.50.0",
 	"private": true,
 	"type": "module",
 	"scripts": {

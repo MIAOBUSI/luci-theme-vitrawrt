@@ -107,13 +107,17 @@ function warn(file, line, selector, message) {
 
 function isPageScoped(selector) {
 	return allowedPageScopes.some((scope) => selector.includes(scope)) ||
-		/body:is\([^)]*\.vwrt-page-[^)]+\)/.test(selector);
+		/body:is\([^)]*\.vwrt-page-[^)]+\)/.test(selector) ||
+		/body\[data-page(?:=|\^=)/.test(selector);
 }
 
 function isStructuredTableScoped(selector) {
 	return selector.includes('.vwrt-table-boolean-first') ||
+		selector.includes('.vwrt-table-visual-first') ||
 		selector.includes('.vwrt-table-has-actions') ||
-		selector.includes('.vwrt-table-many-columns');
+		selector.includes('.vwrt-table-many-columns') ||
+		selector.includes('.vwrt-table-action-slot') ||
+		selector.includes('.vwrt-table-wide-actions');
 }
 
 function isAllowedCoreStateRule(file, selector) {
@@ -590,6 +594,7 @@ function analyzeCss(file, source) {
 }
 
 const runtimeFiles = await walk(root);
+const repoRoot = process.cwd();
 const viteSourceRoot = path.join(process.cwd(), 'frontend', 'src', 'styles');
 let viteSourceFiles = [];
 
@@ -642,33 +647,72 @@ for (const file of files) {
 	analyzeCss(file, source);
 }
 
+const controlsCssPath = path.join(viteSourceRoot, 'luci-controls.css');
+const formsCssPath = path.join(viteSourceRoot, 'luci-forms.css');
 const pagesCssPath = path.join(viteSourceRoot, 'luci-pages.css');
+const tablesCssPath = path.join(viteSourceRoot, 'luci-tables.css');
 
 try {
+	const controlsCss = await fs.readFile(controlsCssPath, 'utf8');
+	const formsCss = await fs.readFile(formsCssPath, 'utf8');
 	const pagesCss = await fs.readFile(pagesCssPath, 'utf8');
-		const networkCss = await fs.readFile(path.join(viteSourceRoot, 'luci-network-icons.css'), 'utf8');
-		const contractCss = `${pagesCss}\n${networkCss}`;
-		const contracts = [
-			[/body\.vwrt-page-openclash[\s\S]*?#maincontent[\s\S]*?input\.cbi-button-apply[\s\S]*?var\(--vw-button-primary-fill\)/, 'OpenClash CBI action buttons must keep theme-token color without runtime layout classes'],
-			[/body\.vwrt-page-overview[\s\S]*?\.network-status-table\s*\{[\s\S]*?display:\s*flex\s*!important/, 'overview upstream cards must use the compact flex layout'],
+	const tablesCss = await fs.readFile(tablesCssPath, 'utf8');
+	const networkCss = await fs.readFile(path.join(viteSourceRoot, 'luci-network-icons.css'), 'utf8');
+	const shellRuntime = await fs.readFile(path.join(repoRoot, 'frontend/src/scripts/runtime/shell-runtime.js'), 'utf8');
+	const contractCss = `${controlsCss}\n${formsCss}\n${pagesCss}\n${tablesCss}\n${networkCss}\n${shellRuntime}`;
+	const contracts = [
+		[/:is\(#maincontent,\s*#modal_overlay\)\s+:is\(\s*button\.hidden,\s*input\.hidden,\s*\.btn\.hidden,\s*\.cbi-button\.hidden\s*\)\s*\{[\s\S]*?display:\s*none\s*!important/, 'hidden LuCI buttons must be handled once in the shared control owner'],
+		[/body\.vwrt-page-openclash[\s\S]*?#maincontent[\s\S]*?input\.cbi-button-apply[\s\S]*?var\(--vw-button-primary-fill\)/, 'OpenClash CBI action buttons must keep theme-token color without runtime layout classes'],
+		[/body:is\(\.vwrt-page-overview,\s*\[data-page="admin-status-overview"\]\)[\s\S]*?\.network-status-table\s*\{[\s\S]*?display:\s*flex\s*!important/, 'overview upstream cards must use the compact flex layout from the server-side route selector'],
+		[/body:is\(\.vwrt-page-overview,\s*\[data-page="admin-status-overview"\]\)[^{]*#maincontent\s+\.network-status-table\s*\{[^}]*background:\s*transparent\s*!important[^}]*border:\s*0\s*!important[^}]*box-shadow:\s*none\s*!important/, 'overview upstream outer container must not render as an extra card'],
+			[/body:is\(\.vwrt-page-overview,\s*\[data-page="admin-status-overview"\]\)[\s\S]*?\.network-status-table\s*\{[\s\S]*?gap:\s*7px/, 'overview upstream outer layout must keep compact inter-card gaps for four desktop cards'],
+			[/body:is\(\.vwrt-page-overview,\s*\[data-page="admin-status-overview"\]\)[\s\S]*?\.network-status-table\s*>\s*\.ifacebox\s*\{[\s\S]*?flex:\s*1\s+1\s+calc\(\(100%\s*-\s*21px\)\s*\/\s*4\)[\s\S]*?max-width:\s*calc\(\(100%\s*-\s*21px\)\s*\/\s*4\)\s*!important/, 'overview upstream cards must keep the four-column desktop cap with the actual 7px flex gap'],
+			[/body:is\(\.vwrt-page-overview,\s*\[data-page="admin-status-overview"\]\)[\s\S]*?\.network-status-table\s*>\s*\.ifacebox\s*\{[\s\S]*?margin:\s*0\s*!important/, 'overview upstream cards must clear native ifacebox margins so four cards fit'],
+			[/body:is\(\.vwrt-page-overview,\s*\[data-page="admin-status-overview"\]\)[\s\S]*?\.network-status-table\s*>\s*\.ifacebox\s*>\s*\.ifacebox-body\s*\{[\s\S]*?gap:\s*4px[\s\S]*?padding:\s*5px\s+7px\s+6px\s*!important[\s\S]*?line-height:\s*1\.2/, 'overview upstream cards must keep readable internal row rhythm'],
+			[/body:is\(\.vwrt-page-overview,\s*\[data-page="admin-status-overview"\]\)[\s\S]*?\.network-status-table\s*>\s*\.ifacebox\s*>\s*\.ifacebox-body\s*>\s*br,[\s\S]*?\.ifacebox-body\s*>\s*span\s*>\s*br[\s\S]*?display:\s*none\s*!important/, 'overview upstream cards must hide direct and itemlist LuCI br spacers'],
+			[/body:is\(\.vwrt-page-overview,\s*\[data-page="admin-status-overview"\]\)[\s\S]*?\.network-status-table\s*>\s*\.ifacebox\s*>\s*\.ifacebox-body\s+\.nowrap\s*\{[\s\S]*?white-space:\s*nowrap\s*!important[\s\S]*?overflow:\s*hidden[\s\S]*?text-overflow:\s*ellipsis/, 'overview upstream direct nowrap rows must stay one-line and clip long IPv6 text inside cards'],
+			[/body:is\(\.vwrt-page-overview,\s*\[data-page="admin-status-overview"\]\)[\s\S]*?\[style\*="grid-template-columns"\]\[style\*="minmax\(70px"\][\s\S]*?justify-content:\s*center/, 'overview port status must own LuCI 70px inline grids and center the cards'],
+			[/\.vwrt-table-boolean-first[\s\S]*?\.vwrt-table-visual-first[\s\S]*?\.vwrt-table-has-actions/, 'structured table column roles must keep shared header and row alignment rules'],
+			[/table\.classList\.toggle\('vwrt-table-action-slot',\s*hasActionSlot\)/, 'CBI add/remove tables must mark empty action slots before rows are added'],
+			[/table\.classList\.toggle\('vwrt-table-wide-actions',\s*hasWideActions\)/, 'CBI add/remove tables must mark wide action stacks before sizing action columns'],
+			[/#maincontent\s+\.cbi-tblsection[\s\S]*?\.vwrt-table-action-slot[\s\S]*?table-layout:\s*fixed/, 'CBI add/remove tables with action slots must use stable table layout'],
+			[/\.vwrt-table-action-slot[\s\S]*?:not\(\.placeholder\):not\(\.vwrt-placeholder-row\)[\s\S]*?:last-child[\s\S]*?width:\s*9\.25rem/, 'CBI action-slot widths must not collapse placeholder rows'],
+			[/\.vwrt-table-action-slot\.vwrt-table-wide-actions[\s\S]*?:not\(\.placeholder\):not\(\.vwrt-placeholder-row\)[\s\S]*?:last-child[\s\S]*?width:\s*18\.5%/, 'CBI wide action stacks must reserve enough width for drag/edit/delete controls'],
+			[/#maincontent\s+:is\([^)]*\.cbi-button-action[^)]*\)[\s\S]*?background:\s*var\(--vw-button-primary-fill\)\s*!important/, 'LuCI action buttons must keep the theme primary fill'],
+			[/\.cbi-button-apply[\s\S]*?\.cbi-button-save[\s\S]*?\.cbi-button-positive[\s\S]*?--vwrt-button-fill:\s*var\(--vw-button-positive-fill\)/, 'raw LuCI apply/save/positive buttons must keep the positive semantic fill'],
+			[/\.vwrt-apply-combo:is\(\.spinning,\s*\.loading,\s*\.vwrt-button-local-loading\)[\s\S]*?--vwrt-apply-loading-slot:\s*30px[\s\S]*?\+\s*32px/, 'split Save & Apply loading state must reserve spinner width'],
+			[/#maincontent\s+:is\(input\[type="button"\],\s*\.button\):not\(\.cbi-button\):not\(\.btn\)[\s\S]*?background:\s*var\(--vw-button-secondary-fill\)\s*!important/, 'plain LuCI button controls must get a dedicated fallback without joining the main semantic selector'],
+			[/\.vwrt-button-has-text[^{}]*\{[^}]*width:\s*auto[^}]*\}/, 'runtime text button markers may keep intrinsic width but must not repaint or resize refreshed buttons'],
+			[/input\[type="file"\]::file-selector-button[\s\S]*?background:\s*var\(--vw-button-secondary-fill\)\s*!important[\s\S]*?font-weight:\s*500/, 'file selector buttons must get an explicit themed color without bold primary styling'],
+			[/function\s+enhanceButtonSemantic\(button,\s*label\)[\s\S]*?button\.matches\('\.cbi-button-apply,\s*\.cbi-button-save,\s*\.cbi-button-positive,\s*input\[type="submit"\]'\)[\s\S]*?return;/, 'runtime button text classification must not downgrade native LuCI apply/save/positive semantics'],
+			[/body:is\(\.vwrt-page-overview,\s*\.vwrt-page-plugin,\s*\.vwrt-page-services,\s*\[data-page="admin-status-overview"\],\s*\[data-page\^="admin-services-"\]\)[\s\S]*?fieldset\.cbi-section\s*>\s*p:has\(\s*>\s*:is\([^)]*input\[type="button"\][\s\S]*?display:\s*flex/, 'service status paragraphs with inline buttons must be normalized before runtime page classes arrive'],
+			[/body:is\(\.vwrt-page-overview,\s*\.vwrt-page-plugin,\s*\.vwrt-page-services,\s*\[data-page="admin-status-overview"\],\s*\[data-page\^="admin-services-"\]\)[\s\S]*?fieldset\.cbi-section\s*>\s*:is\(p,\s*table\)[\s\S]*?overflow-wrap:\s*anywhere/, 'service status paragraphs and tables must wrap long service text'],
+			[/body:is\(\.vwrt-page-overview,\s*\.vwrt-page-plugin,\s*\.vwrt-page-services,\s*\[data-page="admin-status-overview"\],\s*\[data-page\^="admin-services-"\]\)[\s\S]*?fieldset\.cbi-section\s*>\s*table\s+td\s*>\s*:is\(a,\s*b,\s*strong,\s*em,\s*span\)[\s\S]*?overflow-wrap:\s*anywhere/, 'service status table inline text must stay inside card cells'],
+			[/body\[data-page\^="admin-services-lucky"\][\s\S]*?fieldset\.cbi-section\s*>\s*table\s*\{[\s\S]*?table-layout:\s*fixed[\s\S]*?#_luckyAdminOpen[\s\S]*?overflow-wrap:\s*anywhere/, 'Lucky status tables and admin links must stay inside their cards'],
 			[/\.cbi-tab\s*>\s*a\s*\{[^}]*box-shadow:\s*none\s*!important/, 'OpenClash log tabs must stay flat'],
 			[/body\[data-page\^="admin-services-openclash"\][\s\S]*?:is\(select,\s*\.cbi-input-select,\s*\.cbi-dropdown/, 'OpenClash dropdowns must have a page-scoped intrinsic-width rule']
 		];
 		const forbiddenContracts = [
+			[/body:is\([^)]*\)[\s\S]*?#maincontent\s+:is\([^)]*(?:button|input)\.hidden[^)]*\)\s*\{/, 'hidden LuCI buttons must not be fixed with page-specific body:is() rules'],
+			[/body\.vwrt-page-[^{]*#maincontent\s+:is\([^)]*(?:button|input)\.hidden[^)]*\)\s*\{/, 'hidden LuCI buttons must not be fixed with page-specific vwrt-page rules'],
+			[/#maincontent\s+:is\([^)]*\.button[^)]*input\[type="button"\][^)]*\):not\(\.vwrt-apply-combo\)[\s\S]*?background:\s*var\(--vwrt-button-fill\)\s*!important/, 'plain .button and input[type="button"] controls must not be merged into the main semantic button selector'],
+			[/body:not\(\.vwrt-dashboard-page\)[\s\S]*?:is\(#maincontent,\s*#modal_overlay\)\s+:is\([^)]*\.button[^)]*input\[type="button"\][^)]*\):not\(\.vwrt-apply-combo\)[\s\S]*?background:\s*var\(--vwrt-button-fill/, 'plain .button and input[type="button"] controls must not be merged into the final utility semantic button selector'],
+			[/\.vwrt-button-has-text[^{}]*\{[^}]*padding(?:-inline)?:/, 'runtime text button markers must not change padding after LuCI XHR refresh'],
+			[/\.cbi-button-apply[\s\S]*?\.cbi-button-save[\s\S]*?\.cbi-button-positive[\s\S]*?background:\s*var\(--vw-button-positive-fill\)\s*!important/, 'raw LuCI apply/save/positive buttons must not get a late direct positive repaint'],
 			[/body\[data-page\^="admin-services-openclash"\][\s\S]*?\.cbi-value:has\(\[id\^="switch_dashboard_"\]\)/, 'OpenClash external controls must not be re-laid out by theme CSS'],
 			[/\.vwrt-openclash-button-row/, 'OpenClash external controls must not depend on runtime layout classes']
 		];
 
-		for (const [pattern, message] of contracts) {
-			if (!pattern.test(contractCss))
-				failures.push({ file: pagesCssPath, line: 1, selector: 'Pass 32 regression contract', message });
-		}
-		for (const [pattern, message] of forbiddenContracts) {
-			if (pattern.test(contractCss))
-				failures.push({ file: pagesCssPath, line: 1, selector: 'Pass 32 regression contract', message });
-		}
+	for (const [pattern, message] of contracts) {
+		if (!pattern.test(contractCss))
+			failures.push({ file: pagesCssPath, line: 1, selector: 'Pass 32 regression contract', message });
 	}
-	catch (_) {}
+	for (const [pattern, message] of forbiddenContracts) {
+		if (pattern.test(contractCss))
+			failures.push({ file: pagesCssPath, line: 1, selector: 'Pass 32 regression contract', message });
+	}
+}
+catch (_) {}
 
 for (const warning of warnings)
 	console.warn(`${warning.file}:${warning.line}: warning: ${warning.message} [${warning.selector}]`);

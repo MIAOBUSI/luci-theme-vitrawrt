@@ -102,13 +102,27 @@
 		min-height: calc(var(--vw-field-height) - 10px);
 		margin: 0 12px 0 0;
 		padding: 0 16px;
-		border: 1px solid color-mix(in srgb, var(--vw-control-border) 86%, transparent);
+		border: 1px solid color-mix(in srgb, var(--vw-control-border) 86%, transparent) !important;
 		border-radius: calc(var(--vw-radius-field) - 2px);
-		color: var(--vw-text-main);
-		background: var(--vw-button-secondary-fill);
-		box-shadow: var(--vw-shadow-control);
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-fill) !important;
+		box-shadow: var(--vw-shadow-control) !important;
 		font: inherit;
-		font-weight: 650;
+		font-weight: 500;
+		letter-spacing: 0;
+	}
+
+	:where(#maincontent, #modal_overlay, .vwrt-auth-card) input[type="file"]::-webkit-file-upload-button {
+		min-height: calc(var(--vw-field-height) - 10px);
+		margin: 0 12px 0 0;
+		padding: 0 16px;
+		border: 1px solid color-mix(in srgb, var(--vw-control-border) 86%, transparent) !important;
+		border-radius: calc(var(--vw-radius-field) - 2px);
+		color: var(--vw-text-main) !important;
+		background: var(--vw-button-secondary-fill) !important;
+		box-shadow: var(--vw-shadow-control) !important;
+		font: inherit;
+		font-weight: 500;
 		letter-spacing: 0;
 	}
 
@@ -118,8 +132,13 @@
 	}
 
 	:where(#maincontent, #modal_overlay, .vwrt-auth-card) input[type="file"]:hover::file-selector-button {
-		background: var(--vw-button-secondary-hover);
-		border-color: var(--vw-control-border-hover);
+		background: var(--vw-button-secondary-hover) !important;
+		border-color: var(--vw-control-border-hover) !important;
+	}
+
+	:where(#maincontent, #modal_overlay, .vwrt-auth-card) input[type="file"]:hover::-webkit-file-upload-button {
+		background: var(--vw-button-secondary-hover) !important;
+		border-color: var(--vw-control-border-hover) !important;
 	}
 
 	:where(#maincontent, .vwrt-auth-card) :is(select, .cbi-input-select) {

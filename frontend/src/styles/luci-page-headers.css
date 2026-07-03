@@ -31,23 +31,35 @@
 	}
 
 		#maincontent :is(.cbi-section > h3, .cbi-section legend, .cbi-title, fieldset > legend) {
+			box-sizing: border-box;
 			display: flex;
-		align-items: center;
-		gap: 8px;
-		width: 100%;
-		max-width: 100%;
-		margin: 0 0 10px;
-		padding: 0 0 8px;
-		border: 0;
-		border-bottom: 1px solid color-mix(in srgb, var(--vw-material-border) 72%, transparent);
-		border-radius: 0;
+			align-items: center;
+			gap: 8px;
+			width: 100%;
+			max-width: 100%;
+			min-width: 0;
+			margin: 0 0 10px;
+			padding: 0 0 8px;
+			border: 0;
+			border-bottom: 1px solid color-mix(in srgb, var(--vw-material-border) 72%, transparent);
+			border-radius: 0;
 		color: var(--vw-text-main) !important;
 		background: transparent;
 		box-shadow: none;
 		font-size: 0.98rem;
-		font-weight: 740;
-			line-height: 1.2;
-		}
+			font-weight: 740;
+				line-height: 1.2;
+			white-space: normal;
+			overflow-wrap: anywhere;
+			}
+
+			#maincontent fieldset.cbi-section > legend {
+				float: left;
+			}
+
+			#maincontent fieldset.cbi-section > legend + * {
+				clear: left;
+			}
 
 		#maincontent .cbi-title > h3 {
 			display: flex !important;
@@ -172,8 +184,13 @@
 		}
 
 	#maincontent .cbi-section > h3 + .cbi-section-descr,
+	#maincontent .cbi-map-descr,
 	#maincontent .cbi-section-descr {
+		max-width: 100%;
 		color: var(--vw-text-secondary);
+		white-space: normal;
+		overflow-wrap: anywhere;
+		word-break: normal;
 	}
 
 	#maincontent :is(h1, h2, h3, h4, h5, h6) {

@@ -70,6 +70,192 @@
 		line-height: 1.38;
 	}
 
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table):is(.vwrt-table-boolean-first, .vwrt-table-visual-first, .vwrt-table-has-actions) :is(td, th, .td, .th, .cbi-section-table-cell) {
+		box-sizing: border-box;
+		min-width: 0;
+		padding-inline: 12px;
+		vertical-align: middle;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-action-slot {
+		table-layout: fixed;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-action-slot :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles,
+		tbody tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.tbody .tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row),
+		.tr.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row)
+	) > :is(td, th, .td, .th, .cbi-section-table-cell):last-child {
+		width: 9.25rem !important;
+		min-width: 8.5rem !important;
+		max-width: 9.75rem !important;
+		white-space: normal !important;
+		text-align: center !important;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-boolean-first.vwrt-table-action-slot :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles,
+		tbody tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.tbody .tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row),
+		.tr.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row)
+	) > :is(td, th, .td, .th, .cbi-section-table-cell):first-child {
+		width: 5.5rem !important;
+		min-width: 4.75rem !important;
+		max-width: 6.25rem !important;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-many-columns.vwrt-table-action-slot :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles,
+		tbody tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.tbody .tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row),
+		.tr.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row)
+	) > :is(td, th, .td, .th, .cbi-section-table-cell):nth-child(2) {
+		width: 30% !important;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-many-columns.vwrt-table-action-slot :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles,
+		tbody tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.tbody .tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row),
+		.tr.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row)
+	) > :is(td, th, .td, .th, .cbi-section-table-cell):is(:nth-child(3), :nth-child(4), :nth-child(5)) {
+		width: 12% !important;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-many-columns.vwrt-table-action-slot :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles,
+		tbody tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.tbody .tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row),
+		.tr.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row)
+	) > :is(td, th, .td, .th, .cbi-section-table-cell):nth-child(6) {
+		width: 15% !important;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-action-slot.vwrt-table-wide-actions :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles,
+		tbody tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.tbody .tr:not(.placeholder):not(.vwrt-placeholder-row),
+		.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row),
+		.tr.cbi-section-table-row:not(.placeholder):not(.vwrt-placeholder-row)
+	) > :is(td, th, .td, .th, .cbi-section-table-cell):last-child {
+		width: 18.5% !important;
+		min-width: 0 !important;
+		max-width: none !important;
+		padding-inline: 10px !important;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-action-slot.vwrt-table-wide-actions :is(.cbi-section-actions, .middle):last-child > div {
+		max-width: 100%;
+		justify-content: center;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-action-slot.vwrt-table-wide-actions :is(.cbi-section-actions, .middle):last-child :is(.cbi-button, .btn, button) {
+		flex: 0 0 auto;
+	}
+
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-boolean-first :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles,
+		tbody tr,
+		.tbody .tr,
+		.cbi-section-table-row,
+		.tr.cbi-section-table-row
+	) > :is(td, th, .td, .th, .cbi-section-table-cell):first-child,
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-visual-first :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles,
+		tbody tr,
+		.tbody .tr,
+		.cbi-section-table-row,
+		.tr.cbi-section-table-row
+	) > :is(td, th, .td, .th, .cbi-section-table-cell):first-child,
+	#maincontent .cbi-tblsection :is(table, .table, .cbi-section-table).vwrt-table-has-actions :is(
+		thead,
+		.thead,
+		tr:has(> th),
+		.tr:has(> .th),
+		tr.table-titles,
+		.tr.table-titles,
+		tr.cbi-section-table-titles,
+		.tr.cbi-section-table-titles,
+		.cbi-section-table-titles,
+		tbody tr,
+		.tbody .tr,
+		.cbi-section-table-row,
+		.tr.cbi-section-table-row
+	) > :is(td, th, .td, .th, .cbi-section-table-cell):last-child {
+		text-align: center !important;
+		vertical-align: middle;
+	}
+
 	#maincontent :is(table, .table, .cbi-section-table) :is(td, th, .td, .th, .cbi-section-table-cell, .cbi-section-actions, .middle):has(:is(select, .cbi-input-select, .cbi-dropdown:not(.btn):not(.cbi-button))) {
 		position: relative;
 		z-index: 4;
